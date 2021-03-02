@@ -54,18 +54,22 @@ scan with {:
 :}
 
 
-terminal PROG, LBRACE, RBRACE, SEMI, LPAREN, RPAREN, COMMA, PRINT, RETURN, PLUS, EQUAL, VOID;
+terminal PROG, LBRACE, RBRACE, LSQR, RSQR, SEMI, LPAREN, RPAREN, COMMA, PRINT, RETURN, VOID, NEW ;
+terminal PLUS, MINUS, ASTK, DIV, MOD, AND, OR, INC, DEC, EQUAL, GT, GET, LT, LET, EQEQ, NEQ ;
+terminal QSTMK, COLON ;
 terminal Integer NUMBER ;
 terminal String IDENT ;
+terminal String CHAR;
+terminal Boolean BOOL;
 terminal IF, ELSE;
 
 nonterminal MethodDeclList, VarDecl;
 nonterminal FormalParamList, FormalParamDecl, FormPars, ActualPars, ActualParamList; 
-nonterminal StatementList, Statement, Addop;
+nonterminal StatementList, Statement, Addop, Subop, Mulop, Divop, Modop ;
 nonterminal Unmatched, Matched;
 
 nonterminal rs.etf.pp1.symboltable.concepts.Obj Program, ProgName, Designator, MethodDecl, MethodTypeName; 
-nonterminal rs.etf.pp1.symboltable.concepts.Struct Type, Term, Expr, Factor, VarDeclList; 
+nonterminal rs.etf.pp1.symboltable.concepts.Struct Type, Term, SumExpr, Expr, Factor, VarDeclList; 
 
 Program ::= (Program) PROG ProgName:p VarDeclList LBRACE MethodDeclList RBRACE 
 ;
@@ -131,19 +135,34 @@ Matched ::= (Assignment) Designator:dest EQUAL Expr:e SEMI
 			  (ProcCall) Designator:func LPAREN ActualPars RPAREN SEMI
 			  ;
 			  
-Expr ::= (AddExpr) Expr:te Addop Term:t
+Expr ::= (NegExpr) MINUS SumExpr
+		|
+		(PosExpr) SumExpr
+		 ;
+
+SumExpr ::= (AddExpr) SumExpr:se Addop Term:t
 		 |
 		 (TermExpr) Term:t
 		 ;
 
 Term ::= (Term) Factor:t 
+		|
+		(Terms) Term Mulop:op Factor:t
 ;
 
-Factor ::= (Const) NUMBER
+Factor ::= (NumConst) NUMBER
+			|
+			(CharConst) CHAR
+			|
+			(BoolConst) BOOL
+			|
+			(BraceExpr) LPAREN Expr:e RPAREN 
 			|
 		   (Var) Designator:d
 		    |
 		   (FuncCall) Designator:func LPAREN ActualPars RPAREN
+		    |
+		   (NewObj) NEW Type:t LSQR Expr:e RSQR
 		   ;
 
 ActualPars ::= (Actuals) ActualParamList 
@@ -156,7 +175,19 @@ ActualParamList ::= (ActualParams) ActualParamList COMMA Expr
 					(ActualParam) Expr
 					;
 
-Designator ::= (Designator) IDENT:name
+Designator ::= (Designator) IDENT:name 
+				|
+				(IndexDesig) IDENT:name LSQR Expr RSQR 
 ;
 
-Addop ::= (Addop) PLUS ;
+Addop ::= (Addop) PLUS 
+		| 
+		(Subop) MINUS
+;
+
+Mulop ::= (Mulop) ASTK 
+		| 
+		(Divop) DIV 
+		| 
+		(Modop) MOD
+;

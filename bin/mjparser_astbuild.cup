@@ -54,9 +54,13 @@ scan with {:
 :}
 
 
-terminal PROG, LBRACE, RBRACE, SEMI, LPAREN, RPAREN, COMMA, PRINT, RETURN, PLUS, EQUAL, VOID;
+terminal PROG, LBRACE, RBRACE, LSQR, RSQR, SEMI, LPAREN, RPAREN, COMMA, PRINT, RETURN, VOID, NEW ;
+terminal PLUS, MINUS, ASTK, DIV, MOD, AND, OR, INC, DEC, EQUAL, GT, GET, LT, LET, EQEQ, NEQ ;
+terminal QSTMK, COLON ;
 terminal Integer NUMBER ;
 terminal String IDENT ;
+terminal String CHAR;
+terminal Boolean BOOL;
 terminal IF, ELSE;
 
 nonterminal MethodDeclList MethodDeclList;
@@ -69,11 +73,15 @@ nonterminal ActualParamList ActualParamList;
 nonterminal StatementList StatementList;
 nonterminal Statement Statement;
 nonterminal Addop Addop;
+nonterminal Subop Subop;
+nonterminal Mulop Mulop;
+nonterminal Divop Divop;
+nonterminal Modop Modop ;
 nonterminal Unmatched Unmatched;
 nonterminal Matched Matched;
 
 nonterminal rs.etf.pp1.symboltable.concepts.Obj Program, ProgName, Designator, MethodDecl, MethodTypeName; 
-nonterminal rs.etf.pp1.symboltable.concepts.Struct Type, Term, Expr, Factor, VarDeclList; 
+nonterminal rs.etf.pp1.symboltable.concepts.Struct Type, Term, SumExpr, Expr, Factor, VarDeclList; 
 
 Program ::= (Program) PROG ProgName:p VarDeclList:V1 LBRACE MethodDeclList:M2 RBRACE {: RESULT=new Program(p, V1, M2); RESULT.setLine(pleft); :} 
 ;
@@ -139,19 +147,36 @@ Matched ::= (Assignment) Designator:dest EQUAL Expr:e SEMI {: RESULT=new Assignm
 			  (ProcCall) Designator:func LPAREN ActualPars:A1 RPAREN SEMI {: RESULT=new ProcCall(func, A1); RESULT.setLine(funcleft); :}
 			  ;
 			  
-Expr ::= (AddExpr) Expr:te Addop:A1 Term:t {: RESULT=new AddExpr(te, A1, t); RESULT.setLine(teleft); :}
+Expr ::= (NegExpr) MINUS SumExpr:S1 {: RESULT=new NegExpr(S1); RESULT.setLine(S1left); :}
+		|
+		(PosExpr) SumExpr:S1 {: RESULT=new PosExpr(S1); RESULT.setLine(S1left); :}
+		|
+		(Ternary) CondFact QSTMK Expr:E1 COLON Expr:E2 {: RESULT=new Ternary(E1, E2); RESULT.setLine(E1left); :}
+		 ;
+
+SumExpr ::= (AddExpr) SumExpr:se Addop:A1 Term:t {: RESULT=new AddExpr(se, A1, t); RESULT.setLine(seleft); :}
 		 |
 		 (TermExpr) Term:t {: RESULT=new TermExpr(t); RESULT.setLine(tleft); :}
 		 ;
 
 Term ::= (Term) Factor:t {: RESULT=new Term(t); RESULT.setLine(tleft); :} 
+		|
+		(Terms) Term:T1 Mulop:op Factor:t {: RESULT=new Terms(T1, op, t); RESULT.setLine(T1left); :}
 ;
 
-Factor ::= (Const) NUMBER:N1 {: RESULT=new Const(N1); RESULT.setLine(N1left); :}
+Factor ::= (NumConst) NUMBER:N1 {: RESULT=new NumConst(N1); RESULT.setLine(N1left); :}
+			|
+			(CharConst) CHAR:C1 {: RESULT=new CharConst(C1); RESULT.setLine(C1left); :}
+			|
+			(BoolConst) BOOL:B1 {: RESULT=new BoolConst(B1); RESULT.setLine(B1left); :}
+			|
+			(BraceExpr) LPAREN Expr:e RPAREN {: RESULT=new BraceExpr(e); RESULT.setLine(eleft); :} 
 			|
 		   (Var) Designator:d {: RESULT=new Var(d); RESULT.setLine(dleft); :}
 		    |
 		   (FuncCall) Designator:func LPAREN ActualPars:A1 RPAREN {: RESULT=new FuncCall(func, A1); RESULT.setLine(funcleft); :}
+		    |
+		   (NewObj) NEW Type:t LSQR Expr:e RSQR {: RESULT=new NewObj(t, e); RESULT.setLine(tleft); :}
 		   ;
 
 ActualPars ::= (Actuals) ActualParamList:A1 {: RESULT=new Actuals(A1); RESULT.setLine(A1left); :} 
@@ -164,7 +189,19 @@ ActualParamList ::= (ActualParams) ActualParamList:A1 COMMA Expr:E2 {: RESULT=ne
 					(ActualParam) Expr:E1 {: RESULT=new ActualParam(E1); RESULT.setLine(E1left); :}
 					;
 
-Designator ::= (Designator) IDENT:name {: RESULT=new Designator(name); RESULT.setLine(nameleft); :}
+Designator ::= (Designator) IDENT:name {: RESULT=new Designator(name); RESULT.setLine(nameleft); :} 
+				|
+				(IndexDesig) IDENT:name LSQR Expr:E1 RSQR {: RESULT=new IndexDesig(name, E1); RESULT.setLine(nameleft); :} 
 ;
 
-Addop ::= (Addop) PLUS {: RESULT=new Addop(); :} ;
+Addop ::= (Addop) PLUS {: RESULT=new Addop(); :} 
+		| 
+		(Subop) MINUS {: RESULT=new Subop(); :}
+;
+
+Mulop ::= (Mulop) ASTK {: RESULT=new Mulop(); :} 
+		| 
+		(Divop) DIV {: RESULT=new Divop(); :} 
+		| 
+		(Modop) MOD {: RESULT=new Modop(); :}
+;
