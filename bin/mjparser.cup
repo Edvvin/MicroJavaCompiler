@@ -65,7 +65,7 @@ terminal IF, ELSE ;
 
 nonterminal MethodDeclList, VarDecl ;
 nonterminal FormalParamList, FormalParamDecl, FormPars, ActualPars, ActualParamList ; 
-nonterminal StatementList, Statement, Addop, Subop, Mulop, Divop, Modop ;
+nonterminal StatementList, Condition, CondFact, CondTerm, SumExpr, Statement, DesignatorStatement, Addop, Mulop ;
 
 nonterminal rs.etf.pp1.symboltable.concepts.Obj Program, ProgName, Designator, MethodDecl, MethodTypeName ; 
 nonterminal rs.etf.pp1.symboltable.concepts.Struct Type, Term, SumExpr, Expr, Factor, VarDeclList ; 
@@ -119,32 +119,46 @@ DesignatorStatement ::= (EqualStmt) Designator EQUAL Expr
 					|
 					(IncStmt) Designator INC
 					|
-					(Dec) Designator DEC
+					(DecStmt) Designator DEC
+					|
+					(FuncCallStmt) Designator LPAREN ActualParams RPAREN
 					
 ;
 
-Statement ::= (Assignment) Designator:dest EQUAL Expr:e SEMI 
+Statement ::= (DesignatorStatement) DesignatorStatement:des SEMI 
 			  |
 			  (ErrAssignment) Designator EQUAL error SEMI
 			  {: parser.log.debug("Uspesan oporavak od greske pri dodeli vrednosti."); :}
 			  |
 			  (PrintStmt) PRINT LPAREN Expr RPAREN SEMI 
 			  |
+			  (PrintStmtParam) PRINT LPAREN Expr COMMA NUMBER RPAREN SEMI 
+			  |
+			  (ReadStmt) READ LPAREN Designator RPAREN SEMI 
+			  |
+			  (BreakStmt) BREAK SEMI
+			  | 
+			  (ContinueStmt) CONTINUE SEMI
+			  | 
 			  (ReturnExpr) RETURN Expr:t SEMI
 			  |
 			  (ReturnNoExpr) RETURN SEMI
 			  | 
-			  (UnmatchedIf) IF LBRACE Expr RBRACE Statement
+			  (UnmatchedIf) IF LPAREN Expr RPAREN Statement
 			  |
-			  (MatchedIf) IF Expr Statement ELSE Statement
+			  (MatchedIf) IF LPAREN Expr RPAREN Statement ELSE Statement
 			  |
-			  (ProcCall) Designator:func LPAREN ActualPars RPAREN SEMI
+			  (DoWhile) DO Statement WHILE LPAREN Condition RPAREN SEMI
+			  |
+			  (StmtList) LBRACE StatementList RBRACE
 			  ;
 			  
 Expr ::= (NegExpr) MINUS SumExpr
 		|
 		(PosExpr) SumExpr
-		 ;
+		|
+		(Ternary) Condition QSTMK Expr COLON Expr
+		;
 
 SumExpr ::= (AddExpr) SumExpr:se Addop Term:t
 		 |
@@ -180,6 +194,21 @@ ActualParamList ::= (ActualParams) ActualParamList COMMA Expr
 					|
 					(ActualParam) Expr
 					;
+					
+Condition ::= (CondTerm) CondTerm
+			|
+			(CondTerms) CondTerm OR Condition
+			;
+
+CondTerm ::= (CondFact)	CondFact
+			|
+			(CondFacts) CondFact AND CondTerm
+			;
+
+CondFact ::= (CondExpr) Expr
+			|
+			(CondRelop) Expr Relop Expr
+			;
 
 Designator ::= (Designator) IDENT:name 
 				|

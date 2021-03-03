@@ -150,8 +150,6 @@ Matched ::= (Assignment) Designator:dest EQUAL Expr:e SEMI {: RESULT=new Assignm
 Expr ::= (NegExpr) MINUS SumExpr:S1 {: RESULT=new NegExpr(S1); RESULT.setLine(S1left); :}
 		|
 		(PosExpr) SumExpr:S1 {: RESULT=new PosExpr(S1); RESULT.setLine(S1left); :}
-		|
-		(Ternary) CondFact QSTMK Expr:E1 COLON Expr:E2 {: RESULT=new Ternary(E1, E2); RESULT.setLine(E1left); :}
 		 ;
 
 SumExpr ::= (AddExpr) SumExpr:se Addop:A1 Term:t {: RESULT=new AddExpr(se, A1, t); RESULT.setLine(seleft); :}
