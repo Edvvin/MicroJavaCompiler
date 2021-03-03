@@ -59,17 +59,18 @@ terminal PLUS, MINUS, ASTK, DIV, MOD, AND, OR, INC, DEC, EQUAL, GT, GET, LT, LET
 terminal QSTMK, COLON ;
 terminal Integer NUMBER ;
 terminal String IDENT ;
-terminal String CHAR;
-terminal Boolean BOOL;
-terminal IF, ELSE;
+terminal String CHAR ;
+terminal Boolean BOOL ;
+terminal IF, ELSE ;
 
-nonterminal MethodDeclList, VarDecl;
-nonterminal FormalParamList, FormalParamDecl, FormPars, ActualPars, ActualParamList; 
+nonterminal MethodDeclList, VarDecl ;
+nonterminal FormalParamList, FormalParamDecl, FormPars, ActualPars, ActualParamList ; 
 nonterminal StatementList, Statement, Addop, Subop, Mulop, Divop, Modop ;
-nonterminal Unmatched, Matched;
 
-nonterminal rs.etf.pp1.symboltable.concepts.Obj Program, ProgName, Designator, MethodDecl, MethodTypeName; 
-nonterminal rs.etf.pp1.symboltable.concepts.Struct Type, Term, SumExpr, Expr, Factor, VarDeclList; 
+nonterminal rs.etf.pp1.symboltable.concepts.Obj Program, ProgName, Designator, MethodDecl, MethodTypeName ; 
+nonterminal rs.etf.pp1.symboltable.concepts.Struct Type, Term, SumExpr, Expr, Factor, VarDeclList ; 
+
+precedence left ELSE ;
 
 Program ::= (Program) PROG ProgName:p VarDeclList LBRACE MethodDeclList RBRACE 
 ;
@@ -113,13 +114,16 @@ StatementList ::= (Statements) StatementList Statement
 					|
 				  (NoStmt) /* epsilon */
 				  ;
-
-Statement ::= (MatchedStmt) Matched | (UnmachedStmt) Unmatched ;
-
-Unmatched ::= (UnmatchedIf) IF Expr Statement | (UnmatchedIfElse) IF Expr Matched ELSE Unmatched;
-	
 				  
-Matched ::= (Assignment) Designator:dest EQUAL Expr:e SEMI 
+DesignatorStatement ::= (EqualStmt) Designator EQUAL Expr 
+					|
+					(IncStmt) Designator INC
+					|
+					(Dec) Designator DEC
+					
+;
+
+Statement ::= (Assignment) Designator:dest EQUAL Expr:e SEMI 
 			  |
 			  (ErrAssignment) Designator EQUAL error SEMI
 			  {: parser.log.debug("Uspesan oporavak od greske pri dodeli vrednosti."); :}
@@ -130,7 +134,9 @@ Matched ::= (Assignment) Designator:dest EQUAL Expr:e SEMI
 			  |
 			  (ReturnNoExpr) RETURN SEMI
 			  | 
-			  (MatchedIf) IF Expr Matched ELSE Matched
+			  (UnmatchedIf) IF LBRACE Expr RBRACE Statement
+			  |
+			  (MatchedIf) IF Expr Statement ELSE Statement
 			  |
 			  (ProcCall) Designator:func LPAREN ActualPars RPAREN SEMI
 			  ;
