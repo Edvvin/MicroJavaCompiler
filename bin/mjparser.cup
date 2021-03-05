@@ -54,9 +54,8 @@ scan with {:
 :}
 
 
-terminal PROG, LBRACE, RBRACE, LSQR, RSQR, SEMI, LPAREN, RPAREN, COMMA, PRINT, RETURN, VOID, NEW ;
-terminal PLUS, MINUS, ASTK, DIV, MOD, AND, OR, INC, DEC, EQUAL, GT, GET, LT, LET, EQEQ, NEQ ;
-terminal QSTMK, COLON ;
+terminal PROG, LBRACE, RBRACE, LSQR, RSQR, SEMI, LPAREN, RPAREN, COMMA, PRINT, RETURN, VOID, NEW, CONTINUE, WHILE ;
+terminal PLUS, MINUS, ASTK, DIV, MOD, AND, OR, INC, DEC, EQUAL, GT, GET, LT, LET, EQEQ, NEQ, READ, BREAK, DO, QSTMK, COLON;
 terminal Integer NUMBER ;
 terminal String IDENT ;
 terminal String CHAR ;
@@ -64,11 +63,11 @@ terminal Boolean BOOL ;
 terminal IF, ELSE ;
 
 nonterminal MethodDeclList, VarDecl ;
-nonterminal FormalParamList, FormalParamDecl, FormPars, ActualPars, ActualParamList ; 
+nonterminal FormalParamList, FormalParamDecl, FormPars, ActualPars, ActualParamList, Relop; 
 nonterminal StatementList, Condition, CondFact, CondTerm, SumExpr, Statement, DesignatorStatement, Addop, Mulop ;
 
 nonterminal rs.etf.pp1.symboltable.concepts.Obj Program, ProgName, Designator, MethodDecl, MethodTypeName ; 
-nonterminal rs.etf.pp1.symboltable.concepts.Struct Type, Term, SumExpr, Expr, Factor, VarDeclList ; 
+nonterminal rs.etf.pp1.symboltable.concepts.Struct Type, Term, Expr, Expr1, Factor, VarDeclList ; 
 
 precedence left ELSE ;
 
@@ -121,8 +120,7 @@ DesignatorStatement ::= (EqualStmt) Designator EQUAL Expr
 					|
 					(DecStmt) Designator DEC
 					|
-					(FuncCallStmt) Designator LPAREN ActualParams RPAREN
-					
+					(FuncCallStmt) Designator LPAREN ActualPars RPAREN
 ;
 
 Statement ::= (DesignatorStatement) DesignatorStatement:des SEMI 
@@ -153,14 +151,18 @@ Statement ::= (DesignatorStatement) DesignatorStatement:des SEMI
 			  (StmtList) LBRACE StatementList RBRACE
 			  ;
 			  
-Expr ::= (NegExpr) MINUS SumExpr
+Expr ::= (TerExpr) Expr1 QSTMK Expr1 COLON Expr1
+		|
+		(Expr) Expr1
+		;
+		
+Expr1 ::= (NegExpr) MINUS SumExpr
 		|
 		(PosExpr) SumExpr
-		|
-		(Ternary) Condition QSTMK Expr COLON Expr
 		;
 
-SumExpr ::= (AddExpr) SumExpr:se Addop Term:t
+
+SumExpr ::= (AddExpr) Term:t Addop SumExpr:se 
 		 |
 		 (TermExpr) Term:t
 		 ;
@@ -226,3 +228,14 @@ Mulop ::= (Mulop) ASTK
 		| 
 		(Modop) MOD
 ;
+
+Relop ::= (Eqop) EQEQ
+			|
+			(Gtop) GT
+			|
+			(Getop) GET
+			|
+			(Ltop) LT
+			|
+			(Letop) LET
+			;
