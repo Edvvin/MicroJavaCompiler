@@ -1,15 +1,39 @@
 // generated with ast extension for cup
 // version 0.8
-// 5/2/2021 23:11:30
+// 12/2/2021 0:46:30
 
 
 package rs.ac.bg.etf.pp1.ast;
 
-public abstract class FormalParamList implements SyntaxNode {
+public class FormalParamList implements SyntaxNode {
 
     private SyntaxNode parent;
-
     private int line;
+    private FormalParamDecl FormalParamDecl;
+    private FormalParamList FormalParamList;
+
+    public FormalParamList (FormalParamDecl FormalParamDecl, FormalParamList FormalParamList) {
+        this.FormalParamDecl=FormalParamDecl;
+        if(FormalParamDecl!=null) FormalParamDecl.setParent(this);
+        this.FormalParamList=FormalParamList;
+        if(FormalParamList!=null) FormalParamList.setParent(this);
+    }
+
+    public FormalParamDecl getFormalParamDecl() {
+        return FormalParamDecl;
+    }
+
+    public void setFormalParamDecl(FormalParamDecl FormalParamDecl) {
+        this.FormalParamDecl=FormalParamDecl;
+    }
+
+    public FormalParamList getFormalParamList() {
+        return FormalParamList;
+    }
+
+    public void setFormalParamList(FormalParamList FormalParamList) {
+        this.FormalParamList=FormalParamList;
+    }
 
     public SyntaxNode getParent() {
         return parent;
@@ -27,11 +51,46 @@ public abstract class FormalParamList implements SyntaxNode {
         this.line=line;
     }
 
-    public abstract void accept(Visitor visitor);
-    public abstract void childrenAccept(Visitor visitor);
-    public abstract void traverseTopDown(Visitor visitor);
-    public abstract void traverseBottomUp(Visitor visitor);
+    public void accept(Visitor visitor) {
+        visitor.visit(this);
+    }
 
-    public String toString() { return toString(""); }
-    public abstract String toString(String tab);
+    public void childrenAccept(Visitor visitor) {
+        if(FormalParamDecl!=null) FormalParamDecl.accept(visitor);
+        if(FormalParamList!=null) FormalParamList.accept(visitor);
+    }
+
+    public void traverseTopDown(Visitor visitor) {
+        accept(visitor);
+        if(FormalParamDecl!=null) FormalParamDecl.traverseTopDown(visitor);
+        if(FormalParamList!=null) FormalParamList.traverseTopDown(visitor);
+    }
+
+    public void traverseBottomUp(Visitor visitor) {
+        if(FormalParamDecl!=null) FormalParamDecl.traverseBottomUp(visitor);
+        if(FormalParamList!=null) FormalParamList.traverseBottomUp(visitor);
+        accept(visitor);
+    }
+
+    public String toString(String tab) {
+        StringBuffer buffer=new StringBuffer();
+        buffer.append(tab);
+        buffer.append("FormalParamList(\n");
+
+        if(FormalParamDecl!=null)
+            buffer.append(FormalParamDecl.toString("  "+tab));
+        else
+            buffer.append(tab+"  null");
+        buffer.append("\n");
+
+        if(FormalParamList!=null)
+            buffer.append(FormalParamList.toString("  "+tab));
+        else
+            buffer.append(tab+"  null");
+        buffer.append("\n");
+
+        buffer.append(tab);
+        buffer.append(") [FormalParamList]");
+        return buffer.toString();
+    }
 }

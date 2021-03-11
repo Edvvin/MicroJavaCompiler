@@ -54,36 +54,83 @@ scan with {:
 :}
 
 
-terminal PROG, LBRACE, RBRACE, LSQR, RSQR, SEMI, LPAREN, RPAREN, COMMA, PRINT, RETURN, VOID, NEW, CONTINUE, WHILE ;
+terminal PROG, LBRACE, RBRACE, LSQR, RSQR, SEMI, LPAREN, RPAREN, CONST, COMMA, PRINT, RETURN, VOID, NEW, CONTINUE, WHILE ;
 terminal PLUS, MINUS, ASTK, DIV, MOD, AND, OR, INC, DEC, EQUAL, GT, GET, LT, LET, EQEQ, NEQ, READ, BREAK, DO, QSTMK, COLON;
+terminal EXTENDS, DOT, SWITCH, ENUM, CLASS, CASE ;
 terminal Integer NUMBER ;
 terminal String IDENT ;
 terminal String CHAR ;
 terminal Boolean BOOL ;
 terminal IF, ELSE ;
 
-nonterminal MethodDeclList, VarDecl ;
-nonterminal FormalParamList, FormalParamDecl, FormPars, ActualPars, ActualParamList, Relop; 
+nonterminal MethodDeclList, VarDecl, FormalParams ;
+nonterminal FormalParamList, FormalParamDecl, ActualPars, ActualParamList, Relop; 
 nonterminal StatementList, Condition, CondFact, CondTerm, SumExpr, Statement, DesignatorStatement, Addop, Mulop ;
+nonterminal GlobDeclList, Decl, CnstDecl, CnstAsgnList, CnstValue, VarAsgnList, VarAsgnOne, MethodType ;
 
-nonterminal rs.etf.pp1.symboltable.concepts.Obj Program, ProgName, Designator, MethodDecl, MethodTypeName ; 
+nonterminal rs.etf.pp1.symboltable.concepts.Obj Program, Designator, MethodDecl, MethodTypeName ; 
 nonterminal rs.etf.pp1.symboltable.concepts.Struct Type, Term, Expr, Expr1, Factor, VarDeclList ; 
 
 precedence left ELSE ;
 
-Program ::= (Program) PROG ProgName:p VarDeclList LBRACE MethodDeclList RBRACE 
+Program ::= (Program) PROG IDENT:progName GlobDeclList:decls LBRACE MethodDeclList:methods RBRACE 
 ;
 
-ProgName ::= (ProgName) IDENT:pName 
-;
+GlobDeclList ::= (GlobDeclList) GlobDeclList Decl
+			|
+			(NoGlobDecl) /* epsilon */
+			;
 
-VarDeclList ::= (VarDeclarations) VarDeclList VarDecl  
+Decl ::= (GlobCnstDecl) CnstDecl
+		|
+		(GlobVarDecl) VarDecl
+		;
+		
+CnstDecl ::= (CnstDecl) CONST Type CnstAsgnList;
+
+CnstAsgnList ::= (CnstAsgn) IDENT EQUAL CnstValue COMMA CnstAsgnList
 				|
-				(NoVarDecl)/* epsilon */ 
+				(CnstAsgnLast) IDENT EQUAL CnstValue SEMI
+				|
+				(CnstAsgnCommaErr) error COMMA
+				{: parser.report_error("Syntax Error: Bad declaration of global constant in line " + lleft.toString() + ". Recovered until ','", null); :}
+				|
+				(CnstAsgnSemiErr) error SEMI
+				{: parser.report_error("Syntax Error: Bad declaration of global constant in line " + lleft.toString() + ". Recovered until ';'", null); :}
 				;
-				
+
+CnstValue ::= (CnstNum) NUMBER
+			|
+			(CnstChr) CHAR
+			|
+			(CnstBool) BOOL
+			;
+
+VarDeclList ::= (VarDeclList) VarDeclList VarDecl
+				|
+				(NoVarDecl) /* epsilon */
+				;
+
 VarDecl ::= (VarDecl) Type:varType IDENT:varName SEMI 
-;
+				|
+				(VarArrDecl) Type:varType LSQR RSQR IDENT:varName SEMI
+				;
+
+VarAsgnList ::= (VarAsgn) VarAsgnOne COMMA VarAsgnList
+					|
+					(VarAsgnLast) VarAsgnOne SEMI
+					|
+					(VarAsgnCommaErr) error COMMA
+					{: parser.report_error("Syntax Error: Bad declaration of global variable in line " + lleft.toString() + ". Recovered until ','", null); :}
+					|
+					(VarAsgnSemiErr) error SEMI
+					{: parser.report_error("Syntax Error: Bad declaration of global variable in line " + lleft.toString() + ". Recovered until ';'", null); :}
+					;
+				
+VarAsgnOne ::= (VarAsgnOne) IDENT
+					|
+					(VarArrAsgnOne) IDENT LSQR RSQR
+					;
 
 Type ::= (Type) IDENT:typeName 
 ;
@@ -94,21 +141,38 @@ MethodDeclList ::= (MethodDeclarations) MethodDeclList MethodDecl
 					;
 
 MethodDecl ::= (MethodDecl) MethodTypeName
-			   LPAREN FormPars RPAREN VarDeclList LBRACE StatementList RBRACE 
+			   FormalParams VarDeclList LBRACE StatementList RBRACE 
 			   ;
 
-MethodTypeName ::= (MethodTypeName) Type:retType IDENT:methName
+MethodTypeName ::= (MethodTypeName) MethodType:retType IDENT:methName
 ;
 
-FormPars ::= (FormParams) FormalParamList | (NoFormParam) /* epsilon */ ;
+MethodType ::= (MethodVoid) VOID
+				|
+				(MethodType) Type
+				;
 
-FormalParamList ::= (FormalParamDecls) FormalParamList COMMA FormalParamDecl
+FormalParams ::= (FormalParams) LPAREN FormalParamList RPAREN
+				|
+				(FormalParamsErr) LPAREN error RPAREN
+				{: parser.report_error("Syntax Error: Formal parameters invalid in line " + lleft.toString() + " Recovered until ')'", null ); :}
+				;
+
+FormalParamList ::= (FormalParamList) FormalParamDecl COMMA FormalParamList
 					|
-					(SingleFormalParamDecl) FormalParamDecl
+					(FormalParamListErr) error COMMA
+					{: parser.report_error("Syntax Error: Formal parameters invalid in line " + lleft.toString() + " Recovered until ','", null ); :}
+					|
+					(FormalParamLast) FormalParamDecl
+					|
+					(NoFormalParams) /* epsilon */
 					;
 					
-FormalParamDecl ::= (FormalParamDecl) Type IDENT ;
-
+FormalParamDecl ::= (FormalParamDecl) Type IDENT 
+					|
+					(FormalParamArrDecl) Type IDENT LSQR RSQR 
+					;
+					
 StatementList ::= (Statements) StatementList Statement 
 					|
 				  (NoStmt) /* epsilon */
@@ -123,10 +187,10 @@ DesignatorStatement ::= (EqualStmt) Designator EQUAL Expr
 					(FuncCallStmt) Designator LPAREN ActualPars RPAREN
 ;
 
-Statement ::= (DesignatorStatement) DesignatorStatement:des SEMI 
+Statement ::= (DesigStmt) DesignatorStatement:des SEMI 
 			  |
 			  (ErrAssignment) Designator EQUAL error SEMI
-			  {: parser.log.debug("Uspesan oporavak od greske pri dodeli vrednosti."); :}
+			  {: parser.report_error("Syntax Error: Bad assignment of designator in line " + lleft.toString() + ". Recovered until ';'", null ); :}
 			  |
 			  (PrintStmt) PRINT LPAREN Expr RPAREN SEMI 
 			  |
@@ -145,6 +209,9 @@ Statement ::= (DesignatorStatement) DesignatorStatement:des SEMI
 			  (UnmatchedIf) IF LPAREN Expr RPAREN Statement
 			  |
 			  (MatchedIf) IF LPAREN Expr RPAREN Statement ELSE Statement
+			  |
+			  (IfErr) IF LPAREN error RPAREN
+			  {: parser.report_error("Syntax Error: Bad condition in if statement in line " + lleft.toString() + ". Recovered until ')'", null ); :}
 			  |
 			  (DoWhile) DO Statement WHILE LPAREN Condition RPAREN SEMI
 			  |
@@ -172,44 +239,44 @@ Term ::= (Term) Factor:t
 		(Terms) Term Mulop:op Factor:t
 ;
 
-Factor ::= (NumConst) NUMBER
+Factor ::= (NumCnst) NUMBER
 			|
-			(CharConst) CHAR
+			(CharCnst) CHAR
 			|
-			(BoolConst) BOOL
+			(BoolCnst) BOOL
 			|
 			(BraceExpr) LPAREN Expr:e RPAREN 
 			|
 		   (Var) Designator:d
 		    |
-		   (FuncCall) Designator:func LPAREN ActualPars RPAREN
+		   (FuncCallFact) Designator:func LPAREN ActualPars RPAREN
 		    |
 		   (NewObj) NEW Type:t LSQR Expr:e RSQR
 		   ;
 
-ActualPars ::= (Actuals) ActualParamList 
+ActualPars ::= (ActualParams) ActualParamList 
 				| 
 			   (NoActuals) /* epsilon */ 
 			   ;
 			   
-ActualParamList ::= (ActualParams) ActualParamList COMMA Expr
+ActualParamList ::= (ActualParamsList) ActualParamList COMMA Expr
 					|
-					(ActualParam) Expr
+					(ActualParamsLast) Expr
 					;
 					
-Condition ::= (CondTerm) CondTerm
+Condition ::= (Condition) CondTerm
 			|
-			(CondTerms) CondTerm OR Condition
+			(ConditionList) CondTerm OR Condition
 			;
 
-CondTerm ::= (CondFact)	CondFact
+CondTerm ::= (CondTerm)	CondFact
 			|
-			(CondFacts) CondFact AND CondTerm
+			(CondTermList) CondFact AND CondTerm
 			;
 
-CondFact ::= (CondExpr) Expr
+CondFact ::= (CondFact) Expr
 			|
-			(CondRelop) Expr Relop Expr
+			(CondFactList) Expr Relop Expr
 			;
 
 Designator ::= (Designator) IDENT:name 
