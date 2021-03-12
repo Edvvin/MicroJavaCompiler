@@ -1,31 +1,31 @@
 // generated with ast extension for cup
 // version 0.8
-// 12/2/2021 17:45:15
+// 12/2/2021 20:48:22
 
 
 package rs.ac.bg.etf.pp1.ast;
 
 public class AstMatchedIf extends Statement {
 
-    private Expr Expr;
+    private Condition Condition;
     private Statement Statement;
     private Statement Statement1;
 
-    public AstMatchedIf (Expr Expr, Statement Statement, Statement Statement1) {
-        this.Expr=Expr;
-        if(Expr!=null) Expr.setParent(this);
+    public AstMatchedIf (Condition Condition, Statement Statement, Statement Statement1) {
+        this.Condition=Condition;
+        if(Condition!=null) Condition.setParent(this);
         this.Statement=Statement;
         if(Statement!=null) Statement.setParent(this);
         this.Statement1=Statement1;
         if(Statement1!=null) Statement1.setParent(this);
     }
 
-    public Expr getExpr() {
-        return Expr;
+    public Condition getCondition() {
+        return Condition;
     }
 
-    public void setExpr(Expr Expr) {
-        this.Expr=Expr;
+    public void setCondition(Condition Condition) {
+        this.Condition=Condition;
     }
 
     public Statement getStatement() {
@@ -49,20 +49,20 @@ public class AstMatchedIf extends Statement {
     }
 
     public void childrenAccept(Visitor visitor) {
-        if(Expr!=null) Expr.accept(visitor);
+        if(Condition!=null) Condition.accept(visitor);
         if(Statement!=null) Statement.accept(visitor);
         if(Statement1!=null) Statement1.accept(visitor);
     }
 
     public void traverseTopDown(Visitor visitor) {
         accept(visitor);
-        if(Expr!=null) Expr.traverseTopDown(visitor);
+        if(Condition!=null) Condition.traverseTopDown(visitor);
         if(Statement!=null) Statement.traverseTopDown(visitor);
         if(Statement1!=null) Statement1.traverseTopDown(visitor);
     }
 
     public void traverseBottomUp(Visitor visitor) {
-        if(Expr!=null) Expr.traverseBottomUp(visitor);
+        if(Condition!=null) Condition.traverseBottomUp(visitor);
         if(Statement!=null) Statement.traverseBottomUp(visitor);
         if(Statement1!=null) Statement1.traverseBottomUp(visitor);
         accept(visitor);
@@ -73,8 +73,8 @@ public class AstMatchedIf extends Statement {
         buffer.append(tab);
         buffer.append("AstMatchedIf(\n");
 
-        if(Expr!=null)
-            buffer.append(Expr.toString("  "+tab));
+        if(Condition!=null)
+            buffer.append(Condition.toString("  "+tab));
         else
             buffer.append(tab+"  null");
         buffer.append("\n");

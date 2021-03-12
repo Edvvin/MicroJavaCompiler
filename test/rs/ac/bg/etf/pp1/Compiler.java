@@ -44,7 +44,7 @@ public class Compiler {
 			MJParser p = new MJParser(lexer);
 	        Symbol s = p.parse();  //pocetak parsiranja
 	        SyntaxNode prog = (SyntaxNode)(s.value);
-	        prog.toString();
+	        log.info(prog.toString());;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

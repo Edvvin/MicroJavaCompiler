@@ -1,0 +1,71 @@
+INFO  20:19:22,336 - Compiling source file: /home/edvin/Desktop/ppp/MicroJavaCompiler/test/program.mj
+INFO  20:19:22,356 - #2 program
+INFO  20:19:22,356 - #46 MJProgram
+INFO  20:19:22,356 - #46 int
+INFO  20:19:22,357 - #46 x
+INFO  20:19:22,357 - #7 ;
+INFO  20:19:22,357 - #46 int
+INFO  20:19:22,357 - #46 y
+INFO  20:19:22,357 - #7 ;
+INFO  20:19:22,357 - #3 {
+INFO  20:19:22,357 - #46 int
+INFO  20:19:22,358 - #46 k
+INFO  20:19:22,358 - #8 (
+INFO  20:19:22,358 - #9 )
+INFO  20:19:22,358 - #46 int
+INFO  20:19:22,358 - #46 c
+INFO  20:19:22,359 - #7 ;
+INFO  20:19:22,359 - #3 {
+INFO  20:19:22,359 - #46 c
+INFO  20:19:22,359 - #27 =
+INFO  20:19:22,359 - #45 1
+INFO  20:19:22,359 - #7 ;
+INFO  20:19:22,360 - #13 return
+INFO  20:19:22,360 - #46 c
+INFO  20:19:22,360 - #18 +
+INFO  20:19:22,360 - #45 2
+INFO  20:19:22,360 - #7 ;
+INFO  20:19:22,361 - #4 }
+INFO  20:19:22,361 - #46 int
+INFO  20:19:22,361 - #46 main
+INFO  20:19:22,361 - #8 (
+INFO  20:19:22,361 - #9 )
+INFO  20:19:22,361 - #3 {
+INFO  20:19:22,361 - #46 y
+INFO  20:19:22,361 - #27 =
+INFO  20:19:22,361 - #45 2
+INFO  20:19:22,361 - #7 ;
+INFO  20:19:22,362 - #46 x
+INFO  20:19:22,362 - #27 =
+INFO  20:19:22,362 - #46 y
+INFO  20:19:22,362 - #18 +
+INFO  20:19:22,362 - #45 2
+INFO  20:19:22,362 - #7 ;
+INFO  20:19:22,362 - #46 y
+INFO  20:19:22,362 - #27 =
+INFO  20:19:22,362 - #46 k
+INFO  20:19:22,362 - #8 (
+INFO  20:19:22,362 - #9 )
+INFO  20:19:22,363 - #18 +
+INFO  20:19:22,363 - #45 3
+INFO  20:19:22,363 - #7 ;
+INFO  20:19:22,363 - #49 if
+INFO  20:19:22,363 - #8 (
+INFO  20:19:22,363 - #46 x
+INFO  20:19:22,363 - #32 ==
+ERROR 20:19:22,363 - 
+Sintaksna greska na liniji 14
+ERROR 20:19:22,363 - Fatalna greska, parsiranje se ne moze nastaviti na liniji 14
+INFO  20:19:22,364 - AstNotTerExpr(
+  AstPosExpr(
+    AstTermExpr(
+      AstTermOne(
+        AstVar(
+          AstDesig(
+           x
+          ) [AstDesig]
+        ) [AstVar]
+      ) [AstTermOne]
+    ) [AstTermExpr]
+  ) [AstPosExpr]
+) [AstNotTerExpr]

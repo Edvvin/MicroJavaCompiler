@@ -60,7 +60,7 @@ terminal EXTENDS, DOT, SWITCH, ENUM, CLASS, CASE ;
 terminal Integer NUMBER ;
 terminal String IDENT ;
 terminal String CHAR ;
-terminal Boolean BOOL ;
+terminal String BOOL ;
 terminal IF, ELSE ;
 
 nonterminal MethodDeclList MethodDeclList;
@@ -227,12 +227,9 @@ Statement ::= (AstDesigStmt) DesignatorStatement:des SEMI {: RESULT=new AstDesig
 			  |
 			  (AstReturnNoExpr) RETURN SEMI {: RESULT=new AstReturnNoExpr(); :}
 			  | 
-			  (AstUnmatchedIf) IF LPAREN Expr:E1 RPAREN Statement:S2 {: RESULT=new AstUnmatchedIf(E1, S2); RESULT.setLine(E1left); :}
+			  (AstUnmatchedIf) IF LPAREN Condition:C1 RPAREN Statement:S2 {: RESULT=new AstUnmatchedIf(C1, S2); RESULT.setLine(C1left); :}
 			  |
-			  (AstMatchedIf) IF LPAREN Expr:E1 RPAREN Statement:S2 ELSE Statement:S3 {: RESULT=new AstMatchedIf(E1, S2, S3); RESULT.setLine(E1left); :}
-			  |
-			  (AstIfErr) IF LPAREN error:e RPAREN
-			  {: parser.report_error("Syntax Error: Bad condition in if statement in line " + eleft + ". Recovered until ')'", null ); :} {: RESULT=new AstIfErr(); :}
+			  (AstMatchedIf) IF LPAREN Condition:C1 RPAREN Statement:S2 ELSE Statement:S3 {: RESULT=new AstMatchedIf(C1, S2, S3); RESULT.setLine(C1left); :}
 			  |
 			  (AstDoWhile) DO Statement:S1 WHILE LPAREN Condition:C2 RPAREN SEMI {: RESULT=new AstDoWhile(S1, C2); RESULT.setLine(S1left); :}
 			  |

@@ -206,12 +206,9 @@ Statement ::= (AstDesigStmt) DesignatorStatement:des SEMI
 			  |
 			  (AstReturnNoExpr) RETURN SEMI
 			  | 
-			  (AstUnmatchedIf) IF LPAREN Expr RPAREN Statement
+			  (AstUnmatchedIf) IF LPAREN Condition RPAREN Statement
 			  |
-			  (AstMatchedIf) IF LPAREN Expr RPAREN Statement ELSE Statement
-			  |
-			  (AstIfErr) IF LPAREN error:e RPAREN
-			  {: parser.report_error("Syntax Error: Bad condition in if statement in line " + eleft + ". Recovered until ')'", null ); :}
+			  (AstMatchedIf) IF LPAREN Condition RPAREN Statement ELSE Statement
 			  |
 			  (AstDoWhile) DO Statement WHILE LPAREN Condition RPAREN SEMI
 			  |
