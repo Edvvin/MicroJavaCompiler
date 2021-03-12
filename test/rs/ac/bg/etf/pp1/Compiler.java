@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FileReader;
+import java.io.IOException;
 
 import org.apache.log4j.Logger;
 import org.apache.log4j.xml.DOMConfigurator;
@@ -44,10 +45,16 @@ public class Compiler {
 			MJParser p = new MJParser(lexer);
 	        Symbol s = p.parse();  //pocetak parsiranja
 	        SyntaxNode prog = (SyntaxNode)(s.value);
-	        log.info(prog.toString());;
+	        log.info(prog.toString());
+	        Tab.init();
+
+	        SemanticPass semPass = new SemanticPass();
+	        prog.traverseBottomUp(semPass);
+	        Tab.dump();
+		} catch(IOException e) {
+			log.error(e.getMessage(), e);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			log.error(e.getMessage(), e);
 		}
 	}
 
