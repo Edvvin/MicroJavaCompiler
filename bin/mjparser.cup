@@ -60,7 +60,7 @@ terminal EXTENDS, DOT, SWITCH, ENUM, CLASS, CASE ;
 terminal Integer NUMBER ;
 terminal String IDENT ;
 terminal String CHAR ;
-terminal Boolean BOOL ;
+terminal String BOOL ;
 terminal IF, ELSE ;
 
 nonterminal MethodDeclList, VarDecl, FormalParams ;
@@ -73,236 +73,236 @@ nonterminal rs.etf.pp1.symboltable.concepts.Struct Type, Term, Expr, Expr1, Fact
 
 precedence left ELSE ;
 
-Program ::= (Program) PROG IDENT:progName GlobDeclList:decls LBRACE MethodDeclList:methods RBRACE 
+Program ::= (AstProgram) PROG IDENT:progName GlobDeclList:decls LBRACE MethodDeclList:methods RBRACE 
 ;
 
-GlobDeclList ::= (GlobDeclList) GlobDeclList Decl
+GlobDeclList ::= (AstGlobDeclL) GlobDeclList Decl
 			|
-			(NoGlobDecl) /* epsilon */
+			(AstNoGlobDecl) /* epsilon */
 			;
 
-Decl ::= (GlobCnstDecl) CnstDecl
+Decl ::= (AstGlobCnstDecl) CnstDecl
 		|
-		(GlobVarDecl) VarDecl
+		(AstGlobVarDecl) VarDecl
 		;
 		
-CnstDecl ::= (CnstDecl) CONST Type CnstAsgnList;
+CnstDecl ::= (AstCnstDecl) CONST Type CnstAsgnList;
 
-CnstAsgnList ::= (CnstAsgn) IDENT EQUAL CnstValue COMMA CnstAsgnList
+CnstAsgnList ::= (AstCnstAsgn) IDENT EQUAL CnstValue COMMA CnstAsgnList
 				|
-				(CnstAsgnLast) IDENT EQUAL CnstValue SEMI
+				(AstCnstAsgnOne) IDENT EQUAL CnstValue SEMI
 				|
-				(CnstAsgnCommaErr) error COMMA
-				{: parser.report_error("Syntax Error: Bad declaration of global constant in line " + lleft.toString() + ". Recovered until ','", null); :}
+				(AstCnstAsgnCommaErr) error:e COMMA
+				{: parser.report_error("Syntax Error: Bad declaration of global constant in line " + eleft + ". Recovered until ','", null); :}
 				|
-				(CnstAsgnSemiErr) error SEMI
-				{: parser.report_error("Syntax Error: Bad declaration of global constant in line " + lleft.toString() + ". Recovered until ';'", null); :}
+				(AstCnstAsgnSemiErr) error:e SEMI
+				{: parser.report_error("Syntax Error: Bad declaration of global constant in line " + eleft + ". Recovered until ';'", null); :}
 				;
 
-CnstValue ::= (CnstNum) NUMBER
+CnstValue ::= (AstCnstNum) NUMBER
 			|
-			(CnstChr) CHAR
+			(AstCnstChr) CHAR
 			|
-			(CnstBool) BOOL
+			(AstCnstBool) BOOL
 			;
 
-VarDeclList ::= (VarDeclList) VarDeclList VarDecl
+VarDeclList ::= (AstVarDeclL) VarDeclList VarDecl
 				|
-				(NoVarDecl) /* epsilon */
+				(AstNoVarDecl) /* epsilon */
 				;
 
-VarDecl ::= (VarDecl) Type:varType IDENT:varName SEMI 
+VarDecl ::= (AstVarDecl) Type:varType IDENT:varName SEMI 
 				|
-				(VarArrDecl) Type:varType LSQR RSQR IDENT:varName SEMI
+				(AstVarArrDecl) Type:varType LSQR RSQR IDENT:varName SEMI
 				;
 
-VarAsgnList ::= (VarAsgn) VarAsgnOne COMMA VarAsgnList
+VarAsgnList ::= (AstVarAsgnL) VarAsgnOne COMMA VarAsgnList
 					|
-					(VarAsgnLast) VarAsgnOne SEMI
+					(AstVarAsgnSemi) VarAsgnOne SEMI
 					|
-					(VarAsgnCommaErr) error COMMA
-					{: parser.report_error("Syntax Error: Bad declaration of global variable in line " + lleft.toString() + ". Recovered until ','", null); :}
+					(AstVarAsgnCommaErr) error:e COMMA
+					{: parser.report_error("Syntax Error: Bad declaration of global variable in line " + eleft + ". Recovered until ','", null); :}
 					|
-					(VarAsgnSemiErr) error SEMI
-					{: parser.report_error("Syntax Error: Bad declaration of global variable in line " + lleft.toString() + ". Recovered until ';'", null); :}
+					(AstVarAsgnSemiErr) error:e SEMI
+					{: parser.report_error("Syntax Error: Bad declaration of global variable in line " + eleft + ". Recovered until ';'", null); :}
 					;
 				
-VarAsgnOne ::= (VarAsgnOne) IDENT
+VarAsgnOne ::= (AstVarAsgn) IDENT
 					|
-					(VarArrAsgnOne) IDENT LSQR RSQR
+					(AstVarArrAsgn) IDENT LSQR RSQR
 					;
 
-Type ::= (Type) IDENT:typeName 
+Type ::= (AstType) IDENT:typeName 
 ;
 
-MethodDeclList ::= (MethodDeclarations) MethodDeclList MethodDecl
+MethodDeclList ::= (AstMethDeclL) MethodDeclList MethodDecl
 					|
-					(NoMethodDecl)/* epsilon */
+					(AstNoMethodDecl)/* epsilon */
 					;
 
-MethodDecl ::= (MethodDecl) MethodTypeName
+MethodDecl ::= (AstMethDecl) MethodTypeName
 			   FormalParams VarDeclList LBRACE StatementList RBRACE 
 			   ;
 
-MethodTypeName ::= (MethodTypeName) MethodType:retType IDENT:methName
+MethodTypeName ::= (AstMethTypeName) MethodType:retType IDENT:methName
 ;
 
-MethodType ::= (MethodVoid) VOID
+MethodType ::= (AstMethVoid) VOID
 				|
-				(MethodType) Type
+				(AstMethType) Type
 				;
 
-FormalParams ::= (FormalParams) LPAREN FormalParamList RPAREN
+FormalParams ::= (AstFormalParams) LPAREN FormalParamList RPAREN
 				|
-				(FormalParamsErr) LPAREN error RPAREN
-				{: parser.report_error("Syntax Error: Formal parameters invalid in line " + lleft.toString() + " Recovered until ')'", null ); :}
+				(AstFormalParamsErr) LPAREN error:e RPAREN
+				{: parser.report_error("Syntax Error: Formal parameters invalid in line " + eleft + " Recovered until ')'", null ); :}
 				;
 
-FormalParamList ::= (FormalParamList) FormalParamDecl COMMA FormalParamList
+FormalParamList ::= (AstFormalParamL) FormalParamDecl COMMA FormalParamList
 					|
-					(FormalParamListErr) error COMMA
-					{: parser.report_error("Syntax Error: Formal parameters invalid in line " + lleft.toString() + " Recovered until ','", null ); :}
+					(AstFormalParamListErr) error:e COMMA
+					{: parser.report_error("Syntax Error: Formal parameters invalid in line " + eleft + " Recovered until ','", null ); :}
 					|
-					(FormalParamLast) FormalParamDecl
+					(AstFormalParamOne) FormalParamDecl
 					|
-					(NoFormalParams) /* epsilon */
+					(AstNoFormalParams) /* epsilon */
 					;
 					
-FormalParamDecl ::= (FormalParamDecl) Type IDENT 
+FormalParamDecl ::= (AstFormalParamDecl) Type IDENT 
 					|
-					(FormalParamArrDecl) Type IDENT LSQR RSQR 
+					(AstFormalParamArrDecl) Type IDENT LSQR RSQR 
 					;
 					
-StatementList ::= (Statements) StatementList Statement 
+StatementList ::= (AstStatementL) StatementList Statement 
 					|
-				  (NoStmt) /* epsilon */
+				  (AstNoStmt) /* epsilon */
 				  ;
 				  
-DesignatorStatement ::= (EqualStmt) Designator EQUAL Expr 
+DesignatorStatement ::= (AstEqualStmt) Designator EQUAL Expr 
 					|
-					(IncStmt) Designator INC
+					(AstIncStmt) Designator INC
 					|
-					(DecStmt) Designator DEC
+					(AstDecStmt) Designator DEC
 					|
-					(FuncCallStmt) Designator LPAREN ActualPars RPAREN
+					(AstFuncCallStmt) Designator LPAREN ActualPars RPAREN
 ;
 
-Statement ::= (DesigStmt) DesignatorStatement:des SEMI 
+Statement ::= (AstDesigStmt) DesignatorStatement:des SEMI 
 			  |
-			  (ErrAssignment) Designator EQUAL error SEMI
-			  {: parser.report_error("Syntax Error: Bad assignment of designator in line " + lleft.toString() + ". Recovered until ';'", null ); :}
+			  (AstErrAssignment) Designator EQUAL error:e SEMI
+			  {: parser.report_error("Syntax Error: Bad assignment of designator in line " + eleft + ". Recovered until ';'", null ); :}
 			  |
-			  (PrintStmt) PRINT LPAREN Expr RPAREN SEMI 
+			  (AstPrintStmt) PRINT LPAREN Expr RPAREN SEMI 
 			  |
-			  (PrintStmtParam) PRINT LPAREN Expr COMMA NUMBER RPAREN SEMI 
+			  (AstPrintStmtParam) PRINT LPAREN Expr COMMA NUMBER RPAREN SEMI 
 			  |
-			  (ReadStmt) READ LPAREN Designator RPAREN SEMI 
+			  (AstReadStmt) READ LPAREN Designator RPAREN SEMI 
 			  |
-			  (BreakStmt) BREAK SEMI
+			  (AstBreakStmt) BREAK SEMI
 			  | 
-			  (ContinueStmt) CONTINUE SEMI
+			  (AstContinueStmt) CONTINUE SEMI
 			  | 
-			  (ReturnExpr) RETURN Expr:t SEMI
+			  (AstReturnExpr) RETURN Expr:t SEMI
 			  |
-			  (ReturnNoExpr) RETURN SEMI
+			  (AstReturnNoExpr) RETURN SEMI
 			  | 
-			  (UnmatchedIf) IF LPAREN Expr RPAREN Statement
+			  (AstUnmatchedIf) IF LPAREN Expr RPAREN Statement
 			  |
-			  (MatchedIf) IF LPAREN Expr RPAREN Statement ELSE Statement
+			  (AstMatchedIf) IF LPAREN Expr RPAREN Statement ELSE Statement
 			  |
-			  (IfErr) IF LPAREN error RPAREN
-			  {: parser.report_error("Syntax Error: Bad condition in if statement in line " + lleft.toString() + ". Recovered until ')'", null ); :}
+			  (AstIfErr) IF LPAREN error:e RPAREN
+			  {: parser.report_error("Syntax Error: Bad condition in if statement in line " + eleft + ". Recovered until ')'", null ); :}
 			  |
-			  (DoWhile) DO Statement WHILE LPAREN Condition RPAREN SEMI
+			  (AstDoWhile) DO Statement WHILE LPAREN Condition RPAREN SEMI
 			  |
-			  (StmtList) LBRACE StatementList RBRACE
+			  (AstStmtL) LBRACE StatementList RBRACE
 			  ;
 			  
-Expr ::= (TerExpr) Expr1 QSTMK Expr1 COLON Expr1
+Expr ::= (AstTerExpr) Expr1 QSTMK Expr1 COLON Expr1
 		|
-		(Expr) Expr1
+		(AstNotTerExpr) Expr1
 		;
 		
-Expr1 ::= (NegExpr) MINUS SumExpr
+Expr1 ::= (AstNegExpr) MINUS SumExpr
 		|
-		(PosExpr) SumExpr
+		(AstPosExpr) SumExpr
 		;
 
 
-SumExpr ::= (AddExpr) Term:t Addop SumExpr:se 
+SumExpr ::= (AstAddExpr) Term:t Addop SumExpr:se 
 		 |
-		 (TermExpr) Term:t
+		 (AstTermExpr) Term:t
 		 ;
 
-Term ::= (Term) Factor:t 
+Term ::= (AstTermOne) Factor:t 
 		|
-		(Terms) Term Mulop:op Factor:t
+		(AstTermL) Term Mulop:op Factor:t
 ;
 
-Factor ::= (NumCnst) NUMBER
+Factor ::= (AstFactNum) NUMBER
 			|
-			(CharCnst) CHAR
+			(AstFactChar) CHAR
 			|
-			(BoolCnst) BOOL
+			(AstFactBool) BOOL
 			|
-			(BraceExpr) LPAREN Expr:e RPAREN 
+			(AstBraceExpr) LPAREN Expr:e RPAREN 
 			|
-		   (Var) Designator:d
+		   (AstVar) Designator:d
 		    |
-		   (FuncCallFact) Designator:func LPAREN ActualPars RPAREN
+		   (AstFuncCallFact) Designator:func LPAREN ActualPars RPAREN
 		    |
-		   (NewObj) NEW Type:t LSQR Expr:e RSQR
+		   (AstNewObj) NEW Type:t LSQR Expr:e RSQR
 		   ;
 
-ActualPars ::= (ActualParams) ActualParamList 
+ActualPars ::= (AstActualParams) ActualParamList 
 				| 
-			   (NoActuals) /* epsilon */ 
+			   (AstNoActualParam) /* epsilon */ 
 			   ;
 			   
-ActualParamList ::= (ActualParamsList) ActualParamList COMMA Expr
+ActualParamList ::= (AstActualParamsL) ActualParamList COMMA Expr
 					|
-					(ActualParamsLast) Expr
+					(AstActualParamsOne) Expr
 					;
 					
-Condition ::= (Condition) CondTerm
+Condition ::= (AstConditionOne) CondTerm
 			|
-			(ConditionList) CondTerm OR Condition
+			(AstConditionL) CondTerm OR Condition
 			;
 
-CondTerm ::= (CondTerm)	CondFact
+CondTerm ::= (AstCondTermOne)	CondFact
 			|
-			(CondTermList) CondFact AND CondTerm
+			(AstCondTermL) CondFact AND CondTerm
 			;
 
-CondFact ::= (CondFact) Expr
+CondFact ::= (AstCondFactOne) Expr
 			|
-			(CondFactList) Expr Relop Expr
+			(AstCondFactL) Expr Relop Expr
 			;
 
-Designator ::= (Designator) IDENT:name 
+Designator ::= (AstDesig) IDENT:name 
 				|
-				(IndexDesig) IDENT:name LSQR Expr RSQR 
+				(AstIndexDesig) IDENT:name LSQR Expr RSQR 
 ;
 
-Addop ::= (Addop) PLUS 
+Addop ::= (AstAddop) PLUS 
 		| 
-		(Subop) MINUS
+		(AstSubop) MINUS
 ;
 
-Mulop ::= (Mulop) ASTK 
+Mulop ::= (AstMulop) ASTK 
 		| 
-		(Divop) DIV 
+		(AstDivop) DIV 
 		| 
-		(Modop) MOD
+		(AstModop) MOD
 ;
 
-Relop ::= (Eqop) EQEQ
+Relop ::= (AstEqop) EQEQ
 			|
-			(Gtop) GT
+			(AstGtop) GT
 			|
-			(Getop) GET
+			(AstGetop) GET
 			|
-			(Ltop) LT
+			(AstLtop) LT
 			|
-			(Letop) LET
+			(AstLetop) LET
 			;

@@ -1,28 +1,15 @@
 // generated with ast extension for cup
 // version 0.8
-// 12/2/2021 0:46:30
+// 12/2/2021 17:45:15
 
 
 package rs.ac.bg.etf.pp1.ast;
 
-public class FormalParams implements SyntaxNode {
+public abstract class FormalParams implements SyntaxNode {
 
     private SyntaxNode parent;
+
     private int line;
-    private FormalParamList FormalParamList;
-
-    public FormalParams (FormalParamList FormalParamList) {
-        this.FormalParamList=FormalParamList;
-        if(FormalParamList!=null) FormalParamList.setParent(this);
-    }
-
-    public FormalParamList getFormalParamList() {
-        return FormalParamList;
-    }
-
-    public void setFormalParamList(FormalParamList FormalParamList) {
-        this.FormalParamList=FormalParamList;
-    }
 
     public SyntaxNode getParent() {
         return parent;
@@ -40,37 +27,11 @@ public class FormalParams implements SyntaxNode {
         this.line=line;
     }
 
-    public void accept(Visitor visitor) {
-        visitor.visit(this);
-    }
+    public abstract void accept(Visitor visitor);
+    public abstract void childrenAccept(Visitor visitor);
+    public abstract void traverseTopDown(Visitor visitor);
+    public abstract void traverseBottomUp(Visitor visitor);
 
-    public void childrenAccept(Visitor visitor) {
-        if(FormalParamList!=null) FormalParamList.accept(visitor);
-    }
-
-    public void traverseTopDown(Visitor visitor) {
-        accept(visitor);
-        if(FormalParamList!=null) FormalParamList.traverseTopDown(visitor);
-    }
-
-    public void traverseBottomUp(Visitor visitor) {
-        if(FormalParamList!=null) FormalParamList.traverseBottomUp(visitor);
-        accept(visitor);
-    }
-
-    public String toString(String tab) {
-        StringBuffer buffer=new StringBuffer();
-        buffer.append(tab);
-        buffer.append("FormalParams(\n");
-
-        if(FormalParamList!=null)
-            buffer.append(FormalParamList.toString("  "+tab));
-        else
-            buffer.append(tab+"  null");
-        buffer.append("\n");
-
-        buffer.append(tab);
-        buffer.append(") [FormalParams]");
-        return buffer.toString();
-    }
+    public String toString() { return toString(""); }
+    public abstract String toString(String tab);
 }
