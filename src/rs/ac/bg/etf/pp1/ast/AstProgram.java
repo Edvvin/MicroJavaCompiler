@@ -1,30 +1,31 @@
 // generated with ast extension for cup
 // version 0.8
-// 12/2/2021 22:53:23
+// 14/2/2021 11:7:19
 
 
 package rs.ac.bg.etf.pp1.ast;
 
 public class AstProgram extends Program {
 
-    private String progName;
+    private ProgName ProgName;
     private GlobDeclList GlobDeclList;
     private MethodDeclList MethodDeclList;
 
-    public AstProgram (String progName, GlobDeclList GlobDeclList, MethodDeclList MethodDeclList) {
-        this.progName=progName;
+    public AstProgram (ProgName ProgName, GlobDeclList GlobDeclList, MethodDeclList MethodDeclList) {
+        this.ProgName=ProgName;
+        if(ProgName!=null) ProgName.setParent(this);
         this.GlobDeclList=GlobDeclList;
         if(GlobDeclList!=null) GlobDeclList.setParent(this);
         this.MethodDeclList=MethodDeclList;
         if(MethodDeclList!=null) MethodDeclList.setParent(this);
     }
 
-    public String getProgName() {
-        return progName;
+    public ProgName getProgName() {
+        return ProgName;
     }
 
-    public void setProgName(String progName) {
-        this.progName=progName;
+    public void setProgName(ProgName ProgName) {
+        this.ProgName=ProgName;
     }
 
     public GlobDeclList getGlobDeclList() {
@@ -48,17 +49,20 @@ public class AstProgram extends Program {
     }
 
     public void childrenAccept(Visitor visitor) {
+        if(ProgName!=null) ProgName.accept(visitor);
         if(GlobDeclList!=null) GlobDeclList.accept(visitor);
         if(MethodDeclList!=null) MethodDeclList.accept(visitor);
     }
 
     public void traverseTopDown(Visitor visitor) {
         accept(visitor);
+        if(ProgName!=null) ProgName.traverseTopDown(visitor);
         if(GlobDeclList!=null) GlobDeclList.traverseTopDown(visitor);
         if(MethodDeclList!=null) MethodDeclList.traverseTopDown(visitor);
     }
 
     public void traverseBottomUp(Visitor visitor) {
+        if(ProgName!=null) ProgName.traverseBottomUp(visitor);
         if(GlobDeclList!=null) GlobDeclList.traverseBottomUp(visitor);
         if(MethodDeclList!=null) MethodDeclList.traverseBottomUp(visitor);
         accept(visitor);
@@ -69,7 +73,10 @@ public class AstProgram extends Program {
         buffer.append(tab);
         buffer.append("AstProgram(\n");
 
-        buffer.append(" "+tab+progName);
+        if(ProgName!=null)
+            buffer.append(ProgName.toString("  "+tab));
+        else
+            buffer.append(tab+"  null");
         buffer.append("\n");
 
         if(GlobDeclList!=null)

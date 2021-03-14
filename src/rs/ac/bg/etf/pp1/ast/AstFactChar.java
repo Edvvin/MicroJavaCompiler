@@ -1,23 +1,23 @@
 // generated with ast extension for cup
 // version 0.8
-// 12/2/2021 22:53:23
+// 14/2/2021 11:7:19
 
 
 package rs.ac.bg.etf.pp1.ast;
 
 public class AstFactChar extends Factor {
 
-    private String C1;
+    private Character C1;
 
-    public AstFactChar (String C1) {
+    public AstFactChar (Character C1) {
         this.C1=C1;
     }
 
-    public String getC1() {
+    public Character getC1() {
         return C1;
     }
 
-    public void setC1(String C1) {
+    public void setC1(Character C1) {
         this.C1=C1;
     }
 

@@ -1,6 +1,6 @@
 // generated with ast extension for cup
 // version 0.8
-// 12/2/2021 22:53:23
+// 14/2/2021 11:7:19
 
 
 package rs.ac.bg.etf.pp1.ast;
@@ -8,12 +8,13 @@ package rs.ac.bg.etf.pp1.ast;
 public class AstVarDecl extends VarDecl {
 
     private Type Type;
-    private String varName;
+    private VarAsgnList VarAsgnList;
 
-    public AstVarDecl (Type Type, String varName) {
+    public AstVarDecl (Type Type, VarAsgnList VarAsgnList) {
         this.Type=Type;
         if(Type!=null) Type.setParent(this);
-        this.varName=varName;
+        this.VarAsgnList=VarAsgnList;
+        if(VarAsgnList!=null) VarAsgnList.setParent(this);
     }
 
     public Type getType() {
@@ -24,12 +25,12 @@ public class AstVarDecl extends VarDecl {
         this.Type=Type;
     }
 
-    public String getVarName() {
-        return varName;
+    public VarAsgnList getVarAsgnList() {
+        return VarAsgnList;
     }
 
-    public void setVarName(String varName) {
-        this.varName=varName;
+    public void setVarAsgnList(VarAsgnList VarAsgnList) {
+        this.VarAsgnList=VarAsgnList;
     }
 
     public void accept(Visitor visitor) {
@@ -38,15 +39,18 @@ public class AstVarDecl extends VarDecl {
 
     public void childrenAccept(Visitor visitor) {
         if(Type!=null) Type.accept(visitor);
+        if(VarAsgnList!=null) VarAsgnList.accept(visitor);
     }
 
     public void traverseTopDown(Visitor visitor) {
         accept(visitor);
         if(Type!=null) Type.traverseTopDown(visitor);
+        if(VarAsgnList!=null) VarAsgnList.traverseTopDown(visitor);
     }
 
     public void traverseBottomUp(Visitor visitor) {
         if(Type!=null) Type.traverseBottomUp(visitor);
+        if(VarAsgnList!=null) VarAsgnList.traverseBottomUp(visitor);
         accept(visitor);
     }
 
@@ -61,7 +65,10 @@ public class AstVarDecl extends VarDecl {
             buffer.append(tab+"  null");
         buffer.append("\n");
 
-        buffer.append(" "+tab+varName);
+        if(VarAsgnList!=null)
+            buffer.append(VarAsgnList.toString("  "+tab));
+        else
+            buffer.append(tab+"  null");
         buffer.append("\n");
 
         buffer.append(tab);

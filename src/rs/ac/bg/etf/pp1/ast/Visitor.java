@@ -1,6 +1,6 @@
 // generated with ast extension for cup
 // version 0.8
-// 12/2/2021 22:53:23
+// 14/2/2021 11:7:19
 
 
 package rs.ac.bg.etf.pp1.ast;
@@ -30,11 +30,12 @@ public interface Visitor {
     public void visit(Expr Expr);
     public void visit(Expr1 Expr1);
     public void visit(MethodTypeName MethodTypeName);
+    public void visit(CnstAsgn CnstAsgn);
     public void visit(DesignatorStatement DesignatorStatement);
     public void visit(ActualPars ActualPars);
     public void visit(Decl Decl);
+    public void visit(ProgName ProgName);
     public void visit(Statement Statement);
-    public void visit(CnstValue CnstValue);
     public void visit(VarDecl VarDecl);
     public void visit(Type Type);
     public void visit(CondFact CondFact);
@@ -119,22 +120,22 @@ public interface Visitor {
     public void visit(AstVarAsgnCommaErr AstVarAsgnCommaErr);
     public void visit(AstVarAsgnSemi AstVarAsgnSemi);
     public void visit(AstVarAsgnL AstVarAsgnL);
-    public void visit(AstVarArrDecl AstVarArrDecl);
     public void visit(AstVarDecl AstVarDecl);
     public void visit(AstNoVarDecl AstNoVarDecl);
     public void visit(AstVarDeclL AstVarDeclL);
-    public void visit(AstCnstBool AstCnstBool);
-    public void visit(AstCnstChr AstCnstChr);
-    public void visit(AstCnstNum AstCnstNum);
+    public void visit(AstCnstAsgnBool AstCnstAsgnBool);
+    public void visit(AstCnstAsgnChar AstCnstAsgnChar);
+    public void visit(AstCnstAsgnInt AstCnstAsgnInt);
     public void visit(AstCnstAsgnSemiErr AstCnstAsgnSemiErr);
     public void visit(AstCnstAsgnCommaErr AstCnstAsgnCommaErr);
     public void visit(AstCnstAsgnOne AstCnstAsgnOne);
-    public void visit(AstCnstAsgn AstCnstAsgn);
+    public void visit(AstCnstAsgnL AstCnstAsgnL);
     public void visit(AstCnstDecl AstCnstDecl);
     public void visit(AstGlobVarDecl AstGlobVarDecl);
     public void visit(AstGlobCnstDecl AstGlobCnstDecl);
     public void visit(AstNoGlobDecl AstNoGlobDecl);
     public void visit(AstGlobDeclL AstGlobDeclL);
+    public void visit(AstProgName AstProgName);
     public void visit(AstProgram AstProgram);
 
 }

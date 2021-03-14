@@ -59,22 +59,25 @@ terminal PLUS, MINUS, ASTK, DIV, MOD, AND, OR, INC, DEC, EQUAL, GT, GET, LT, LET
 terminal EXTENDS, DOT, SWITCH, ENUM, CLASS, CASE ;
 terminal Integer NUMBER ;
 terminal String IDENT ;
-terminal String CHAR ;
+terminal Character CHAR ;
 terminal String BOOL ;
 terminal IF, ELSE ;
 
 nonterminal MethodDeclList, VarDecl, FormalParams ;
 nonterminal FormalParamList, FormalParamDecl, ActualPars, ActualParamList, Relop; 
 nonterminal StatementList, Condition, CondFact, CondTerm, SumExpr, Statement, DesignatorStatement, Addop, Mulop ;
-nonterminal GlobDeclList, Decl, CnstDecl, CnstAsgnList, CnstValue, VarAsgnList, VarAsgnOne, MethodType ;
+nonterminal GlobDeclList, Decl, CnstDecl, CnstAsgnList, VarAsgnList, VarAsgnOne, MethodType ;
+nonterminal CnstAsgn ;
 
-nonterminal rs.etf.pp1.symboltable.concepts.Obj Program, Designator, MethodDecl, MethodTypeName ; 
+nonterminal rs.etf.pp1.symboltable.concepts.Obj Program, ProgName, Designator, MethodDecl, MethodTypeName ; 
 nonterminal rs.etf.pp1.symboltable.concepts.Struct Type, Term, Expr, Expr1, Factor, VarDeclList ; 
 
 precedence left ELSE ;
 
-Program ::= (AstProgram) PROG IDENT:progName GlobDeclList:decls LBRACE MethodDeclList:methods RBRACE 
+Program ::= (AstProgram) PROG ProgName:progName GlobDeclList:decls LBRACE MethodDeclList:methods RBRACE 
 ;
+
+ProgName ::= (AstProgName) IDENT:prog ;
 
 GlobDeclList ::= (AstGlobDeclL) GlobDeclList Decl
 			|
@@ -88,9 +91,9 @@ Decl ::= (AstGlobCnstDecl) CnstDecl
 		
 CnstDecl ::= (AstCnstDecl) CONST Type CnstAsgnList;
 
-CnstAsgnList ::= (AstCnstAsgn) IDENT EQUAL CnstValue COMMA CnstAsgnList
+CnstAsgnList ::= (AstCnstAsgnL) CnstAsgn COMMA CnstAsgnList
 				|
-				(AstCnstAsgnOne) IDENT EQUAL CnstValue SEMI
+				(AstCnstAsgnOne) CnstAsgn SEMI
 				|
 				(AstCnstAsgnCommaErr) error:e COMMA
 				{: parser.report_error("Syntax Error: Bad declaration of global constant in line " + eleft + ". Recovered until ','", null); :}
@@ -99,11 +102,11 @@ CnstAsgnList ::= (AstCnstAsgn) IDENT EQUAL CnstValue COMMA CnstAsgnList
 				{: parser.report_error("Syntax Error: Bad declaration of global constant in line " + eleft + ". Recovered until ';'", null); :}
 				;
 
-CnstValue ::= (AstCnstNum) NUMBER
+CnstAsgn ::= (AstCnstAsgnInt) IDENT:cnstName EQUAL	NUMBER:value 
 			|
-			(AstCnstChr) CHAR
+			(AstCnstAsgnChar) IDENT:cnstName EQUAL	CHAR:value 
 			|
-			(AstCnstBool) BOOL
+			(AstCnstAsgnBool) IDENT:cnstName EQUAL	BOOL:value 
 			;
 
 VarDeclList ::= (AstVarDeclL) VarDeclList VarDecl
@@ -111,10 +114,7 @@ VarDeclList ::= (AstVarDeclL) VarDeclList VarDecl
 				(AstNoVarDecl) /* epsilon */
 				;
 
-VarDecl ::= (AstVarDecl) Type:varType IDENT:varName SEMI 
-				|
-				(AstVarArrDecl) Type:varType LSQR RSQR IDENT:varName SEMI
-				;
+VarDecl ::= (AstVarDecl) Type:varType VarAsgnList ;
 
 VarAsgnList ::= (AstVarAsgnL) VarAsgnOne COMMA VarAsgnList
 					|
@@ -127,9 +127,9 @@ VarAsgnList ::= (AstVarAsgnL) VarAsgnOne COMMA VarAsgnList
 					{: parser.report_error("Syntax Error: Bad declaration of global variable in line " + eleft + ". Recovered until ';'", null); :}
 					;
 				
-VarAsgnOne ::= (AstVarAsgn) IDENT
-					|
-					(AstVarArrAsgn) IDENT LSQR RSQR
+VarAsgnOne ::= (AstVarAsgn) IDENT:varName
+				|
+				(AstVarArrAsgn) IDENT:varName LSQR RSQR
 					;
 
 Type ::= (AstType) IDENT:typeName 

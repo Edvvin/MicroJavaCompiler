@@ -5,7 +5,7 @@
 
 package rs.ac.bg.etf.pp1.ast;
 
-public abstract class CondFact implements SyntaxNode {
+public abstract class CnstAsgn implements SyntaxNode {
 
     private SyntaxNode parent;
 

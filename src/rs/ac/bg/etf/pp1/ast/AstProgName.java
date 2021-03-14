@@ -5,9 +5,20 @@
 
 package rs.ac.bg.etf.pp1.ast;
 
-public class AstMulop extends Mulop {
+public class AstProgName extends ProgName {
 
-    public AstMulop () {
+    private String prog;
+
+    public AstProgName (String prog) {
+        this.prog=prog;
+    }
+
+    public String getProg() {
+        return prog;
+    }
+
+    public void setProg(String prog) {
+        this.prog=prog;
     }
 
     public void accept(Visitor visitor) {
@@ -28,10 +39,13 @@ public class AstMulop extends Mulop {
     public String toString(String tab) {
         StringBuffer buffer=new StringBuffer();
         buffer.append(tab);
-        buffer.append("AstMulop(\n");
+        buffer.append("AstProgName(\n");
+
+        buffer.append(" "+tab+prog);
+        buffer.append("\n");
 
         buffer.append(tab);
-        buffer.append(") [AstMulop]");
+        buffer.append(") [AstProgName]");
         return buffer.toString();
     }
 }

@@ -59,7 +59,7 @@ terminal PLUS, MINUS, ASTK, DIV, MOD, AND, OR, INC, DEC, EQUAL, GT, GET, LT, LET
 terminal EXTENDS, DOT, SWITCH, ENUM, CLASS, CASE ;
 terminal Integer NUMBER ;
 terminal String IDENT ;
-terminal String CHAR ;
+terminal Character CHAR ;
 terminal String BOOL ;
 terminal IF, ELSE ;
 
@@ -89,13 +89,15 @@ nonterminal VarAsgnList VarAsgnList;
 nonterminal VarAsgnOne VarAsgnOne;
 nonterminal MethodType MethodType ;
 
-nonterminal rs.etf.pp1.symboltable.concepts.Obj Program, Designator, MethodDecl, MethodTypeName ; 
+nonterminal rs.etf.pp1.symboltable.concepts.Obj Program, ProgName, Designator, MethodDecl, MethodTypeName ; 
 nonterminal rs.etf.pp1.symboltable.concepts.Struct Type, Term, Expr, Expr1, Factor, VarDeclList ; 
 
 precedence left ELSE ;
 
-Program ::= (AstProgram) PROG IDENT:progName GlobDeclList:decls LBRACE MethodDeclList:methods RBRACE {: RESULT=new AstProgram(progName, decls, methods); RESULT.setLine(progNameleft); :} 
+Program ::= (AstProgram) PROG ProgName:progName GlobDeclList:decls LBRACE MethodDeclList:methods RBRACE {: RESULT=new AstProgram(progName, decls, methods); RESULT.setLine(progNameleft); :} 
 ;
+
+ProgName ::= (AstProgName) IDENT:prog {: RESULT=new AstProgName(prog); RESULT.setLine(progleft); :} ;
 
 GlobDeclList ::= (AstGlobDeclL) GlobDeclList:G1 Decl:D2 {: RESULT=new AstGlobDeclL(G1, D2); RESULT.setLine(G1left); :}
 			|
@@ -132,10 +134,7 @@ VarDeclList ::= (AstVarDeclL) VarDeclList:V1 VarDecl:V2 {: RESULT=new AstVarDecl
 				(AstNoVarDecl) {: RESULT=new AstNoVarDecl(); :} /* epsilon */
 				;
 
-VarDecl ::= (AstVarDecl) Type:varType IDENT:varName SEMI {: RESULT=new AstVarDecl(varType, varName); RESULT.setLine(varTypeleft); :} 
-				|
-				(AstVarArrDecl) Type:varType LSQR RSQR IDENT:varName SEMI {: RESULT=new AstVarArrDecl(varType, varName); RESULT.setLine(varTypeleft); :}
-				;
+VarDecl ::= (AstVarDecl) Type:varType VarAsgnList:V1 {: RESULT=new AstVarDecl(varType, V1); RESULT.setLine(varTypeleft); :} ;
 
 VarAsgnList ::= (AstVarAsgnL) VarAsgnOne:V1 COMMA VarAsgnList:V2 {: RESULT=new AstVarAsgnL(V1, V2); RESULT.setLine(V1left); :}
 					|
@@ -148,9 +147,9 @@ VarAsgnList ::= (AstVarAsgnL) VarAsgnOne:V1 COMMA VarAsgnList:V2 {: RESULT=new A
 					{: parser.report_error("Syntax Error: Bad declaration of global variable in line " + eleft + ". Recovered until ';'", null); :} {: RESULT=new AstVarAsgnSemiErr(); :}
 					;
 				
-VarAsgnOne ::= (AstVarAsgn) IDENT:I1 {: RESULT=new AstVarAsgn(I1); RESULT.setLine(I1left); :}
-					|
-					(AstVarArrAsgn) IDENT:I1 LSQR RSQR {: RESULT=new AstVarArrAsgn(I1); RESULT.setLine(I1left); :}
+VarAsgnOne ::= (AstVarAsgn) IDENT:varName {: RESULT=new AstVarAsgn(varName); RESULT.setLine(varNameleft); :}
+				|
+				(AstVarArrAsgn) IDENT:varName LSQR RSQR {: RESULT=new AstVarArrAsgn(varName); RESULT.setLine(varNameleft); :}
 					;
 
 Type ::= (AstType) IDENT:typeName {: RESULT=new AstType(typeName); RESULT.setLine(typeNameleft); :} 

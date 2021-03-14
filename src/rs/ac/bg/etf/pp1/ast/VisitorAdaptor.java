@@ -1,6 +1,6 @@
 // generated with ast extension for cup
 // version 0.8
-// 12/2/2021 22:53:23
+// 14/2/2021 11:7:19
 
 
 package rs.ac.bg.etf.pp1.ast;
@@ -30,11 +30,12 @@ public abstract class VisitorAdaptor implements Visitor {
     public void visit(Expr Expr) { }
     public void visit(Expr1 Expr1) { }
     public void visit(MethodTypeName MethodTypeName) { }
+    public void visit(CnstAsgn CnstAsgn) { }
     public void visit(DesignatorStatement DesignatorStatement) { }
     public void visit(ActualPars ActualPars) { }
     public void visit(Decl Decl) { }
+    public void visit(ProgName ProgName) { }
     public void visit(Statement Statement) { }
-    public void visit(CnstValue CnstValue) { }
     public void visit(VarDecl VarDecl) { }
     public void visit(Type Type) { }
     public void visit(CondFact CondFact) { }
@@ -119,22 +120,22 @@ public abstract class VisitorAdaptor implements Visitor {
     public void visit(AstVarAsgnCommaErr AstVarAsgnCommaErr) { visit(); }
     public void visit(AstVarAsgnSemi AstVarAsgnSemi) { visit(); }
     public void visit(AstVarAsgnL AstVarAsgnL) { visit(); }
-    public void visit(AstVarArrDecl AstVarArrDecl) { visit(); }
     public void visit(AstVarDecl AstVarDecl) { visit(); }
     public void visit(AstNoVarDecl AstNoVarDecl) { visit(); }
     public void visit(AstVarDeclL AstVarDeclL) { visit(); }
-    public void visit(AstCnstBool AstCnstBool) { visit(); }
-    public void visit(AstCnstChr AstCnstChr) { visit(); }
-    public void visit(AstCnstNum AstCnstNum) { visit(); }
+    public void visit(AstCnstAsgnBool AstCnstAsgnBool) { visit(); }
+    public void visit(AstCnstAsgnChar AstCnstAsgnChar) { visit(); }
+    public void visit(AstCnstAsgnInt AstCnstAsgnInt) { visit(); }
     public void visit(AstCnstAsgnSemiErr AstCnstAsgnSemiErr) { visit(); }
     public void visit(AstCnstAsgnCommaErr AstCnstAsgnCommaErr) { visit(); }
     public void visit(AstCnstAsgnOne AstCnstAsgnOne) { visit(); }
-    public void visit(AstCnstAsgn AstCnstAsgn) { visit(); }
+    public void visit(AstCnstAsgnL AstCnstAsgnL) { visit(); }
     public void visit(AstCnstDecl AstCnstDecl) { visit(); }
     public void visit(AstGlobVarDecl AstGlobVarDecl) { visit(); }
     public void visit(AstGlobCnstDecl AstGlobCnstDecl) { visit(); }
     public void visit(AstNoGlobDecl AstNoGlobDecl) { visit(); }
     public void visit(AstGlobDeclL AstGlobDeclL) { visit(); }
+    public void visit(AstProgName AstProgName) { visit(); }
     public void visit(AstProgram AstProgram) { visit(); }
 
 
