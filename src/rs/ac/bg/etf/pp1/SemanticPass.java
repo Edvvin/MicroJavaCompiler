@@ -14,6 +14,8 @@ public class SemanticPass extends VisitorAdaptor {
 	Obj currentMethod = null;
 	boolean returnFound = false;
 	boolean hasMain = false;
+	boolean insideLoop = false;
+	int paramCnt = 0;
 	Struct currType = Tab.noType;
 	int nVars;
 
@@ -38,6 +40,10 @@ public class SemanticPass extends VisitorAdaptor {
 	
 	public void visit(AstProgram program) {		
 		nVars = Tab.currentScope.getnVars();
+		if(nVars > 65536) {
+			report_error("The program has " + nVars + "global varialbes decalred. Only 65536 allowed", null);
+			return;
+		}
 		Tab.chainLocalSymbols(program.getProgName().obj);
 		Tab.closeScope();
 		if(!hasMain) {
@@ -81,7 +87,7 @@ public class SemanticPass extends VisitorAdaptor {
 	}
 
 	public void visit(AstCnstAsgnBool cnstAsgn) {
-		if(currType != Compiler.boolType) {
+		if(currType != BoolType.boolType) {
 			report_error("Cannot assign int to given type", cnstAsgn);
 		}
 		Obj obj = Tab.find(cnstAsgn.getCnstName());
@@ -141,102 +147,101 @@ public class SemanticPass extends VisitorAdaptor {
 		}  
 	}
 
-	public void visit(MethodDecl methodDecl) {
+	public void visit(AstMethDecl methodDecl) {
+		Tab.chainLocalSymbols(currentMethod);
 		if (!returnFound && currentMethod.getType() != Tab.noType) {
-			report_error("Semanticka greska na liniji " + methodDecl.getLine() + ": funcija " + currentMethod.getName() + " nema return iskaz!", null);
+			report_error("Function " + currentMethod.getName() + " does not have a return statement", null);
 		}
 		
-		Tab.chainLocalSymbols(currentMethod);
+		if(currentMethod.getName().equals("main")) {
+			hasMain = true;
+			if(currentMethod.getType() != Tab.noType || paramCnt != 0) {
+				report_error("Function main can only have return type 'void' and must not have formal parameters", methodDecl);
+			}
+		}
+		
+		if(Tab.currentScope.getnVars() > 256) {
+				report_error("Function " + currentMethod.getName() + " has more that 256 variables", methodDecl);
+		}
+		
+		currentMethod.setLevel(paramCnt);
+		
 		Tab.closeScope();
 		
 		returnFound = false;
 		currentMethod = null;
+		paramCnt = 0;
 	}
 
-	public void visit(MethodTypeName methodTypeName) {
-		currentMethod = Tab.insert(Obj.Meth, methodTypeName.getMethName(), methodTypeName.getType().struct);
-		methodTypeName.obj = currentMethod;
-		Tab.openScope();
-		report_info("Obradjuje se funkcija " + methodTypeName.getMethName(), methodTypeName);
+	public void visit(AstMethTypeName methodTypeName) {
+		Obj obj = Tab.find(methodTypeName.getMethName());
+		if(obj != Tab.noObj) {
+			report_error("Name " + methodTypeName.getMethName() + " already taken", methodTypeName);
+		}
+		else {
+			currentMethod = Tab.insert(Obj.Meth, methodTypeName.getMethName(), currType);
+			methodTypeName.obj = currentMethod;
+			Tab.openScope();
+			report_info("Function " + methodTypeName.getMethName() + " is being defined", methodTypeName);
+		}
 	}
 
-	public void visit(Assignment assignment) {
-		if (!assignment.getExpr().struct.assignableTo(assignment.getDesignator().obj.getType()))
-			report_error("Greska na liniji " + assignment.getLine() + " : " + " nekompatibilni tipovi u dodeli vrednosti ", null);
+	public void visit(AstMethVoidName methodTypeName) {
+		Obj obj = Tab.find(methodTypeName.getMethName());
+		if(obj != Tab.noObj) {
+			report_error("Name " + methodTypeName.getMethName() + " already taken", methodTypeName);
+		}
+		else {
+			currentMethod = Tab.insert(Obj.Meth, methodTypeName.getMethName(), Tab.noType);
+			methodTypeName.obj = currentMethod;
+			Tab.openScope();
+			report_info("Function " + methodTypeName.getMethName() + "is being defined", methodTypeName);
+		}
+	}
+	
+	public void visit(AstFormalParamDecl formalParam) {
+		Obj obj = Tab.find(formalParam.getParamName());
+		if(obj != Tab.noObj) {
+			report_error("Name " + formalParam.getParamName() + " already taken", formalParam);
+		}
+		else {
+			Tab.insert(Obj.Var, formalParam.getParamName(), currType);
+			paramCnt++;
+			report_info("Variable declared "+ formalParam.getParamName(), formalParam);
+		}
 	}
 
-	public void visit(PrintStmt printStmt){
+	public void visit(AstFormalParamArrDecl formalParam) {
+		Obj obj = Tab.find(formalParam.getParamName());
+		if(obj != Tab.noObj) {
+			report_error("Name " + formalParam.getParamName() + " already taken", formalParam);
+		}
+		else {
+			Tab.insert(Obj.Var, formalParam.getParamName(), new Struct(Struct.Array, currType));
+			paramCnt++;
+			report_info("Variable declared "+ formalParam.getParamName(), formalParam);
+		}
+	}
+
+
+	public void visit(AstEqualStmt eqStmt) {
+		//if (!eqStmt.getExpr().struct.assignableTo(eqStmt.getDesignator().obj.getType())) {
+		//	report_error("Cannot assign. Incompatible types", eqStmt);
+		//}
+	}
+
+	public void visit(AstPrintStmt printStmt){
 		printCallCount++;    	
 	}
 
-	public void visit(ReturnExpr returnExpr){
+	public void visit(AstReturnExpr returnExpr){
 		returnFound = true;
 		Struct currMethType = currentMethod.getType();
-		if (!currMethType.compatibleWith(returnExpr.getExpr().struct)) {
-			report_error("Greska na liniji " + returnExpr.getLine() + " : " + "tip izraza u return naredbi ne slaze se sa tipom povratne vrednosti funkcije " + currentMethod.getName(), null);
-		}			  	     	
+		//if (!currMethType.compatibleWith(returnExpr.getExpr().struct)) {
+		//	report_error("Cannot return given type. Incompatible with method return type", returnExpr);
+		//}			  	     	
 	}
 
-	public void visit(ProcCall procCall){
-		Obj func = procCall.getDesignator().obj;
-		if (Obj.Meth == func.getKind()) { 
-			report_info("Pronadjen poziv funkcije " + func.getName() + " na liniji " + procCall.getLine(), null);
-			//RESULT = func.getType();
-		} 
-		else {
-			report_error("Greska na liniji " + procCall.getLine()+" : ime " + func.getName() + " nije funkcija!", null);
-			//RESULT = Tab.noType;
-		}     	
-	}    
-
-	public void visit(AddExpr addExpr) {
-		Struct te = addExpr.getExpr().struct;
-		Struct t = addExpr.getTerm().struct;
-		if (te.equals(t) && te == Tab.intType)
-			addExpr.struct = te;
-		else {
-			report_error("Greska na liniji "+ addExpr.getLine()+" : nekompatibilni tipovi u izrazu za sabiranje.", null);
-			addExpr.struct = Tab.noType;
-		} 
-	}
-
-	public void visit(TermExpr termExpr) {
-		termExpr.struct = termExpr.getTerm().struct;
-	}
-
-	public void visit(Term term) {
-		term.struct = term.getFactor().struct;    	
-	}
-
-	public void visit(Const cnst){
-		cnst.struct = Tab.intType;    	
-	}
-	
-	public void visit(Var var) {
-		var.struct = var.getDesignator().obj.getType();
-	}
-
-	public void visit(FuncCall funcCall){
-		Obj func = funcCall.getDesignator().obj;
-		if (Obj.Meth == func.getKind()) { 
-			report_info("Pronadjen poziv funkcije " + func.getName() + " na liniji " + funcCall.getLine(), null);
-			funcCall.struct = func.getType();
-		} 
-		else {
-			report_error("Greska na liniji " + funcCall.getLine()+" : ime " + func.getName() + " nije funkcija!", null);
-			funcCall.struct = Tab.noType;
-		}
-
-	}
-
-	public void visit(Designator designator){
-		Obj obj = Tab.find(designator.getName());
-		if (obj == Tab.noObj) { 
-			report_error("Greska na liniji " + designator.getLine()+ " : ime "+designator.getName()+" nije deklarisano! ", null);
-		}
-		designator.obj = obj;
-	}
-	
 	public boolean passed() {
 		return !errorDetected;
 	}

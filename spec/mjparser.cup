@@ -144,13 +144,10 @@ MethodDecl ::= (AstMethDecl) MethodTypeName
 			   FormalParams VarDeclList LBRACE StatementList RBRACE 
 			   ;
 
-MethodTypeName ::= (AstMethTypeName) MethodType:retType IDENT:methName
-;
-
-MethodType ::= (AstMethVoid) VOID
-				|
-				(AstMethType) Type
-				;
+MethodTypeName ::= (AstMethTypeName) Type:retType IDENT:methName
+					|
+					(AstMethVoidName) VOID IDENT:methName
+					;
 
 FormalParams ::= (AstFormalParams) LPAREN FormalParamList RPAREN
 				|
@@ -168,9 +165,9 @@ FormalParamList ::= (AstFormalParamL) FormalParamDecl COMMA FormalParamList
 					(AstNoFormalParams) /* epsilon */
 					;
 					
-FormalParamDecl ::= (AstFormalParamDecl) Type IDENT 
+FormalParamDecl ::= (AstFormalParamDecl) Type IDENT:paramName
 					|
-					(AstFormalParamArrDecl) Type IDENT LSQR RSQR 
+					(AstFormalParamArrDecl) Type IDENT:paramName LSQR RSQR 
 					;
 					
 StatementList ::= (AstStatementL) StatementList Statement 

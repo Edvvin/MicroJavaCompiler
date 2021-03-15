@@ -84,10 +84,10 @@ nonterminal GlobDeclList GlobDeclList;
 nonterminal Decl Decl;
 nonterminal CnstDecl CnstDecl;
 nonterminal CnstAsgnList CnstAsgnList;
-nonterminal CnstValue CnstValue;
 nonterminal VarAsgnList VarAsgnList;
 nonterminal VarAsgnOne VarAsgnOne;
 nonterminal MethodType MethodType ;
+nonterminal CnstAsgn CnstAsgn ;
 
 nonterminal rs.etf.pp1.symboltable.concepts.Obj Program, ProgName, Designator, MethodDecl, MethodTypeName ; 
 nonterminal rs.etf.pp1.symboltable.concepts.Struct Type, Term, Expr, Expr1, Factor, VarDeclList ; 
@@ -111,9 +111,9 @@ Decl ::= (AstGlobCnstDecl) CnstDecl:C1 {: RESULT=new AstGlobCnstDecl(C1); RESULT
 		
 CnstDecl ::= (AstCnstDecl) CONST Type:T1 CnstAsgnList:C2 {: RESULT=new AstCnstDecl(T1, C2); RESULT.setLine(T1left); :};
 
-CnstAsgnList ::= (AstCnstAsgn) IDENT:I1 EQUAL CnstValue:C2 COMMA CnstAsgnList:C3 {: RESULT=new AstCnstAsgn(I1, C2, C3); RESULT.setLine(I1left); :}
+CnstAsgnList ::= (AstCnstAsgnL) CnstAsgn:C1 COMMA CnstAsgnList:C2 {: RESULT=new AstCnstAsgnL(C1, C2); RESULT.setLine(C1left); :}
 				|
-				(AstCnstAsgnOne) IDENT:I1 EQUAL CnstValue:C2 SEMI {: RESULT=new AstCnstAsgnOne(I1, C2); RESULT.setLine(I1left); :}
+				(AstCnstAsgnOne) CnstAsgn:C1 SEMI {: RESULT=new AstCnstAsgnOne(C1); RESULT.setLine(C1left); :}
 				|
 				(AstCnstAsgnCommaErr) error:e COMMA
 				{: parser.report_error("Syntax Error: Bad declaration of global constant in line " + eleft + ". Recovered until ','", null); :} {: RESULT=new AstCnstAsgnCommaErr(); :}
@@ -122,11 +122,11 @@ CnstAsgnList ::= (AstCnstAsgn) IDENT:I1 EQUAL CnstValue:C2 COMMA CnstAsgnList:C3
 				{: parser.report_error("Syntax Error: Bad declaration of global constant in line " + eleft + ". Recovered until ';'", null); :} {: RESULT=new AstCnstAsgnSemiErr(); :}
 				;
 
-CnstValue ::= (AstCnstNum) NUMBER:N1 {: RESULT=new AstCnstNum(N1); RESULT.setLine(N1left); :}
+CnstAsgn ::= (AstCnstAsgnInt) IDENT:cnstName EQUAL	NUMBER:value {: RESULT=new AstCnstAsgnInt(cnstName, value); RESULT.setLine(cnstNameleft); :} 
 			|
-			(AstCnstChr) CHAR:C1 {: RESULT=new AstCnstChr(C1); RESULT.setLine(C1left); :}
+			(AstCnstAsgnChar) IDENT:cnstName EQUAL	CHAR:value {: RESULT=new AstCnstAsgnChar(cnstName, value); RESULT.setLine(cnstNameleft); :} 
 			|
-			(AstCnstBool) BOOL:B1 {: RESULT=new AstCnstBool(B1); RESULT.setLine(B1left); :}
+			(AstCnstAsgnBool) IDENT:cnstName EQUAL	BOOL:value {: RESULT=new AstCnstAsgnBool(cnstName, value); RESULT.setLine(cnstNameleft); :} 
 			;
 
 VarDeclList ::= (AstVarDeclL) VarDeclList:V1 VarDecl:V2 {: RESULT=new AstVarDeclL(V1, V2); RESULT.setLine(V1left); :}

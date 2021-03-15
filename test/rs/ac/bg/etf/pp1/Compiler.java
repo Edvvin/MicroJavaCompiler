@@ -17,9 +17,6 @@ import rs.etf.pp1.symboltable.Tab;
 import rs.etf.pp1.symboltable.concepts.*;
 
 public class Compiler {
-	
-	public static final int Bool = 5;
-	public static final Struct boolType = new Struct(Compiler.Bool);
 
 	static {
 		DOMConfigurator.configure(Log4JUtils.instance().findLoggerConfigFile());
@@ -51,7 +48,7 @@ public class Compiler {
 	        SyntaxNode prog = (SyntaxNode)(s.value);
 	        log.info(prog.toString());
 	        Tab.init();
-	        Tab.currentScope().addToLocals(new Obj(Obj.Type, "bool", Compiler.boolType));
+	        Tab.currentScope().addToLocals(new Obj(Obj.Type, "bool", BoolType.boolType));
 
 	        SemanticPass semPass = new SemanticPass();
 	        prog.traverseBottomUp(semPass);

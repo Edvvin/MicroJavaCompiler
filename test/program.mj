@@ -2,12 +2,12 @@ program MJProgram
 	int x; int y;
 {
 	
-	int k () int c; {
+	int k (bool z) int c; {
 		c = 1;
 		return c+2;
 	}
 	
-	int main() {
+	void main() {
 		y = 2;
 		x = y + 2;
 		y = k() + 3;

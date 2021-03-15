@@ -1,27 +1,27 @@
 // generated with ast extension for cup
 // version 0.8
-// 14/2/2021 11:7:19
+// 15/2/2021 22:6:37
 
 
 package rs.ac.bg.etf.pp1.ast;
 
 public class AstMethTypeName extends MethodTypeName {
 
-    private MethodType MethodType;
+    private Type Type;
     private String methName;
 
-    public AstMethTypeName (MethodType MethodType, String methName) {
-        this.MethodType=MethodType;
-        if(MethodType!=null) MethodType.setParent(this);
+    public AstMethTypeName (Type Type, String methName) {
+        this.Type=Type;
+        if(Type!=null) Type.setParent(this);
         this.methName=methName;
     }
 
-    public MethodType getMethodType() {
-        return MethodType;
+    public Type getType() {
+        return Type;
     }
 
-    public void setMethodType(MethodType MethodType) {
-        this.MethodType=MethodType;
+    public void setType(Type Type) {
+        this.Type=Type;
     }
 
     public String getMethName() {
@@ -37,16 +37,16 @@ public class AstMethTypeName extends MethodTypeName {
     }
 
     public void childrenAccept(Visitor visitor) {
-        if(MethodType!=null) MethodType.accept(visitor);
+        if(Type!=null) Type.accept(visitor);
     }
 
     public void traverseTopDown(Visitor visitor) {
         accept(visitor);
-        if(MethodType!=null) MethodType.traverseTopDown(visitor);
+        if(Type!=null) Type.traverseTopDown(visitor);
     }
 
     public void traverseBottomUp(Visitor visitor) {
-        if(MethodType!=null) MethodType.traverseBottomUp(visitor);
+        if(Type!=null) Type.traverseBottomUp(visitor);
         accept(visitor);
     }
 
@@ -55,8 +55,8 @@ public class AstMethTypeName extends MethodTypeName {
         buffer.append(tab);
         buffer.append("AstMethTypeName(\n");
 
-        if(MethodType!=null)
-            buffer.append(MethodType.toString("  "+tab));
+        if(Type!=null)
+            buffer.append(Type.toString("  "+tab));
         else
             buffer.append(tab+"  null");
         buffer.append("\n");
