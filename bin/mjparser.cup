@@ -64,8 +64,8 @@ terminal String BOOL ;
 terminal IF, ELSE ;
 
 nonterminal MethodDeclList, VarDecl, FormalParams ;
-nonterminal FormalParamList, FormalParamDecl, ActualPars, ActualParamList, Relop; 
-nonterminal StatementList, CondFact, CondTerm, Statement, DesignatorStatement, Addop, Mulop ;
+nonterminal FormalParamList, FormalParamDecl, ActualPars, ActualParamList ; 
+nonterminal StatementList, CondFact, CondTerm, Statement, DesignatorStatement, Addop, Mulop, Relop ;
 nonterminal GlobDeclList, Decl, CnstDecl, CnstAsgnList, VarAsgnList, VarAsgnOne, MethodType ;
 nonterminal ActualParsStart, CnstAsgn, DoPartOfWhile ;
 
@@ -247,7 +247,7 @@ Factor ::= (AstFactNum) NUMBER
 		    |
 		   (AstFuncCallFact) Designator:func LPAREN ActualPars RPAREN
 		    |
-		   (AstNewObj) NEW Type:t LSQR Expr:e RSQR
+		   (AstNewArray) NEW Type:t LSQR Expr:e RSQR
 		   ;
 
 ActualPars ::= (AstActualParams) ActualParsStart ActualParamList 
@@ -267,19 +267,19 @@ Condition ::= (AstConditionOne) CondTerm
 			(AstConditionL) CondTerm OR Condition
 			;
 
-CondTerm ::= (AstCondTermOne)	CondFact
+CondTerm ::= (AstCondTermOne) CondFact
 			|
 			(AstCondTermL) CondFact AND CondTerm
 			;
 
 CondFact ::= (AstCondFactOne) Expr
 			|
-			(AstCondFactL) Expr Relop Expr
+			(AstCondFactL) Expr:e1 Relop Expr:e2
 			;
 
 Designator ::= (AstDesig) IDENT:name 
 				|
-				(AstIndexDesig) IDENT:name LSQR Expr RSQR 
+				(AstIndexDesig) Designator LSQR Expr RSQR 
 ;
 
 Addop ::= (AstAddop) PLUS 
@@ -295,6 +295,8 @@ Mulop ::= (AstMulop) ASTK
 ;
 
 Relop ::= (AstEqop) EQEQ
+			|
+			(AstNeop) NEQ
 			|
 			(AstGtop) GT
 			|

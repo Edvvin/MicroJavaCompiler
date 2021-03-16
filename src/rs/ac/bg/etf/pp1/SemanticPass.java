@@ -10,12 +10,14 @@ import rs.etf.pp1.symboltable.concepts.Obj;
 import rs.etf.pp1.symboltable.concepts.Struct;
 
 public class SemanticPass extends VisitorAdaptor {
+	
 
 	boolean errorDetected = false;
 	int printCallCount = 0;
 	Obj currentMethod = null;
 	Obj currentCall = null;
 	ArrayList<Struct> currentCallList = new ArrayList<Struct>();
+	MJStatic.RelOpType currentRelOp = MJStatic.RelOpType.EQ;
 	boolean returnFound = false;
 	boolean hasMain = false;
 	boolean insideLoop = false;
@@ -92,7 +94,7 @@ public class SemanticPass extends VisitorAdaptor {
 	}
 
 	public void visit(AstCnstAsgnBool cnstAsgn) {
-		if(currType != BoolType.boolType) {
+		if(currType != MJStatic.boolType) {
 			report_error("Cannot assign int to given type", cnstAsgn);
 		}
 		Obj obj = Tab.find(cnstAsgn.getCnstName());
@@ -266,13 +268,6 @@ public class SemanticPass extends VisitorAdaptor {
 		}
 	}
 	
-	public void visit(AstFuncCallFact callFact) {
-		currentCall = callFact.getDesignator().obj;
-		if(currentCall.getKind() != Obj.Meth) {
-			report_error("Designator must be a function", callFact);
-		}
-	}
-	
 	public void visit(AstDoPart doPart) {
 		whileCnt++;
 	}
@@ -296,7 +291,7 @@ public class SemanticPass extends VisitorAdaptor {
 		}
 		if (readStmt.getDesignator().obj.getType() != Tab.intType &&
 				readStmt.getDesignator().obj.getType() != Tab.charType &&
-				readStmt.getDesignator().obj.getType() != BoolType.boolType ) {
+				readStmt.getDesignator().obj.getType() != MJStatic.boolType ) {
 			report_error("Designator must be either of type int, char of bool", readStmt);
 		}
 	}
@@ -304,7 +299,7 @@ public class SemanticPass extends VisitorAdaptor {
 	public void visit(AstPrintStmtParam printStmt){
 		if (printStmt.getExpr().struct != Tab.intType &&
 				printStmt.getExpr().struct != Tab.charType &&
-				printStmt.getExpr().struct != BoolType.boolType ) {
+				printStmt.getExpr().struct != MJStatic.boolType ) {
 			report_error("Expression must be either of type int, char of bool", printStmt);
 		}
 	}
@@ -312,7 +307,7 @@ public class SemanticPass extends VisitorAdaptor {
 	public void visit(AstPrintStmt printStmt){
 		if (printStmt.getExpr().struct != Tab.intType &&
 				printStmt.getExpr().struct != Tab.charType &&
-				printStmt.getExpr().struct != BoolType.boolType ) {
+				printStmt.getExpr().struct != MJStatic.boolType ) {
 			report_error("Expression must be either of type int, char of bool", printStmt);
 		}
 	}
@@ -344,20 +339,20 @@ public class SemanticPass extends VisitorAdaptor {
 	}
 	
 	public void visit(AstMatchedIf ifStmt) {
-		if(ifStmt.getCondition().struct != BoolType.boolType) {
+		if(ifStmt.getCondition().struct != MJStatic.boolType) {
 			report_error("Condition must be of type bool", ifStmt);
 		}
 	}
 
 	public void visit(AstUnmatchedIf ifStmt) {
-		if(ifStmt.getCondition().struct != BoolType.boolType) {
+		if(ifStmt.getCondition().struct != MJStatic.boolType) {
 			report_error("Condition must be of type bool", ifStmt);
 		}
 	}
 	
 	public void visit(AstDoWhile doWhileStmt) {
 		whileCnt--;
-		if(doWhileStmt.getCondition().struct != BoolType.boolType) {
+		if(doWhileStmt.getCondition().struct != MJStatic.boolType) {
 			report_error("Condition must be of type bool", doWhileStmt);
 		}
 	}
@@ -395,8 +390,88 @@ public class SemanticPass extends VisitorAdaptor {
 		}
 	}
 	
-	public void visit(AstAddExpr addExpr) {
+	
+	public void visit(AstCondFactL condFact) {
+		if(!condFact.getExpr().struct.compatibleWith(condFact.getExpr1().struct)) {
+			report_error("Cannot compare incompatible types", condFact);
+		}
+		else {
+			if(condFact.getExpr().struct.getKind() == Struct.Array) {
+				if(currentRelOp != MJStatic.RelOpType.EQ && currentRelOp != MJStatic.RelOpType.NE) {
+					report_error("Reference types may only be compared using == or !=", condFact);
+				}
+			}
+		}
+	}
+	
+	public void visit(AstEqop relop) {
+		currentRelOp = MJStatic.RelOpType.EQ;
 	}
 
+	public void visit(AstNeop relop) {
+		currentRelOp = MJStatic.RelOpType.NE;
+	}
+
+	public void visit(AstGtop relop) {
+		currentRelOp = MJStatic.RelOpType.G;
+	}
+	
+	public void visit(AstGetop relop) {
+		currentRelOp = MJStatic.RelOpType.GE;
+	}
+	
+	public void visit(AstLtop relop) {
+		currentRelOp = MJStatic.RelOpType.L;
+	}
+	
+	public void visit(AstLetop relop) {
+		currentRelOp = MJStatic.RelOpType.LE;
+	}
+	
+	public void visit(AstAddExpr addExpr) {
+		if(addExpr.getSumExpr().struct != Tab.intType ||
+				addExpr.getTerm().struct != Tab.intType) {
+			report_error("Only terms of type int can be use with the " + MJStatic.relOpToString(currentRelOp) + " operation", addExpr);
+		}
+	}
+	
+	public void visit(AstTerExpr terExpr) {
+		if(!terExpr.getExpr11().struct.equals(terExpr.getExpr12().struct)) {
+			report_error("Second and third operand of the ternary '?:' operator must be of equal types", terExpr);
+		}
+		if(terExpr.getExpr1().struct != MJStatic.boolType) {
+			report_error("The first operand of the ternary '?:' operator must be bool", terExpr);
+		}
+	}
+	
+	public void visit(AstTermL term) {
+		if(term.getTerm().struct != Tab.intType ||
+				term.getFactor().struct != Tab.intType) {
+			report_error("Only factors of type int can be use with the " + MJStatic.relOpToString(currentRelOp) + " operation", term);
+		}
+	}
+
+	public void visit(AstFuncCallFact callFact) {
+		currentCall = callFact.getDesignator().obj;
+		if(currentCall.getKind() != Obj.Meth) {
+			report_error("Designator must be a function", callFact);
+		}
+	}
+	
+	public void visit(AstNewArray newArray) {
+		if(newArray.getExpr().struct != Tab.intType) {
+			report_error("Number of elements of array must be an integer ", newArray);
+		}
+	}
+	
+	public void visit(AstIndexDesig indexDesig) {
+		if(indexDesig.getDesignator().obj.getType().getKind() != Struct.Array) {
+			report_error("Designator being indexed must be an array", indexDesig);
+		}
+		if(indexDesig.getExpr().struct != Tab.intType) {
+			report_error("Index must be of type integer", indexDesig);
+		}
+	}
+	
 }
 

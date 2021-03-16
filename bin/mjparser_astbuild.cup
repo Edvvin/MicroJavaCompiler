@@ -69,17 +69,15 @@ nonterminal FormalParams FormalParams ;
 nonterminal FormalParamList FormalParamList;
 nonterminal FormalParamDecl FormalParamDecl;
 nonterminal ActualPars ActualPars;
-nonterminal ActualParamList ActualParamList;
-nonterminal Relop Relop; 
+nonterminal ActualParamList ActualParamList ; 
 nonterminal StatementList StatementList;
-nonterminal Condition Condition;
 nonterminal CondFact CondFact;
 nonterminal CondTerm CondTerm;
-nonterminal SumExpr SumExpr;
 nonterminal Statement Statement;
 nonterminal DesignatorStatement DesignatorStatement;
 nonterminal Addop Addop;
-nonterminal Mulop Mulop ;
+nonterminal Mulop Mulop;
+nonterminal Relop Relop ;
 nonterminal GlobDeclList GlobDeclList;
 nonterminal Decl Decl;
 nonterminal CnstDecl CnstDecl;
@@ -87,10 +85,12 @@ nonterminal CnstAsgnList CnstAsgnList;
 nonterminal VarAsgnList VarAsgnList;
 nonterminal VarAsgnOne VarAsgnOne;
 nonterminal MethodType MethodType ;
-nonterminal CnstAsgn CnstAsgn ;
+nonterminal ActualParsStart ActualParsStart;
+nonterminal CnstAsgn CnstAsgn;
+nonterminal DoPartOfWhile DoPartOfWhile ;
 
 nonterminal rs.etf.pp1.symboltable.concepts.Obj Program, ProgName, Designator, MethodDecl, MethodTypeName ; 
-nonterminal rs.etf.pp1.symboltable.concepts.Struct Type, Term, Expr, Expr1, Factor, VarDeclList ; 
+nonterminal rs.etf.pp1.symboltable.concepts.Struct Condition, Type, Term, SumExpr, Expr, Expr1, Factor, VarDeclList ; 
 
 precedence left ELSE ;
 
@@ -227,10 +227,12 @@ Statement ::= (AstDesigStmt) DesignatorStatement:des SEMI {: RESULT=new AstDesig
 			  |
 			  (AstMatchedIf) IF LPAREN Condition:C1 RPAREN Statement:S2 ELSE Statement:S3 {: RESULT=new AstMatchedIf(C1, S2, S3); RESULT.setLine(C1left); :}
 			  |
-			  (AstDoWhile) DO Statement:S1 WHILE LPAREN Condition:C2 RPAREN SEMI {: RESULT=new AstDoWhile(S1, C2); RESULT.setLine(S1left); :}
+			  (AstDoWhile) DoPartOfWhile:D1 Statement:S2 WHILE LPAREN Condition:C3 RPAREN SEMI {: RESULT=new AstDoWhile(D1, S2, C3); RESULT.setLine(D1left); :}
 			  |
 			  (AstStmtL) LBRACE StatementList:S1 RBRACE {: RESULT=new AstStmtL(S1); RESULT.setLine(S1left); :}
 			  ;
+			  
+DoPartOfWhile ::= (AstDoPart) DO {: RESULT=new AstDoPart(); :} ;
 			  
 Expr ::= (AstTerExpr) Expr1:E1 QSTMK Expr1:E2 COLON Expr1:E3 {: RESULT=new AstTerExpr(E1, E2, E3); RESULT.setLine(E1left); :}
 		|
@@ -243,7 +245,7 @@ Expr1 ::= (AstNegExpr) MINUS SumExpr:S1 {: RESULT=new AstNegExpr(S1); RESULT.set
 		;
 
 
-SumExpr ::= (AstAddExpr) Term:t Addop:A1 SumExpr:se {: RESULT=new AstAddExpr(t, A1, se); RESULT.setLine(tleft); :} 
+SumExpr ::= (AstAddExpr) SumExpr:se Addop:A1 Term:t {: RESULT=new AstAddExpr(se, A1, t); RESULT.setLine(seleft); :}
 		 |
 		 (AstTermExpr) Term:t {: RESULT=new AstTermExpr(t); RESULT.setLine(tleft); :}
 		 ;
@@ -265,15 +267,17 @@ Factor ::= (AstFactNum) NUMBER:N1 {: RESULT=new AstFactNum(N1); RESULT.setLine(N
 		    |
 		   (AstFuncCallFact) Designator:func LPAREN ActualPars:A1 RPAREN {: RESULT=new AstFuncCallFact(func, A1); RESULT.setLine(funcleft); :}
 		    |
-		   (AstNewObj) NEW Type:t LSQR Expr:e RSQR {: RESULT=new AstNewObj(t, e); RESULT.setLine(tleft); :}
+		   (AstNewArray) NEW Type:t LSQR Expr:e RSQR {: RESULT=new AstNewArray(t, e); RESULT.setLine(tleft); :}
 		   ;
 
-ActualPars ::= (AstActualParams) ActualParamList:A1 {: RESULT=new AstActualParams(A1); RESULT.setLine(A1left); :} 
+ActualPars ::= (AstActualParams) ActualParsStart:A1 ActualParamList:A2 {: RESULT=new AstActualParams(A1, A2); RESULT.setLine(A1left); :} 
 				| 
 			   (AstNoActualParam) {: RESULT=new AstNoActualParam(); :} /* epsilon */ 
 			   ;
 			   
-ActualParamList ::= (AstActualParamsL) ActualParamList:A1 COMMA Expr:E2 {: RESULT=new AstActualParamsL(A1, E2); RESULT.setLine(A1left); :}
+ActualParsStart ::= (AstStartActualParams) {: RESULT=new AstStartActualParams(); :} /* epsilon */ ;
+			   
+ActualParamList ::= (AstActualParamsL) Expr:E1 COMMA ActualParamList:A2 {: RESULT=new AstActualParamsL(E1, A2); RESULT.setLine(E1left); :}
 					|
 					(AstActualParamsOne) Expr:E1 {: RESULT=new AstActualParamsOne(E1); RESULT.setLine(E1left); :}
 					;
@@ -283,19 +287,19 @@ Condition ::= (AstConditionOne) CondTerm:C1 {: RESULT=new AstConditionOne(C1); R
 			(AstConditionL) CondTerm:C1 OR Condition:C2 {: RESULT=new AstConditionL(C1, C2); RESULT.setLine(C1left); :}
 			;
 
-CondTerm ::= (AstCondTermOne)	CondFact:C1 {: RESULT=new AstCondTermOne(C1); RESULT.setLine(C1left); :}
+CondTerm ::= (AstCondTermOne) CondFact:C1 {: RESULT=new AstCondTermOne(C1); RESULT.setLine(C1left); :}
 			|
 			(AstCondTermL) CondFact:C1 AND CondTerm:C2 {: RESULT=new AstCondTermL(C1, C2); RESULT.setLine(C1left); :}
 			;
 
 CondFact ::= (AstCondFactOne) Expr:E1 {: RESULT=new AstCondFactOne(E1); RESULT.setLine(E1left); :}
 			|
-			(AstCondFactL) Expr:E1 Relop:R2 Expr:E3 {: RESULT=new AstCondFactL(E1, R2, E3); RESULT.setLine(E1left); :}
+			(AstCondFactL) Expr:e1 Relop:R1 Expr:e2 {: RESULT=new AstCondFactL(e1, R1, e2); RESULT.setLine(e1left); :}
 			;
 
 Designator ::= (AstDesig) IDENT:name {: RESULT=new AstDesig(name); RESULT.setLine(nameleft); :} 
 				|
-				(AstIndexDesig) IDENT:name LSQR Expr:E1 RSQR {: RESULT=new AstIndexDesig(name, E1); RESULT.setLine(nameleft); :} 
+				(AstIndexDesig) Designator:D1 LSQR Expr:E2 RSQR {: RESULT=new AstIndexDesig(D1, E2); RESULT.setLine(D1left); :} 
 ;
 
 Addop ::= (AstAddop) PLUS {: RESULT=new AstAddop(); :} 
@@ -311,6 +315,8 @@ Mulop ::= (AstMulop) ASTK {: RESULT=new AstMulop(); :}
 ;
 
 Relop ::= (AstEqop) EQEQ {: RESULT=new AstEqop(); :}
+			|
+			(AstNeop) NEQ {: RESULT=new AstNeop(); :}
 			|
 			(AstGtop) GT {: RESULT=new AstGtop(); :}
 			|

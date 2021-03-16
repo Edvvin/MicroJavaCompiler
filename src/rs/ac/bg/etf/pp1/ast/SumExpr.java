@@ -1,6 +1,6 @@
 // generated with ast extension for cup
 // version 0.8
-// 16/2/2021 1:6:51
+// 16/2/2021 18:27:51
 
 
 package rs.ac.bg.etf.pp1.ast;
@@ -10,6 +10,8 @@ public abstract class SumExpr implements SyntaxNode {
     private SyntaxNode parent;
 
     private int line;
+
+    public rs.etf.pp1.symboltable.concepts.Struct struct = null;
 
     public SyntaxNode getParent() {
         return parent;

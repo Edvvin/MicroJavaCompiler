@@ -48,7 +48,7 @@ public class Compiler {
 	        SyntaxNode prog = (SyntaxNode)(s.value);
 	        log.info(prog.toString());
 	        Tab.init();
-	        Tab.currentScope().addToLocals(new Obj(Obj.Type, "bool", BoolType.boolType));
+	        Tab.currentScope().addToLocals(new Obj(Obj.Type, "bool", MJStatic.boolType));
 
 	        SemanticPass semPass = new SemanticPass();
 	        prog.traverseBottomUp(semPass);
