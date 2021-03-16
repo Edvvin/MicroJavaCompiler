@@ -164,13 +164,10 @@ MethodDecl ::= (AstMethDecl) MethodTypeName:M1
 			   FormalParams:F2 VarDeclList:V3 LBRACE StatementList:S4 RBRACE {: RESULT=new AstMethDecl(M1, F2, V3, S4); RESULT.setLine(M1left); :} 
 			   ;
 
-MethodTypeName ::= (AstMethTypeName) MethodType:retType IDENT:methName {: RESULT=new AstMethTypeName(retType, methName); RESULT.setLine(retTypeleft); :}
-;
-
-MethodType ::= (AstMethVoid) VOID {: RESULT=new AstMethVoid(); :}
-				|
-				(AstMethType) Type:T1 {: RESULT=new AstMethType(T1); RESULT.setLine(T1left); :}
-				;
+MethodTypeName ::= (AstMethTypeName) Type:retType IDENT:methName {: RESULT=new AstMethTypeName(retType, methName); RESULT.setLine(retTypeleft); :}
+					|
+					(AstMethVoidName) VOID IDENT:methName {: RESULT=new AstMethVoidName(methName); RESULT.setLine(methNameleft); :}
+					;
 
 FormalParams ::= (AstFormalParams) LPAREN FormalParamList:F1 RPAREN {: RESULT=new AstFormalParams(F1); RESULT.setLine(F1left); :}
 				|
@@ -188,9 +185,9 @@ FormalParamList ::= (AstFormalParamL) FormalParamDecl:F1 COMMA FormalParamList:F
 					(AstNoFormalParams) {: RESULT=new AstNoFormalParams(); :} /* epsilon */
 					;
 					
-FormalParamDecl ::= (AstFormalParamDecl) Type:T1 IDENT:I2 {: RESULT=new AstFormalParamDecl(T1, I2); RESULT.setLine(T1left); :} 
+FormalParamDecl ::= (AstFormalParamDecl) Type:T1 IDENT:paramName {: RESULT=new AstFormalParamDecl(T1, paramName); RESULT.setLine(T1left); :}
 					|
-					(AstFormalParamArrDecl) Type:T1 IDENT:I2 LSQR RSQR {: RESULT=new AstFormalParamArrDecl(T1, I2); RESULT.setLine(T1left); :} 
+					(AstFormalParamArrDecl) Type:T1 IDENT:paramName LSQR RSQR {: RESULT=new AstFormalParamArrDecl(T1, paramName); RESULT.setLine(T1left); :} 
 					;
 					
 StatementList ::= (AstStatementL) StatementList:S1 Statement:S2 {: RESULT=new AstStatementL(S1, S2); RESULT.setLine(S1left); :} 

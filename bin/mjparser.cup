@@ -65,12 +65,12 @@ terminal IF, ELSE ;
 
 nonterminal MethodDeclList, VarDecl, FormalParams ;
 nonterminal FormalParamList, FormalParamDecl, ActualPars, ActualParamList, Relop; 
-nonterminal StatementList, Condition, CondFact, CondTerm, SumExpr, Statement, DesignatorStatement, Addop, Mulop ;
+nonterminal StatementList, CondFact, CondTerm, Statement, DesignatorStatement, Addop, Mulop ;
 nonterminal GlobDeclList, Decl, CnstDecl, CnstAsgnList, VarAsgnList, VarAsgnOne, MethodType ;
-nonterminal CnstAsgn ;
+nonterminal ActualParsStart, CnstAsgn, DoPartOfWhile ;
 
 nonterminal rs.etf.pp1.symboltable.concepts.Obj Program, ProgName, Designator, MethodDecl, MethodTypeName ; 
-nonterminal rs.etf.pp1.symboltable.concepts.Struct Type, Term, Expr, Expr1, Factor, VarDeclList ; 
+nonterminal rs.etf.pp1.symboltable.concepts.Struct Condition, Type, Term, SumExpr, Expr, Expr1, Factor, VarDeclList ; 
 
 precedence left ELSE ;
 
@@ -207,10 +207,12 @@ Statement ::= (AstDesigStmt) DesignatorStatement:des SEMI
 			  |
 			  (AstMatchedIf) IF LPAREN Condition RPAREN Statement ELSE Statement
 			  |
-			  (AstDoWhile) DO Statement WHILE LPAREN Condition RPAREN SEMI
+			  (AstDoWhile) DoPartOfWhile Statement WHILE LPAREN Condition RPAREN SEMI
 			  |
 			  (AstStmtL) LBRACE StatementList RBRACE
 			  ;
+			  
+DoPartOfWhile ::= (AstDoPart) DO ;
 			  
 Expr ::= (AstTerExpr) Expr1 QSTMK Expr1 COLON Expr1
 		|
@@ -223,7 +225,7 @@ Expr1 ::= (AstNegExpr) MINUS SumExpr
 		;
 
 
-SumExpr ::= (AstAddExpr) Term:t Addop SumExpr:se 
+SumExpr ::= (AstAddExpr) SumExpr:se Addop Term:t
 		 |
 		 (AstTermExpr) Term:t
 		 ;
@@ -248,12 +250,14 @@ Factor ::= (AstFactNum) NUMBER
 		   (AstNewObj) NEW Type:t LSQR Expr:e RSQR
 		   ;
 
-ActualPars ::= (AstActualParams) ActualParamList 
+ActualPars ::= (AstActualParams) ActualParsStart ActualParamList 
 				| 
 			   (AstNoActualParam) /* epsilon */ 
 			   ;
 			   
-ActualParamList ::= (AstActualParamsL) ActualParamList COMMA Expr
+ActualParsStart ::= (AstStartActualParams) /* epsilon */ ;
+			   
+ActualParamList ::= (AstActualParamsL) Expr COMMA ActualParamList
 					|
 					(AstActualParamsOne) Expr
 					;

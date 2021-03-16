@@ -1,4 +1,6 @@
 package rs.ac.bg.etf.pp1;
+import java.util.ArrayList;
+
 import org.apache.log4j.Logger;
 
 import rs.ac.bg.etf.pp1.ast.*;
@@ -12,10 +14,13 @@ public class SemanticPass extends VisitorAdaptor {
 	boolean errorDetected = false;
 	int printCallCount = 0;
 	Obj currentMethod = null;
+	Obj currentCall = null;
+	ArrayList<Struct> currentCallList = new ArrayList<Struct>();
 	boolean returnFound = false;
 	boolean hasMain = false;
 	boolean insideLoop = false;
 	int paramCnt = 0;
+	int whileCnt = 0;
 	Struct currType = Tab.noType;
 	int nVars;
 
@@ -225,26 +230,173 @@ public class SemanticPass extends VisitorAdaptor {
 
 
 	public void visit(AstEqualStmt eqStmt) {
-		//if (!eqStmt.getExpr().struct.assignableTo(eqStmt.getDesignator().obj.getType())) {
-		//	report_error("Cannot assign. Incompatible types", eqStmt);
-		//}
+		if(eqStmt.getDesignator().obj.getKind() != Obj.Var 
+				&& eqStmt.getDesignator().obj.getKind() != Obj.Elem ) {
+			report_error("Designator may only be either a variable or array element", eqStmt);
+		}
+		if (!eqStmt.getExpr().struct.assignableTo(eqStmt.getDesignator().obj.getType())) {
+			report_error("Cannot assign. Incompatible types", eqStmt);
+		}
+	}
+
+	public void visit(AstIncStmt eqStmt) {
+		if(eqStmt.getDesignator().obj.getKind() != Obj.Var 
+				&& eqStmt.getDesignator().obj.getKind() != Obj.Elem ) {
+			report_error("Designator may only be either a variable or array element", eqStmt);
+		}
+		if (eqStmt.getDesignator().obj.getType() != Tab.intType) {
+			report_error("Only designators of type int can be incremented", eqStmt);
+		}
+	}
+
+	public void visit(AstDecStmt eqStmt) {
+		if(eqStmt.getDesignator().obj.getKind() != Obj.Var 
+				&& eqStmt.getDesignator().obj.getKind() != Obj.Elem ) {
+			report_error("Designator may only be either a variable or array element", eqStmt);
+		}
+		if (eqStmt.getDesignator().obj.getType() != Tab.intType) {
+			report_error("Only designators of type int can be decremented", eqStmt);
+		}
+	}
+	
+	public void visit(AstFuncCallStmt callStmt) {
+		currentCall = callStmt.getDesignator().obj;
+		if(currentCall.getKind() != Obj.Meth) {
+			report_error("Designator must be a function", callStmt);
+		}
+	}
+	
+	public void visit(AstFuncCallFact callFact) {
+		currentCall = callFact.getDesignator().obj;
+		if(currentCall.getKind() != Obj.Meth) {
+			report_error("Designator must be a function", callFact);
+		}
+	}
+	
+	public void visit(AstDoPart doPart) {
+		whileCnt++;
+	}
+	
+	public void visit(AstBreakStmt breakStmt) {
+		if(whileCnt == 0) {
+			report_error("Must be inside a do while loop to break", breakStmt);
+		}
+	}
+
+	public void visit(AstContinueStmt continueStmt) {
+		if(whileCnt == 0) {
+			report_error("Must be inside a do while loop to break", continueStmt);
+		}
+	}
+	
+	public void visit(AstReadStmt readStmt) {
+		if(readStmt.getDesignator().obj.getKind() != Obj.Var 
+				&& readStmt.getDesignator().obj.getKind() != Obj.Elem ) {
+			report_error("Designator may only be either a variable or array element", readStmt);
+		}
+		if (readStmt.getDesignator().obj.getType() != Tab.intType &&
+				readStmt.getDesignator().obj.getType() != Tab.charType &&
+				readStmt.getDesignator().obj.getType() != BoolType.boolType ) {
+			report_error("Designator must be either of type int, char of bool", readStmt);
+		}
+	}
+
+	public void visit(AstPrintStmtParam printStmt){
+		if (printStmt.getExpr().struct != Tab.intType &&
+				printStmt.getExpr().struct != Tab.charType &&
+				printStmt.getExpr().struct != BoolType.boolType ) {
+			report_error("Expression must be either of type int, char of bool", printStmt);
+		}
 	}
 
 	public void visit(AstPrintStmt printStmt){
-		printCallCount++;    	
-	}
-
-	public void visit(AstReturnExpr returnExpr){
-		returnFound = true;
-		Struct currMethType = currentMethod.getType();
-		//if (!currMethType.compatibleWith(returnExpr.getExpr().struct)) {
-		//	report_error("Cannot return given type. Incompatible with method return type", returnExpr);
-		//}			  	     	
-	}
-
-	public boolean passed() {
-		return !errorDetected;
+		if (printStmt.getExpr().struct != Tab.intType &&
+				printStmt.getExpr().struct != Tab.charType &&
+				printStmt.getExpr().struct != BoolType.boolType ) {
+			report_error("Expression must be either of type int, char of bool", printStmt);
+		}
 	}
 	
+	public void visit(AstReturnExpr returnExpr){
+		returnFound = true;
+		if(currentMethod == null) {
+			report_error("'return' cannot be found outside a function", returnExpr);
+		}
+		else {
+			Struct currMethType = currentMethod.getType();
+			if (!currMethType.equals(returnExpr.getExpr().struct)) {
+				report_error("Cannot return given type. Incompatible with method return type", returnExpr);
+			}			  	     	
+		}
+	}
+
+	public void visit(AstReturnNoExpr returnExpr){
+		returnFound = true;
+		if(currentMethod == null) {
+			report_error("'return' cannot be found outside a function", returnExpr);
+		}
+		else {
+			Struct currMethType = currentMethod.getType();
+			if (currMethType != Tab.noType) {
+				report_error("'return' statement without an expression must be inside a 'void' function", returnExpr);
+			}			  	     	
+		}
+	}
+	
+	public void visit(AstMatchedIf ifStmt) {
+		if(ifStmt.getCondition().struct != BoolType.boolType) {
+			report_error("Condition must be of type bool", ifStmt);
+		}
+	}
+
+	public void visit(AstUnmatchedIf ifStmt) {
+		if(ifStmt.getCondition().struct != BoolType.boolType) {
+			report_error("Condition must be of type bool", ifStmt);
+		}
+	}
+	
+	public void visit(AstDoWhile doWhileStmt) {
+		whileCnt--;
+		if(doWhileStmt.getCondition().struct != BoolType.boolType) {
+			report_error("Condition must be of type bool", doWhileStmt);
+		}
+	}
+	
+	public void visit(AstStartActualParams actStart) {
+		currentCallList = new ArrayList<>();
+	}
+	
+	public void visit(AstActualParamsL actParam) {
+		currentCallList.add(actParam.getExpr().struct);
+	}
+	
+	public void visit(AstActualParamsOne actParam) {
+		currentCallList.add(actParam.getExpr().struct);
+	}
+	
+	public void visit(AstActualParams actualParams) {
+		if(currentCallList.size() != currentCall.getLevel()) {
+			report_error("The number of actual parameters does not match the number of the formal parameters", actualParams);
+		}
+		else {
+			//TODO At the end so you can test it
+		}
+	}
+	
+	public void visit(AstNoActualParam actualParams) {
+		if(currentCallList.size() > 0) {
+			report_error("The function does not accept parameters ", actualParams);
+		}
+	}
+	
+	public void visit(AstNegExpr negExpr) {
+		if(negExpr.getSumExpr().struct != Tab.intType) {
+			report_error("To negate an expression it must be of type int", negExpr);
+		}
+	}
+	
+	public void visit(AstAddExpr addExpr) {
+	}
+
 }
 

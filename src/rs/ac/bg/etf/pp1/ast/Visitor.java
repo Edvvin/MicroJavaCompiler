@@ -1,6 +1,6 @@
 // generated with ast extension for cup
 // version 0.8
-// 15/2/2021 22:6:37
+// 16/2/2021 1:6:51
 
 
 package rs.ac.bg.etf.pp1.ast;
@@ -19,15 +19,17 @@ public interface Visitor {
     public void visit(CondTerm CondTerm);
     public void visit(Designator Designator);
     public void visit(SumExpr SumExpr);
+    public void visit(DoPartOfWhile DoPartOfWhile);
     public void visit(Term Term);
     public void visit(Condition Condition);
     public void visit(VarAsgnOne VarAsgnOne);
     public void visit(ActualParamList ActualParamList);
     public void visit(GlobDeclList GlobDeclList);
+    public void visit(ActualParsStart ActualParsStart);
     public void visit(VarDeclList VarDeclList);
     public void visit(FormalParamList FormalParamList);
-    public void visit(FormalParams FormalParams);
     public void visit(Expr Expr);
+    public void visit(FormalParams FormalParams);
     public void visit(Expr1 Expr1);
     public void visit(MethodTypeName MethodTypeName);
     public void visit(CnstAsgn CnstAsgn);
@@ -63,6 +65,7 @@ public interface Visitor {
     public void visit(AstConditionOne AstConditionOne);
     public void visit(AstActualParamsOne AstActualParamsOne);
     public void visit(AstActualParamsL AstActualParamsL);
+    public void visit(AstStartActualParams AstStartActualParams);
     public void visit(AstNoActualParam AstNoActualParam);
     public void visit(AstActualParams AstActualParams);
     public void visit(AstNewObj AstNewObj);
@@ -80,6 +83,7 @@ public interface Visitor {
     public void visit(AstNegExpr AstNegExpr);
     public void visit(AstNotTerExpr AstNotTerExpr);
     public void visit(AstTerExpr AstTerExpr);
+    public void visit(AstDoPart AstDoPart);
     public void visit(AstStmtL AstStmtL);
     public void visit(AstDoWhile AstDoWhile);
     public void visit(AstMatchedIf AstMatchedIf);
