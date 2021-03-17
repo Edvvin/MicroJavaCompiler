@@ -7,12 +7,13 @@ program MJProgram
 		return c+2;
 	}
 	
-	void main() {
+	void main() char g[]; {
 		y = 2;
 		x = y + 2;
 		y = k() + 3;
 		if(x == y){
 			print(y);
+			g = new char[5];
 		}
 		
 		do
@@ -21,12 +22,7 @@ program MJProgram
 			if(x == k())
 			{
 			}
-			else
-			{
-				return 1;
-			}
 		}
 		while(y < 5);
-		return 0;
 	}
 }

@@ -1,15 +1,15 @@
 // generated with ast extension for cup
 // version 0.8
-// 16/2/2021 18:27:51
+// 17/2/2021 23:16:37
 
 
 package rs.ac.bg.etf.pp1.ast;
 
-public class AstVar extends Factor {
+public class AstDesigFact extends Factor {
 
     private Designator Designator;
 
-    public AstVar (Designator Designator) {
+    public AstDesigFact (Designator Designator) {
         this.Designator=Designator;
         if(Designator!=null) Designator.setParent(this);
     }
@@ -43,7 +43,7 @@ public class AstVar extends Factor {
     public String toString(String tab) {
         StringBuffer buffer=new StringBuffer();
         buffer.append(tab);
-        buffer.append("AstVar(\n");
+        buffer.append("AstDesigFact(\n");
 
         if(Designator!=null)
             buffer.append(Designator.toString("  "+tab));
@@ -52,7 +52,7 @@ public class AstVar extends Factor {
         buffer.append("\n");
 
         buffer.append(tab);
-        buffer.append(") [AstVar]");
+        buffer.append(") [AstDesigFact]");
         return buffer.toString();
     }
 }

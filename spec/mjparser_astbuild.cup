@@ -263,7 +263,7 @@ Factor ::= (AstFactNum) NUMBER:N1 {: RESULT=new AstFactNum(N1); RESULT.setLine(N
 			|
 			(AstBraceExpr) LPAREN Expr:e RPAREN {: RESULT=new AstBraceExpr(e); RESULT.setLine(eleft); :} 
 			|
-		   (AstVar) Designator:d {: RESULT=new AstVar(d); RESULT.setLine(dleft); :}
+		   (AstDesigFact) Designator:d {: RESULT=new AstDesigFact(d); RESULT.setLine(dleft); :}
 		    |
 		   (AstFuncCallFact) Designator:func LPAREN ActualPars:A1 RPAREN {: RESULT=new AstFuncCallFact(func, A1); RESULT.setLine(funcleft); :}
 		    |
@@ -292,9 +292,7 @@ CondTerm ::= (AstCondTermOne) CondFact:C1 {: RESULT=new AstCondTermOne(C1); RESU
 			(AstCondTermL) CondFact:C1 AND CondTerm:C2 {: RESULT=new AstCondTermL(C1, C2); RESULT.setLine(C1left); :}
 			;
 
-CondFact ::= (AstCondFactOne) Expr:E1 {: RESULT=new AstCondFactOne(E1); RESULT.setLine(E1left); :}
-			|
-			(AstCondFactL) Expr:e1 Relop:R1 Expr:e2 {: RESULT=new AstCondFactL(e1, R1, e2); RESULT.setLine(e1left); :}
+CondFact ::= (AstCondFact) Expr:e1 Relop:R1 Expr:e2 {: RESULT=new AstCondFact(e1, R1, e2); RESULT.setLine(e1left); :}
 			;
 
 Designator ::= (AstDesig) IDENT:name {: RESULT=new AstDesig(name); RESULT.setLine(nameleft); :} 

@@ -230,7 +230,6 @@ public class SemanticPass extends VisitorAdaptor {
 		}
 	}
 
-
 	public void visit(AstEqualStmt eqStmt) {
 		if(eqStmt.getDesignator().obj.getKind() != Obj.Var 
 				&& eqStmt.getDesignator().obj.getKind() != Obj.Elem ) {
@@ -340,20 +339,20 @@ public class SemanticPass extends VisitorAdaptor {
 	
 	public void visit(AstMatchedIf ifStmt) {
 		if(ifStmt.getCondition().struct != MJStatic.boolType) {
-			report_error("Condition must be of type bool", ifStmt);
+			//report_error("Condition must be of type bool", ifStmt);
 		}
 	}
 
 	public void visit(AstUnmatchedIf ifStmt) {
 		if(ifStmt.getCondition().struct != MJStatic.boolType) {
-			report_error("Condition must be of type bool", ifStmt);
+			//report_error("Condition must be of type bool", ifStmt);
 		}
 	}
 	
 	public void visit(AstDoWhile doWhileStmt) {
 		whileCnt--;
 		if(doWhileStmt.getCondition().struct != MJStatic.boolType) {
-			report_error("Condition must be of type bool", doWhileStmt);
+			//report_error("Condition must be of type bool", doWhileStmt);
 		}
 	}
 	
@@ -388,10 +387,15 @@ public class SemanticPass extends VisitorAdaptor {
 		if(negExpr.getSumExpr().struct != Tab.intType) {
 			report_error("To negate an expression it must be of type int", negExpr);
 		}
+		negExpr.struct = negExpr.getSumExpr().struct;
+	}
+	
+	public void visit(AstPosExpr posExpr) {
+		posExpr.struct = posExpr.getSumExpr().struct;
 	}
 	
 	
-	public void visit(AstCondFactL condFact) {
+	public void visit(AstCondFact condFact) {
 		if(!condFact.getExpr().struct.compatibleWith(condFact.getExpr1().struct)) {
 			report_error("Cannot compare incompatible types", condFact);
 		}
@@ -404,6 +408,7 @@ public class SemanticPass extends VisitorAdaptor {
 		}
 	}
 	
+
 	public void visit(AstEqop relop) {
 		currentRelOp = MJStatic.RelOpType.EQ;
 	}
@@ -433,6 +438,7 @@ public class SemanticPass extends VisitorAdaptor {
 				addExpr.getTerm().struct != Tab.intType) {
 			report_error("Only terms of type int can be use with the " + MJStatic.relOpToString(currentRelOp) + " operation", addExpr);
 		}
+		addExpr.struct = addExpr.getSumExpr().struct;
 	}
 	
 	public void visit(AstTerExpr terExpr) {
@@ -440,8 +446,13 @@ public class SemanticPass extends VisitorAdaptor {
 			report_error("Second and third operand of the ternary '?:' operator must be of equal types", terExpr);
 		}
 		if(terExpr.getExpr1().struct != MJStatic.boolType) {
-			report_error("The first operand of the ternary '?:' operator must be bool", terExpr);
+			report_error("Index must be of type integer", terExpr);
 		}
+		terExpr.struct = terExpr.getExpr11().struct;
+	}
+	
+	public void visit(AstNotTerExpr ntExpr) {
+		ntExpr.struct = ntExpr.getExpr1().struct;
 	}
 	
 	public void visit(AstTermL term) {
@@ -449,6 +460,39 @@ public class SemanticPass extends VisitorAdaptor {
 				term.getFactor().struct != Tab.intType) {
 			report_error("Only factors of type int can be use with the " + MJStatic.relOpToString(currentRelOp) + " operation", term);
 		}
+		term.struct = term.getTerm().struct;
+	}
+	
+	public void visit(AstTermOne term) {
+		term.struct = term.getFactor().struct;
+	}
+	
+	public void visit(AstTermExpr expr) {
+		expr.struct = expr.getTerm().struct;
+	}
+	
+	public void visit() {
+		
+	}
+	
+	public void visit(AstFactNum fact) {
+		fact.struct = Tab.intType;
+	}
+
+	public void visit(AstFactChar fact) {
+		fact.struct = Tab.charType;
+	}
+
+	public void visit(AstFactBool fact) {
+		fact.struct = MJStatic.boolType;
+	}
+
+	public void visit(AstBraceExpr fact) {
+		fact.struct = fact.getExpr().struct;
+	}
+	
+	public void visit(AstDesigFact fact) {
+		fact.struct = fact.getDesignator().obj.getType();
 	}
 
 	public void visit(AstFuncCallFact callFact) {
@@ -456,20 +500,35 @@ public class SemanticPass extends VisitorAdaptor {
 		if(currentCall.getKind() != Obj.Meth) {
 			report_error("Designator must be a function", callFact);
 		}
+		callFact.struct = currentCall.getType();
 	}
 	
 	public void visit(AstNewArray newArray) {
 		if(newArray.getExpr().struct != Tab.intType) {
 			report_error("Number of elements of array must be an integer ", newArray);
 		}
+		newArray.struct = new Struct(Struct.Array, newArray.getType().struct);
+	}
+	
+	public void visit(AstDesig desig) {
+		Obj obj = Tab.find(desig.getName());
+		if(obj == Tab.noObj) {
+			report_error("Name " + desig.getName() + " not declared", desig);
+		}
+		desig.obj = obj;
 	}
 	
 	public void visit(AstIndexDesig indexDesig) {
 		if(indexDesig.getDesignator().obj.getType().getKind() != Struct.Array) {
 			report_error("Designator being indexed must be an array", indexDesig);
 		}
-		if(indexDesig.getExpr().struct != Tab.intType) {
+		else if(indexDesig.getExpr().struct != Tab.intType) {
 			report_error("Index must be of type integer", indexDesig);
+		}
+		else {
+			Obj obj = indexDesig.getDesignator().obj;
+			indexDesig.obj = new Obj(Obj.Elem, "Elem@" + obj.getName(), obj.getType().getElemType());
+			report_info("Accessing element from " + obj.getName(), indexDesig);
 		}
 	}
 	

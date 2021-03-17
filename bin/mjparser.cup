@@ -243,7 +243,7 @@ Factor ::= (AstFactNum) NUMBER
 			|
 			(AstBraceExpr) LPAREN Expr:e RPAREN 
 			|
-		   (AstVar) Designator:d
+		   (AstDesigFact) Designator:d
 		    |
 		   (AstFuncCallFact) Designator:func LPAREN ActualPars RPAREN
 		    |
@@ -272,9 +272,7 @@ CondTerm ::= (AstCondTermOne) CondFact
 			(AstCondTermL) CondFact AND CondTerm
 			;
 
-CondFact ::= (AstCondFactOne) Expr
-			|
-			(AstCondFactL) Expr:e1 Relop Expr:e2
+CondFact ::= (AstCondFact) Expr:e1 Relop Expr:e2
 			;
 
 Designator ::= (AstDesig) IDENT:name 
