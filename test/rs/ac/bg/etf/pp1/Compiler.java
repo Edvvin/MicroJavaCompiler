@@ -53,6 +53,21 @@ public class Compiler {
 	        SemanticPass semPass = new SemanticPass();
 	        prog.traverseBottomUp(semPass);
 	        Tab.dump();
+	        
+			if(!p.errorDetected && !semPass.errorDetected) {
+				File objFile = new File("test/program.obj");
+				if(objFile.exists())
+					objFile.delete();
+				CodeGenerator codeGen = new CodeGenerator();
+				Code.dataSize = semPass.nVars;
+				prog.traverseBottomUp(codeGen);
+				Code.mainPc = codeGen.getMainPc();
+				Code.write(new FileOutputStream(objFile));
+				log.error("Compilation successful!");
+			}
+			else {
+				log.error("Compilation failed!");
+			}
 		} catch(IOException e) {
 			log.error(e.getMessage(), e);
 		} catch (Exception e) {
