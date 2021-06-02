@@ -54,14 +54,17 @@ scan with {:
 :}
 
 
-terminal PROG, LBRACE, RBRACE, LSQR, RSQR, SEMI, LPAREN, RPAREN, CONST, COMMA, PRINT, RETURN, VOID, NEW, CONTINUE, WHILE ;
-terminal PLUS, MINUS, ASTK, DIV, MOD, AND, OR, INC, DEC, EQUAL, GT, GET, LT, LET, EQEQ, NEQ, READ, BREAK, DO, QSTMK, COLON;
+terminal PROG, LBRACE, RBRACE, LSQR, RSQR, SEMI;
+terminal LPAREN, RPAREN, CONST, COMMA, PRINT;
+terminal RETURN, VOID, NEW, CONTINUE, WHILE ;
+terminal PLUS, MINUS, ASTK, DIV, MOD, AND, OR;
+terminal INC, DEC, EQUAL, GT, GET, LT, LET, EQEQ, NEQ;
+terminal READ, BREAK, DO, QSTMK, COLON, IF, ELSE;
 terminal EXTENDS, DOT, SWITCH, ENUM, CLASS, CASE ;
 terminal Integer NUMBER ;
 terminal String IDENT ;
 terminal Character CHAR ;
 terminal String BOOL ;
-terminal IF, ELSE ;
 
 nonterminal MethodDeclList MethodDeclList;
 nonterminal VarDecl VarDecl;
@@ -73,7 +76,7 @@ nonterminal ActualParamList ActualParamList ;
 nonterminal StatementList StatementList;
 nonterminal CondFact CondFact;
 nonterminal CondTerm CondTerm;
-nonterminal Statement Statement;
+nonterminal Statement Statement ;
 nonterminal DesignatorStatement DesignatorStatement;
 nonterminal Addop Addop;
 nonterminal Mulop Mulop;
@@ -81,21 +84,22 @@ nonterminal Relop Relop ;
 nonterminal GlobDeclList GlobDeclList;
 nonterminal Decl Decl;
 nonterminal CnstDecl CnstDecl;
-nonterminal CnstAsgnList CnstAsgnList;
+nonterminal CnstAsgnList CnstAsgnList ; 
 nonterminal VarAsgnList VarAsgnList;
 nonterminal VarAsgnOne VarAsgnOne;
 nonterminal MethodType MethodType ;
 nonterminal ActualParsStart ActualParsStart;
 nonterminal CnstAsgn CnstAsgn;
 nonterminal DoPartOfWhile DoPartOfWhile ;
+nonterminal Case Case;
+nonterminal CaseList CaseList;
 
 nonterminal rs.etf.pp1.symboltable.concepts.Obj Program, ProgName, Designator, MethodDecl, MethodTypeName ; 
 nonterminal rs.etf.pp1.symboltable.concepts.Struct Condition, Type, Term, SumExpr, Expr, Expr1, Factor, VarDeclList ; 
 
 precedence left ELSE ;
 
-Program ::= (AstProgram) PROG ProgName:progName GlobDeclList:decls LBRACE MethodDeclList:methods RBRACE {: RESULT=new AstProgram(progName, decls, methods); RESULT.setLine(progNameleft); :} 
-;
+Program ::= (AstProgram) PROG ProgName:progName GlobDeclList:decls LBRACE MethodDeclList:methods RBRACE {: RESULT=new AstProgram(progName, decls, methods); RESULT.setLine(progNameleft); :} ;
 
 ProgName ::= (AstProgName) IDENT:prog {: RESULT=new AstProgName(prog); RESULT.setLine(progleft); :} ;
 
@@ -229,8 +233,18 @@ Statement ::= (AstDesigStmt) DesignatorStatement:des SEMI {: RESULT=new AstDesig
 			  |
 			  (AstDoWhile) DoPartOfWhile:D1 Statement:S2 WHILE LPAREN Condition:C3 RPAREN SEMI {: RESULT=new AstDoWhile(D1, S2, C3); RESULT.setLine(D1left); :}
 			  |
+			  (AstSwitch) SWITCH LPAREN Expr:E1 RPAREN LBRACE CaseList:C2 RBRACE {: RESULT=new AstSwitch(E1, C2); RESULT.setLine(E1left); :}
+			  |
 			  (AstStmtL) LBRACE StatementList:S1 RBRACE {: RESULT=new AstStmtL(S1); RESULT.setLine(S1left); :}
 			  ;
+			  
+CaseList ::= (AstCaseList) Case:C1 CaseList:C2 {: RESULT=new AstCaseList(C1, C2); RESULT.setLine(C1left); :} 
+			|
+			(AstNoCase) {: RESULT=new AstNoCase(); :} /* epsilon */
+			;
+			
+Case ::= (AstCase) CASE NUMBER:numConst COLON StatementList:S1 {: RESULT=new AstCase(numConst, S1); RESULT.setLine(numConstleft); :} ;
+
 			  
 DoPartOfWhile ::= (AstDoPart) DO {: RESULT=new AstDoPart(); :} ;
 			  

@@ -1,6 +1,6 @@
 // generated with ast extension for cup
 // version 0.8
-// 21/3/2021 16:48:9
+// 2/5/2021 19:48:2
 
 
 package src.rs.ac.bg.etf.pp1.ast;
@@ -19,10 +19,11 @@ public abstract class VisitorAdaptor implements Visitor {
     public void visit(CondTerm CondTerm) { }
     public void visit(Designator Designator) { }
     public void visit(SumExpr SumExpr) { }
-    public void visit(DoPartOfWhile DoPartOfWhile) { }
     public void visit(Term Term) { }
+    public void visit(DoPartOfWhile DoPartOfWhile) { }
     public void visit(Condition Condition) { }
     public void visit(VarAsgnOne VarAsgnOne) { }
+    public void visit(CaseList CaseList) { }
     public void visit(ActualParamList ActualParamList) { }
     public void visit(GlobDeclList GlobDeclList) { }
     public void visit(ActualParsStart ActualParsStart) { }
@@ -30,6 +31,7 @@ public abstract class VisitorAdaptor implements Visitor {
     public void visit(FormalParamList FormalParamList) { }
     public void visit(Expr Expr) { }
     public void visit(FormalParams FormalParams) { }
+    public void visit(Case Case) { }
     public void visit(Expr1 Expr1) { }
     public void visit(MethodTypeName MethodTypeName) { }
     public void visit(CnstAsgn CnstAsgn) { }
@@ -79,15 +81,21 @@ public abstract class VisitorAdaptor implements Visitor {
     public void visit(AstTermOne AstTermOne) { visit(); }
     public void visit(AstTermExpr AstTermExpr) { visit(); }
     public void visit(AstAddExpr AstAddExpr) { visit(); }
+    public void visit(AstSwitchExpr AstSwitchExpr) { visit(); }
     public void visit(AstPosExpr AstPosExpr) { visit(); }
     public void visit(AstNegExpr AstNegExpr) { visit(); }
     public void visit(AstNotTerExpr AstNotTerExpr) { visit(); }
     public void visit(AstTerExpr AstTerExpr) { visit(); }
     public void visit(AstDoPart AstDoPart) { visit(); }
+    public void visit(AstDefault AstDefault) { visit(); }
+    public void visit(AstCase AstCase) { visit(); }
+    public void visit(AstNoCase AstNoCase) { visit(); }
+    public void visit(AstCaseList AstCaseList) { visit(); }
     public void visit(AstStmtL AstStmtL) { visit(); }
     public void visit(AstDoWhile AstDoWhile) { visit(); }
     public void visit(AstMatchedIf AstMatchedIf) { visit(); }
     public void visit(AstUnmatchedIf AstUnmatchedIf) { visit(); }
+    public void visit(AstYield AstYield) { visit(); }
     public void visit(AstReturnNoExpr AstReturnNoExpr) { visit(); }
     public void visit(AstReturnExpr AstReturnExpr) { visit(); }
     public void visit(AstContinueStmt AstContinueStmt) { visit(); }

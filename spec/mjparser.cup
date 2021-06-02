@@ -60,7 +60,7 @@ terminal RETURN, VOID, NEW, CONTINUE, WHILE ;
 terminal PLUS, MINUS, ASTK, DIV, MOD, AND, OR;
 terminal INC, DEC, EQUAL, GT, GET, LT, LET, EQEQ, NEQ;
 terminal READ, BREAK, DO, QSTMK, COLON, IF, ELSE;
-terminal EXTENDS, DOT, SWITCH, ENUM, CLASS, CASE ;
+terminal EXTENDS, DOT, SWITCH, ENUM, CLASS, CASE, DEFAULT, YIELD ;
 terminal Integer NUMBER ;
 terminal String IDENT ;
 terminal Character CHAR ;
@@ -73,6 +73,7 @@ nonterminal DesignatorStatement, Addop, Mulop, Relop ;
 nonterminal GlobDeclList, Decl, CnstDecl, CnstAsgnList ; 
 nonterminal VarAsgnList, VarAsgnOne, MethodType ;
 nonterminal ActualParsStart, CnstAsgn, DoPartOfWhile ;
+nonterminal Case, CaseList;
 
 nonterminal rs.etf.pp1.symboltable.concepts.Obj Program, ProgName, Designator, MethodDecl, MethodTypeName ; 
 nonterminal rs.etf.pp1.symboltable.concepts.Struct Condition, Type, Term, SumExpr, Expr, Expr1, Factor, VarDeclList ; 
@@ -207,6 +208,8 @@ Statement ::= (AstDesigStmt) DesignatorStatement:des SEMI
 			  |
 			  (AstReturnNoExpr) RETURN SEMI
 			  | 
+			  (AstYield) YIELD Expr SEMI
+			  | 
 			  (AstUnmatchedIf) IF LPAREN Condition RPAREN Statement
 			  |
 			  (AstMatchedIf) IF LPAREN Condition RPAREN Statement ELSE Statement
@@ -215,6 +218,15 @@ Statement ::= (AstDesigStmt) DesignatorStatement:des SEMI
 			  |
 			  (AstStmtL) LBRACE StatementList RBRACE
 			  ;
+			  
+CaseList ::= (AstCaseList) Case CaseList 
+			|
+			(AstNoCase) /* epsilon */
+			;
+			
+Case ::= (AstCase) CASE NUMBER:numConst COLON StatementList
+			|
+			(AstDefault) DEFAULT COLON StatementList ;
 			  
 DoPartOfWhile ::= (AstDoPart) DO ;
 			  
@@ -226,6 +238,8 @@ Expr ::= (AstTerExpr) Expr1 QSTMK Expr1 COLON Expr1
 Expr1 ::= (AstNegExpr) MINUS SumExpr
 		|
 		(AstPosExpr) SumExpr
+	  	|
+	  	(AstSwitchExpr) SWITCH LPAREN Expr RPAREN LBRACE CaseList RBRACE
 		;
 
 

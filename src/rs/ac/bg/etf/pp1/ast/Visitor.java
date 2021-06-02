@@ -1,6 +1,6 @@
 // generated with ast extension for cup
 // version 0.8
-// 21/3/2021 16:48:9
+// 2/5/2021 19:48:2
 
 
 package src.rs.ac.bg.etf.pp1.ast;
@@ -19,10 +19,11 @@ public interface Visitor {
     public void visit(CondTerm CondTerm);
     public void visit(Designator Designator);
     public void visit(SumExpr SumExpr);
-    public void visit(DoPartOfWhile DoPartOfWhile);
     public void visit(Term Term);
+    public void visit(DoPartOfWhile DoPartOfWhile);
     public void visit(Condition Condition);
     public void visit(VarAsgnOne VarAsgnOne);
+    public void visit(CaseList CaseList);
     public void visit(ActualParamList ActualParamList);
     public void visit(GlobDeclList GlobDeclList);
     public void visit(ActualParsStart ActualParsStart);
@@ -30,6 +31,7 @@ public interface Visitor {
     public void visit(FormalParamList FormalParamList);
     public void visit(Expr Expr);
     public void visit(FormalParams FormalParams);
+    public void visit(Case Case);
     public void visit(Expr1 Expr1);
     public void visit(MethodTypeName MethodTypeName);
     public void visit(CnstAsgn CnstAsgn);
@@ -79,15 +81,21 @@ public interface Visitor {
     public void visit(AstTermOne AstTermOne);
     public void visit(AstTermExpr AstTermExpr);
     public void visit(AstAddExpr AstAddExpr);
+    public void visit(AstSwitchExpr AstSwitchExpr);
     public void visit(AstPosExpr AstPosExpr);
     public void visit(AstNegExpr AstNegExpr);
     public void visit(AstNotTerExpr AstNotTerExpr);
     public void visit(AstTerExpr AstTerExpr);
     public void visit(AstDoPart AstDoPart);
+    public void visit(AstDefault AstDefault);
+    public void visit(AstCase AstCase);
+    public void visit(AstNoCase AstNoCase);
+    public void visit(AstCaseList AstCaseList);
     public void visit(AstStmtL AstStmtL);
     public void visit(AstDoWhile AstDoWhile);
     public void visit(AstMatchedIf AstMatchedIf);
     public void visit(AstUnmatchedIf AstUnmatchedIf);
+    public void visit(AstYield AstYield);
     public void visit(AstReturnNoExpr AstReturnNoExpr);
     public void visit(AstReturnExpr AstReturnExpr);
     public void visit(AstContinueStmt AstContinueStmt);
