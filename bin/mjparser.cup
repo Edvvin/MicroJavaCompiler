@@ -79,8 +79,7 @@ nonterminal rs.etf.pp1.symboltable.concepts.Struct Condition, Type, Term, SumExp
 
 precedence left ELSE ;
 
-Program ::= (AstProgram) PROG ProgName:progName GlobDeclList:decls LBRACE MethodDeclList:methods RBRACE 
-;
+Program ::= (AstProgram) PROG ProgName:progName GlobDeclList:decls LBRACE MethodDeclList:methods RBRACE ;
 
 ProgName ::= (AstProgName) IDENT:prog ;
 
