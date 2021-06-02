@@ -1,9 +1,9 @@
 // generated with ast extension for cup
 // version 0.8
-// 17/2/2021 23:16:37
+// 21/3/2021 16:48:9
 
 
-package rs.ac.bg.etf.pp1.ast;
+package src.rs.ac.bg.etf.pp1.ast;
 
 public class AstLetop extends Relop {
 

@@ -54,19 +54,24 @@ scan with {:
 :}
 
 
-terminal PROG, LBRACE, RBRACE, LSQR, RSQR, SEMI, LPAREN, RPAREN, CONST, COMMA, PRINT, RETURN, VOID, NEW, CONTINUE, WHILE ;
-terminal PLUS, MINUS, ASTK, DIV, MOD, AND, OR, INC, DEC, EQUAL, GT, GET, LT, LET, EQEQ, NEQ, READ, BREAK, DO, QSTMK, COLON;
+terminal PROG, LBRACE, RBRACE, LSQR, RSQR, SEMI;
+terminal LPAREN, RPAREN, CONST, COMMA, PRINT;
+terminal RETURN, VOID, NEW, CONTINUE, WHILE ;
+terminal PLUS, MINUS, ASTK, DIV, MOD, AND, OR;
+terminal INC, DEC, EQUAL, GT, GET, LT, LET, EQEQ, NEQ;
+terminal READ, BREAK, DO, QSTMK, COLON, IF, ELSE;
 terminal EXTENDS, DOT, SWITCH, ENUM, CLASS, CASE ;
 terminal Integer NUMBER ;
 terminal String IDENT ;
 terminal Character CHAR ;
 terminal String BOOL ;
-terminal IF, ELSE ;
 
 nonterminal MethodDeclList, VarDecl, FormalParams ;
 nonterminal FormalParamList, FormalParamDecl, ActualPars, ActualParamList ; 
-nonterminal StatementList, CondFact, CondTerm, Statement, DesignatorStatement, Addop, Mulop, Relop ;
-nonterminal GlobDeclList, Decl, CnstDecl, CnstAsgnList, VarAsgnList, VarAsgnOne, MethodType ;
+nonterminal StatementList, CondFact, CondTerm, Statement ;
+nonterminal DesignatorStatement, Addop, Mulop, Relop ;
+nonterminal GlobDeclList, Decl, CnstDecl, CnstAsgnList ; 
+nonterminal VarAsgnList, VarAsgnOne, MethodType ;
 nonterminal ActualParsStart, CnstAsgn, DoPartOfWhile ;
 
 nonterminal rs.etf.pp1.symboltable.concepts.Obj Program, ProgName, Designator, MethodDecl, MethodTypeName ; 
