@@ -51,9 +51,9 @@ public class CodeGenerator extends VisitorAdaptor {
 	}
 	
 	public void visit(AstMethTypeName methName) {
-		if(methName.getMethName().equalsIgnoreCase("main")) {
-			mainPc = Code.pc;
-		}
+		//if(methName.getMethName().equalsIgnoreCase("main")) {
+			//mainPc = Code.pc; main must be void
+		//}
 		
 		methName.obj.setAdr(Code.pc);
 		SyntaxNode methNode = methName.getParent();
@@ -126,12 +126,11 @@ public class CodeGenerator extends VisitorAdaptor {
 		SyntaxNode parent = designator.getParent();
 		
 		if(AstFuncCallFact.class != parent.getClass() 
-			&& AstReadStmt.class != parent.getClass() 
 			&& AstFuncCallStmt.class != parent.getClass() 
+			&& AstReadStmt.class != parent.getClass() 
 			&& AstEqualStmt.class != parent.getClass()
 			)
 		{
-
 			Code.load(designator.obj);
 		}
 	}
@@ -141,7 +140,6 @@ public class CodeGenerator extends VisitorAdaptor {
 	}
 	
 	public void visit(AstIncStmt incStmt) {
-		Code.load(incStmt.getDesignator().obj);
 		Code.loadConst(1);
 		Code.put(Code.add);
 		Code.store(incStmt.getDesignator().obj);
@@ -149,10 +147,27 @@ public class CodeGenerator extends VisitorAdaptor {
 	}
 
 	public void visit(AstDecStmt decStmt) {
-		Code.load(decStmt.getDesignator().obj);
 		Code.loadConst(1);
 		Code.put(Code.sub);
 		Code.store(decStmt.getDesignator().obj);
+		Code.put(Code.pop);
+	}
+	
+	public void visit(AstFactNum num) {
+		Code.loadConst(num.getN1());
+	}
+	
+	public void visit(AstFactChar c) {
+		Code.loadConst(Character.getNumericValue(c.getC1()));
+	}
+	
+	public void visit(AstFactBool b) {
+		if(b.getB1().equals("true")) {
+			Code.put(Code.const_1);
+		}
+		else {
+			Code.put(Code.const_n);
+		}
 	}
 	
 	
