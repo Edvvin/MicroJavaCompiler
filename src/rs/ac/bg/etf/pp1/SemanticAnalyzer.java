@@ -1,5 +1,6 @@
 package rs.ac.bg.etf.pp1;
 import java.util.ArrayList;
+import java.util.Collection;
 
 import org.apache.log4j.Logger;
 
@@ -8,22 +9,26 @@ import rs.ac.bg.etf.pp1.ast.VisitorAdaptor;
 import rs.etf.pp1.symboltable.Tab;
 import rs.etf.pp1.symboltable.concepts.Obj;
 import rs.etf.pp1.symboltable.concepts.Struct;
+import rs.ac.bg.etf.pp1.ast.AstSwitchExpr;
 
-public class SemanticPass extends VisitorAdaptor {
+public class SemanticAnalyzer extends VisitorAdaptor {
 	
 
 	boolean errorDetected = false;
 	int printCallCount = 0;
 	Obj currentMethod = null;
 	Obj currentCall = null;
-	ArrayList<Struct> currentCallList = new ArrayList<Struct>();
+	ArrayList<AstActualParam> currentCallList = new ArrayList<AstActualParam>();
 	MJStatic.RelOpType currentRelOp = MJStatic.RelOpType.EQ;
 	boolean returnFound = false;
 	boolean hasMain = false;
 	boolean insideLoop = false;
+	boolean defaultFound = false;
+	boolean yieldFound = false;
 	int paramCnt = 0;
 	int whileCnt = 0;
 	Struct currType = Tab.noType;
+	Struct currentYieldType = Tab.noType;
 	int nVars;
 
 	Logger log = Logger.getLogger(getClass());
@@ -60,7 +65,7 @@ public class SemanticPass extends VisitorAdaptor {
 
 	public void visit(AstProgName progName) {
 		progName.obj = Tab.insert(Obj.Prog, progName.getProg(), Tab.noType);
-		Tab.openScope();     	
+		Tab.openScope();
 	}
 	
 	public void visit(AstCnstAsgnInt cnstAsgn) {
@@ -338,21 +343,54 @@ public class SemanticPass extends VisitorAdaptor {
 	}
 	
 	public void visit(AstMatchedIf ifStmt) {
-		if(ifStmt.getCondition().struct != MJStatic.boolType) {
-			//report_error("Condition must be of type bool", ifStmt);
-		}
 	}
 
 	public void visit(AstUnmatchedIf ifStmt) {
-		if(ifStmt.getCondition().struct != MJStatic.boolType) {
-			//report_error("Condition must be of type bool", ifStmt);
-		}
 	}
 	
 	public void visit(AstDoWhile doWhileStmt) {
 		whileCnt--;
-		if(doWhileStmt.getCondition().struct != MJStatic.boolType) {
-			//report_error("Condition must be of type bool", doWhileStmt);
+	}
+	
+	public void visit(AstSwitchBegin switchbegin) {
+		defaultFound = false;
+	}
+	
+	public void visit(AstSwitchExpr switchExpr) {
+		if(!defaultFound) {
+			report_error("The switch expression must have a default branch", switchExpr);
+		}
+		switchExpr.struct = currentYieldType;
+	}
+	
+	public void visit(AstCaseBegin caseBegin) {
+		yieldFound = false;
+	}
+
+	public void visit(AstCase c) {
+		if(!yieldFound) {
+			report_error("Case branch does not have a yield statement", c);
+		}
+	}
+
+	public void visit(AstDefaultBegin defualtBegin) {
+		yieldFound = false;
+	}
+
+	public void visit(AstDefault d) {
+		defaultFound = true;
+		if(!yieldFound) {
+			report_error("Default branch does not have a yield statement", d);
+		}
+	}
+	
+	public void visit(AstYield y) {
+		yieldFound = true;
+		if(currentYieldType == Tab.noType) {
+			currentYieldType = y.getExpr().struct;
+		}
+		else if(y.getExpr().struct.compatibleWith(currentYieldType)) {
+			report_error("All yield statement types must be compatible", y);
 		}
 	}
 	
@@ -360,12 +398,8 @@ public class SemanticPass extends VisitorAdaptor {
 		currentCallList = new ArrayList<>();
 	}
 	
-	public void visit(AstActualParamsL actParam) {
-		currentCallList.add(actParam.getExpr().struct);
-	}
-	
-	public void visit(AstActualParamsOne actParam) {
-		currentCallList.add(actParam.getExpr().struct);
+	public void visit(AstActualParam actParam) {
+		currentCallList.add(actParam);
 	}
 	
 	public void visit(AstActualParams actualParams) {
@@ -373,13 +407,14 @@ public class SemanticPass extends VisitorAdaptor {
 			report_error("The number of actual parameters does not match the number of the formal parameters", actualParams);
 		}
 		else {
-			//TODO At the end so you can test it
-		}
-	}
-	
-	public void visit(AstNoActualParam actualParams) {
-		if(currentCallList.size() > 0) {
-			report_error("The function does not accept parameters ", actualParams);
+			int i = 0;
+			Collection<Obj> formalParams = currentCall.getLocalSymbols();
+			for(Obj o : formalParams) {
+				if(!currentCallList.get(i).getExpr().struct.assignableTo(o.getType())) {
+					report_error("Actual parameter is not assignable to formal parameter", currentCallList.get(i));
+				}
+			}
+		
 		}
 	}
 	
@@ -469,10 +504,6 @@ public class SemanticPass extends VisitorAdaptor {
 	
 	public void visit(AstTermExpr expr) {
 		expr.struct = expr.getTerm().struct;
-	}
-	
-	public void visit() {
-		
 	}
 	
 	public void visit(AstFactNum fact) {

@@ -93,6 +93,9 @@ nonterminal CnstAsgn CnstAsgn;
 nonterminal DoPartOfWhile DoPartOfWhile ;
 nonterminal Case Case;
 nonterminal CaseList CaseList;
+nonterminal CaseBegin CaseBegin;
+nonterminal DefaultBegin DefaultBegin;
+nonterminal SwitchBegin SwitchBegin ;
 
 nonterminal rs.etf.pp1.symboltable.concepts.Obj Program, ProgName, Designator, MethodDecl, MethodTypeName ; 
 nonterminal rs.etf.pp1.symboltable.concepts.Struct Condition, Type, Term, SumExpr, Expr, Expr1, Factor, VarDeclList ; 
@@ -156,8 +159,7 @@ VarAsgnOne ::= (AstVarAsgn) IDENT:varName {: RESULT=new AstVarAsgn(varName); RES
 				(AstVarArrAsgn) IDENT:varName LSQR RSQR {: RESULT=new AstVarArrAsgn(varName); RESULT.setLine(varNameleft); :}
 					;
 
-Type ::= (AstType) IDENT:typeName {: RESULT=new AstType(typeName); RESULT.setLine(typeNameleft); :} 
-;
+Type ::= (AstType) IDENT:typeName {: RESULT=new AstType(typeName); RESULT.setLine(typeNameleft); :} ;
 
 MethodDeclList ::= (AstMethDeclL) MethodDeclList:M1 MethodDecl:M2 {: RESULT=new AstMethDeclL(M1, M2); RESULT.setLine(M1left); :}
 					|
@@ -206,7 +208,7 @@ DesignatorStatement ::= (AstEqualStmt) Designator:D1 EQUAL Expr:E2 {: RESULT=new
 					(AstDecStmt) Designator:D1 DEC {: RESULT=new AstDecStmt(D1); RESULT.setLine(D1left); :}
 					|
 					(AstFuncCallStmt) Designator:D1 LPAREN ActualPars:A2 RPAREN {: RESULT=new AstFuncCallStmt(D1, A2); RESULT.setLine(D1left); :}
-;
+					;
 
 Statement ::= (AstDesigStmt) DesignatorStatement:des SEMI {: RESULT=new AstDesigStmt(des); RESULT.setLine(desleft); :} 
 			  |
@@ -243,9 +245,14 @@ CaseList ::= (AstCaseList) Case:C1 CaseList:C2 {: RESULT=new AstCaseList(C1, C2)
 			(AstNoCase) {: RESULT=new AstNoCase(); :} /* epsilon */
 			;
 			
-Case ::= (AstCase) CASE NUMBER:numConst COLON StatementList:S1 {: RESULT=new AstCase(numConst, S1); RESULT.setLine(numConstleft); :}
+CaseBegin ::= (AstCaseBegin) CASE NUMBER:numConst {: RESULT=new AstCaseBegin(numConst); RESULT.setLine(numConstleft); :} ;
+
+DefaultBegin ::= (AstDefaultBegin) DEFAULT {: RESULT=new AstDefaultBegin(); :} ;
+			
+Case ::= (AstCase) CaseBegin:C1 COLON StatementList:S2 {: RESULT=new AstCase(C1, S2); RESULT.setLine(C1left); :}
 			|
-			(AstDefault) DEFAULT COLON StatementList:S1 {: RESULT=new AstDefault(S1); RESULT.setLine(S1left); :} ;
+			(AstDefault) DefaultBegin:D1 COLON StatementList:S2 {: RESULT=new AstDefault(D1, S2); RESULT.setLine(D1left); :} 
+			;
 			  
 DoPartOfWhile ::= (AstDoPart) DO {: RESULT=new AstDoPart(); :} ;
 			  
@@ -258,9 +265,10 @@ Expr1 ::= (AstNegExpr) MINUS SumExpr:S1 {: RESULT=new AstNegExpr(S1); RESULT.set
 		|
 		(AstPosExpr) SumExpr:S1 {: RESULT=new AstPosExpr(S1); RESULT.setLine(S1left); :}
 	  	|
-	  	(AstSwitchExpr) SWITCH LPAREN Expr:E1 RPAREN LBRACE CaseList:C2 RBRACE {: RESULT=new AstSwitchExpr(E1, C2); RESULT.setLine(E1left); :}
+	  	(AstSwitchExpr) SwitchBegin:S1 LBRACE CaseList:C2 RBRACE {: RESULT=new AstSwitchExpr(S1, C2); RESULT.setLine(S1left); :}
 		;
 
+SwitchBegin ::= (AstSwitchBegin) SWITCH LPAREN Expr:E1 RPAREN {: RESULT=new AstSwitchBegin(E1); RESULT.setLine(E1left); :} ;
 
 SumExpr ::= (AstAddExpr) SumExpr:se Addop:A1 Term:t {: RESULT=new AstAddExpr(se, A1, t); RESULT.setLine(seleft); :}
 		 |
@@ -288,15 +296,13 @@ Factor ::= (AstFactNum) NUMBER:N1 {: RESULT=new AstFactNum(N1); RESULT.setLine(N
 		   ;
 
 ActualPars ::= (AstActualParams) ActualParsStart:A1 ActualParamList:A2 {: RESULT=new AstActualParams(A1, A2); RESULT.setLine(A1left); :} 
-				| 
-			   (AstNoActualParam) {: RESULT=new AstNoActualParam(); :} /* epsilon */ 
 			   ;
 			   
 ActualParsStart ::= (AstStartActualParams) {: RESULT=new AstStartActualParams(); :} /* epsilon */ ;
 			   
-ActualParamList ::= (AstActualParamsL) Expr:E1 COMMA ActualParamList:A2 {: RESULT=new AstActualParamsL(E1, A2); RESULT.setLine(E1left); :}
+ActualParamList ::= (AstActualParam) Expr:E1 COMMA ActualParamList:A2 {: RESULT=new AstActualParam(E1, A2); RESULT.setLine(E1left); :}
 					|
-					(AstActualParamsOne) Expr:E1 {: RESULT=new AstActualParamsOne(E1); RESULT.setLine(E1left); :}
+					(AstNoActualParams) {: RESULT=new AstNoActualParams(); :} /* epsilon */
 					;
 					
 Condition ::= (AstConditionOne) CondTerm:C1 {: RESULT=new AstConditionOne(C1); RESULT.setLine(C1left); :}

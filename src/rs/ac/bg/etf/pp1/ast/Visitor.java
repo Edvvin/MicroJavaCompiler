@@ -1,9 +1,9 @@
 // generated with ast extension for cup
 // version 0.8
-// 2/5/2021 19:48:2
+// 3/5/2021 21:13:59
 
 
-package src.rs.ac.bg.etf.pp1.ast;
+package rs.ac.bg.etf.pp1.ast;
 
 public interface Visitor { 
 
@@ -24,7 +24,9 @@ public interface Visitor {
     public void visit(Condition Condition);
     public void visit(VarAsgnOne VarAsgnOne);
     public void visit(CaseList CaseList);
+    public void visit(DefaultBegin DefaultBegin);
     public void visit(ActualParamList ActualParamList);
+    public void visit(CaseBegin CaseBegin);
     public void visit(GlobDeclList GlobDeclList);
     public void visit(ActualParsStart ActualParsStart);
     public void visit(VarDeclList VarDeclList);
@@ -35,6 +37,7 @@ public interface Visitor {
     public void visit(Expr1 Expr1);
     public void visit(MethodTypeName MethodTypeName);
     public void visit(CnstAsgn CnstAsgn);
+    public void visit(SwitchBegin SwitchBegin);
     public void visit(DesignatorStatement DesignatorStatement);
     public void visit(ActualPars ActualPars);
     public void visit(Decl Decl);
@@ -65,10 +68,9 @@ public interface Visitor {
     public void visit(AstCondTermOne AstCondTermOne);
     public void visit(AstConditionL AstConditionL);
     public void visit(AstConditionOne AstConditionOne);
-    public void visit(AstActualParamsOne AstActualParamsOne);
-    public void visit(AstActualParamsL AstActualParamsL);
+    public void visit(AstNoActualParams AstNoActualParams);
+    public void visit(AstActualParam AstActualParam);
     public void visit(AstStartActualParams AstStartActualParams);
-    public void visit(AstNoActualParam AstNoActualParam);
     public void visit(AstActualParams AstActualParams);
     public void visit(AstNewArray AstNewArray);
     public void visit(AstFuncCallFact AstFuncCallFact);
@@ -81,6 +83,7 @@ public interface Visitor {
     public void visit(AstTermOne AstTermOne);
     public void visit(AstTermExpr AstTermExpr);
     public void visit(AstAddExpr AstAddExpr);
+    public void visit(AstSwitchBegin AstSwitchBegin);
     public void visit(AstSwitchExpr AstSwitchExpr);
     public void visit(AstPosExpr AstPosExpr);
     public void visit(AstNegExpr AstNegExpr);
@@ -89,6 +92,8 @@ public interface Visitor {
     public void visit(AstDoPart AstDoPart);
     public void visit(AstDefault AstDefault);
     public void visit(AstCase AstCase);
+    public void visit(AstDefaultBegin AstDefaultBegin);
+    public void visit(AstCaseBegin AstCaseBegin);
     public void visit(AstNoCase AstNoCase);
     public void visit(AstCaseList AstCaseList);
     public void visit(AstStmtL AstStmtL);

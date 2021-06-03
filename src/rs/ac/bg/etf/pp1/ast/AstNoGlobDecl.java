@@ -1,9 +1,9 @@
 // generated with ast extension for cup
 // version 0.8
-// 2/5/2021 19:48:2
+// 3/5/2021 21:13:59
 
 
-package src.rs.ac.bg.etf.pp1.ast;
+package rs.ac.bg.etf.pp1.ast;
 
 public class AstNoGlobDecl extends GlobDeclList {
 

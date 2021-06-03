@@ -16,7 +16,7 @@ import rs.etf.pp1.mj.runtime.Code;
 import rs.etf.pp1.symboltable.Tab;
 import rs.etf.pp1.symboltable.concepts.*;
 
-public class Compiler {
+public class MicroJava {
 
 	static {
 		DOMConfigurator.configure(Log4JUtils.instance().findLoggerConfigFile());
@@ -24,7 +24,7 @@ public class Compiler {
 	}
 
 	public static void main(String[] args) {
-		Logger log = Logger.getLogger(Compiler.class);
+		Logger log = Logger.getLogger(MicroJava.class);
 		File src;
 		
 		if(args.length >= 1) {
@@ -50,7 +50,7 @@ public class Compiler {
 	        Tab.init();
 	        Tab.currentScope().addToLocals(new Obj(Obj.Type, "bool", MJStatic.boolType));
 
-	        SemanticPass semPass = new SemanticPass();
+	        SemanticAnalyzer semPass = new SemanticAnalyzer();
 	        prog.traverseBottomUp(semPass);
 	        Tab.dump();
 	        

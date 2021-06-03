@@ -73,7 +73,7 @@ nonterminal DesignatorStatement, Addop, Mulop, Relop ;
 nonterminal GlobDeclList, Decl, CnstDecl, CnstAsgnList ; 
 nonterminal VarAsgnList, VarAsgnOne, MethodType ;
 nonterminal ActualParsStart, CnstAsgn, DoPartOfWhile ;
-nonterminal Case, CaseList;
+nonterminal Case, CaseList, CaseBegin, DefaultBegin, SwitchBegin ;
 
 nonterminal rs.etf.pp1.symboltable.concepts.Obj Program, ProgName, Designator, MethodDecl, MethodTypeName ; 
 nonterminal rs.etf.pp1.symboltable.concepts.Struct Condition, Type, Term, SumExpr, Expr, Expr1, Factor, VarDeclList ; 
@@ -137,8 +137,7 @@ VarAsgnOne ::= (AstVarAsgn) IDENT:varName
 				(AstVarArrAsgn) IDENT:varName LSQR RSQR
 					;
 
-Type ::= (AstType) IDENT:typeName 
-;
+Type ::= (AstType) IDENT:typeName ;
 
 MethodDeclList ::= (AstMethDeclL) MethodDeclList MethodDecl
 					|
@@ -187,7 +186,7 @@ DesignatorStatement ::= (AstEqualStmt) Designator EQUAL Expr
 					(AstDecStmt) Designator DEC
 					|
 					(AstFuncCallStmt) Designator LPAREN ActualPars RPAREN
-;
+					;
 
 Statement ::= (AstDesigStmt) DesignatorStatement:des SEMI 
 			  |
@@ -224,9 +223,14 @@ CaseList ::= (AstCaseList) Case CaseList
 			(AstNoCase) /* epsilon */
 			;
 			
-Case ::= (AstCase) CASE NUMBER:numConst COLON StatementList
+CaseBegin ::= (AstCaseBegin) CASE NUMBER:numConst ;
+
+DefaultBegin ::= (AstDefaultBegin) DEFAULT ;
+			
+Case ::= (AstCase) CaseBegin COLON StatementList
 			|
-			(AstDefault) DEFAULT COLON StatementList ;
+			(AstDefault) DefaultBegin COLON StatementList 
+			;
 			  
 DoPartOfWhile ::= (AstDoPart) DO ;
 			  
@@ -239,9 +243,10 @@ Expr1 ::= (AstNegExpr) MINUS SumExpr
 		|
 		(AstPosExpr) SumExpr
 	  	|
-	  	(AstSwitchExpr) SWITCH LPAREN Expr RPAREN LBRACE CaseList RBRACE
+	  	(AstSwitchExpr) SwitchBegin LBRACE CaseList RBRACE
 		;
 
+SwitchBegin ::= (AstSwitchBegin) SWITCH LPAREN Expr RPAREN ;
 
 SumExpr ::= (AstAddExpr) SumExpr:se Addop Term:t
 		 |
@@ -269,15 +274,13 @@ Factor ::= (AstFactNum) NUMBER
 		   ;
 
 ActualPars ::= (AstActualParams) ActualParsStart ActualParamList 
-				| 
-			   (AstNoActualParam) /* epsilon */ 
 			   ;
 			   
 ActualParsStart ::= (AstStartActualParams) /* epsilon */ ;
 			   
-ActualParamList ::= (AstActualParamsL) Expr COMMA ActualParamList
+ActualParamList ::= (AstActualParam) Expr COMMA ActualParamList
 					|
-					(AstActualParamsOne) Expr
+					(AstNoActualParams) /* epsilon */
 					;
 					
 Condition ::= (AstConditionOne) CondTerm
