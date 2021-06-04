@@ -1,5 +1,7 @@
 package rs.ac.bg.etf.pp1;
 
+import java.util.Stack;
+
 import jdk.internal.org.jline.reader.SyntaxError;
 import rs.ac.bg.etf.pp1.CounterVisitor.FormParamCounter;
 import rs.ac.bg.etf.pp1.CounterVisitor.VarCounter;
@@ -7,10 +9,13 @@ import rs.ac.bg.etf.pp1.ast.*;
 import rs.etf.pp1.mj.runtime.Code;
 import rs.etf.pp1.symboltable.Tab;
 import rs.etf.pp1.symboltable.concepts.Obj;
+import rs.etf.pp1.symboltable.concepts.Struct;
 
 public class CodeGenerator extends VisitorAdaptor {
 	
 	private int mainPc;
+	private Stack<Integer> ops = new Stack<>();
+	private Stack<Integer> lastPatch = new Stack<>();
 
 	
 	public int getMainPc() {
@@ -145,6 +150,16 @@ public class CodeGenerator extends VisitorAdaptor {
 		Code.store(incStmt.getDesignator().obj);
 		Code.put(Code.pop);
 	}
+	
+	public void visit(AstNewArray newArr) {
+		Code.put(Code.newarray);
+		if(newArr.getType().struct.getKind() == Struct.Char) {
+			Code.put(0);
+		}
+		else {
+			Code.put(1);
+		}
+	}
 
 	public void visit(AstDecStmt decStmt) {
 		Code.loadConst(1);
@@ -168,6 +183,64 @@ public class CodeGenerator extends VisitorAdaptor {
 		else {
 			Code.put(Code.const_n);
 		}
+	}
+	
+	public void visit(AstTermL term) {
+		Code.put(ops.pop());
+	}
+	
+	public void visit(AstSwitchBegin sb) {
+		lastPatch.push(0);
+	}
+	
+	public void visit(AstSwitchExpr se) {
+		lastPatch.pop();
+	}
+	
+	public void visit(AstCaseBegin c) {
+		Code.put(Code.dup);
+		Code.loadConst(c.getNumConst());
+		Code.putFalseJump(Code.eq, 0);
+		lastPatch.pop();
+		lastPatch.push(Code.pc-2);
+	}
+	
+	public void visit(AstYieldBegin yb) {
+		Code.put(Code.pop); // To remove the expression from the switch
+		Code.putJump(mainPc);
+	}
+	
+	public void visit(AstCase c) {
+		Code.fixup(lastPatch.pop());
+		lastPatch.push(0);
+	}
+	
+	public void visit(AstNegExpr ne) {
+		Code.put(Code.neg);
+	}
+	
+	public void visit(AstAddExpr ae) {
+		Code.put(ops.pop());
+	}
+	
+	public void visit(AstMulop mul) {
+		ops.push(Code.mul);
+	}
+
+	public void visit(AstDivop div) {
+		ops.push(Code.div);
+	}
+
+	public void visit(AstModop mod) {
+		ops.push(Code.rem);
+	}
+
+	public void visit(AstAddop add) {
+		ops.push(Code.add);
+	}
+
+	public void visit(AstSubop sub) {
+		ops.push(Code.sub);
 	}
 	
 	

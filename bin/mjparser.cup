@@ -73,7 +73,7 @@ nonterminal DesignatorStatement, Addop, Mulop, Relop ;
 nonterminal GlobDeclList, Decl, CnstDecl, CnstAsgnList ; 
 nonterminal VarAsgnList, VarAsgnOne, MethodType ;
 nonterminal ActualParsStart, CnstAsgn, DoPartOfWhile ;
-nonterminal Case, CaseList, CaseBegin, DefaultBegin, SwitchBegin ;
+nonterminal Case, CaseList, CaseBegin, DefaultBegin, SwitchBegin, YieldBegin;
 
 nonterminal rs.etf.pp1.symboltable.concepts.Obj Program, ProgName, Designator, MethodDecl, MethodTypeName ; 
 nonterminal rs.etf.pp1.symboltable.concepts.Struct Condition, Type, Term, SumExpr, Expr, Expr1, Factor, VarDeclList ; 
@@ -207,7 +207,7 @@ Statement ::= (AstDesigStmt) DesignatorStatement:des SEMI
 			  |
 			  (AstReturnNoExpr) RETURN SEMI
 			  | 
-			  (AstYield) YIELD Expr SEMI
+			  (AstYield) YieldBegin Expr SEMI
 			  | 
 			  (AstUnmatchedIf) IF LPAREN Condition RPAREN Statement
 			  |
@@ -231,6 +231,8 @@ Case ::= (AstCase) CaseBegin COLON StatementList
 			|
 			(AstDefault) DefaultBegin COLON StatementList 
 			;
+			
+YieldBegin ::= (AstYieldBegin) YIELD ;
 			  
 DoPartOfWhile ::= (AstDoPart) DO ;
 			  

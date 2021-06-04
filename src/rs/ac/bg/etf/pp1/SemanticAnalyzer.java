@@ -25,6 +25,7 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	boolean insideLoop = false;
 	boolean defaultFound = false;
 	boolean yieldFound = false;
+	int switchLevel = 0;
 	int paramCnt = 0;
 	int whileCnt = 0;
 	Struct currType = Tab.noType;
@@ -280,11 +281,17 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 		if(whileCnt == 0) {
 			report_error("Must be inside a do while loop to break", breakStmt);
 		}
+		if(switchLevel > 0) {
+			report_error("Break not allowed inside siwtch statement", breakStmt);
+		}
 	}
 
 	public void visit(AstContinueStmt continueStmt) {
 		if(whileCnt == 0) {
 			report_error("Must be inside a do while loop to break", continueStmt);
+		}
+		if(switchLevel > 0) {
+			report_error("Continue not allowed inside siwtch statement", continueStmt);
 		}
 	}
 	
@@ -354,6 +361,7 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	
 	public void visit(AstSwitchBegin switchbegin) {
 		defaultFound = false;
+		switchLevel++;
 	}
 	
 	public void visit(AstSwitchExpr switchExpr) {
@@ -361,6 +369,10 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 			report_error("The switch expression must have a default branch", switchExpr);
 		}
 		switchExpr.struct = currentYieldType;
+		if(switchLevel == 0) {
+			report_error("Cannot yield outside of switch", switchExpr);
+		}
+		else switchLevel--;
 	}
 	
 	public void visit(AstCaseBegin caseBegin) {
