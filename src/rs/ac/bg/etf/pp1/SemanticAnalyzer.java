@@ -328,6 +328,12 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 		if(currentMethod == null) {
 			report_error("'return' cannot be found outside a function", returnExpr);
 		}
+		else if(switchLevel > 0) {
+			report_error("return not allowed inside siwtch statement", returnExpr);
+		}
+		else if(whileCnt > 0) {
+			report_error("return not allowed inside while", returnExpr);
+		}
 		else {
 			Struct currMethType = currentMethod.getType();
 			if (!currMethType.equals(returnExpr.getExpr().struct)) {
@@ -340,6 +346,12 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 		returnFound = true;
 		if(currentMethod == null) {
 			report_error("'return' cannot be found outside a function", returnExpr);
+		}
+		else if(switchLevel > 0) {
+			report_error("return not allowed inside siwtch statement", returnExpr);
+		}
+		else if(whileCnt > 0) {
+			report_error("return not allowed inside while", returnExpr);
 		}
 		else {
 			Struct currMethType = currentMethod.getType();
@@ -390,6 +402,9 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	}
 
 	public void visit(AstDefault d) {
+		if(defaultFound) {
+			report_error("Cannot have two default branches in a single switch stmt", d);
+		}
 		defaultFound = true;
 		if(!yieldFound) {
 			report_error("Default branch does not have a yield statement", d);

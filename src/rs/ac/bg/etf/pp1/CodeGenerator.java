@@ -1,6 +1,6 @@
 package rs.ac.bg.etf.pp1;
 
-import java.util.Stack;
+import java.util.*;
 
 import jdk.internal.org.jline.reader.SyntaxError;
 import rs.ac.bg.etf.pp1.CounterVisitor.FormParamCounter;
@@ -16,6 +16,8 @@ public class CodeGenerator extends VisitorAdaptor {
 	private int mainPc;
 	private Stack<Integer> ops = new Stack<>();
 	private Stack<Integer> lastPatch = new Stack<>();
+	private Stack<ArrayList<Integer>> yields = new Stack<>();
+	private Stack<Integer> defBranches = new Stack<>();
 
 	
 	public int getMainPc() {
@@ -191,29 +193,52 @@ public class CodeGenerator extends VisitorAdaptor {
 	
 	public void visit(AstSwitchBegin sb) {
 		lastPatch.push(0);
+		defBranches.push(0);
+		yields.push(new ArrayList<>());
 	}
 	
 	public void visit(AstSwitchExpr se) {
-		lastPatch.pop();
+		int temp = lastPatch.pop();
+		if(temp == 0)
+			Code.fixup(temp);
+		Code.putJump(defBranches.pop());
+		ArrayList<Integer> yieldFixes = yields.pop();
+		for (Integer y : yieldFixes) {
+			Code.fixup(y);
+		}
 	}
 	
 	public void visit(AstCaseBegin c) {
+		int temp = lastPatch.pop();
+		if(temp != 0)
+			Code.fixup(temp);
 		Code.put(Code.dup);
 		Code.loadConst(c.getNumConst());
 		Code.putFalseJump(Code.eq, 0);
-		lastPatch.pop();
 		lastPatch.push(Code.pc-2);
+	}
+
+	public void visit(AstCase c) {
+	}
+	
+	public void visit(AstDefaultBegin db) {
+		defBranches.pop();
+		defBranches.push(Code.pc);
+	}
+	
+	public void visit(AstDefault d) {
+		
 	}
 	
 	public void visit(AstYieldBegin yb) {
 		Code.put(Code.pop); // To remove the expression from the switch
-		Code.putJump(mainPc);
 	}
 	
-	public void visit(AstCase c) {
-		Code.fixup(lastPatch.pop());
-		lastPatch.push(0);
+	public void visit(AstYield y) {
+		Code.putJump(0); //switchEndAdr
+		yields.firstElement().add(Code.pc-2);
 	}
+	
 	
 	public void visit(AstNegExpr ne) {
 		Code.put(Code.neg);
