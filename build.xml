@@ -12,6 +12,8 @@
 				<exclude name="CodeGenerator.java"/>
 				<exclude name="MJStatic.java"/>
 				<exclude name="CounterVisitor.java"/>
+				<exclude name="Compiler.java"/>
+				<exclude name="CompilerError.java"/>
 			</fileset>
 		</delete>
 		<delete>

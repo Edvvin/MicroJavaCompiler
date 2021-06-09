@@ -1,12 +1,11 @@
 package rs.ac.bg.etf.pp1;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
+import java.util.List;
 
 import org.apache.log4j.Logger;
+
+import rs.ac.bg.etf.pp1.util.*;
 import org.apache.log4j.xml.DOMConfigurator;
 
 import java_cup.runtime.Symbol;
@@ -16,29 +15,31 @@ import rs.etf.pp1.mj.runtime.Code;
 import rs.etf.pp1.symboltable.Tab;
 import rs.etf.pp1.symboltable.concepts.*;
 
-public class MicroJava {
+public class MJCompiler implements Compiler {
 
 	static {
 		DOMConfigurator.configure(Log4JUtils.instance().findLoggerConfigFile());
 		Log4JUtils.instance().prepareLogFile(Logger.getRootLogger());
 	}
+	
+	private Logger log;
 
-	public static void main(String[] args) {
+	
+	public MJCompiler() {
+		
+	}
+
+	@Override
+	public List<CompilerError> compile(String sourceFilePath, String outputFilePath) {
 		Logger log = Logger.getLogger(MicroJava.class);
-		File src;
-		
-		if(args.length >= 1) {
-			src = new File(args[0]);
-		}
-		else {
-			src = new File("test/program.mj");
-		}
-		
+
+		File src = new File(sourceFilePath);
+
 		if (!src.exists()) {
 			log.error("Source file [" + src.getAbsolutePath() + "] not found!");
-			return;
+			return null;
 		}
-			
+
 		log.info("Compiling source file: " + src.getAbsolutePath());
 		
 		try (BufferedReader br = new BufferedReader(new FileReader(src))) {
@@ -55,7 +56,7 @@ public class MicroJava {
 	        Tab.dump();
 	        
 			if(!p.errorDetected && !semPass.errorDetected) {
-				File objFile = new File("test/program.obj");
+				File objFile = new File(outputFilePath);
 				if(objFile.exists())
 					objFile.delete();
 				CodeGenerator codeGen = new CodeGenerator();
@@ -63,16 +64,17 @@ public class MicroJava {
 				prog.traverseBottomUp(codeGen);
 				Code.mainPc = codeGen.getMainPc();
 				Code.write(new FileOutputStream(objFile));
-				log.error("Compilation successful!");
+				log.info("Compilation successful!");
 			}
 			else {
-				log.error("Compilation failed!");
+				log.info("Compilation failed!");
 			}
 		} catch(IOException e) {
 			log.error(e.getMessage(), e);
 		} catch (Exception e) {
 			log.error(e.getMessage(), e);
 		}
+		return null;
 	}
 
 }
