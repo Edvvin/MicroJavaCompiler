@@ -110,6 +110,54 @@ public class CodeGenerator extends VisitorAdaptor {
 		Code.put(Code.return_);
 	}
 	
+	private void printBool(int w) {
+			int temp = 0;
+			Code.loadConst(0);
+			Code.putFalseJump(Code.eq, 0);
+			temp = Code.pc-2;
+			Code.loadConst('F');
+			Code.loadConst(w);
+			Code.putJump(0);
+			Code.fixup(temp);
+			temp = Code.pc-2;
+			Code.loadConst('T');
+			Code.loadConst(w);
+			Code.fixup(temp);
+			Code.put(Code.bprint);
+	}
+	
+	public void visit(AstPrintStmt ps) {
+		if(ps.getExpr().struct == Tab.intType) {
+			Code.loadConst(5);
+			Code.put(Code.print);
+		}
+		else {
+			Code.loadConst(1);
+			Code.put(Code.bprint);
+		}
+	}
+	
+	public void visit(AstPrintStmtParam ps) {
+		if(ps.getExpr().struct == Tab.intType) {
+			Code.loadConst(ps.getN2());
+			Code.put(Code.print);
+		}
+		else {
+			Code.loadConst(ps.getN2());
+			Code.put(Code.bprint);
+		}
+	}
+	
+	public void visit(AstReadStmt rs) {
+		if(rs.getDesignator().obj.getType() == Tab.intType) {
+			Code.put(Code.read);
+		}
+		else {
+			Code.put(Code.bread);
+		}
+		Code.store(rs.getDesignator().obj);
+	}
+	
 	public void visit(AstDoPart dp) {
 		whileDo.push(Code.pc);
 		breaks.push(new ArrayList<>());
