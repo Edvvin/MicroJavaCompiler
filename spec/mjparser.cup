@@ -74,6 +74,7 @@ nonterminal GlobDeclList, Decl, CnstDecl, CnstAsgnList ;
 nonterminal VarAsgnList, VarAsgnOne, MethodType ;
 nonterminal ActualParsStart, CnstAsgn, DoPartOfWhile ;
 nonterminal Case, CaseList, CaseBegin, DefaultBegin, SwitchBegin, YieldBegin;
+nonterminal TerColon, TerQstmk, IfPart, ElsePart ;
 
 nonterminal rs.etf.pp1.symboltable.concepts.Obj Program, ProgName, Designator, MethodDecl, MethodTypeName ; 
 nonterminal rs.etf.pp1.symboltable.concepts.Struct Condition, Type, Term, SumExpr, Expr, Expr1, Factor, VarDeclList ; 
@@ -209,14 +210,18 @@ Statement ::= (AstDesigStmt) DesignatorStatement:des SEMI
 			  | 
 			  (AstYield) YieldBegin Expr SEMI
 			  | 
-			  (AstUnmatchedIf) IF LPAREN Condition RPAREN Statement
+			  (AstUnmatchedIf) IfPart Statement
 			  |
-			  (AstMatchedIf) IF LPAREN Condition RPAREN Statement ELSE Statement
+			  (AstMatchedIf) IfPart Statement ElsePart Statement
 			  |
 			  (AstDoWhile) DoPartOfWhile Statement WHILE LPAREN Condition RPAREN SEMI
 			  |
 			  (AstStmtL) LBRACE StatementList RBRACE
 			  ;
+			  
+IfPart ::= (AstIfPart) IF LPAREN Condition RPAREN ;
+
+ElsePart ::= (AstElsePart) ELSE ;
 			  
 CaseList ::= (AstCaseList) Case CaseList 
 			|
@@ -236,10 +241,14 @@ YieldBegin ::= (AstYieldBegin) YIELD ;
 			  
 DoPartOfWhile ::= (AstDoPart) DO ;
 			  
-Expr ::= (AstTerExpr) Expr1 QSTMK Expr1 COLON Expr1
+Expr ::= (AstTerExpr) Expr1 TerQstmk Expr1 TerColon Expr1
 		|
 		(AstNotTerExpr) Expr1
 		;
+		
+TerQstmk ::= (AstTerQstmk) QSTMK ;
+
+TerColon ::= (AstTerColon) COLON ;
 		
 Expr1 ::= (AstNegExpr) MINUS SumExpr
 		|
@@ -287,12 +296,12 @@ ActualParamList ::= (AstActualParam) Expr COMMA ActualParamList
 					
 Condition ::= (AstConditionOne) CondTerm
 			|
-			(AstConditionL) CondTerm OR Condition
+			(AstConditionL) Condition OR CondTerm
 			;
 
 CondTerm ::= (AstCondTermOne) CondFact
 			|
-			(AstCondTermL) CondFact AND CondTerm
+			(AstCondTermL) CondTerm AND CondFact
 			;
 
 CondFact ::= (AstCondFact) Expr:e1 Relop Expr:e2

@@ -95,7 +95,8 @@ nonterminal Case Case;
 nonterminal CaseList CaseList;
 nonterminal CaseBegin CaseBegin;
 nonterminal DefaultBegin DefaultBegin;
-nonterminal SwitchBegin SwitchBegin ;
+nonterminal SwitchBegin SwitchBegin;
+nonterminal YieldBegin YieldBegin;
 
 nonterminal rs.etf.pp1.symboltable.concepts.Obj Program, ProgName, Designator, MethodDecl, MethodTypeName ; 
 nonterminal rs.etf.pp1.symboltable.concepts.Struct Condition, Type, Term, SumExpr, Expr, Expr1, Factor, VarDeclList ; 
@@ -229,7 +230,7 @@ Statement ::= (AstDesigStmt) DesignatorStatement:des SEMI {: RESULT=new AstDesig
 			  |
 			  (AstReturnNoExpr) RETURN SEMI {: RESULT=new AstReturnNoExpr(); :}
 			  | 
-			  (AstYield) YIELD Expr:E1 SEMI {: RESULT=new AstYield(E1); RESULT.setLine(E1left); :}
+			  (AstYield) YieldBegin:Y1 Expr:E2 SEMI {: RESULT=new AstYield(Y1, E2); RESULT.setLine(Y1left); :}
 			  | 
 			  (AstUnmatchedIf) IF LPAREN Condition:C1 RPAREN Statement:S2 {: RESULT=new AstUnmatchedIf(C1, S2); RESULT.setLine(C1left); :}
 			  |
@@ -253,6 +254,8 @@ Case ::= (AstCase) CaseBegin:C1 COLON StatementList:S2 {: RESULT=new AstCase(C1,
 			|
 			(AstDefault) DefaultBegin:D1 COLON StatementList:S2 {: RESULT=new AstDefault(D1, S2); RESULT.setLine(D1left); :} 
 			;
+			
+YieldBegin ::= (AstYieldBegin) YIELD {: RESULT=new AstYieldBegin(); :} ;
 			  
 DoPartOfWhile ::= (AstDoPart) DO {: RESULT=new AstDoPart(); :} ;
 			  

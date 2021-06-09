@@ -18,6 +18,14 @@ public class CodeGenerator extends VisitorAdaptor {
 	private Stack<Integer> lastPatch = new Stack<>();
 	private Stack<ArrayList<Integer>> yields = new Stack<>();
 	private Stack<Integer> defBranches = new Stack<>();
+	private Stack<Integer> ifExit = new Stack<>();
+	private Stack<Integer> elseExit = new Stack<>();
+	private Stack<Integer> whileExit = new Stack<>();
+	private Stack<Integer> whileDo = new Stack<>();
+	private Stack<ArrayList<Integer>> breaks = new Stack<>();
+	private Stack<Integer> ter1Exit = new Stack<>();
+	private Stack<Integer> ter2Exit = new Stack<>();
+	private int terAdrJmp = 0;
 
 	
 	public int getMainPc() {
@@ -102,6 +110,65 @@ public class CodeGenerator extends VisitorAdaptor {
 		Code.put(Code.return_);
 	}
 	
+	public void visit(AstDoPart dp) {
+		whileDo.push(Code.pc);
+		breaks.push(new ArrayList<>());
+	}
+	
+	public void visit(AstDoWhile dw) {
+		Code.loadConst(0);
+		Code.putFalseJump(Code.inverse[Code.gt], whileDo.pop());
+		for(Integer br : breaks.peek()) {
+			Code.fixup(br);
+		}
+		breaks.pop();
+	}
+	
+	public void visit(AstBreakStmt bstmt) {
+		Code.putJump(0);
+		breaks.peek().add(Code.pc - 2);
+	}
+	
+	public void visit(AstContinueStmt cont) {
+		Code.putJump(whileDo.peek());
+	}
+	
+	public void visit(AstTerExpr ter) {
+		Code.fixup(ter2Exit.pop());
+	}
+	
+	public void visit(AstTerQstmk qmk) {
+		Code.loadConst(0);
+		Code.putFalseJump(Code.ne, 0);
+		ter1Exit.push(Code.pc - 2);
+	}
+
+	public void visit(AstTerColon col) {
+		Code.putJump(0);
+		ter2Exit.push(Code.pc - 2);
+		Code.fixup(ter1Exit.pop());
+	}
+	
+	public void visit(AstUnmatchedIf uif) {
+		Code.fixup(ifExit.pop());
+	}
+	
+	public void visit(AstMatchedIf mif) {
+		Code.fixup(elseExit.pop());
+	}
+	
+	public void visit(AstIfPart ifp) {
+		Code.loadConst(0);
+		Code.putFalseJump(Code.gt, 0);
+		ifExit.push(Code.pc-2);
+	}
+
+	public void visit(AstElsePart ep) {
+		Code.putJump(0);
+		elseExit.push(Code.pc-2);
+		Code.fixup(ifExit.pop());
+	}
+	
 	public void visit(AstFuncCallFact funcCall){
 		Obj functionObj = funcCall.getDesignator().obj;
 		int offset = functionObj.getAdr() - Code.pc;
@@ -150,7 +217,6 @@ public class CodeGenerator extends VisitorAdaptor {
 		Code.loadConst(1);
 		Code.put(Code.add);
 		Code.store(incStmt.getDesignator().obj);
-		Code.put(Code.pop);
 	}
 	
 	public void visit(AstNewArray newArr) {
@@ -167,7 +233,22 @@ public class CodeGenerator extends VisitorAdaptor {
 		Code.loadConst(1);
 		Code.put(Code.sub);
 		Code.store(decStmt.getDesignator().obj);
-		Code.put(Code.pop);
+	}
+	
+	public void visit(AstConditionL condList) {
+		Code.put(Code.add);
+	}
+	
+	public void visit(AstCondTermL termList) {
+		Code.put(Code.mul);
+	}
+	
+	public void visit(AstCondFact cf) {
+		Code.putFalseJump(ops.pop(), 0);
+		int tempPC = Code.pc-2;
+		Code.loadConst(1);
+		Code.fixup(tempPC);
+		Code.loadConst(0);
 	}
 	
 	public void visit(AstFactNum num) {
@@ -189,6 +270,16 @@ public class CodeGenerator extends VisitorAdaptor {
 	
 	public void visit(AstTermL term) {
 		Code.put(ops.pop());
+	}
+	
+	public void visit(AstTerColon c) {
+		Code.fixup(terAdrJmp);
+	}
+
+	public void visit(AstQstmkColon c) {
+		Code.loadConst(0);
+		Code.putFalseJump(Code.ne, 0);
+		terAdrJmp = Code.pc - 2;
 	}
 	
 	public void visit(AstSwitchBegin sb) {
@@ -268,5 +359,28 @@ public class CodeGenerator extends VisitorAdaptor {
 		ops.push(Code.sub);
 	}
 	
+	public void visit(AstEqop eq) {
+		ops.push(Code.eq);
+	}
+
+	public void visit(AstNeop ne) {
+		ops.push(Code.ne);
+	}
+	
+	public void visit(AstGtop gtop) {
+		ops.push(Code.gt);
+	}
+
+	public void visit(AstGetop getop) {
+		ops.push(Code.ge);
+	}
+	
+	public void visit(AstLtop ltop) {
+		ops.push(Code.lt);
+	}
+
+	public void visit(AstLetop letop) {
+		ops.push(Code.le);
+	}
 	
 }
