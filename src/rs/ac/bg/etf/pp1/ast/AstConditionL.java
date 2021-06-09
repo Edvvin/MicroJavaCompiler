@@ -1,28 +1,20 @@
 // generated with ast extension for cup
 // version 0.8
-// 5/5/2021 14:23:59
+// 10/5/2021 0:46:5
 
 
 package rs.ac.bg.etf.pp1.ast;
 
 public class AstConditionL extends Condition {
 
-    private CondTerm CondTerm;
     private Condition Condition;
+    private CondTerm CondTerm;
 
-    public AstConditionL (CondTerm CondTerm, Condition Condition) {
-        this.CondTerm=CondTerm;
-        if(CondTerm!=null) CondTerm.setParent(this);
+    public AstConditionL (Condition Condition, CondTerm CondTerm) {
         this.Condition=Condition;
         if(Condition!=null) Condition.setParent(this);
-    }
-
-    public CondTerm getCondTerm() {
-        return CondTerm;
-    }
-
-    public void setCondTerm(CondTerm CondTerm) {
         this.CondTerm=CondTerm;
+        if(CondTerm!=null) CondTerm.setParent(this);
     }
 
     public Condition getCondition() {
@@ -33,24 +25,32 @@ public class AstConditionL extends Condition {
         this.Condition=Condition;
     }
 
+    public CondTerm getCondTerm() {
+        return CondTerm;
+    }
+
+    public void setCondTerm(CondTerm CondTerm) {
+        this.CondTerm=CondTerm;
+    }
+
     public void accept(Visitor visitor) {
         visitor.visit(this);
     }
 
     public void childrenAccept(Visitor visitor) {
-        if(CondTerm!=null) CondTerm.accept(visitor);
         if(Condition!=null) Condition.accept(visitor);
+        if(CondTerm!=null) CondTerm.accept(visitor);
     }
 
     public void traverseTopDown(Visitor visitor) {
         accept(visitor);
-        if(CondTerm!=null) CondTerm.traverseTopDown(visitor);
         if(Condition!=null) Condition.traverseTopDown(visitor);
+        if(CondTerm!=null) CondTerm.traverseTopDown(visitor);
     }
 
     public void traverseBottomUp(Visitor visitor) {
-        if(CondTerm!=null) CondTerm.traverseBottomUp(visitor);
         if(Condition!=null) Condition.traverseBottomUp(visitor);
+        if(CondTerm!=null) CondTerm.traverseBottomUp(visitor);
         accept(visitor);
     }
 
@@ -59,14 +59,14 @@ public class AstConditionL extends Condition {
         buffer.append(tab);
         buffer.append("AstConditionL(\n");
 
-        if(CondTerm!=null)
-            buffer.append(CondTerm.toString("  "+tab));
+        if(Condition!=null)
+            buffer.append(Condition.toString("  "+tab));
         else
             buffer.append(tab+"  null");
         buffer.append("\n");
 
-        if(Condition!=null)
-            buffer.append(Condition.toString("  "+tab));
+        if(CondTerm!=null)
+            buffer.append(CondTerm.toString("  "+tab));
         else
             buffer.append(tab+"  null");
         buffer.append("\n");

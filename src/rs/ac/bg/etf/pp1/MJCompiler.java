@@ -31,7 +31,7 @@ public class MJCompiler implements Compiler {
 
 	@Override
 	public List<CompilerError> compile(String sourceFilePath, String outputFilePath) {
-		Logger log = Logger.getLogger(MicroJava.class);
+		log = Logger.getLogger(MJCompiler.class);
 
 		File src = new File(sourceFilePath);
 

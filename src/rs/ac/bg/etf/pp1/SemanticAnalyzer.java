@@ -266,8 +266,12 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 		}
 	}
 	
+	public void visit(AstFuncDesig fd) {
+		currentCall = fd.getDesignator().obj;
+		fd.obj = currentCall;
+	}
+	
 	public void visit(AstFuncCallStmt callStmt) {
-		currentCall = callStmt.getDesignator().obj;
 		if(currentCall.getKind() != Obj.Meth) {
 			report_error("Designator must be a function", callStmt);
 		}
@@ -437,9 +441,12 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 			int i = 0;
 			Collection<Obj> formalParams = currentCall.getLocalSymbols();
 			for(Obj o : formalParams) {
+				if(i >= currentCall.getLevel())
+					break;
 				if(!currentCallList.get(i).getExpr().struct.assignableTo(o.getType())) {
 					report_error("Actual parameter is not assignable to formal parameter", currentCallList.get(i));
 				}
+				i++;
 			}
 		
 		}
@@ -554,7 +561,6 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	}
 
 	public void visit(AstFuncCallFact callFact) {
-		currentCall = callFact.getDesignator().obj;
 		if(currentCall.getKind() != Obj.Meth) {
 			report_error("Designator must be a function", callFact);
 		}

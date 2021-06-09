@@ -1,28 +1,28 @@
 // generated with ast extension for cup
 // version 0.8
-// 5/5/2021 14:23:59
+// 10/5/2021 0:46:5
 
 
 package rs.ac.bg.etf.pp1.ast;
 
 public class AstFuncCallStmt extends DesignatorStatement {
 
-    private Designator Designator;
+    private FuncDesig FuncDesig;
     private ActualPars ActualPars;
 
-    public AstFuncCallStmt (Designator Designator, ActualPars ActualPars) {
-        this.Designator=Designator;
-        if(Designator!=null) Designator.setParent(this);
+    public AstFuncCallStmt (FuncDesig FuncDesig, ActualPars ActualPars) {
+        this.FuncDesig=FuncDesig;
+        if(FuncDesig!=null) FuncDesig.setParent(this);
         this.ActualPars=ActualPars;
         if(ActualPars!=null) ActualPars.setParent(this);
     }
 
-    public Designator getDesignator() {
-        return Designator;
+    public FuncDesig getFuncDesig() {
+        return FuncDesig;
     }
 
-    public void setDesignator(Designator Designator) {
-        this.Designator=Designator;
+    public void setFuncDesig(FuncDesig FuncDesig) {
+        this.FuncDesig=FuncDesig;
     }
 
     public ActualPars getActualPars() {
@@ -38,18 +38,18 @@ public class AstFuncCallStmt extends DesignatorStatement {
     }
 
     public void childrenAccept(Visitor visitor) {
-        if(Designator!=null) Designator.accept(visitor);
+        if(FuncDesig!=null) FuncDesig.accept(visitor);
         if(ActualPars!=null) ActualPars.accept(visitor);
     }
 
     public void traverseTopDown(Visitor visitor) {
         accept(visitor);
-        if(Designator!=null) Designator.traverseTopDown(visitor);
+        if(FuncDesig!=null) FuncDesig.traverseTopDown(visitor);
         if(ActualPars!=null) ActualPars.traverseTopDown(visitor);
     }
 
     public void traverseBottomUp(Visitor visitor) {
-        if(Designator!=null) Designator.traverseBottomUp(visitor);
+        if(FuncDesig!=null) FuncDesig.traverseBottomUp(visitor);
         if(ActualPars!=null) ActualPars.traverseBottomUp(visitor);
         accept(visitor);
     }
@@ -59,8 +59,8 @@ public class AstFuncCallStmt extends DesignatorStatement {
         buffer.append(tab);
         buffer.append("AstFuncCallStmt(\n");
 
-        if(Designator!=null)
-            buffer.append(Designator.toString("  "+tab));
+        if(FuncDesig!=null)
+            buffer.append(FuncDesig.toString("  "+tab));
         else
             buffer.append(tab+"  null");
         buffer.append("\n");

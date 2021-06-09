@@ -2,7 +2,7 @@ program MJProgram
 	int x; int y;
 {
 	
-	int k (bool z) int c; {
+	int k () int c; {
 		c = 1;
 		return c+2;
 	}

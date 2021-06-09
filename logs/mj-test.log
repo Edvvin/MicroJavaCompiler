@@ -1,108 +1,106 @@
-INFO  23:19:25,629 - Compiling source file: /home/edvin/Desktop/ppp/MicroJavaCompiler/test/program.mj
-INFO  23:19:25,651 - #2 program
-INFO  23:19:25,651 - #46 MJProgram
-INFO  23:19:25,651 - #46 int
-INFO  23:19:25,651 - #46 x
-INFO  23:19:25,651 - #7 ;
-INFO  23:19:25,652 - #46 int
-INFO  23:19:25,652 - #46 y
-INFO  23:19:25,652 - #7 ;
-INFO  23:19:25,652 - #3 {
-INFO  23:19:25,652 - #46 int
-INFO  23:19:25,653 - #46 k
-INFO  23:19:25,653 - #8 (
-INFO  23:19:25,653 - #46 bool
-INFO  23:19:25,653 - #46 z
-INFO  23:19:25,653 - #9 )
-INFO  23:19:25,653 - #46 int
-INFO  23:19:25,654 - #46 c
-INFO  23:19:25,654 - #7 ;
-INFO  23:19:25,654 - #3 {
-INFO  23:19:25,654 - #46 c
-INFO  23:19:25,654 - #27 =
-INFO  23:19:25,655 - #45 1
-INFO  23:19:25,655 - #7 ;
-INFO  23:19:25,655 - #13 return
-INFO  23:19:25,655 - #46 c
-INFO  23:19:25,656 - #18 +
-INFO  23:19:25,656 - #45 2
-INFO  23:19:25,656 - #7 ;
-INFO  23:19:25,657 - #4 }
-INFO  23:19:25,657 - #14 void
-INFO  23:19:25,657 - #46 main
-INFO  23:19:25,657 - #8 (
-INFO  23:19:25,657 - #9 )
-INFO  23:19:25,657 - #46 char
-INFO  23:19:25,658 - #46 g
-INFO  23:19:25,658 - #5 [
-INFO  23:19:25,658 - #6 ]
-INFO  23:19:25,658 - #7 ;
-INFO  23:19:25,658 - #3 {
-INFO  23:19:25,658 - #46 y
-INFO  23:19:25,658 - #27 =
-INFO  23:19:25,658 - #45 2
-INFO  23:19:25,658 - #7 ;
-INFO  23:19:25,658 - #46 x
-INFO  23:19:25,658 - #27 =
-INFO  23:19:25,658 - #46 y
-INFO  23:19:25,658 - #18 +
-INFO  23:19:25,659 - #45 2
-INFO  23:19:25,659 - #7 ;
-INFO  23:19:25,659 - #46 y
-INFO  23:19:25,659 - #27 =
-INFO  23:19:25,659 - #46 k
-INFO  23:19:25,659 - #8 (
-INFO  23:19:25,659 - #9 )
-INFO  23:19:25,659 - #18 +
-INFO  23:19:25,660 - #45 3
-INFO  23:19:25,660 - #7 ;
-INFO  23:19:25,660 - #49 if
-INFO  23:19:25,660 - #8 (
-INFO  23:19:25,660 - #46 x
-INFO  23:19:25,660 - #32 ==
-INFO  23:19:25,660 - #46 y
-INFO  23:19:25,661 - #9 )
-INFO  23:19:25,661 - #3 {
-INFO  23:19:25,661 - #12 print
-INFO  23:19:25,661 - #8 (
-INFO  23:19:25,661 - #46 y
-INFO  23:19:25,661 - #9 )
-INFO  23:19:25,661 - #7 ;
-INFO  23:19:25,661 - #46 g
-INFO  23:19:25,662 - #27 =
-INFO  23:19:25,662 - #15 new
-INFO  23:19:25,662 - #46 char
-INFO  23:19:25,662 - #5 [
-INFO  23:19:25,662 - #45 5
-INFO  23:19:25,662 - #6 ]
-INFO  23:19:25,662 - #7 ;
-INFO  23:19:25,662 - #4 }
-INFO  23:19:25,662 - #36 do
-INFO  23:19:25,662 - #3 {
-INFO  23:19:25,663 - #46 y
-INFO  23:19:25,663 - #25 ++
-INFO  23:19:25,663 - #7 ;
-INFO  23:19:25,663 - #49 if
-INFO  23:19:25,664 - #8 (
-INFO  23:19:25,664 - #46 x
-INFO  23:19:25,664 - #32 ==
-INFO  23:19:25,664 - #46 k
-INFO  23:19:25,664 - #8 (
-INFO  23:19:25,664 - #9 )
-INFO  23:19:25,664 - #9 )
-INFO  23:19:25,664 - #3 {
-INFO  23:19:25,664 - #4 }
-INFO  23:19:25,664 - #4 }
-INFO  23:19:25,664 - #17 while
-INFO  23:19:25,664 - #8 (
-INFO  23:19:25,664 - #46 y
-INFO  23:19:25,664 - #30 <
-INFO  23:19:25,664 - #45 5
-INFO  23:19:25,665 - #9 )
-INFO  23:19:25,665 - #7 ;
-INFO  23:19:25,665 - #4 }
-INFO  23:19:25,665 - #4 }
-INFO  23:19:25,666 - AstProgram(
+INFO  00:46:17,573 - Compiling source file: /home/edvin/Desktop/ppp/MicroJavaCompiler/test/program.mj
+INFO  00:46:17,593 - #2 program
+INFO  00:46:17,594 - #50 MJProgram
+INFO  00:46:17,594 - #50 int
+INFO  00:46:17,594 - #50 x
+INFO  00:46:17,594 - #7 ;
+INFO  00:46:17,594 - #50 int
+INFO  00:46:17,595 - #50 y
+INFO  00:46:17,595 - #7 ;
+INFO  00:46:17,595 - #3 {
+INFO  00:46:17,595 - #50 int
+INFO  00:46:17,595 - #50 k
+INFO  00:46:17,595 - #8 (
+INFO  00:46:17,595 - #9 )
+INFO  00:46:17,596 - #50 int
+INFO  00:46:17,596 - #50 c
+INFO  00:46:17,596 - #7 ;
+INFO  00:46:17,596 - #3 {
+INFO  00:46:17,596 - #50 c
+INFO  00:46:17,597 - #27 =
+INFO  00:46:17,597 - #49 1
+INFO  00:46:17,597 - #7 ;
+INFO  00:46:17,597 - #13 return
+INFO  00:46:17,597 - #50 c
+INFO  00:46:17,597 - #18 +
+INFO  00:46:17,597 - #49 2
+INFO  00:46:17,598 - #7 ;
+INFO  00:46:17,598 - #4 }
+INFO  00:46:17,598 - #14 void
+INFO  00:46:17,598 - #50 main
+INFO  00:46:17,598 - #8 (
+INFO  00:46:17,599 - #9 )
+INFO  00:46:17,599 - #50 char
+INFO  00:46:17,599 - #50 g
+INFO  00:46:17,599 - #5 [
+INFO  00:46:17,599 - #6 ]
+INFO  00:46:17,599 - #7 ;
+INFO  00:46:17,599 - #3 {
+INFO  00:46:17,599 - #50 y
+INFO  00:46:17,599 - #27 =
+INFO  00:46:17,599 - #49 2
+INFO  00:46:17,599 - #7 ;
+INFO  00:46:17,599 - #50 x
+INFO  00:46:17,599 - #27 =
+INFO  00:46:17,599 - #50 y
+INFO  00:46:17,599 - #18 +
+INFO  00:46:17,600 - #49 2
+INFO  00:46:17,600 - #7 ;
+INFO  00:46:17,600 - #50 y
+INFO  00:46:17,600 - #27 =
+INFO  00:46:17,600 - #50 k
+INFO  00:46:17,600 - #8 (
+INFO  00:46:17,600 - #9 )
+INFO  00:46:17,601 - #18 +
+INFO  00:46:17,601 - #49 3
+INFO  00:46:17,601 - #7 ;
+INFO  00:46:17,601 - #39 if
+INFO  00:46:17,601 - #8 (
+INFO  00:46:17,601 - #50 x
+INFO  00:46:17,601 - #32 ==
+INFO  00:46:17,602 - #50 y
+INFO  00:46:17,602 - #9 )
+INFO  00:46:17,602 - #3 {
+INFO  00:46:17,602 - #12 print
+INFO  00:46:17,602 - #8 (
+INFO  00:46:17,602 - #50 y
+INFO  00:46:17,603 - #9 )
+INFO  00:46:17,603 - #7 ;
+INFO  00:46:17,603 - #50 g
+INFO  00:46:17,603 - #27 =
+INFO  00:46:17,603 - #15 new
+INFO  00:46:17,603 - #50 char
+INFO  00:46:17,603 - #5 [
+INFO  00:46:17,603 - #49 5
+INFO  00:46:17,603 - #6 ]
+INFO  00:46:17,603 - #7 ;
+INFO  00:46:17,603 - #4 }
+INFO  00:46:17,603 - #36 do
+INFO  00:46:17,603 - #3 {
+INFO  00:46:17,604 - #50 y
+INFO  00:46:17,604 - #25 ++
+INFO  00:46:17,604 - #7 ;
+INFO  00:46:17,604 - #39 if
+INFO  00:46:17,605 - #8 (
+INFO  00:46:17,605 - #50 x
+INFO  00:46:17,605 - #32 ==
+INFO  00:46:17,605 - #50 k
+INFO  00:46:17,605 - #8 (
+INFO  00:46:17,605 - #9 )
+INFO  00:46:17,605 - #9 )
+INFO  00:46:17,605 - #3 {
+INFO  00:46:17,605 - #4 }
+INFO  00:46:17,605 - #4 }
+INFO  00:46:17,605 - #17 while
+INFO  00:46:17,605 - #8 (
+INFO  00:46:17,605 - #50 y
+INFO  00:46:17,605 - #30 <
+INFO  00:46:17,605 - #49 5
+INFO  00:46:17,606 - #9 )
+INFO  00:46:17,606 - #7 ;
+INFO  00:46:17,606 - #4 }
+INFO  00:46:17,606 - #4 }
+INFO  00:46:17,607 - AstProgram(
   AstProgName(
    MJProgram
   ) [AstProgName]
@@ -148,14 +146,8 @@ INFO  23:19:25,666 - AstProgram(
          k
         ) [AstMethTypeName]
         AstFormalParams(
-          AstFormalParamOne(
-            AstFormalParamDecl(
-              AstType(
-               bool
-              ) [AstType]
-             z
-            ) [AstFormalParamDecl]
-          ) [AstFormalParamOne]
+          AstNoFormalParams(
+          ) [AstNoFormalParams]
         ) [AstFormalParams]
         AstVarDeclL(
           AstNoVarDecl(
@@ -310,11 +302,17 @@ INFO  23:19:25,666 - AstProgram(
                       AstTermExpr(
                         AstTermOne(
                           AstFuncCallFact(
-                            AstDesig(
-                             k
-                            ) [AstDesig]
-                            AstNoActualParam(
-                            ) [AstNoActualParam]
+                            AstFuncDesig(
+                              AstDesig(
+                               k
+                              ) [AstDesig]
+                            ) [AstFuncDesig]
+                            AstActualParams(
+                              AstStartActualParams(
+                              ) [AstStartActualParams]
+                              AstNoActualParams(
+                              ) [AstNoActualParams]
+                            ) [AstActualParams]
                           ) [AstFuncCallFact]
                         ) [AstTermOne]
                       ) [AstTermExpr]
@@ -332,40 +330,42 @@ INFO  23:19:25,666 - AstProgram(
             ) [AstDesigStmt]
           ) [AstStatementL]
           AstUnmatchedIf(
-            AstConditionOne(
-              AstCondTermOne(
-                AstCondFact(
-                  AstNotTerExpr(
-                    AstPosExpr(
-                      AstTermExpr(
-                        AstTermOne(
-                          AstDesigFact(
-                            AstDesig(
-                             x
-                            ) [AstDesig]
-                          ) [AstDesigFact]
-                        ) [AstTermOne]
-                      ) [AstTermExpr]
-                    ) [AstPosExpr]
-                  ) [AstNotTerExpr]
-                  AstEqop(
-                  ) [AstEqop]
-                  AstNotTerExpr(
-                    AstPosExpr(
-                      AstTermExpr(
-                        AstTermOne(
-                          AstDesigFact(
-                            AstDesig(
-                             y
-                            ) [AstDesig]
-                          ) [AstDesigFact]
-                        ) [AstTermOne]
-                      ) [AstTermExpr]
-                    ) [AstPosExpr]
-                  ) [AstNotTerExpr]
-                ) [AstCondFact]
-              ) [AstCondTermOne]
-            ) [AstConditionOne]
+            AstIfPart(
+              AstConditionOne(
+                AstCondTermOne(
+                  AstCondFact(
+                    AstNotTerExpr(
+                      AstPosExpr(
+                        AstTermExpr(
+                          AstTermOne(
+                            AstDesigFact(
+                              AstDesig(
+                               x
+                              ) [AstDesig]
+                            ) [AstDesigFact]
+                          ) [AstTermOne]
+                        ) [AstTermExpr]
+                      ) [AstPosExpr]
+                    ) [AstNotTerExpr]
+                    AstEqop(
+                    ) [AstEqop]
+                    AstNotTerExpr(
+                      AstPosExpr(
+                        AstTermExpr(
+                          AstTermOne(
+                            AstDesigFact(
+                              AstDesig(
+                               y
+                              ) [AstDesig]
+                            ) [AstDesigFact]
+                          ) [AstTermOne]
+                        ) [AstTermExpr]
+                      ) [AstPosExpr]
+                    ) [AstNotTerExpr]
+                  ) [AstCondFact]
+                ) [AstCondTermOne]
+              ) [AstConditionOne]
+            ) [AstIfPart]
             AstStmtL(
               AstStatementL(
                 AstStatementL(
@@ -439,42 +439,50 @@ INFO  23:19:25,666 - AstProgram(
                 ) [AstDesigStmt]
               ) [AstStatementL]
               AstUnmatchedIf(
-                AstConditionOne(
-                  AstCondTermOne(
-                    AstCondFact(
-                      AstNotTerExpr(
-                        AstPosExpr(
-                          AstTermExpr(
-                            AstTermOne(
-                              AstDesigFact(
-                                AstDesig(
-                                 x
-                                ) [AstDesig]
-                              ) [AstDesigFact]
-                            ) [AstTermOne]
-                          ) [AstTermExpr]
-                        ) [AstPosExpr]
-                      ) [AstNotTerExpr]
-                      AstEqop(
-                      ) [AstEqop]
-                      AstNotTerExpr(
-                        AstPosExpr(
-                          AstTermExpr(
-                            AstTermOne(
-                              AstFuncCallFact(
-                                AstDesig(
-                                 k
-                                ) [AstDesig]
-                                AstNoActualParam(
-                                ) [AstNoActualParam]
-                              ) [AstFuncCallFact]
-                            ) [AstTermOne]
-                          ) [AstTermExpr]
-                        ) [AstPosExpr]
-                      ) [AstNotTerExpr]
-                    ) [AstCondFact]
-                  ) [AstCondTermOne]
-                ) [AstConditionOne]
+                AstIfPart(
+                  AstConditionOne(
+                    AstCondTermOne(
+                      AstCondFact(
+                        AstNotTerExpr(
+                          AstPosExpr(
+                            AstTermExpr(
+                              AstTermOne(
+                                AstDesigFact(
+                                  AstDesig(
+                                   x
+                                  ) [AstDesig]
+                                ) [AstDesigFact]
+                              ) [AstTermOne]
+                            ) [AstTermExpr]
+                          ) [AstPosExpr]
+                        ) [AstNotTerExpr]
+                        AstEqop(
+                        ) [AstEqop]
+                        AstNotTerExpr(
+                          AstPosExpr(
+                            AstTermExpr(
+                              AstTermOne(
+                                AstFuncCallFact(
+                                  AstFuncDesig(
+                                    AstDesig(
+                                     k
+                                    ) [AstDesig]
+                                  ) [AstFuncDesig]
+                                  AstActualParams(
+                                    AstStartActualParams(
+                                    ) [AstStartActualParams]
+                                    AstNoActualParams(
+                                    ) [AstNoActualParams]
+                                  ) [AstActualParams]
+                                ) [AstFuncCallFact]
+                              ) [AstTermOne]
+                            ) [AstTermExpr]
+                          ) [AstPosExpr]
+                        ) [AstNotTerExpr]
+                      ) [AstCondFact]
+                    ) [AstCondTermOne]
+                  ) [AstConditionOne]
+                ) [AstIfPart]
                 AstStmtL(
                   AstNoStmt(
                   ) [AstNoStmt]
@@ -519,10 +527,10 @@ INFO  23:19:25,666 - AstProgram(
     ) [AstMethDecl]
   ) [AstMethDeclL]
 ) [AstProgram]
-INFO  23:19:25,671 - Variable declared x on line 2
-INFO  23:19:25,671 - Variable declared y on line 2
-INFO  23:19:25,671 - Function k is being defined on line 5
-INFO  23:19:25,671 - Variable declared z on line 5
-INFO  23:19:25,671 - Variable declared c on line 5
-INFO  23:19:25,672 - Function mainis being defined on line 10
-INFO  23:19:25,672 - Variable Array Declared g on line 10
+INFO  00:46:17,612 - Variable declared x on line 2
+INFO  00:46:17,612 - Variable declared y on line 2
+INFO  00:46:17,612 - Function k is being defined on line 5
+INFO  00:46:17,612 - Variable declared c on line 5
+INFO  00:46:17,613 - Function mainis being defined on line 10
+INFO  00:46:17,613 - Variable Array Declared g on line 10
+INFO  00:46:17,616 - Compilation successful!

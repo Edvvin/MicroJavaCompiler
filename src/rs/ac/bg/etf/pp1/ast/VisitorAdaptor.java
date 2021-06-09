@@ -1,12 +1,13 @@
 // generated with ast extension for cup
 // version 0.8
-// 5/5/2021 14:23:59
+// 10/5/2021 0:46:5
 
 
 package rs.ac.bg.etf.pp1.ast;
 
 public abstract class VisitorAdaptor implements Visitor { 
 
+    public void visit(TerColon TerColon) { }
     public void visit(MethodDecl MethodDecl) { }
     public void visit(YieldBegin YieldBegin) { }
     public void visit(Mulop Mulop) { }
@@ -25,6 +26,9 @@ public abstract class VisitorAdaptor implements Visitor {
     public void visit(Condition Condition) { }
     public void visit(VarAsgnOne VarAsgnOne) { }
     public void visit(CaseList CaseList) { }
+    public void visit(FuncDesig FuncDesig) { }
+    public void visit(ElsePart ElsePart) { }
+    public void visit(TerQstmk TerQstmk) { }
     public void visit(DefaultBegin DefaultBegin) { }
     public void visit(ActualParamList ActualParamList) { }
     public void visit(CaseBegin CaseBegin) { }
@@ -50,6 +54,7 @@ public abstract class VisitorAdaptor implements Visitor {
     public void visit(CnstDecl CnstDecl) { }
     public void visit(MethodDeclList MethodDeclList) { }
     public void visit(Program Program) { }
+    public void visit(IfPart IfPart) { }
     public void visit(VarAsgnList VarAsgnList) { }
     public void visit(AstLetop AstLetop) { visit(); }
     public void visit(AstLtop AstLtop) { visit(); }
@@ -72,6 +77,7 @@ public abstract class VisitorAdaptor implements Visitor {
     public void visit(AstNoActualParams AstNoActualParams) { visit(); }
     public void visit(AstActualParam AstActualParam) { visit(); }
     public void visit(AstStartActualParams AstStartActualParams) { visit(); }
+    public void visit(AstFuncDesig AstFuncDesig) { visit(); }
     public void visit(AstActualParams AstActualParams) { visit(); }
     public void visit(AstNewArray AstNewArray) { visit(); }
     public void visit(AstFuncCallFact AstFuncCallFact) { visit(); }
@@ -88,6 +94,8 @@ public abstract class VisitorAdaptor implements Visitor {
     public void visit(AstSwitchExpr AstSwitchExpr) { visit(); }
     public void visit(AstPosExpr AstPosExpr) { visit(); }
     public void visit(AstNegExpr AstNegExpr) { visit(); }
+    public void visit(AstTerColon AstTerColon) { visit(); }
+    public void visit(AstTerQstmk AstTerQstmk) { visit(); }
     public void visit(AstNotTerExpr AstNotTerExpr) { visit(); }
     public void visit(AstTerExpr AstTerExpr) { visit(); }
     public void visit(AstDoPart AstDoPart) { visit(); }
@@ -98,6 +106,8 @@ public abstract class VisitorAdaptor implements Visitor {
     public void visit(AstCaseBegin AstCaseBegin) { visit(); }
     public void visit(AstNoCase AstNoCase) { visit(); }
     public void visit(AstCaseList AstCaseList) { visit(); }
+    public void visit(AstElsePart AstElsePart) { visit(); }
+    public void visit(AstIfPart AstIfPart) { visit(); }
     public void visit(AstStmtL AstStmtL) { visit(); }
     public void visit(AstDoWhile AstDoWhile) { visit(); }
     public void visit(AstMatchedIf AstMatchedIf) { visit(); }

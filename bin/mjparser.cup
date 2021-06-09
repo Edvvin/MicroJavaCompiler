@@ -5,6 +5,7 @@ import org.apache.log4j.*;
 
 // import java.io.*;
 import rs.ac.bg.etf.pp1.ast.*;
+import java.util.*;
 
 
 parser code {:
@@ -12,6 +13,8 @@ parser code {:
 	boolean errorDetected = false;
 	
 	Logger log = Logger.getLogger(getClass());
+	
+	private List<CompilerError> synErrors = new ArrayList<>();
    
    
     // slede redefinisani metodi za prijavu gresaka radi izmene teksta poruke
@@ -42,6 +45,10 @@ parser code {:
     	if (info instanceof Symbol)
             msg.append (" na liniji ").append(((Symbol)info).left);
         log.info(msg.toString());
+    }
+    
+    public List<CompilerError> getSynErrors(){
+    	return synErrors;
     }
     
 :}
@@ -76,7 +83,7 @@ nonterminal ActualParsStart, CnstAsgn, DoPartOfWhile ;
 nonterminal Case, CaseList, CaseBegin, DefaultBegin, SwitchBegin, YieldBegin;
 nonterminal TerColon, TerQstmk, IfPart, ElsePart ;
 
-nonterminal rs.etf.pp1.symboltable.concepts.Obj Program, ProgName, Designator, MethodDecl, MethodTypeName ; 
+nonterminal rs.etf.pp1.symboltable.concepts.Obj FuncDesig, Program, ProgName, Designator, MethodDecl, MethodTypeName ; 
 nonterminal rs.etf.pp1.symboltable.concepts.Struct Condition, Type, Term, SumExpr, Expr, Expr1, Factor, VarDeclList ; 
 
 precedence left ELSE ;
@@ -186,7 +193,7 @@ DesignatorStatement ::= (AstEqualStmt) Designator EQUAL Expr
 					|
 					(AstDecStmt) Designator DEC
 					|
-					(AstFuncCallStmt) Designator LPAREN ActualPars RPAREN
+					(AstFuncCallStmt) FuncDesig LPAREN ActualPars RPAREN
 					;
 
 Statement ::= (AstDesigStmt) DesignatorStatement:des SEMI 
@@ -279,13 +286,15 @@ Factor ::= (AstFactNum) NUMBER
 			|
 		   (AstDesigFact) Designator:d
 		    |
-		   (AstFuncCallFact) Designator:func LPAREN ActualPars RPAREN
+		   (AstFuncCallFact) FuncDesig LPAREN ActualPars RPAREN
 		    |
 		   (AstNewArray) NEW Type:t LSQR Expr:e RSQR
 		   ;
 
 ActualPars ::= (AstActualParams) ActualParsStart ActualParamList 
 			   ;
+			   
+FuncDesig ::= (AstFuncDesig) Designator ;
 			   
 ActualParsStart ::= (AstStartActualParams) /* epsilon */ ;
 			   

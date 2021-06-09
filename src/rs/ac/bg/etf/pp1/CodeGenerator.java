@@ -2,7 +2,6 @@ package rs.ac.bg.etf.pp1;
 
 import java.util.*;
 
-import jdk.internal.org.jline.reader.SyntaxError;
 import rs.ac.bg.etf.pp1.CounterVisitor.FormParamCounter;
 import rs.ac.bg.etf.pp1.CounterVisitor.VarCounter;
 import rs.ac.bg.etf.pp1.ast.*;
@@ -218,18 +217,18 @@ public class CodeGenerator extends VisitorAdaptor {
 	}
 	
 	public void visit(AstFuncCallFact funcCall){
-		Obj functionObj = funcCall.getDesignator().obj;
+		Obj functionObj = funcCall.getFuncDesig().obj;
 		int offset = functionObj.getAdr() - Code.pc;
 		Code.put(Code.call);
 		Code.put2(offset);
 	}
 
 	public void visit(AstFuncCallStmt funcCall){
-		Obj functionObj = funcCall.getDesignator().obj;
+		Obj functionObj = funcCall.getFuncDesig().obj;
 		int offset = functionObj.getAdr() - Code.pc;
 		Code.put(Code.call);
 		Code.put2(offset);
-		if(funcCall.getDesignator().obj.getType() != Tab.noType){
+		if(funcCall.getFuncDesig().obj.getType() != Tab.noType){
 			Code.put(Code.pop);
 		}
 	}
@@ -318,16 +317,6 @@ public class CodeGenerator extends VisitorAdaptor {
 	
 	public void visit(AstTermL term) {
 		Code.put(ops.pop());
-	}
-	
-	public void visit(AstTerColon c) {
-		Code.fixup(terAdrJmp);
-	}
-
-	public void visit(AstQstmkColon c) {
-		Code.loadConst(0);
-		Code.putFalseJump(Code.ne, 0);
-		terAdrJmp = Code.pc - 2;
 	}
 	
 	public void visit(AstSwitchBegin sb) {
