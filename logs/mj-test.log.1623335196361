@@ -1,0 +1,58 @@
+INFO  16:25:21,552 - Compiling source file: /home/edvin/Desktop/ppp/MicroJavaCompiler/test/program.mj
+INFO  16:25:21,574 - #2 program
+INFO  16:25:21,574 - #50 MJProgram
+INFO  16:25:21,574 - #50 int
+INFO  16:25:21,574 - #50 x
+INFO  16:25:21,575 - #7 ;
+INFO  16:25:21,575 - #50 int
+INFO  16:25:21,575 - #50 y
+INFO  16:25:21,575 - #7 ;
+INFO  16:25:21,575 - #3 {
+INFO  16:25:21,575 - #50 int
+INFO  16:25:21,576 - #50 k
+INFO  16:25:21,576 - #8 (
+INFO  16:25:21,576 - #9 )
+INFO  16:25:21,576 - #50 int
+INFO  16:25:21,576 - #50 c
+INFO  16:25:21,577 - #7 ;
+INFO  16:25:21,577 - #3 {
+INFO  16:25:21,577 - #50 c
+INFO  16:25:21,577 - #27 =
+INFO  16:25:21,577 - #49 1
+INFO  16:25:21,577 - #7 ;
+INFO  16:25:21,577 - #13 return
+INFO  16:25:21,578 - #50 c
+INFO  16:25:21,578 - #18 +
+INFO  16:25:21,578 - #49 2
+INFO  16:25:21,579 - #7 ;
+INFO  16:25:21,579 - #4 }
+INFO  16:25:21,579 - #14 void
+INFO  16:25:21,579 - #50 main
+INFO  16:25:21,579 - #8 (
+INFO  16:25:21,579 - #9 )
+INFO  16:25:21,579 - #50 char
+INFO  16:25:21,579 - #50 g
+INFO  16:25:21,579 - #5 [
+INFO  16:25:21,580 - #6 ]
+INFO  16:25:21,580 - #7 ;
+INFO  16:25:21,580 - #3 {
+INFO  16:25:21,580 - #50 y
+INFO  16:25:21,580 - #27 =
+INFO  16:25:21,580 - #34 read
+ERROR 16:25:21,580 - 
+Sintaksna greska na liniji 11
+INFO  16:25:21,580 - #8 (
+INFO  16:25:21,580 - #9 )
+INFO  16:25:21,580 - #7 ;
+INFO  16:25:21,581 - #50 x
+INFO  16:25:21,581 - #27 =
+INFO  16:25:21,581 - #50 y
+ERROR 16:25:21,583 - class rs.ac.bg.etf.pp1.ast.AstNoStmt cannot be cast to class rs.ac.bg.etf.pp1.ast.Designator (rs.ac.bg.etf.pp1.ast.AstNoStmt and rs.ac.bg.etf.pp1.ast.Designator are in unnamed module of loader 'app')
+java.lang.ClassCastException: class rs.ac.bg.etf.pp1.ast.AstNoStmt cannot be cast to class rs.ac.bg.etf.pp1.ast.Designator (rs.ac.bg.etf.pp1.ast.AstNoStmt and rs.ac.bg.etf.pp1.ast.Designator are in unnamed module of loader 'app')
+	at rs.ac.bg.etf.pp1.CUP$MJParser$actions.CUP$MJParser$do_action(MJParser.java:1343)
+	at rs.ac.bg.etf.pp1.MJParser.do_action(MJParser.java:455)
+	at java_cup.runtime.lr_parser.parse_lookahead(lr_parser.java:1178)
+	at java_cup.runtime.lr_parser.error_recovery(lr_parser.java:887)
+	at java_cup.runtime.lr_parser.parse(lr_parser.java:598)
+	at rs.ac.bg.etf.pp1.MJCompiler.compile(MJCompiler.java:48)
+	at rs.ac.bg.etf.pp1.MicroJava.main(MicroJava.java:22)

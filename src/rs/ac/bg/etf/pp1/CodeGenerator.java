@@ -246,8 +246,8 @@ public class CodeGenerator extends VisitorAdaptor {
 	public void visit(AstDesig designator){
 		SyntaxNode parent = designator.getParent();
 		
-		if(AstFuncCallFact.class != parent.getClass() 
-			&& AstFuncCallStmt.class != parent.getClass() 
+		if(AstFuncCallFact.class != parent.getParent().getClass()
+			&& AstFuncCallStmt.class != parent.getParent().getClass() 
 			&& AstReadStmt.class != parent.getClass() 
 			&& AstEqualStmt.class != parent.getClass()
 			)
@@ -292,10 +292,13 @@ public class CodeGenerator extends VisitorAdaptor {
 	
 	public void visit(AstCondFact cf) {
 		Code.putFalseJump(ops.pop(), 0);
-		int tempPC = Code.pc-2;
+		int tempPC1 = Code.pc-2;
 		Code.loadConst(1);
-		Code.fixup(tempPC);
+		Code.putJump(0);
+		int tempPC2 = Code.pc-2;
+		Code.fixup(tempPC1);
 		Code.loadConst(0);
+		Code.fixup(tempPC2);
 	}
 	
 	public void visit(AstFactNum num) {

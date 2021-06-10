@@ -8,14 +8,12 @@ program MJProgram
 	}
 	
 	void main() char g[]; {
-		y = 2;
-		x = y + 2;
-		y = k() + 3;
+		read(y);
+		x = y * 2;
 		if(x == y){
-			print(y);
+			print(50);
 			g = new char[5];
 		}
-		
 		do
 		{
 			y++;
