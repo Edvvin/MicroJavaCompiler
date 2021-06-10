@@ -1,6 +1,7 @@
 package rs.ac.bg.etf.pp1;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -34,6 +35,7 @@ public class MJCompiler implements Compiler {
 		log = Logger.getLogger(MJCompiler.class);
 
 		File src = new File(sourceFilePath);
+		List<CompilerError> errors = new ArrayList<CompilerError>();
 
 		if (!src.exists()) {
 			log.error("Source file [" + src.getAbsolutePath() + "] not found!");
@@ -46,6 +48,8 @@ public class MJCompiler implements Compiler {
 			Yylex lexer = new Yylex(br);
 			MJParser p = new MJParser(lexer);
 	        Symbol s = p.parse();
+	        errors.addAll(lexer.getLexErrors());
+	        errors.addAll(p.getSynErrors());
 	        SyntaxNode prog = (SyntaxNode)(s.value);
 	        log.info(prog.toString());
 	        Tab.init();
@@ -54,6 +58,7 @@ public class MJCompiler implements Compiler {
 	        SemanticAnalyzer semPass = new SemanticAnalyzer();
 	        prog.traverseBottomUp(semPass);
 	        Tab.dump();
+	        errors.addAll(semPass.getSemErrors());
 	        
 			if(!p.errorDetected && !semPass.errorDetected) {
 				File objFile = new File(outputFilePath);
@@ -68,6 +73,12 @@ public class MJCompiler implements Compiler {
 			}
 			else {
 				log.info("Compilation failed!");
+			}
+			if(errors.size()>0) {
+				return errors;
+			}
+			else {
+				return null;
 			}
 		} catch(IOException e) {
 			log.error(e.getMessage(), e);

@@ -1,0 +1,136 @@
+INFO  00:26:14,290 - Compiling source file: /home/edvin/Desktop/ppp/MicroJavaCompiler/test/program.mj
+INFO  00:26:14,310 - #2 program
+INFO  00:26:14,310 - #50 MJProgram
+INFO  00:26:14,310 - #50 int
+INFO  00:26:14,311 - #50 x
+INFO  00:26:14,311 - #7 ;
+INFO  00:26:14,311 - #50 int
+INFO  00:26:14,311 - #50 y
+INFO  00:26:14,311 - #7 ;
+INFO  00:26:14,311 - #3 {
+INFO  00:26:14,312 - #50 int
+INFO  00:26:14,312 - #50 k
+INFO  00:26:14,312 - #8 (
+INFO  00:26:14,312 - #9 )
+INFO  00:26:14,312 - #50 int
+INFO  00:26:14,313 - #50 c
+INFO  00:26:14,313 - #7 ;
+INFO  00:26:14,313 - #3 {
+INFO  00:26:14,313 - #50 c
+INFO  00:26:14,313 - #27 =
+INFO  00:26:14,313 - #49 1
+INFO  00:26:14,314 - #7 ;
+INFO  00:26:14,314 - #13 return
+INFO  00:26:14,314 - #50 c
+INFO  00:26:14,314 - #18 +
+INFO  00:26:14,314 - #49 2
+INFO  00:26:14,315 - #7 ;
+INFO  00:26:14,315 - #4 }
+INFO  00:26:14,315 - #14 void
+INFO  00:26:14,315 - #50 main
+INFO  00:26:14,315 - #8 (
+INFO  00:26:14,316 - #9 )
+INFO  00:26:14,316 - #10 const
+ERROR 00:26:14,316 - 
+Sintaksna greska na liniji 10
+INFO  00:26:14,316 - #50 char
+INFO  00:26:14,316 - #50 g
+INFO  00:26:14,316 - #7 ;
+INFO  00:26:14,317 - #3 {
+INFO  00:26:14,317 - #50 x
+INFO  00:26:14,317 - #27 =
+INFO  00:26:14,317 - #50 k
+INFO  00:26:14,317 - #8 (
+INFO  00:26:14,317 - #9 )
+INFO  00:26:14,317 - #20 *
+INFO  00:26:14,317 - #49 2
+INFO  00:26:14,317 - #7 ;
+INFO  00:26:14,317 - #12 print
+INFO  00:26:14,318 - #8 (
+INFO  00:26:14,318 - #50 x
+INFO  00:26:14,318 - #9 )
+INFO  00:26:14,318 - #7 ;
+INFO  00:26:14,318 - #34 read
+INFO  00:26:14,318 - #8 (
+INFO  00:26:14,318 - #50 y
+INFO  00:26:14,318 - #9 )
+INFO  00:26:14,318 - #7 ;
+INFO  00:26:14,319 - #39 if
+INFO  00:26:14,319 - #8 (
+INFO  00:26:14,319 - #50 x
+INFO  00:26:14,319 - #32 ==
+INFO  00:26:14,319 - #50 y
+INFO  00:26:14,319 - #9 )
+INFO  00:26:14,319 - #3 {
+INFO  00:26:14,319 - #12 print
+INFO  00:26:14,319 - #8 (
+ERROR 00:26:14,319 - Syntax error in line 10 formal params bad. recovery up to ')'
+INFO  00:26:14,320 - #49 50
+INFO  00:26:14,320 - #9 )
+INFO  00:26:14,320 - #7 ;
+INFO  00:26:14,320 - #50 g
+INFO  00:26:14,321 - #27 =
+INFO  00:26:14,321 - #15 new
+INFO  00:26:14,321 - #50 char
+INFO  00:26:14,321 - #5 [
+INFO  00:26:14,321 - #49 5
+INFO  00:26:14,321 - #6 ]
+INFO  00:26:14,321 - #7 ;
+INFO  00:26:14,321 - #4 }
+INFO  00:26:14,321 - #36 do
+ERROR 00:26:14,321 - 
+Sintaksna greska na liniji 18
+ERROR 00:26:14,321 - Fatalna greska, parsiranje se ne moze nastaviti na liniji 18
+INFO  00:26:14,322 - AstStatementL(
+  AstStatementL(
+    AstNoStmt(
+    ) [AstNoStmt]
+    AstPrintStmt(
+      AstNotTerExpr(
+        AstPosExpr(
+          AstTermExpr(
+            AstTermOne(
+              AstFactNum(
+               50
+              ) [AstFactNum]
+            ) [AstTermOne]
+          ) [AstTermExpr]
+        ) [AstPosExpr]
+      ) [AstNotTerExpr]
+    ) [AstPrintStmt]
+  ) [AstStatementL]
+  AstDesigStmt(
+    AstEqualStmt(
+      AstDesig(
+       g
+      ) [AstDesig]
+      AstNotTerExpr(
+        AstPosExpr(
+          AstTermExpr(
+            AstTermOne(
+              AstNewArray(
+                AstType(
+                 char
+                ) [AstType]
+                AstNotTerExpr(
+                  AstPosExpr(
+                    AstTermExpr(
+                      AstTermOne(
+                        AstFactNum(
+                         5
+                        ) [AstFactNum]
+                      ) [AstTermOne]
+                    ) [AstTermExpr]
+                  ) [AstPosExpr]
+                ) [AstNotTerExpr]
+              ) [AstNewArray]
+            ) [AstTermOne]
+          ) [AstTermExpr]
+        ) [AstPosExpr]
+      ) [AstNotTerExpr]
+    ) [AstEqualStmt]
+  ) [AstDesigStmt]
+) [AstStatementL]
+ERROR 00:26:14,326 - Name g not declared on line 16
+ERROR 00:26:14,326 - Cannot assign. Incompatible types on line 16
+INFO  00:26:14,327 - Compilation failed!

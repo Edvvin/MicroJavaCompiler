@@ -1,6 +1,7 @@
 package rs.ac.bg.etf.pp1;
 
 import java.io.File;
+import java.util.List;
 
 import rs.ac.bg.etf.pp1.MJCompiler;
 
@@ -19,8 +20,16 @@ public class MicroJava {
 		
 		MJCompiler compiler = new MJCompiler();
 		
-		compiler.compile(src, "test/program.obj");
-			
+		List<CompilerError> errors = compiler.compile(src, "test/program.obj");
+		System.out.println("Compiler Errors: ");
+		if(errors != null) {
+			for(CompilerError e : errors) {
+				System.out.println(e);
+			}
+		}
+		else {
+			System.out.println("No errors");
+		}
 	}
 
 }

@@ -1,9 +1,11 @@
 package rs.ac.bg.etf.pp1;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import org.apache.log4j.Logger;
 
+import rs.ac.bg.etf.pp1.CompilerError.CompilerErrorType;
 import rs.ac.bg.etf.pp1.ast.*;
 import rs.ac.bg.etf.pp1.ast.VisitorAdaptor;
 import rs.etf.pp1.symboltable.Tab;
@@ -31,6 +33,11 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	Struct currType = Tab.noType;
 	Struct currentYieldType = Tab.noType;
 	int nVars;
+	List<CompilerError> semErrors = new ArrayList<CompilerError>();
+	
+	public List<CompilerError> getSemErrors() {
+		return semErrors;
+	}
 
 	Logger log = Logger.getLogger(getClass());
 
@@ -41,6 +48,7 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 		if (line != 0)
 			msg.append (" on line ").append(line);
 		log.error(msg.toString());
+		semErrors.add(new CompilerError(info.getLine(), msg.toString(), CompilerErrorType.SEMANTIC_ERROR));
 	}
 
 	public void report_info(String message, SyntaxNode info) {
@@ -54,13 +62,13 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	public void visit(AstProgram program) {		
 		nVars = Tab.currentScope.getnVars();
 		if(nVars > 65536) {
-			report_error("The program has " + nVars + "global varialbes decalred. Only 65536 allowed", null);
+			report_error("The program has " + nVars + "global varialbes decalred. Only 65536 allowed", program);
 			return;
 		}
 		Tab.chainLocalSymbols(program.getProgName().obj);
 		Tab.closeScope();
 		if(!hasMain) {
-			report_error("Funcition main not defined", null);
+			report_error("Funcition main not defined", program);
 		}
 	}
 
@@ -86,7 +94,7 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 
 	public void visit(AstCnstAsgnChar cnstAsgn) {
 		if(currType != Tab.charType) {
-			report_error("Cannot assign int to given type", cnstAsgn);
+			report_error("Cannot assign char to given type", cnstAsgn);
 		}
 		Obj obj = Tab.find(cnstAsgn.getCnstName());
 		if(obj != Tab.noObj) {
@@ -101,7 +109,7 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 
 	public void visit(AstCnstAsgnBool cnstAsgn) {
 		if(currType != MJStatic.boolType) {
-			report_error("Cannot assign int to given type", cnstAsgn);
+			report_error("Cannot assign bool to given type", cnstAsgn);
 		}
 		Obj obj = Tab.find(cnstAsgn.getCnstName());
 		if(obj != Tab.noObj) {
@@ -145,7 +153,7 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	public void visit(AstType type) {
 		Obj typeNode = Tab.find(type.getTypeName());
 		if (typeNode == Tab.noObj) {
-			report_error("Type " + type.getTypeName() + " not found in symbol table", null);
+			report_error("Type " + type.getTypeName() + " not found in symbol table", type);
 			type.struct = Tab.noType;
 		} 
 		else {
@@ -163,7 +171,7 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	public void visit(AstMethDecl methodDecl) {
 		Tab.chainLocalSymbols(currentMethod);
 		if (!returnFound && currentMethod.getType() != Tab.noType) {
-			report_error("Function " + currentMethod.getName() + " does not have a return statement", null);
+			report_error("Function " + currentMethod.getName() + " does not have a return statement", methodDecl);
 		}
 		
 		if(currentMethod.getName().equals("main")) {
