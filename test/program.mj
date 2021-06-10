@@ -8,8 +8,9 @@ program MJProgram
 	}
 	
 	void main() char g[]; {
+		x = k() * 2;
+		print(x);
 		read(y);
-		x = y * 2;
 		if(x == y){
 			print(50);
 			g = new char[5];

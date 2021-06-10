@@ -1,106 +1,99 @@
-INFO  21:05:31,596 - Compiling source file: /home/edvin/Desktop/ppp/MicroJavaCompiler/test/program.mj
-INFO  21:05:31,617 - #2 program
-INFO  21:05:31,617 - #50 MJProgram
-INFO  21:05:31,617 - #50 int
-INFO  21:05:31,617 - #50 x
-INFO  21:05:31,617 - #7 ;
-INFO  21:05:31,617 - #50 int
-INFO  21:05:31,618 - #50 y
-INFO  21:05:31,618 - #7 ;
-INFO  21:05:31,618 - #3 {
-INFO  21:05:31,618 - #50 int
-INFO  21:05:31,618 - #50 k
-INFO  21:05:31,618 - #8 (
-INFO  21:05:31,618 - #9 )
-INFO  21:05:31,619 - #50 int
-INFO  21:05:31,619 - #50 c
-INFO  21:05:31,619 - #7 ;
-INFO  21:05:31,619 - #3 {
-INFO  21:05:31,619 - #50 c
-INFO  21:05:31,620 - #27 =
-INFO  21:05:31,620 - #49 1
-INFO  21:05:31,620 - #7 ;
-INFO  21:05:31,620 - #13 return
-INFO  21:05:31,620 - #50 c
-INFO  21:05:31,620 - #18 +
-INFO  21:05:31,621 - #49 2
-INFO  21:05:31,621 - #7 ;
-INFO  21:05:31,621 - #4 }
-INFO  21:05:31,621 - #14 void
-INFO  21:05:31,622 - #50 main
-INFO  21:05:31,622 - #8 (
-INFO  21:05:31,622 - #9 )
-INFO  21:05:31,622 - #50 char
-INFO  21:05:31,622 - #50 g
-INFO  21:05:31,622 - #5 [
-INFO  21:05:31,622 - #6 ]
-INFO  21:05:31,622 - #7 ;
-INFO  21:05:31,622 - #3 {
-INFO  21:05:31,622 - #50 x
-INFO  21:05:31,622 - #27 =
-INFO  21:05:31,622 - #50 k
-INFO  21:05:31,622 - #8 (
-INFO  21:05:31,623 - #9 )
-INFO  21:05:31,623 - #20 *
-INFO  21:05:31,623 - #49 2
-INFO  21:05:31,624 - #7 ;
-INFO  21:05:31,624 - #12 print
-INFO  21:05:31,624 - #8 (
-INFO  21:05:31,624 - #50 x
-INFO  21:05:31,624 - #9 )
-INFO  21:05:31,624 - #7 ;
-INFO  21:05:31,624 - #34 read
-INFO  21:05:31,624 - #8 (
-INFO  21:05:31,624 - #50 y
-INFO  21:05:31,624 - #9 )
-INFO  21:05:31,624 - #7 ;
-INFO  21:05:31,625 - #39 if
-INFO  21:05:31,625 - #8 (
-INFO  21:05:31,625 - #50 x
-INFO  21:05:31,625 - #32 ==
-INFO  21:05:31,625 - #50 y
-INFO  21:05:31,625 - #9 )
-INFO  21:05:31,626 - #3 {
-INFO  21:05:31,626 - #12 print
-INFO  21:05:31,626 - #8 (
-INFO  21:05:31,626 - #49 50
-INFO  21:05:31,626 - #9 )
-INFO  21:05:31,626 - #7 ;
-INFO  21:05:31,626 - #50 g
-INFO  21:05:31,626 - #27 =
-INFO  21:05:31,626 - #15 new
-INFO  21:05:31,626 - #50 char
-INFO  21:05:31,626 - #5 [
-INFO  21:05:31,626 - #49 5
-INFO  21:05:31,626 - #6 ]
-INFO  21:05:31,626 - #7 ;
-INFO  21:05:31,627 - #4 }
-INFO  21:05:31,627 - #36 do
-INFO  21:05:31,627 - #3 {
-INFO  21:05:31,627 - #50 y
-INFO  21:05:31,627 - #25 ++
-INFO  21:05:31,628 - #7 ;
-INFO  21:05:31,628 - #39 if
-INFO  21:05:31,628 - #8 (
-INFO  21:05:31,628 - #50 x
-INFO  21:05:31,628 - #32 ==
-INFO  21:05:31,628 - #50 k
-INFO  21:05:31,628 - #8 (
-INFO  21:05:31,628 - #9 )
-INFO  21:05:31,628 - #9 )
-INFO  21:05:31,628 - #3 {
-INFO  21:05:31,628 - #4 }
-INFO  21:05:31,628 - #4 }
-INFO  21:05:31,628 - #17 while
-INFO  21:05:31,628 - #8 (
-INFO  21:05:31,628 - #50 y
-INFO  21:05:31,629 - #30 <
-INFO  21:05:31,629 - #49 5
-INFO  21:05:31,629 - #9 )
-INFO  21:05:31,629 - #7 ;
-INFO  21:05:31,629 - #4 }
-INFO  21:05:31,629 - #4 }
-INFO  21:05:31,631 - AstProgram(
+INFO  18:36:18,096 - Compiling source file: /home/edvin/Desktop/ppp/MicroJavaCompiler/test/program.mj
+INFO  18:36:18,117 - #2 program
+INFO  18:36:18,117 - #50 MJProgram
+INFO  18:36:18,117 - #50 int
+INFO  18:36:18,118 - #50 x
+INFO  18:36:18,118 - #7 ;
+INFO  18:36:18,118 - #50 int
+INFO  18:36:18,118 - #50 y
+INFO  18:36:18,118 - #7 ;
+INFO  18:36:18,118 - #3 {
+INFO  18:36:18,118 - #50 int
+INFO  18:36:18,119 - #50 k
+INFO  18:36:18,119 - #8 (
+INFO  18:36:18,119 - #9 )
+INFO  18:36:18,119 - #50 int
+INFO  18:36:18,120 - #50 c
+INFO  18:36:18,120 - #7 ;
+INFO  18:36:18,120 - #3 {
+INFO  18:36:18,120 - #50 c
+INFO  18:36:18,120 - #27 =
+INFO  18:36:18,120 - #49 1
+INFO  18:36:18,120 - #7 ;
+INFO  18:36:18,121 - #13 return
+INFO  18:36:18,121 - #50 c
+INFO  18:36:18,121 - #18 +
+INFO  18:36:18,121 - #49 2
+INFO  18:36:18,121 - #7 ;
+INFO  18:36:18,122 - #4 }
+INFO  18:36:18,122 - #14 void
+INFO  18:36:18,122 - #50 main
+INFO  18:36:18,122 - #8 (
+INFO  18:36:18,122 - #9 )
+INFO  18:36:18,122 - #50 char
+INFO  18:36:18,122 - #50 g
+INFO  18:36:18,122 - #5 [
+INFO  18:36:18,122 - #6 ]
+INFO  18:36:18,122 - #7 ;
+INFO  18:36:18,122 - #3 {
+INFO  18:36:18,122 - #34 read
+INFO  18:36:18,123 - #8 (
+INFO  18:36:18,123 - #50 y
+INFO  18:36:18,123 - #9 )
+INFO  18:36:18,123 - #7 ;
+INFO  18:36:18,123 - #50 x
+INFO  18:36:18,123 - #27 =
+INFO  18:36:18,123 - #50 y
+INFO  18:36:18,123 - #20 *
+INFO  18:36:18,123 - #49 2
+INFO  18:36:18,124 - #7 ;
+INFO  18:36:18,124 - #39 if
+INFO  18:36:18,124 - #8 (
+INFO  18:36:18,124 - #50 x
+INFO  18:36:18,124 - #32 ==
+INFO  18:36:18,124 - #50 y
+INFO  18:36:18,124 - #9 )
+INFO  18:36:18,124 - #3 {
+INFO  18:36:18,125 - #12 print
+INFO  18:36:18,125 - #8 (
+INFO  18:36:18,125 - #49 50
+INFO  18:36:18,125 - #9 )
+INFO  18:36:18,125 - #7 ;
+INFO  18:36:18,125 - #50 g
+INFO  18:36:18,125 - #27 =
+INFO  18:36:18,125 - #15 new
+INFO  18:36:18,125 - #50 char
+INFO  18:36:18,125 - #5 [
+INFO  18:36:18,125 - #49 5
+INFO  18:36:18,125 - #6 ]
+INFO  18:36:18,125 - #7 ;
+INFO  18:36:18,125 - #4 }
+INFO  18:36:18,126 - #36 do
+INFO  18:36:18,126 - #3 {
+INFO  18:36:18,126 - #50 y
+INFO  18:36:18,126 - #25 ++
+INFO  18:36:18,126 - #7 ;
+INFO  18:36:18,126 - #39 if
+INFO  18:36:18,126 - #8 (
+INFO  18:36:18,126 - #50 x
+INFO  18:36:18,126 - #32 ==
+INFO  18:36:18,127 - #50 k
+INFO  18:36:18,127 - #8 (
+INFO  18:36:18,127 - #9 )
+INFO  18:36:18,127 - #9 )
+INFO  18:36:18,127 - #3 {
+INFO  18:36:18,128 - #4 }
+INFO  18:36:18,128 - #4 }
+INFO  18:36:18,128 - #17 while
+INFO  18:36:18,128 - #8 (
+INFO  18:36:18,128 - #50 y
+INFO  18:36:18,128 - #30 <
+INFO  18:36:18,128 - #49 5
+INFO  18:36:18,128 - #9 )
+INFO  18:36:18,128 - #7 ;
+INFO  18:36:18,128 - #4 }
+INFO  18:36:18,128 - #4 }
+INFO  18:36:18,130 - AstProgram(
   AstProgName(
    MJProgram
   ) [AstProgName]
@@ -239,66 +232,41 @@ INFO  21:05:31,631 - AstProgram(
         AstStatementL(
           AstStatementL(
             AstStatementL(
-              AstStatementL(
-                AstNoStmt(
-                ) [AstNoStmt]
-                AstDesigStmt(
-                  AstEqualStmt(
-                    AstDesig(
-                     x
-                    ) [AstDesig]
-                    AstNotTerExpr(
-                      AstPosExpr(
-                        AstTermExpr(
-                          AstTermL(
-                            AstTermOne(
-                              AstFuncCallFact(
-                                AstFuncDesig(
-                                  AstDesig(
-                                   k
-                                  ) [AstDesig]
-                                ) [AstFuncDesig]
-                                AstActualParams(
-                                  AstStartActualParams(
-                                  ) [AstStartActualParams]
-                                  AstNoActualParams(
-                                  ) [AstNoActualParams]
-                                ) [AstActualParams]
-                              ) [AstFuncCallFact]
-                            ) [AstTermOne]
-                            AstMulop(
-                            ) [AstMulop]
-                            AstFactNum(
-                             2
-                            ) [AstFactNum]
-                          ) [AstTermL]
-                        ) [AstTermExpr]
-                      ) [AstPosExpr]
-                    ) [AstNotTerExpr]
-                  ) [AstEqualStmt]
-                ) [AstDesigStmt]
-              ) [AstStatementL]
-              AstPrintStmt(
+              AstNoStmt(
+              ) [AstNoStmt]
+              AstReadStmt(
+                AstDesig(
+                 y
+                ) [AstDesig]
+              ) [AstReadStmt]
+            ) [AstStatementL]
+            AstDesigStmt(
+              AstEqualStmt(
+                AstDesig(
+                 x
+                ) [AstDesig]
                 AstNotTerExpr(
                   AstPosExpr(
                     AstTermExpr(
-                      AstTermOne(
-                        AstDesigFact(
-                          AstDesig(
-                           x
-                          ) [AstDesig]
-                        ) [AstDesigFact]
-                      ) [AstTermOne]
+                      AstTermL(
+                        AstTermOne(
+                          AstDesigFact(
+                            AstDesig(
+                             y
+                            ) [AstDesig]
+                          ) [AstDesigFact]
+                        ) [AstTermOne]
+                        AstMulop(
+                        ) [AstMulop]
+                        AstFactNum(
+                         2
+                        ) [AstFactNum]
+                      ) [AstTermL]
                     ) [AstTermExpr]
                   ) [AstPosExpr]
                 ) [AstNotTerExpr]
-              ) [AstPrintStmt]
-            ) [AstStatementL]
-            AstReadStmt(
-              AstDesig(
-               y
-              ) [AstDesig]
-            ) [AstReadStmt]
+              ) [AstEqualStmt]
+            ) [AstDesigStmt]
           ) [AstStatementL]
           AstUnmatchedIf(
             AstIfPart(
@@ -496,10 +464,10 @@ INFO  21:05:31,631 - AstProgram(
     ) [AstMethDecl]
   ) [AstMethDeclL]
 ) [AstProgram]
-INFO  21:05:31,635 - Variable declared x on line 2
-INFO  21:05:31,636 - Variable declared y on line 2
-INFO  21:05:31,636 - Function k is being defined on line 5
-INFO  21:05:31,636 - Variable declared c on line 5
-INFO  21:05:31,636 - Function mainis being defined on line 10
-INFO  21:05:31,636 - Variable Array Declared g on line 10
-INFO  21:05:31,640 - Compilation successful!
+INFO  18:36:18,134 - Variable declared x on line 2
+INFO  18:36:18,134 - Variable declared y on line 2
+INFO  18:36:18,135 - Function k is being defined on line 5
+INFO  18:36:18,135 - Variable declared c on line 5
+INFO  18:36:18,135 - Function mainis being defined on line 10
+INFO  18:36:18,135 - Variable Array Declared g on line 10
+INFO  18:36:18,138 - Compilation successful!

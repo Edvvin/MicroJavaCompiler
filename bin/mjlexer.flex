@@ -101,7 +101,7 @@ import java.util.*;
 ([a-z]|[A-Z])[a-z|A-Z|0-9|_]* 	{return new_symbol (sym.IDENT, yytext()); }
 
 . { System.err.println("Lexical error ("+yytext()+") on line "+(yyline+1) + " and column " + (yycolumn+1));
-	lexErrors.add(new CompilerError(yyline+1, "Lexical error", CompilerErrorType.LEXICAL_ERROR));
+	lexErrors.add(new CompilerError(yyline+1, "Lexical error unknown literal", CompilerErrorType.LEXICAL_ERROR));
 }
 
 

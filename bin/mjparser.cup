@@ -5,6 +5,7 @@ import org.apache.log4j.*;
 
 // import java.io.*;
 import rs.ac.bg.etf.pp1.ast.*;
+import rs.ac.bg.etf.pp1.CompilerError.CompilerErrorType;
 import java.util.*;
 
 
@@ -14,7 +15,7 @@ parser code {:
 	
 	Logger log = Logger.getLogger(getClass());
 	
-	private List<CompilerError> synErrors = new ArrayList<>();
+	public List<CompilerError> synErrors = new ArrayList<>();
    
    
     // slede redefinisani metodi za prijavu gresaka radi izmene teksta poruke
@@ -109,10 +110,14 @@ CnstAsgnList ::= (AstCnstAsgnL) CnstAsgn COMMA CnstAsgnList
 				(AstCnstAsgnOne) CnstAsgn SEMI
 				|
 				(AstCnstAsgnCommaErr) error:e COMMA
-				{: parser.report_error("Syntax Error: Bad declaration of global constant in line " + eleft + ". Recovered until ','", null); :}
+				{: 	parser.report_error("Syntax error in line " + eleft + " global constant error" + ". recovery up to ','", null); 
+					parser.synErrors.add(new CompilerError(eleft, "Bad global constant declaration error. Recovery up to ','", CompilerErrorType.SYNTAX_ERROR));
+				:}
 				|
 				(AstCnstAsgnSemiErr) error:e SEMI
-				{: parser.report_error("Syntax Error: Bad declaration of global constant in line " + eleft + ". Recovered until ';'", null); :}
+				{: 	parser.report_error("Syntax error in line " + eleft + " global constant error" + ". recovery up to ';'", null); 
+					parser.synErrors.add(new CompilerError(eleft, "Bad global constant declaration error. Recovery up to ';'", CompilerErrorType.SYNTAX_ERROR));
+				:}
 				;
 
 CnstAsgn ::= (AstCnstAsgnInt) IDENT:cnstName EQUAL	NUMBER:value 
@@ -134,10 +139,14 @@ VarAsgnList ::= (AstVarAsgnL) VarAsgnOne COMMA VarAsgnList
 					(AstVarAsgnSemi) VarAsgnOne SEMI
 					|
 					(AstVarAsgnCommaErr) error:e COMMA
-					{: parser.report_error("Syntax Error: Bad declaration of global variable in line " + eleft + ". Recovered until ','", null); :}
+					{: 	parser.report_error("Syntax error in line " + eleft + " global variable error" + ". recovery up to ','", null); 
+						parser.synErrors.add(new CompilerError(eleft, "Bad global variable declaration error. Recovery up to ','", CompilerErrorType.SYNTAX_ERROR));
+					:}
 					|
 					(AstVarAsgnSemiErr) error:e SEMI
-					{: parser.report_error("Syntax Error: Bad declaration of global variable in line " + eleft + ". Recovered until ';'", null); :}
+					{: 	parser.report_error("Syntax error in line " + eleft + " global variable error" + ". recovery up to ';'", null); 
+						parser.synErrors.add(new CompilerError(eleft, "Bad global variable declaration error. Recovery up to ';'", CompilerErrorType.SYNTAX_ERROR));
+					:}
 					;
 				
 VarAsgnOne ::= (AstVarAsgn) IDENT:varName
@@ -161,20 +170,23 @@ MethodTypeName ::= (AstMethTypeName) Type:retType IDENT:methName
 					(AstMethVoidName) VOID IDENT:methName
 					;
 
-FormalParams ::= (AstFormalParams) LPAREN FormalParamList RPAREN
-				|
-				(AstFormalParamsErr) LPAREN error:e RPAREN
-				{: parser.report_error("Syntax Error: Formal parameters invalid in line " + eleft + " Recovered until ')'", null ); :}
-				;
+FormalParams ::= (AstFormalParams) LPAREN FormalParamList ;
 
 FormalParamList ::= (AstFormalParamL) FormalParamDecl COMMA FormalParamList
 					|
 					(AstFormalParamListErr) error:e COMMA
-					{: parser.report_error("Syntax Error: Formal parameters invalid in line " + eleft + " Recovered until ','", null ); :}
+					{: 	parser.report_error("Syntax error in line " + eleft + " formal params bad" + ". recovery up to ','", null); 
+						parser.synErrors.add(new CompilerError(eleft, "Bad formal parameter. Recovery up to ','", CompilerErrorType.SYNTAX_ERROR));
+					:}
 					|
-					(AstFormalParamOne) FormalParamDecl
+					(AstFormalParamErr) error:e RPAREN
+					{: 	parser.report_error("Syntax error in line " + eleft + " formal params bad" + ". recovery up to ')'", null); 
+						parser.synErrors.add(new CompilerError(eleft, "Bad formal parameter. Recovery up to ')'", CompilerErrorType.SYNTAX_ERROR));
+					:}
 					|
-					(AstNoFormalParams) /* epsilon */
+					(AstFormalParamOne) FormalParamDecl RPAREN
+					|
+					(AstNoFormalParams) RPAREN /* epsilon */
 					;
 					
 FormalParamDecl ::= (AstFormalParamDecl) Type IDENT:paramName
@@ -199,7 +211,9 @@ DesignatorStatement ::= (AstEqualStmt) Designator EQUAL Expr
 Statement ::= (AstDesigStmt) DesignatorStatement:des SEMI 
 			  |
 			  (AstErrAssignment) Designator EQUAL error:e SEMI
-			  {: parser.report_error("Syntax Error: Bad assignment of designator in line " + eleft + ". Recovered until ';'", null ); :}
+			  {: 	parser.report_error("Syntax error in line " + eleft + " assignment error " + ". recovery up to ';'", null); 
+					parser.synErrors.add(new CompilerError(eleft, "Bad assignment statement. Recovery up to ';'", CompilerErrorType.SYNTAX_ERROR));
+			  :}
 			  |
 			  (AstPrintStmt) PRINT LPAREN Expr RPAREN SEMI 
 			  |
@@ -226,7 +240,13 @@ Statement ::= (AstDesigStmt) DesignatorStatement:des SEMI
 			  (AstStmtL) LBRACE StatementList RBRACE
 			  ;
 			  
-IfPart ::= (AstIfPart) IF LPAREN Condition RPAREN ;
+IfPart ::= (AstIfPart) IF LPAREN Condition RPAREN 
+			|
+			(AstIfPartErr) IF LPAREN error:e RPAREN
+			{: 	parser.report_error("Syntax error in line " + eleft + " condition in if is bad " + ". recovery up to ')'", null); 
+				parser.synErrors.add(new CompilerError(eleft, "Bad if condition. Recovery up to ')'", CompilerErrorType.SYNTAX_ERROR));
+			:}
+;
 
 ElsePart ::= (AstElsePart) ELSE ;
 			  

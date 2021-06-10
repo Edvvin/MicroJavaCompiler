@@ -5,6 +5,7 @@ import org.apache.log4j.*;
 
 // import java.io.*;
 import rs.ac.bg.etf.pp1.ast.*;
+import rs.ac.bg.etf.pp1.CompilerError.CompilerErrorType;
 import java.util.*;
 
 
@@ -14,7 +15,7 @@ parser code {:
 	
 	Logger log = Logger.getLogger(getClass());
 	
-	private List<CompilerError> synErrors = new ArrayList<>();
+	public List<CompilerError> synErrors = new ArrayList<>();
    
    
     // slede redefinisani metodi za prijavu gresaka radi izmene teksta poruke
@@ -135,10 +136,14 @@ CnstAsgnList ::= (AstCnstAsgnL) CnstAsgn:C1 COMMA CnstAsgnList:C2 {: RESULT=new 
 				(AstCnstAsgnOne) CnstAsgn:C1 SEMI {: RESULT=new AstCnstAsgnOne(C1); RESULT.setLine(C1left); :}
 				|
 				(AstCnstAsgnCommaErr) error:e COMMA
-				{: parser.report_error("Syntax Error: Bad declaration of global constant in line " + eleft + ". Recovered until ','", null); :} {: RESULT=new AstCnstAsgnCommaErr(); :}
+				{: 	parser.report_error("Syntax error in line " + eleft + " global constant error" + ". recovery up to ','", null); 
+					parser.synErrors.add(new CompilerError(eleft, "Bad global constant declaration error. Recovery up to ','", CompilerErrorType.SYNTAX_ERROR));
+				:} {: RESULT=new AstCnstAsgnCommaErr(); :}
 				|
 				(AstCnstAsgnSemiErr) error:e SEMI
-				{: parser.report_error("Syntax Error: Bad declaration of global constant in line " + eleft + ". Recovered until ';'", null); :} {: RESULT=new AstCnstAsgnSemiErr(); :}
+				{: 	parser.report_error("Syntax error in line " + eleft + " global constant error" + ". recovery up to ';'", null); 
+					parser.synErrors.add(new CompilerError(eleft, "Bad global constant declaration error. Recovery up to ';'", CompilerErrorType.SYNTAX_ERROR));
+				:} {: RESULT=new AstCnstAsgnSemiErr(); :}
 				;
 
 CnstAsgn ::= (AstCnstAsgnInt) IDENT:cnstName EQUAL	NUMBER:value {: RESULT=new AstCnstAsgnInt(cnstName, value); RESULT.setLine(cnstNameleft); :} 
@@ -160,10 +165,14 @@ VarAsgnList ::= (AstVarAsgnL) VarAsgnOne:V1 COMMA VarAsgnList:V2 {: RESULT=new A
 					(AstVarAsgnSemi) VarAsgnOne:V1 SEMI {: RESULT=new AstVarAsgnSemi(V1); RESULT.setLine(V1left); :}
 					|
 					(AstVarAsgnCommaErr) error:e COMMA
-					{: parser.report_error("Syntax Error: Bad declaration of global variable in line " + eleft + ". Recovered until ','", null); :} {: RESULT=new AstVarAsgnCommaErr(); :}
+					{: 	parser.report_error("Syntax error in line " + eleft + " global variable error" + ". recovery up to ','", null); 
+						parser.synErrors.add(new CompilerError(eleft, "Bad global variable declaration error. Recovery up to ','", CompilerErrorType.SYNTAX_ERROR));
+					:} {: RESULT=new AstVarAsgnCommaErr(); :}
 					|
 					(AstVarAsgnSemiErr) error:e SEMI
-					{: parser.report_error("Syntax Error: Bad declaration of global variable in line " + eleft + ". Recovered until ';'", null); :} {: RESULT=new AstVarAsgnSemiErr(); :}
+					{: 	parser.report_error("Syntax error in line " + eleft + " global variable error" + ". recovery up to ';'", null); 
+						parser.synErrors.add(new CompilerError(eleft, "Bad global variable declaration error. Recovery up to ';'", CompilerErrorType.SYNTAX_ERROR));
+					:} {: RESULT=new AstVarAsgnSemiErr(); :}
 					;
 				
 VarAsgnOne ::= (AstVarAsgn) IDENT:varName {: RESULT=new AstVarAsgn(varName); RESULT.setLine(varNameleft); :}
@@ -187,20 +196,23 @@ MethodTypeName ::= (AstMethTypeName) Type:retType IDENT:methName {: RESULT=new A
 					(AstMethVoidName) VOID IDENT:methName {: RESULT=new AstMethVoidName(methName); RESULT.setLine(methNameleft); :}
 					;
 
-FormalParams ::= (AstFormalParams) LPAREN FormalParamList:F1 RPAREN {: RESULT=new AstFormalParams(F1); RESULT.setLine(F1left); :}
-				|
-				(AstFormalParamsErr) LPAREN error:e RPAREN
-				{: parser.report_error("Syntax Error: Formal parameters invalid in line " + eleft + " Recovered until ')'", null ); :} {: RESULT=new AstFormalParamsErr(); :}
-				;
+FormalParams ::= (AstFormalParams) LPAREN FormalParamList:F1 {: RESULT=new AstFormalParams(F1); RESULT.setLine(F1left); :} ;
 
 FormalParamList ::= (AstFormalParamL) FormalParamDecl:F1 COMMA FormalParamList:F2 {: RESULT=new AstFormalParamL(F1, F2); RESULT.setLine(F1left); :}
 					|
 					(AstFormalParamListErr) error:e COMMA
-					{: parser.report_error("Syntax Error: Formal parameters invalid in line " + eleft + " Recovered until ','", null ); :} {: RESULT=new AstFormalParamListErr(); :}
+					{: 	parser.report_error("Syntax error in line " + eleft + " formal params bad" + ". recovery up to ','", null); 
+						parser.synErrors.add(new CompilerError(eleft, "Bad formal parameter. Recovery up to ','", CompilerErrorType.SYNTAX_ERROR));
+					:} {: RESULT=new AstFormalParamListErr(); :}
 					|
-					(AstFormalParamOne) FormalParamDecl:F1 {: RESULT=new AstFormalParamOne(F1); RESULT.setLine(F1left); :}
+					(AstFormalParamErr) error:e RPAREN
+					{: 	parser.report_error("Syntax error in line " + eleft + " formal params bad" + ". recovery up to ')'", null); 
+						parser.synErrors.add(new CompilerError(eleft, "Bad formal parameter. Recovery up to ')'", CompilerErrorType.SYNTAX_ERROR));
+					:} {: RESULT=new AstFormalParamErr(); :}
 					|
-					(AstNoFormalParams) {: RESULT=new AstNoFormalParams(); :} /* epsilon */
+					(AstFormalParamOne) FormalParamDecl:F1 RPAREN {: RESULT=new AstFormalParamOne(F1); RESULT.setLine(F1left); :}
+					|
+					(AstNoFormalParams) RPAREN {: RESULT=new AstNoFormalParams(); :} /* epsilon */
 					;
 					
 FormalParamDecl ::= (AstFormalParamDecl) Type:T1 IDENT:paramName {: RESULT=new AstFormalParamDecl(T1, paramName); RESULT.setLine(T1left); :}
@@ -225,7 +237,9 @@ DesignatorStatement ::= (AstEqualStmt) Designator:D1 EQUAL Expr:E2 {: RESULT=new
 Statement ::= (AstDesigStmt) DesignatorStatement:des SEMI {: RESULT=new AstDesigStmt(des); RESULT.setLine(desleft); :} 
 			  |
 			  (AstErrAssignment) Designator:D1 EQUAL error:e SEMI
-			  {: parser.report_error("Syntax Error: Bad assignment of designator in line " + eleft + ". Recovered until ';'", null ); :} {: RESULT=new AstErrAssignment(D1); RESULT.setLine(D1left); :}
+			  {: 	parser.report_error("Syntax error in line " + eleft + " assignment error " + ". recovery up to ';'", null); 
+					parser.synErrors.add(new CompilerError(eleft, "Bad assignment statement. Recovery up to ';'", CompilerErrorType.SYNTAX_ERROR));
+			  :} {: RESULT=new AstErrAssignment(D1); RESULT.setLine(D1left); :}
 			  |
 			  (AstPrintStmt) PRINT LPAREN Expr:E1 RPAREN SEMI {: RESULT=new AstPrintStmt(E1); RESULT.setLine(E1left); :} 
 			  |
@@ -252,7 +266,13 @@ Statement ::= (AstDesigStmt) DesignatorStatement:des SEMI {: RESULT=new AstDesig
 			  (AstStmtL) LBRACE StatementList:S1 RBRACE {: RESULT=new AstStmtL(S1); RESULT.setLine(S1left); :}
 			  ;
 			  
-IfPart ::= (AstIfPart) IF LPAREN Condition:C1 RPAREN {: RESULT=new AstIfPart(C1); RESULT.setLine(C1left); :} ;
+IfPart ::= (AstIfPart) IF LPAREN Condition:C1 RPAREN {: RESULT=new AstIfPart(C1); RESULT.setLine(C1left); :} 
+			|
+			(AstIfPartErr) IF LPAREN error:e RPAREN
+			{: 	parser.report_error("Syntax error in line " + eleft + " condition in if is bad " + ". recovery up to ')'", null); 
+				parser.synErrors.add(new CompilerError(eleft, "Bad if condition. Recovery up to ')'", CompilerErrorType.SYNTAX_ERROR));
+			:} {: RESULT=new AstIfPartErr(); :}
+;
 
 ElsePart ::= (AstElsePart) ELSE {: RESULT=new AstElsePart(); :} ;
 			  

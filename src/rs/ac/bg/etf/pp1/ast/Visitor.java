@@ -1,6 +1,6 @@
 // generated with ast extension for cup
 // version 0.8
-// 10/5/2021 18:33:52
+// 10/5/2021 23:27:1
 
 
 package rs.ac.bg.etf.pp1.ast;
@@ -107,6 +107,7 @@ public interface Visitor {
     public void visit(AstNoCase AstNoCase);
     public void visit(AstCaseList AstCaseList);
     public void visit(AstElsePart AstElsePart);
+    public void visit(AstIfPartErr AstIfPartErr);
     public void visit(AstIfPart AstIfPart);
     public void visit(AstStmtL AstStmtL);
     public void visit(AstDoWhile AstDoWhile);
@@ -132,9 +133,9 @@ public interface Visitor {
     public void visit(AstFormalParamDecl AstFormalParamDecl);
     public void visit(AstNoFormalParams AstNoFormalParams);
     public void visit(AstFormalParamOne AstFormalParamOne);
+    public void visit(AstFormalParamErr AstFormalParamErr);
     public void visit(AstFormalParamListErr AstFormalParamListErr);
     public void visit(AstFormalParamL AstFormalParamL);
-    public void visit(AstFormalParamsErr AstFormalParamsErr);
     public void visit(AstFormalParams AstFormalParams);
     public void visit(AstMethVoidName AstMethVoidName);
     public void visit(AstMethTypeName AstMethTypeName);
