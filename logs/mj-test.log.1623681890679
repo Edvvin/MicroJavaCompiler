@@ -1,0 +1,36 @@
+INFO  16:43:53,030 - Compiling source file: /home/edvin/Desktop/ppp/MicroJavaCompiler/test/program.mj
+INFO  16:43:53,056 - #2 program
+INFO  16:43:53,056 - #50 P
+INFO  16:43:53,056 - #10 const
+INFO  16:43:53,057 - #50 int
+INFO  16:43:53,057 - #50 size
+INFO  16:43:53,057 - #27 =
+INFO  16:43:53,057 - #49 10
+INFO  16:43:53,057 - #7 ;
+INFO  16:43:53,057 - #50 int
+INFO  16:43:53,057 - #50 pos
+INFO  16:43:53,057 - #5 [
+INFO  16:43:53,057 - #6 ]
+INFO  16:43:53,058 - #7 ;
+INFO  16:43:53,058 - #3 {
+INFO  16:43:53,058 - #14 void
+INFO  16:43:53,058 - #50 main
+INFO  16:43:53,058 - #8 (
+INFO  16:43:53,058 - #9 )
+INFO  16:43:53,059 - #50 int
+INFO  16:43:53,059 - #50 x
+INFO  16:43:53,059 - #11 ,
+INFO  16:43:53,059 - #50 i
+INFO  16:43:53,059 - #7 ;
+INFO  16:43:53,060 - #50 char
+INFO  16:43:53,060 - #50 x
+INFO  16:43:53,060 - #7 ;
+INFO  16:43:53,060 - #3 {
+INFO  16:43:53,060 - #50 x
+INFO  16:43:53,060 - #42 .
+ERROR 16:43:53,060 - 
+Sintaksna greska na liniji 9
+ERROR 16:43:53,061 - Fatalna greska, parsiranje se ne moze nastaviti na liniji 9
+INFO  16:43:53,061 - AstNoStmt(
+) [AstNoStmt]
+INFO  16:43:53,067 - Compilation failed!

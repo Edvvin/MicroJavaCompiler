@@ -80,7 +80,8 @@ nonterminal FormalParams FormalParams ;
 nonterminal FormalParamList FormalParamList;
 nonterminal FormalParamDecl FormalParamDecl;
 nonterminal ActualPars ActualPars;
-nonterminal ActualParamList ActualParamList ; 
+nonterminal ActualParamList ActualParamList;
+nonterminal OneActualParam OneActualParam ; 
 nonterminal StatementList StatementList;
 nonterminal CondFact CondFact;
 nonterminal CondTerm CondTerm;
@@ -196,7 +197,10 @@ MethodTypeName ::= (AstMethTypeName) Type:retType IDENT:methName {: RESULT=new A
 					(AstMethVoidName) VOID IDENT:methName {: RESULT=new AstMethVoidName(methName); RESULT.setLine(methNameleft); :}
 					;
 
-FormalParams ::= (AstFormalParams) LPAREN FormalParamList:F1 {: RESULT=new AstFormalParams(F1); RESULT.setLine(F1left); :} ;
+FormalParams ::= (AstFormalParams) LPAREN FormalParamList:F1 {: RESULT=new AstFormalParams(F1); RESULT.setLine(F1left); :} 
+					|
+					(AstNoFormalParams) LPAREN RPAREN {: RESULT=new AstNoFormalParams(); :}/* epsilon */
+					;
 
 FormalParamList ::= (AstFormalParamL) FormalParamDecl:F1 COMMA FormalParamList:F2 {: RESULT=new AstFormalParamL(F1, F2); RESULT.setLine(F1left); :}
 					|
@@ -211,8 +215,6 @@ FormalParamList ::= (AstFormalParamL) FormalParamDecl:F1 COMMA FormalParamList:F
 					:} {: RESULT=new AstFormalParamErr(); :}
 					|
 					(AstFormalParamOne) FormalParamDecl:F1 RPAREN {: RESULT=new AstFormalParamOne(F1); RESULT.setLine(F1left); :}
-					|
-					(AstNoFormalParams) RPAREN {: RESULT=new AstNoFormalParams(); :} /* epsilon */
 					;
 					
 FormalParamDecl ::= (AstFormalParamDecl) Type:T1 IDENT:paramName {: RESULT=new AstFormalParamDecl(T1, paramName); RESULT.setLine(T1left); :}
@@ -338,16 +340,20 @@ Factor ::= (AstFactNum) NUMBER:N1 {: RESULT=new AstFactNum(N1); RESULT.setLine(N
 		   ;
 
 ActualPars ::= (AstActualParams) ActualParsStart:A1 ActualParamList:A2 {: RESULT=new AstActualParams(A1, A2); RESULT.setLine(A1left); :} 
+				|
+				(AstNoActualParams) {: RESULT=new AstNoActualParams(); :} /* epsilon */
 			   ;
 			   
 FuncDesig ::= (AstFuncDesig) Designator:D1 {: RESULT=new AstFuncDesig(D1); RESULT.setLine(D1left); :} ;
 			   
 ActualParsStart ::= (AstStartActualParams) {: RESULT=new AstStartActualParams(); :} /* epsilon */ ;
 			   
-ActualParamList ::= (AstActualParam) Expr:E1 COMMA ActualParamList:A2 {: RESULT=new AstActualParam(E1, A2); RESULT.setLine(E1left); :}
+ActualParamList ::= (AstActualParamL) ActualParamList:A1 COMMA OneActualParam:O2 {: RESULT=new AstActualParamL(A1, O2); RESULT.setLine(A1left); :}
 					|
-					(AstNoActualParams) {: RESULT=new AstNoActualParams(); :} /* epsilon */
+					(AstActualParam) OneActualParam:O1 {: RESULT=new AstActualParam(O1); RESULT.setLine(O1left); :}
 					;
+					
+OneActualParam ::= (AstOneActualParam) Expr:E1 {: RESULT=new AstOneActualParam(E1); RESULT.setLine(E1left); :} ;
 					
 Condition ::= (AstConditionOne) CondTerm:C1 {: RESULT=new AstConditionOne(C1); RESULT.setLine(C1left); :}
 			|

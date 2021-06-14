@@ -1,6 +1,6 @@
 // generated with ast extension for cup
 // version 0.8
-// 11/5/2021 0:35:3
+// 14/5/2021 19:43:29
 
 
 package rs.ac.bg.etf.pp1.ast;
@@ -27,6 +27,7 @@ public abstract class VisitorAdaptor implements Visitor {
     public void visit(VarAsgnOne VarAsgnOne) { }
     public void visit(CaseList CaseList) { }
     public void visit(FuncDesig FuncDesig) { }
+    public void visit(OneActualParam OneActualParam) { }
     public void visit(ElsePart ElsePart) { }
     public void visit(TerQstmk TerQstmk) { }
     public void visit(DefaultBegin DefaultBegin) { }
@@ -74,10 +75,12 @@ public abstract class VisitorAdaptor implements Visitor {
     public void visit(AstCondTermOne AstCondTermOne) { visit(); }
     public void visit(AstConditionL AstConditionL) { visit(); }
     public void visit(AstConditionOne AstConditionOne) { visit(); }
-    public void visit(AstNoActualParams AstNoActualParams) { visit(); }
+    public void visit(AstOneActualParam AstOneActualParam) { visit(); }
     public void visit(AstActualParam AstActualParam) { visit(); }
+    public void visit(AstActualParamL AstActualParamL) { visit(); }
     public void visit(AstStartActualParams AstStartActualParams) { visit(); }
     public void visit(AstFuncDesig AstFuncDesig) { visit(); }
+    public void visit(AstNoActualParams AstNoActualParams) { visit(); }
     public void visit(AstActualParams AstActualParams) { visit(); }
     public void visit(AstNewArray AstNewArray) { visit(); }
     public void visit(AstFuncCallFact AstFuncCallFact) { visit(); }
@@ -131,11 +134,11 @@ public abstract class VisitorAdaptor implements Visitor {
     public void visit(AstStatementL AstStatementL) { visit(); }
     public void visit(AstFormalParamArrDecl AstFormalParamArrDecl) { visit(); }
     public void visit(AstFormalParamDecl AstFormalParamDecl) { visit(); }
-    public void visit(AstNoFormalParams AstNoFormalParams) { visit(); }
     public void visit(AstFormalParamOne AstFormalParamOne) { visit(); }
     public void visit(AstFormalParamErr AstFormalParamErr) { visit(); }
     public void visit(AstFormalParamListErr AstFormalParamListErr) { visit(); }
     public void visit(AstFormalParamL AstFormalParamL) { visit(); }
+    public void visit(AstNoFormalParams AstNoFormalParams) { visit(); }
     public void visit(AstFormalParams AstFormalParams) { visit(); }
     public void visit(AstMethVoidName AstMethVoidName) { visit(); }
     public void visit(AstMethTypeName AstMethTypeName) { visit(); }

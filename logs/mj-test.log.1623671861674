@@ -1,0 +1,328 @@
+INFO  13:04:49,201 - Compiling source file: /home/edvin/Desktop/ppp/MicroJavaCompiler/test/program.mj
+INFO  13:04:49,225 - #2 program
+INFO  13:04:49,225 - #50 test301
+INFO  13:04:49,225 - #3 {
+INFO  13:04:49,225 - #50 int
+INFO  13:04:49,226 - #50 fibonachi
+INFO  13:04:49,226 - #8 (
+INFO  13:04:49,226 - #50 int
+INFO  13:04:49,226 - #50 n
+INFO  13:04:49,226 - #9 )
+INFO  13:04:49,226 - #3 {
+INFO  13:04:49,227 - #39 if
+INFO  13:04:49,227 - #8 (
+INFO  13:04:49,227 - #50 n
+INFO  13:04:49,227 - #31 <=
+INFO  13:04:49,228 - #49 1
+INFO  13:04:49,228 - #9 )
+INFO  13:04:49,228 - #13 return
+INFO  13:04:49,229 - #50 n
+INFO  13:04:49,229 - #7 ;
+INFO  13:04:49,229 - #13 return
+INFO  13:04:49,229 - #50 fibonachi
+INFO  13:04:49,229 - #8 (
+INFO  13:04:49,229 - #50 n
+INFO  13:04:49,230 - #19 -
+INFO  13:04:49,230 - #49 1
+INFO  13:04:49,230 - #9 )
+INFO  13:04:49,230 - #18 +
+INFO  13:04:49,230 - #50 fibonachi
+INFO  13:04:49,231 - #8 (
+INFO  13:04:49,231 - #50 n
+INFO  13:04:49,231 - #19 -
+INFO  13:04:49,231 - #49 2
+INFO  13:04:49,231 - #9 )
+INFO  13:04:49,231 - #7 ;
+INFO  13:04:49,231 - #4 }
+INFO  13:04:49,231 - #14 void
+INFO  13:04:49,231 - #50 main
+INFO  13:04:49,232 - #8 (
+INFO  13:04:49,232 - #9 )
+INFO  13:04:49,232 - #50 int
+INFO  13:04:49,232 - #50 num
+INFO  13:04:49,232 - #7 ;
+INFO  13:04:49,232 - #3 {
+INFO  13:04:49,232 - #50 num
+INFO  13:04:49,232 - #27 =
+INFO  13:04:49,233 - #49 4
+INFO  13:04:49,233 - #7 ;
+INFO  13:04:49,233 - #12 print
+INFO  13:04:49,233 - #8 (
+INFO  13:04:49,233 - #50 fibonachi
+INFO  13:04:49,233 - #8 (
+INFO  13:04:49,233 - #50 num
+INFO  13:04:49,233 - #9 )
+INFO  13:04:49,233 - #9 )
+INFO  13:04:49,233 - #7 ;
+INFO  13:04:49,233 - #4 }
+INFO  13:04:49,233 - #4 }
+INFO  13:04:49,234 - AstProgram(
+  AstProgName(
+   test301
+  ) [AstProgName]
+  AstNoGlobDecl(
+  ) [AstNoGlobDecl]
+  AstMethDeclL(
+    AstMethDeclL(
+      AstNoMethodDecl(
+      ) [AstNoMethodDecl]
+      AstMethDecl(
+        AstMethTypeName(
+          AstType(
+           int
+          ) [AstType]
+         fibonachi
+        ) [AstMethTypeName]
+        AstFormalParams(
+          AstFormalParamOne(
+            AstFormalParamDecl(
+              AstType(
+               int
+              ) [AstType]
+             n
+            ) [AstFormalParamDecl]
+          ) [AstFormalParamOne]
+        ) [AstFormalParams]
+        AstNoVarDecl(
+        ) [AstNoVarDecl]
+        AstStatementL(
+          AstStatementL(
+            AstNoStmt(
+            ) [AstNoStmt]
+            AstUnmatchedIf(
+              AstIfPart(
+                AstConditionOne(
+                  AstCondTermOne(
+                    AstCondFact(
+                      AstNotTerExpr(
+                        AstPosExpr(
+                          AstTermExpr(
+                            AstTermOne(
+                              AstDesigFact(
+                                AstDesig(
+                                 n
+                                ) [AstDesig]
+                              ) [AstDesigFact]
+                            ) [AstTermOne]
+                          ) [AstTermExpr]
+                        ) [AstPosExpr]
+                      ) [AstNotTerExpr]
+                      AstLetop(
+                      ) [AstLetop]
+                      AstNotTerExpr(
+                        AstPosExpr(
+                          AstTermExpr(
+                            AstTermOne(
+                              AstFactNum(
+                               1
+                              ) [AstFactNum]
+                            ) [AstTermOne]
+                          ) [AstTermExpr]
+                        ) [AstPosExpr]
+                      ) [AstNotTerExpr]
+                    ) [AstCondFact]
+                  ) [AstCondTermOne]
+                ) [AstConditionOne]
+              ) [AstIfPart]
+              AstReturnExpr(
+                AstNotTerExpr(
+                  AstPosExpr(
+                    AstTermExpr(
+                      AstTermOne(
+                        AstDesigFact(
+                          AstDesig(
+                           n
+                          ) [AstDesig]
+                        ) [AstDesigFact]
+                      ) [AstTermOne]
+                    ) [AstTermExpr]
+                  ) [AstPosExpr]
+                ) [AstNotTerExpr]
+              ) [AstReturnExpr]
+            ) [AstUnmatchedIf]
+          ) [AstStatementL]
+          AstReturnExpr(
+            AstNotTerExpr(
+              AstPosExpr(
+                AstAddExpr(
+                  AstTermExpr(
+                    AstTermOne(
+                      AstFuncCallFact(
+                        AstFuncDesig(
+                          AstDesig(
+                           fibonachi
+                          ) [AstDesig]
+                        ) [AstFuncDesig]
+                        AstActualParams(
+                          AstStartActualParams(
+                          ) [AstStartActualParams]
+                          AstActualParam(
+                            AstOneActualParam(
+                              AstNotTerExpr(
+                                AstPosExpr(
+                                  AstAddExpr(
+                                    AstTermExpr(
+                                      AstTermOne(
+                                        AstDesigFact(
+                                          AstDesig(
+                                           n
+                                          ) [AstDesig]
+                                        ) [AstDesigFact]
+                                      ) [AstTermOne]
+                                    ) [AstTermExpr]
+                                    AstSubop(
+                                    ) [AstSubop]
+                                    AstTermOne(
+                                      AstFactNum(
+                                       1
+                                      ) [AstFactNum]
+                                    ) [AstTermOne]
+                                  ) [AstAddExpr]
+                                ) [AstPosExpr]
+                              ) [AstNotTerExpr]
+                            ) [AstOneActualParam]
+                          ) [AstActualParam]
+                        ) [AstActualParams]
+                      ) [AstFuncCallFact]
+                    ) [AstTermOne]
+                  ) [AstTermExpr]
+                  AstAddop(
+                  ) [AstAddop]
+                  AstTermOne(
+                    AstFuncCallFact(
+                      AstFuncDesig(
+                        AstDesig(
+                         fibonachi
+                        ) [AstDesig]
+                      ) [AstFuncDesig]
+                      AstActualParams(
+                        AstStartActualParams(
+                        ) [AstStartActualParams]
+                        AstActualParam(
+                          AstOneActualParam(
+                            AstNotTerExpr(
+                              AstPosExpr(
+                                AstAddExpr(
+                                  AstTermExpr(
+                                    AstTermOne(
+                                      AstDesigFact(
+                                        AstDesig(
+                                         n
+                                        ) [AstDesig]
+                                      ) [AstDesigFact]
+                                    ) [AstTermOne]
+                                  ) [AstTermExpr]
+                                  AstSubop(
+                                  ) [AstSubop]
+                                  AstTermOne(
+                                    AstFactNum(
+                                     2
+                                    ) [AstFactNum]
+                                  ) [AstTermOne]
+                                ) [AstAddExpr]
+                              ) [AstPosExpr]
+                            ) [AstNotTerExpr]
+                          ) [AstOneActualParam]
+                        ) [AstActualParam]
+                      ) [AstActualParams]
+                    ) [AstFuncCallFact]
+                  ) [AstTermOne]
+                ) [AstAddExpr]
+              ) [AstPosExpr]
+            ) [AstNotTerExpr]
+          ) [AstReturnExpr]
+        ) [AstStatementL]
+      ) [AstMethDecl]
+    ) [AstMethDeclL]
+    AstMethDecl(
+      AstMethVoidName(
+       main
+      ) [AstMethVoidName]
+      AstFormalParams(
+        AstNoFormalParams(
+        ) [AstNoFormalParams]
+      ) [AstFormalParams]
+      AstVarDeclL(
+        AstNoVarDecl(
+        ) [AstNoVarDecl]
+        AstVarDecl(
+          AstType(
+           int
+          ) [AstType]
+          AstVarAsgnSemi(
+            AstVarAsgn(
+             num
+            ) [AstVarAsgn]
+          ) [AstVarAsgnSemi]
+        ) [AstVarDecl]
+      ) [AstVarDeclL]
+      AstStatementL(
+        AstStatementL(
+          AstNoStmt(
+          ) [AstNoStmt]
+          AstDesigStmt(
+            AstEqualStmt(
+              AstDesig(
+               num
+              ) [AstDesig]
+              AstNotTerExpr(
+                AstPosExpr(
+                  AstTermExpr(
+                    AstTermOne(
+                      AstFactNum(
+                       4
+                      ) [AstFactNum]
+                    ) [AstTermOne]
+                  ) [AstTermExpr]
+                ) [AstPosExpr]
+              ) [AstNotTerExpr]
+            ) [AstEqualStmt]
+          ) [AstDesigStmt]
+        ) [AstStatementL]
+        AstPrintStmt(
+          AstNotTerExpr(
+            AstPosExpr(
+              AstTermExpr(
+                AstTermOne(
+                  AstFuncCallFact(
+                    AstFuncDesig(
+                      AstDesig(
+                       fibonachi
+                      ) [AstDesig]
+                    ) [AstFuncDesig]
+                    AstActualParams(
+                      AstStartActualParams(
+                      ) [AstStartActualParams]
+                      AstActualParam(
+                        AstOneActualParam(
+                          AstNotTerExpr(
+                            AstPosExpr(
+                              AstTermExpr(
+                                AstTermOne(
+                                  AstDesigFact(
+                                    AstDesig(
+                                     num
+                                    ) [AstDesig]
+                                  ) [AstDesigFact]
+                                ) [AstTermOne]
+                              ) [AstTermExpr]
+                            ) [AstPosExpr]
+                          ) [AstNotTerExpr]
+                        ) [AstOneActualParam]
+                      ) [AstActualParam]
+                    ) [AstActualParams]
+                  ) [AstFuncCallFact]
+                ) [AstTermOne]
+              ) [AstTermExpr]
+            ) [AstPosExpr]
+          ) [AstNotTerExpr]
+        ) [AstPrintStmt]
+      ) [AstStatementL]
+    ) [AstMethDecl]
+  ) [AstMethDeclL]
+) [AstProgram]
+INFO  13:04:49,241 - Function fibonachi is being defined on line 6
+INFO  13:04:49,241 - Variable declared n on line 6
+INFO  13:04:49,241 - Function mainis being defined on line 12
+INFO  13:04:49,241 - Variable declared num on line 13
+INFO  13:04:49,244 - Compilation successful!

@@ -2,6 +2,7 @@ package rs.ac.bg.etf.pp1;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Stack;
 
 import org.apache.log4j.Logger;
 
@@ -19,8 +20,8 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	boolean errorDetected = false;
 	int printCallCount = 0;
 	Obj currentMethod = null;
-	Obj currentCall = null;
-	ArrayList<AstActualParam> currentCallList = new ArrayList<AstActualParam>();
+	Stack<Obj> currentCall = new Stack<>();
+	Stack<ArrayList<AstOneActualParam>> currentCallList = new Stack<>();
 	MJStatic.RelOpType currentRelOp = MJStatic.RelOpType.EQ;
 	boolean returnFound = false;
 	boolean hasMain = false;
@@ -86,8 +87,8 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 			report_error("Name " + cnstAsgn.getCnstName() + " already taken", cnstAsgn);
 		}
 		else {
+			obj = Tab.insert(Obj.Con, cnstAsgn.getCnstName(), currType);
 			obj.setAdr(cnstAsgn.getValue());
-			Tab.insert(Obj.Con, cnstAsgn.getCnstName(), currType);
 			report_info("Constant declared "+ cnstAsgn.getCnstName(), cnstAsgn);
 		}
 	}
@@ -101,8 +102,8 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 			report_error("Name " + cnstAsgn.getCnstName() + " already taken", cnstAsgn);
 		}
 		else {
+			obj = Tab.insert(Obj.Con, cnstAsgn.getCnstName(), currType);
 			obj.setAdr(Character.getNumericValue(cnstAsgn.getValue().charValue()));
-			Tab.insert(Obj.Con, cnstAsgn.getCnstName(), currType);
 			report_info("Constant declared "+ cnstAsgn.getCnstName(), cnstAsgn);
 		}
 	}
@@ -116,13 +117,13 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 			report_error("Name " + cnstAsgn.getCnstName() + " already taken", cnstAsgn);
 		}
 		else {
+			obj = Tab.insert(Obj.Con, cnstAsgn.getCnstName(), currType);
 			if(cnstAsgn.getValue().equals("true")) {
 				obj.setAdr(1);
 			}
 			else {
 				obj.setAdr(0);
 			}
-			Tab.insert(Obj.Con, cnstAsgn.getCnstName(), currType);
 			report_info("Constant declared "+ cnstAsgn.getCnstName(), cnstAsgn);
 		}
 	}
@@ -195,6 +196,9 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	}
 
 	public void visit(AstMethTypeName methodTypeName) {
+		returnFound = false;
+		currentMethod = null;
+		paramCnt = 0;
 		Obj obj = Tab.find(methodTypeName.getMethName());
 		if(obj != Tab.noObj) {
 			report_error("Name " + methodTypeName.getMethName() + " already taken", methodTypeName);
@@ -208,6 +212,9 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	}
 
 	public void visit(AstMethVoidName methodTypeName) {
+		returnFound = false;
+		currentMethod = null;
+		paramCnt = 0;
 		Obj obj = Tab.find(methodTypeName.getMethName());
 		if(obj != Tab.noObj) {
 			report_error("Name " + methodTypeName.getMethName() + " already taken", methodTypeName);
@@ -218,6 +225,14 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 			Tab.openScope();
 			report_info("Function " + methodTypeName.getMethName() + "is being defined", methodTypeName);
 		}
+	}
+	
+	public void visit(AstFormalParams p) {
+		currentMethod.setLevel(paramCnt);
+	}
+	
+	public void visit(AstNoFormalParams np) {
+		currentMethod.setLevel(0);
 	}
 	
 	public void visit(AstFormalParamDecl formalParam) {
@@ -240,7 +255,7 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 		else {
 			Tab.insert(Obj.Var, formalParam.getParamName(), new Struct(Struct.Array, currType));
 			paramCnt++;
-			report_info("Variable declared "+ formalParam.getParamName(), formalParam);
+			report_info("Array declared "+ formalParam.getParamName(), formalParam);
 		}
 	}
 
@@ -275,14 +290,15 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	}
 	
 	public void visit(AstFuncDesig fd) {
-		currentCall = fd.getDesignator().obj;
-		fd.obj = currentCall;
+		currentCall.push(fd.getDesignator().obj);
+		fd.obj = currentCall.peek();
 	}
 	
 	public void visit(AstFuncCallStmt callStmt) {
-		if(currentCall.getKind() != Obj.Meth) {
+		if(currentCall.peek().getKind() != Obj.Meth) {
 			report_error("Designator must be a function", callStmt);
 		}
+		currentCall.pop();
 	}
 	
 	public void visit(AstDoPart doPart) {
@@ -434,29 +450,36 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	}
 	
 	public void visit(AstStartActualParams actStart) {
-		currentCallList = new ArrayList<>();
+		currentCallList.push(new ArrayList<>());
 	}
 	
-	public void visit(AstActualParam actParam) {
-		currentCallList.add(actParam);
+	public void visit(AstOneActualParam actParam) {
+		currentCallList.peek().add(actParam);
 	}
 	
 	public void visit(AstActualParams actualParams) {
-		if(currentCallList.size() != currentCall.getLevel()) {
+		if(currentCallList.peek().size() != currentCall.peek().getLevel()) {
 			report_error("The number of actual parameters does not match the number of the formal parameters", actualParams);
 		}
 		else {
 			int i = 0;
-			Collection<Obj> formalParams = currentCall.getLocalSymbols();
+			Collection<Obj> formalParams = currentCall.peek().getLocalSymbols();
 			for(Obj o : formalParams) {
-				if(i >= currentCall.getLevel())
+				if(i >= currentCall.peek().getLevel())
 					break;
-				if(!currentCallList.get(i).getExpr().struct.assignableTo(o.getType())) {
-					report_error("Actual parameter is not assignable to formal parameter", currentCallList.get(i));
+				if(!currentCallList.peek().get(i).getExpr().struct.assignableTo(o.getType())) {
+					report_error("Actual parameter is not assignable to formal parameter", currentCallList.peek().get(i));
 				}
 				i++;
 			}
 		
+		}
+		currentCallList.pop();
+	}
+	
+	public void visit(AstNoActualParams noact) {
+		if(currentCall.peek().getLevel() > 0) {
+			report_error("The number of actual parameters does not match the number of the formal parameters", noact);
 		}
 	}
 	
@@ -569,10 +592,11 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	}
 
 	public void visit(AstFuncCallFact callFact) {
-		if(currentCall.getKind() != Obj.Meth) {
+		if(currentCall.peek().getKind() != Obj.Meth) {
 			report_error("Designator must be a function", callFact);
 		}
-		callFact.struct = currentCall.getType();
+		callFact.struct = currentCall.peek().getType();
+		currentCall.pop();
 	}
 	
 	public void visit(AstNewArray newArray) {
@@ -591,6 +615,8 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	}
 	
 	public void visit(AstIndexDesig indexDesig) {
+		if(indexDesig.getDesignator().obj == null)
+			return;
 		if(indexDesig.getDesignator().obj.getType().getKind() != Struct.Array) {
 			report_error("Designator being indexed must be an array", indexDesig);
 		}

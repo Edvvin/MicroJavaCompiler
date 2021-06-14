@@ -1,11 +1,11 @@
 // generated with ast extension for cup
 // version 0.8
-// 11/5/2021 0:35:3
+// 14/5/2021 19:43:29
 
 
 package rs.ac.bg.etf.pp1.ast;
 
-public class AstNoFormalParams extends FormalParamList {
+public class AstNoFormalParams extends FormalParams {
 
     public AstNoFormalParams () {
     }

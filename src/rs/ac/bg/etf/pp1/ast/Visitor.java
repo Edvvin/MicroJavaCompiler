@@ -1,6 +1,6 @@
 // generated with ast extension for cup
 // version 0.8
-// 11/5/2021 0:35:3
+// 14/5/2021 19:43:29
 
 
 package rs.ac.bg.etf.pp1.ast;
@@ -27,6 +27,7 @@ public interface Visitor {
     public void visit(VarAsgnOne VarAsgnOne);
     public void visit(CaseList CaseList);
     public void visit(FuncDesig FuncDesig);
+    public void visit(OneActualParam OneActualParam);
     public void visit(ElsePart ElsePart);
     public void visit(TerQstmk TerQstmk);
     public void visit(DefaultBegin DefaultBegin);
@@ -74,10 +75,12 @@ public interface Visitor {
     public void visit(AstCondTermOne AstCondTermOne);
     public void visit(AstConditionL AstConditionL);
     public void visit(AstConditionOne AstConditionOne);
-    public void visit(AstNoActualParams AstNoActualParams);
+    public void visit(AstOneActualParam AstOneActualParam);
     public void visit(AstActualParam AstActualParam);
+    public void visit(AstActualParamL AstActualParamL);
     public void visit(AstStartActualParams AstStartActualParams);
     public void visit(AstFuncDesig AstFuncDesig);
+    public void visit(AstNoActualParams AstNoActualParams);
     public void visit(AstActualParams AstActualParams);
     public void visit(AstNewArray AstNewArray);
     public void visit(AstFuncCallFact AstFuncCallFact);
@@ -131,11 +134,11 @@ public interface Visitor {
     public void visit(AstStatementL AstStatementL);
     public void visit(AstFormalParamArrDecl AstFormalParamArrDecl);
     public void visit(AstFormalParamDecl AstFormalParamDecl);
-    public void visit(AstNoFormalParams AstNoFormalParams);
     public void visit(AstFormalParamOne AstFormalParamOne);
     public void visit(AstFormalParamErr AstFormalParamErr);
     public void visit(AstFormalParamListErr AstFormalParamListErr);
     public void visit(AstFormalParamL AstFormalParamL);
+    public void visit(AstNoFormalParams AstNoFormalParams);
     public void visit(AstFormalParams AstFormalParams);
     public void visit(AstMethVoidName AstMethVoidName);
     public void visit(AstMethTypeName AstMethTypeName);

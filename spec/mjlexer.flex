@@ -40,6 +40,8 @@ import java.util.*;
 "\b" 	{ }
 "\t" 	{ }
 "\r\n" 	{ }
+"\n" 	{ }
+"\r"	{ }
 "\f" 	{ }
 
 "program"   { return new_symbol(sym.PROG, yytext()); }
@@ -103,10 +105,3 @@ import java.util.*;
 . { System.err.println("Lexical error ("+yytext()+") on line "+(yyline+1) + " and column " + (yycolumn+1));
 	lexErrors.add(new CompilerError(yyline+1, "Lexical error unknown literal", CompilerErrorType.LEXICAL_ERROR));
 }
-
-
-
-
-
-
-

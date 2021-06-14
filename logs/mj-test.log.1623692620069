@@ -1,0 +1,490 @@
+INFO  17:49:46,684 - Compiling source file: /home/edvin/Desktop/ppp/MicroJavaCompiler/test/program.mj
+INFO  17:49:46,707 - #2 program
+INFO  17:49:46,707 - #50 P
+INFO  17:49:46,707 - #10 const
+INFO  17:49:46,708 - #50 int
+INFO  17:49:46,708 - #50 size
+INFO  17:49:46,708 - #27 =
+INFO  17:49:46,708 - #49 10
+INFO  17:49:46,708 - #7 ;
+INFO  17:49:46,708 - #50 int
+INFO  17:49:46,709 - #50 pos
+INFO  17:49:46,709 - #5 [
+INFO  17:49:46,709 - #6 ]
+INFO  17:49:46,709 - #7 ;
+INFO  17:49:46,709 - #3 {
+INFO  17:49:46,709 - #14 void
+INFO  17:49:46,709 - #50 main
+INFO  17:49:46,710 - #8 (
+INFO  17:49:46,710 - #9 )
+INFO  17:49:46,710 - #50 int
+INFO  17:49:46,711 - #50 i
+INFO  17:49:46,711 - #7 ;
+INFO  17:49:46,711 - #50 int
+INFO  17:49:46,711 - #50 x
+INFO  17:49:46,711 - #7 ;
+INFO  17:49:46,711 - #3 {
+INFO  17:49:46,711 - #50 x
+INFO  17:49:46,712 - #27 =
+INFO  17:49:46,712 - #49 1
+INFO  17:49:46,712 - #7 ;
+INFO  17:49:46,712 - #50 pos
+INFO  17:49:46,713 - #27 =
+INFO  17:49:46,713 - #15 new
+INFO  17:49:46,713 - #50 int
+INFO  17:49:46,713 - #5 [
+INFO  17:49:46,713 - #50 size
+INFO  17:49:46,713 - #6 ]
+INFO  17:49:46,713 - #7 ;
+INFO  17:49:46,713 - #50 i
+INFO  17:49:46,713 - #27 =
+INFO  17:49:46,713 - #49 0
+INFO  17:49:46,714 - #7 ;
+INFO  17:49:46,714 - #36 do
+INFO  17:49:46,714 - #3 {
+INFO  17:49:46,714 - #12 print
+INFO  17:49:46,715 - #8 (
+INFO  17:49:46,715 - #50 i
+INFO  17:49:46,715 - #9 )
+INFO  17:49:46,715 - #7 ;
+INFO  17:49:46,715 - #50 pos
+INFO  17:49:46,715 - #5 [
+INFO  17:49:46,715 - #50 i
+INFO  17:49:46,715 - #6 ]
+INFO  17:49:46,715 - #27 =
+INFO  17:49:46,716 - #49 0
+INFO  17:49:46,716 - #7 ;
+INFO  17:49:46,716 - #50 i
+INFO  17:49:46,716 - #25 ++
+INFO  17:49:46,716 - #7 ;
+INFO  17:49:46,716 - #4 }
+INFO  17:49:46,716 - #17 while
+INFO  17:49:46,716 - #8 (
+INFO  17:49:46,716 - #50 i
+INFO  17:49:46,716 - #30 <
+INFO  17:49:46,717 - #50 size
+INFO  17:49:46,717 - #9 )
+INFO  17:49:46,717 - #7 ;
+INFO  17:49:46,717 - #34 read
+INFO  17:49:46,718 - #8 (
+INFO  17:49:46,718 - #50 x
+INFO  17:49:46,718 - #9 )
+INFO  17:49:46,718 - #7 ;
+INFO  17:49:46,718 - #36 do
+INFO  17:49:46,718 - #3 {
+INFO  17:49:46,718 - #39 if
+INFO  17:49:46,718 - #8 (
+INFO  17:49:46,718 - #50 x
+INFO  17:49:46,718 - #30 <
+INFO  17:49:46,718 - #50 size
+INFO  17:49:46,718 - #9 )
+INFO  17:49:46,718 - #3 {
+INFO  17:49:46,718 - #50 pos
+INFO  17:49:46,719 - #5 [
+INFO  17:49:46,719 - #50 x
+INFO  17:49:46,719 - #6 ]
+INFO  17:49:46,719 - #25 ++
+INFO  17:49:46,719 - #7 ;
+INFO  17:49:46,719 - #4 }
+INFO  17:49:46,719 - #34 read
+INFO  17:49:46,719 - #8 (
+INFO  17:49:46,719 - #50 x
+INFO  17:49:46,719 - #9 )
+INFO  17:49:46,719 - #7 ;
+INFO  17:49:46,719 - #4 }
+INFO  17:49:46,719 - #17 while
+INFO  17:49:46,719 - #8 (
+INFO  17:49:46,719 - #50 x
+INFO  17:49:46,719 - #29 >=
+INFO  17:49:46,719 - #49 0
+INFO  17:49:46,720 - #9 )
+INFO  17:49:46,720 - #7 ;
+INFO  17:49:46,720 - #4 }
+INFO  17:49:46,720 - #4 }
+INFO  17:49:46,721 - AstProgram(
+  AstProgName(
+   P
+  ) [AstProgName]
+  AstGlobDeclL(
+    AstGlobDeclL(
+      AstNoGlobDecl(
+      ) [AstNoGlobDecl]
+      AstGlobCnstDecl(
+        AstCnstDecl(
+          AstType(
+           int
+          ) [AstType]
+          AstCnstAsgnOne(
+            AstCnstAsgnInt(
+             size
+             10
+            ) [AstCnstAsgnInt]
+          ) [AstCnstAsgnOne]
+        ) [AstCnstDecl]
+      ) [AstGlobCnstDecl]
+    ) [AstGlobDeclL]
+    AstGlobVarDecl(
+      AstVarDecl(
+        AstType(
+         int
+        ) [AstType]
+        AstVarAsgnSemi(
+          AstVarArrAsgn(
+           pos
+          ) [AstVarArrAsgn]
+        ) [AstVarAsgnSemi]
+      ) [AstVarDecl]
+    ) [AstGlobVarDecl]
+  ) [AstGlobDeclL]
+  AstMethDeclL(
+    AstNoMethodDecl(
+    ) [AstNoMethodDecl]
+    AstMethDecl(
+      AstMethVoidName(
+       main
+      ) [AstMethVoidName]
+      AstNoFormalParams(
+      ) [AstNoFormalParams]
+      AstVarDeclL(
+        AstVarDeclL(
+          AstNoVarDecl(
+          ) [AstNoVarDecl]
+          AstVarDecl(
+            AstType(
+             int
+            ) [AstType]
+            AstVarAsgnSemi(
+              AstVarAsgn(
+               i
+              ) [AstVarAsgn]
+            ) [AstVarAsgnSemi]
+          ) [AstVarDecl]
+        ) [AstVarDeclL]
+        AstVarDecl(
+          AstType(
+           int
+          ) [AstType]
+          AstVarAsgnSemi(
+            AstVarAsgn(
+             x
+            ) [AstVarAsgn]
+          ) [AstVarAsgnSemi]
+        ) [AstVarDecl]
+      ) [AstVarDeclL]
+      AstStatementL(
+        AstStatementL(
+          AstStatementL(
+            AstStatementL(
+              AstStatementL(
+                AstStatementL(
+                  AstNoStmt(
+                  ) [AstNoStmt]
+                  AstDesigStmt(
+                    AstEqualStmt(
+                      AstDesig(
+                       x
+                      ) [AstDesig]
+                      AstNotTerExpr(
+                        AstPosExpr(
+                          AstTermExpr(
+                            AstTermOne(
+                              AstFactNum(
+                               1
+                              ) [AstFactNum]
+                            ) [AstTermOne]
+                          ) [AstTermExpr]
+                        ) [AstPosExpr]
+                      ) [AstNotTerExpr]
+                    ) [AstEqualStmt]
+                  ) [AstDesigStmt]
+                ) [AstStatementL]
+                AstDesigStmt(
+                  AstEqualStmt(
+                    AstDesig(
+                     pos
+                    ) [AstDesig]
+                    AstNotTerExpr(
+                      AstPosExpr(
+                        AstTermExpr(
+                          AstTermOne(
+                            AstNewArray(
+                              AstType(
+                               int
+                              ) [AstType]
+                              AstNotTerExpr(
+                                AstPosExpr(
+                                  AstTermExpr(
+                                    AstTermOne(
+                                      AstDesigFact(
+                                        AstDesig(
+                                         size
+                                        ) [AstDesig]
+                                      ) [AstDesigFact]
+                                    ) [AstTermOne]
+                                  ) [AstTermExpr]
+                                ) [AstPosExpr]
+                              ) [AstNotTerExpr]
+                            ) [AstNewArray]
+                          ) [AstTermOne]
+                        ) [AstTermExpr]
+                      ) [AstPosExpr]
+                    ) [AstNotTerExpr]
+                  ) [AstEqualStmt]
+                ) [AstDesigStmt]
+              ) [AstStatementL]
+              AstDesigStmt(
+                AstEqualStmt(
+                  AstDesig(
+                   i
+                  ) [AstDesig]
+                  AstNotTerExpr(
+                    AstPosExpr(
+                      AstTermExpr(
+                        AstTermOne(
+                          AstFactNum(
+                           0
+                          ) [AstFactNum]
+                        ) [AstTermOne]
+                      ) [AstTermExpr]
+                    ) [AstPosExpr]
+                  ) [AstNotTerExpr]
+                ) [AstEqualStmt]
+              ) [AstDesigStmt]
+            ) [AstStatementL]
+            AstDoWhile(
+              AstDoPart(
+              ) [AstDoPart]
+              AstStmtL(
+                AstStatementL(
+                  AstStatementL(
+                    AstStatementL(
+                      AstNoStmt(
+                      ) [AstNoStmt]
+                      AstPrintStmt(
+                        AstNotTerExpr(
+                          AstPosExpr(
+                            AstTermExpr(
+                              AstTermOne(
+                                AstDesigFact(
+                                  AstDesig(
+                                   i
+                                  ) [AstDesig]
+                                ) [AstDesigFact]
+                              ) [AstTermOne]
+                            ) [AstTermExpr]
+                          ) [AstPosExpr]
+                        ) [AstNotTerExpr]
+                      ) [AstPrintStmt]
+                    ) [AstStatementL]
+                    AstDesigStmt(
+                      AstEqualStmt(
+                        AstIndexDesig(
+                          AstDesig(
+                           pos
+                          ) [AstDesig]
+                          AstNotTerExpr(
+                            AstPosExpr(
+                              AstTermExpr(
+                                AstTermOne(
+                                  AstDesigFact(
+                                    AstDesig(
+                                     i
+                                    ) [AstDesig]
+                                  ) [AstDesigFact]
+                                ) [AstTermOne]
+                              ) [AstTermExpr]
+                            ) [AstPosExpr]
+                          ) [AstNotTerExpr]
+                        ) [AstIndexDesig]
+                        AstNotTerExpr(
+                          AstPosExpr(
+                            AstTermExpr(
+                              AstTermOne(
+                                AstFactNum(
+                                 0
+                                ) [AstFactNum]
+                              ) [AstTermOne]
+                            ) [AstTermExpr]
+                          ) [AstPosExpr]
+                        ) [AstNotTerExpr]
+                      ) [AstEqualStmt]
+                    ) [AstDesigStmt]
+                  ) [AstStatementL]
+                  AstDesigStmt(
+                    AstIncStmt(
+                      AstDesig(
+                       i
+                      ) [AstDesig]
+                    ) [AstIncStmt]
+                  ) [AstDesigStmt]
+                ) [AstStatementL]
+              ) [AstStmtL]
+              AstConditionOne(
+                AstCondTermOne(
+                  AstCondFact(
+                    AstNotTerExpr(
+                      AstPosExpr(
+                        AstTermExpr(
+                          AstTermOne(
+                            AstDesigFact(
+                              AstDesig(
+                               i
+                              ) [AstDesig]
+                            ) [AstDesigFact]
+                          ) [AstTermOne]
+                        ) [AstTermExpr]
+                      ) [AstPosExpr]
+                    ) [AstNotTerExpr]
+                    AstLtop(
+                    ) [AstLtop]
+                    AstNotTerExpr(
+                      AstPosExpr(
+                        AstTermExpr(
+                          AstTermOne(
+                            AstDesigFact(
+                              AstDesig(
+                               size
+                              ) [AstDesig]
+                            ) [AstDesigFact]
+                          ) [AstTermOne]
+                        ) [AstTermExpr]
+                      ) [AstPosExpr]
+                    ) [AstNotTerExpr]
+                  ) [AstCondFact]
+                ) [AstCondTermOne]
+              ) [AstConditionOne]
+            ) [AstDoWhile]
+          ) [AstStatementL]
+          AstReadStmt(
+            AstDesig(
+             x
+            ) [AstDesig]
+          ) [AstReadStmt]
+        ) [AstStatementL]
+        AstDoWhile(
+          AstDoPart(
+          ) [AstDoPart]
+          AstStmtL(
+            AstStatementL(
+              AstStatementL(
+                AstNoStmt(
+                ) [AstNoStmt]
+                AstUnmatchedIf(
+                  AstIfPart(
+                    AstConditionOne(
+                      AstCondTermOne(
+                        AstCondFact(
+                          AstNotTerExpr(
+                            AstPosExpr(
+                              AstTermExpr(
+                                AstTermOne(
+                                  AstDesigFact(
+                                    AstDesig(
+                                     x
+                                    ) [AstDesig]
+                                  ) [AstDesigFact]
+                                ) [AstTermOne]
+                              ) [AstTermExpr]
+                            ) [AstPosExpr]
+                          ) [AstNotTerExpr]
+                          AstLtop(
+                          ) [AstLtop]
+                          AstNotTerExpr(
+                            AstPosExpr(
+                              AstTermExpr(
+                                AstTermOne(
+                                  AstDesigFact(
+                                    AstDesig(
+                                     size
+                                    ) [AstDesig]
+                                  ) [AstDesigFact]
+                                ) [AstTermOne]
+                              ) [AstTermExpr]
+                            ) [AstPosExpr]
+                          ) [AstNotTerExpr]
+                        ) [AstCondFact]
+                      ) [AstCondTermOne]
+                    ) [AstConditionOne]
+                  ) [AstIfPart]
+                  AstStmtL(
+                    AstStatementL(
+                      AstNoStmt(
+                      ) [AstNoStmt]
+                      AstDesigStmt(
+                        AstIncStmt(
+                          AstIndexDesig(
+                            AstDesig(
+                             pos
+                            ) [AstDesig]
+                            AstNotTerExpr(
+                              AstPosExpr(
+                                AstTermExpr(
+                                  AstTermOne(
+                                    AstDesigFact(
+                                      AstDesig(
+                                       x
+                                      ) [AstDesig]
+                                    ) [AstDesigFact]
+                                  ) [AstTermOne]
+                                ) [AstTermExpr]
+                              ) [AstPosExpr]
+                            ) [AstNotTerExpr]
+                          ) [AstIndexDesig]
+                        ) [AstIncStmt]
+                      ) [AstDesigStmt]
+                    ) [AstStatementL]
+                  ) [AstStmtL]
+                ) [AstUnmatchedIf]
+              ) [AstStatementL]
+              AstReadStmt(
+                AstDesig(
+                 x
+                ) [AstDesig]
+              ) [AstReadStmt]
+            ) [AstStatementL]
+          ) [AstStmtL]
+          AstConditionOne(
+            AstCondTermOne(
+              AstCondFact(
+                AstNotTerExpr(
+                  AstPosExpr(
+                    AstTermExpr(
+                      AstTermOne(
+                        AstDesigFact(
+                          AstDesig(
+                           x
+                          ) [AstDesig]
+                        ) [AstDesigFact]
+                      ) [AstTermOne]
+                    ) [AstTermExpr]
+                  ) [AstPosExpr]
+                ) [AstNotTerExpr]
+                AstGetop(
+                ) [AstGetop]
+                AstNotTerExpr(
+                  AstPosExpr(
+                    AstTermExpr(
+                      AstTermOne(
+                        AstFactNum(
+                         0
+                        ) [AstFactNum]
+                      ) [AstTermOne]
+                    ) [AstTermExpr]
+                  ) [AstPosExpr]
+                ) [AstNotTerExpr]
+              ) [AstCondFact]
+            ) [AstCondTermOne]
+          ) [AstConditionOne]
+        ) [AstDoWhile]
+      ) [AstStatementL]
+    ) [AstMethDecl]
+  ) [AstMethDeclL]
+) [AstProgram]
+INFO  17:49:46,726 - Constant declared size on line 2
+INFO  17:49:46,726 - Variable Array Declared pos on line 3
+INFO  17:49:46,726 - Function mainis being defined on line 5
+INFO  17:49:46,726 - Variable declared i on line 6
+INFO  17:49:46,726 - Variable declared x on line 7
+INFO  17:49:46,727 - Accessing element from pos on line 14
+INFO  17:49:46,727 - Accessing element from pos on line 21
+INFO  17:49:46,731 - Compilation successful!

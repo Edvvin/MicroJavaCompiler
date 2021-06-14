@@ -75,7 +75,7 @@ terminal Character CHAR ;
 terminal String BOOL ;
 
 nonterminal MethodDeclList, VarDecl, FormalParams ;
-nonterminal FormalParamList, FormalParamDecl, ActualPars, ActualParamList ; 
+nonterminal FormalParamList, FormalParamDecl, ActualPars, ActualParamList, OneActualParam ; 
 nonterminal StatementList, CondFact, CondTerm, Statement ;
 nonterminal DesignatorStatement, Addop, Mulop, Relop ;
 nonterminal GlobDeclList, Decl, CnstDecl, CnstAsgnList ; 
@@ -170,7 +170,10 @@ MethodTypeName ::= (AstMethTypeName) Type:retType IDENT:methName
 					(AstMethVoidName) VOID IDENT:methName
 					;
 
-FormalParams ::= (AstFormalParams) LPAREN FormalParamList ;
+FormalParams ::= (AstFormalParams) LPAREN FormalParamList 
+					|
+					(AstNoFormalParams) LPAREN RPAREN/* epsilon */
+					;
 
 FormalParamList ::= (AstFormalParamL) FormalParamDecl COMMA FormalParamList
 					|
@@ -185,8 +188,6 @@ FormalParamList ::= (AstFormalParamL) FormalParamDecl COMMA FormalParamList
 					:}
 					|
 					(AstFormalParamOne) FormalParamDecl RPAREN
-					|
-					(AstNoFormalParams) RPAREN /* epsilon */
 					;
 					
 FormalParamDecl ::= (AstFormalParamDecl) Type IDENT:paramName
@@ -312,16 +313,20 @@ Factor ::= (AstFactNum) NUMBER
 		   ;
 
 ActualPars ::= (AstActualParams) ActualParsStart ActualParamList 
+				|
+				(AstNoActualParams) /* epsilon */
 			   ;
 			   
 FuncDesig ::= (AstFuncDesig) Designator ;
 			   
 ActualParsStart ::= (AstStartActualParams) /* epsilon */ ;
 			   
-ActualParamList ::= (AstActualParam) Expr COMMA ActualParamList
+ActualParamList ::= (AstActualParamL) ActualParamList COMMA OneActualParam
 					|
-					(AstNoActualParams) /* epsilon */
+					(AstActualParam) OneActualParam
 					;
+					
+OneActualParam ::= (AstOneActualParam) Expr ;
 					
 Condition ::= (AstConditionOne) CondTerm
 			|

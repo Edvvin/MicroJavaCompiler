@@ -24,7 +24,6 @@ public class CodeGenerator extends VisitorAdaptor {
 	private Stack<ArrayList<Integer>> breaks = new Stack<>();
 	private Stack<Integer> ter1Exit = new Stack<>();
 	private Stack<Integer> ter2Exit = new Stack<>();
-	private int terAdrJmp = 0;
 
 	
 	public int getMainPc() {
@@ -244,15 +243,27 @@ public class CodeGenerator extends VisitorAdaptor {
 	}
 	
 	public void visit(AstDesig designator){
-		SyntaxNode parent = designator.getParent();
+		SyntaxNode p = designator.getParent();
 		
-		if(AstFuncCallFact.class != parent.getParent().getClass()
-			&& AstFuncCallStmt.class != parent.getParent().getClass() 
-			&& AstReadStmt.class != parent.getClass() 
-			&& AstEqualStmt.class != parent.getClass()
+		if(AstFuncCallFact.class != p.getParent().getClass()
+			&& AstFuncCallStmt.class != p.getParent().getClass() 
+			&& AstReadStmt.class != p.getClass() 
+			&& AstEqualStmt.class != p.getClass()
 			)
 		{
 			Code.load(designator.obj);
+		}
+	}
+	
+	public void visit(AstIndexDesig indDesig) {
+		SyntaxNode p = indDesig.getParent();
+
+		if(AstReadStmt.class != p.getClass() 
+			&& AstEqualStmt.class != p.getClass()
+			)
+		{
+			Code.put(Code.dup2);
+			Code.load(indDesig.obj);
 		}
 	}
 	

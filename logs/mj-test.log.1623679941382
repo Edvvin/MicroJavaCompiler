@@ -1,0 +1,12 @@
+INFO  16:10:59,595 - Compiling source file: /home/edvin/Desktop/ppp/MicroJavaCompiler/test/program.mj
+INFO  16:10:59,619 - #2 program
+INFO  16:10:59,619 - #50 AJ
+INFO  16:10:59,619 - #3 {
+INFO  16:10:59,620 - #50 public
+INFO  16:10:59,621 - #14 void
+ERROR 16:10:59,621 - 
+Sintaksna greska na liniji 2
+ERROR 16:10:59,621 - Fatalna greska, parsiranje se ne moze nastaviti na liniji 2
+INFO  16:10:59,621 - AstNoMethodDecl(
+) [AstNoMethodDecl]
+INFO  16:10:59,628 - Compilation failed!
