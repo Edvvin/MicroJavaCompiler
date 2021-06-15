@@ -26,13 +26,13 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	boolean returnFound = false;
 	boolean hasMain = false;
 	boolean insideLoop = false;
-	boolean defaultFound = false;
-	boolean yieldFound = false;
+	Stack<Boolean> defaultFound = new Stack<>();
+	Stack<Boolean> yieldFound = new Stack<>();
 	int switchLevel = 0;
 	int paramCnt = 0;
 	int whileCnt = 0;
 	Struct currType = Tab.noType;
-	Struct currentYieldType = Tab.noType;
+	Stack<Struct> currentYieldType = new Stack<>();
 	int nVars;
 	List<CompilerError> semErrors = new ArrayList<CompilerError>();
 	
@@ -400,51 +400,53 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	}
 	
 	public void visit(AstSwitchBegin switchbegin) {
-		defaultFound = false;
+		defaultFound.push(false);
 		switchLevel++;
+		currentYieldType.push(switchbegin.getExpr().struct);
 	}
 	
 	public void visit(AstSwitchExpr switchExpr) {
-		if(!defaultFound) {
+		if(defaultFound.size() == 0 || !defaultFound.peek()) {
 			report_error("The switch expression must have a default branch", switchExpr);
 		}
-		switchExpr.struct = currentYieldType;
+		switchExpr.struct = currentYieldType.peek();
 		if(switchLevel == 0) {
-			report_error("Cannot yield outside of switch", switchExpr);
+			report_error("This should not happen", switchExpr);
 		}
-		else switchLevel--;
+		else {
+			switchLevel--;
+			currentYieldType.pop();
+			defaultFound.pop();
+		}
 	}
 	
 	public void visit(AstCaseBegin caseBegin) {
-		yieldFound = false;
 	}
 
 	public void visit(AstCase c) {
-		if(!yieldFound) {
-			report_error("Case branch does not have a yield statement", c);
-		}
 	}
 
 	public void visit(AstDefaultBegin defualtBegin) {
-		yieldFound = false;
+		yieldFound.push(false);
 	}
 
 	public void visit(AstDefault d) {
-		if(defaultFound) {
+		if(defaultFound.size() > 0 && defaultFound.peek()) {
 			report_error("Cannot have two default branches in a single switch stmt", d);
 		}
-		defaultFound = true;
-		if(!yieldFound) {
+		defaultFound.pop();
+		defaultFound.push(true);
+		if(!yieldFound.pop()) {
 			report_error("Default branch does not have a yield statement", d);
 		}
 	}
 	
 	public void visit(AstYield y) {
-		yieldFound = true;
-		if(currentYieldType == Tab.noType) {
-			currentYieldType = y.getExpr().struct;
+		if(switchLevel == yieldFound.size() && switchLevel > 0) {
+			yieldFound.pop();
+			yieldFound.push(true);
 		}
-		else if(y.getExpr().struct.compatibleWith(currentYieldType)) {
+		if(!y.getExpr().struct.compatibleWith(currentYieldType.peek())) {
 			report_error("All yield statement types must be compatible", y);
 		}
 	}
@@ -505,6 +507,12 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 					report_error("Reference types may only be compared using == or !=", condFact);
 				}
 			}
+		}
+	}
+	
+	public void visit(AstCondFactExpr cfe) {
+		if(cfe.getExpr().struct != MJStatic.boolType) {
+			report_error("Conditional factor must either muse a relational operator or be of type bool", cfe);
 		}
 	}
 	

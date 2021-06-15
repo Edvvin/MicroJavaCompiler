@@ -1,17 +1,28 @@
 // generated with ast extension for cup
 // version 0.8
-// 14/5/2021 19:43:29
+// 15/5/2021 0:40:51
 
 
 package rs.ac.bg.etf.pp1.ast;
 
 public class AstNegExpr extends Expr1 {
 
+    private Minus Minus;
     private SumExpr SumExpr;
 
-    public AstNegExpr (SumExpr SumExpr) {
+    public AstNegExpr (Minus Minus, SumExpr SumExpr) {
+        this.Minus=Minus;
+        if(Minus!=null) Minus.setParent(this);
         this.SumExpr=SumExpr;
         if(SumExpr!=null) SumExpr.setParent(this);
+    }
+
+    public Minus getMinus() {
+        return Minus;
+    }
+
+    public void setMinus(Minus Minus) {
+        this.Minus=Minus;
     }
 
     public SumExpr getSumExpr() {
@@ -27,15 +38,18 @@ public class AstNegExpr extends Expr1 {
     }
 
     public void childrenAccept(Visitor visitor) {
+        if(Minus!=null) Minus.accept(visitor);
         if(SumExpr!=null) SumExpr.accept(visitor);
     }
 
     public void traverseTopDown(Visitor visitor) {
         accept(visitor);
+        if(Minus!=null) Minus.traverseTopDown(visitor);
         if(SumExpr!=null) SumExpr.traverseTopDown(visitor);
     }
 
     public void traverseBottomUp(Visitor visitor) {
+        if(Minus!=null) Minus.traverseBottomUp(visitor);
         if(SumExpr!=null) SumExpr.traverseBottomUp(visitor);
         accept(visitor);
     }
@@ -44,6 +58,12 @@ public class AstNegExpr extends Expr1 {
         StringBuffer buffer=new StringBuffer();
         buffer.append(tab);
         buffer.append("AstNegExpr(\n");
+
+        if(Minus!=null)
+            buffer.append(Minus.toString("  "+tab));
+        else
+            buffer.append(tab+"  null");
+        buffer.append("\n");
 
         if(SumExpr!=null)
             buffer.append(SumExpr.toString("  "+tab));

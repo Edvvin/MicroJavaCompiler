@@ -1,6 +1,6 @@
 // generated with ast extension for cup
 // version 0.8
-// 14/5/2021 19:43:29
+// 15/5/2021 0:40:51
 
 
 package rs.ac.bg.etf.pp1.ast;
@@ -52,6 +52,7 @@ public abstract class VisitorAdaptor implements Visitor {
     public void visit(VarDecl VarDecl) { }
     public void visit(Type Type) { }
     public void visit(CondFact CondFact) { }
+    public void visit(Minus Minus) { }
     public void visit(CnstDecl CnstDecl) { }
     public void visit(MethodDeclList MethodDeclList) { }
     public void visit(Program Program) { }
@@ -70,6 +71,7 @@ public abstract class VisitorAdaptor implements Visitor {
     public void visit(AstAddop AstAddop) { visit(); }
     public void visit(AstIndexDesig AstIndexDesig) { visit(); }
     public void visit(AstDesig AstDesig) { visit(); }
+    public void visit(AstCondFactExpr AstCondFactExpr) { visit(); }
     public void visit(AstCondFact AstCondFact) { visit(); }
     public void visit(AstCondTermL AstCondTermL) { visit(); }
     public void visit(AstCondTermOne AstCondTermOne) { visit(); }
@@ -94,6 +96,7 @@ public abstract class VisitorAdaptor implements Visitor {
     public void visit(AstTermExpr AstTermExpr) { visit(); }
     public void visit(AstAddExpr AstAddExpr) { visit(); }
     public void visit(AstSwitchBegin AstSwitchBegin) { visit(); }
+    public void visit(AstMinus AstMinus) { visit(); }
     public void visit(AstSwitchExpr AstSwitchExpr) { visit(); }
     public void visit(AstPosExpr AstPosExpr) { visit(); }
     public void visit(AstNegExpr AstNegExpr) { visit(); }

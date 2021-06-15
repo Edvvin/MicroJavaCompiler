@@ -13,6 +13,7 @@ import rs.etf.pp1.symboltable.concepts.Struct;
 public class CodeGenerator extends VisitorAdaptor {
 	
 	private int mainPc;
+	private boolean firstTermMinus = false;
 	private Stack<Integer> ops = new Stack<>();
 	private Stack<Integer> lastPatch = new Stack<>();
 	private Stack<ArrayList<Integer>> yields = new Stack<>();
@@ -24,6 +25,7 @@ public class CodeGenerator extends VisitorAdaptor {
 	private Stack<ArrayList<Integer>> breaks = new Stack<>();
 	private Stack<Integer> ter1Exit = new Stack<>();
 	private Stack<Integer> ter2Exit = new Stack<>();
+	private boolean firstCase = true;
 
 	
 	public int getMainPc() {
@@ -262,7 +264,11 @@ public class CodeGenerator extends VisitorAdaptor {
 			&& AstEqualStmt.class != p.getClass()
 			)
 		{
-			Code.put(Code.dup2);
+			if(AstIncStmt.class == p.getClass()
+				|| AstDecStmt.class == p.getClass()
+				) {
+				Code.put(Code.dup2);
+			}
 			Code.load(indDesig.obj);
 		}
 	}
@@ -311,13 +317,25 @@ public class CodeGenerator extends VisitorAdaptor {
 		Code.loadConst(0);
 		Code.fixup(tempPC2);
 	}
+
+	public void visit(AstCondFactExpr cf) {
+		Code.loadConst(0);
+		Code.putFalseJump(Code.eq, 0);
+		int tempPC1 = Code.pc-2;
+		Code.loadConst(1);
+		Code.putJump(0);
+		int tempPC2 = Code.pc-2;
+		Code.fixup(tempPC1);
+		Code.loadConst(0);
+		Code.fixup(tempPC2);
+	}
 	
 	public void visit(AstFactNum num) {
 		Code.loadConst(num.getN1());
 	}
 	
 	public void visit(AstFactChar c) {
-		Code.loadConst(Character.getNumericValue(c.getC1()));
+		Code.loadConst((int)(c.getC1()));
 	}
 	
 	public void visit(AstFactBool b) {
@@ -333,10 +351,22 @@ public class CodeGenerator extends VisitorAdaptor {
 		Code.put(ops.pop());
 	}
 	
+	public void visit(AstMinus minus) {
+		firstTermMinus = true;
+	}
+	
+	public void visit(AstTermExpr te) {
+		if(firstTermMinus) {
+			Code.put(Code.neg);
+			firstTermMinus = false;
+		}
+	}
+	
 	public void visit(AstSwitchBegin sb) {
 		lastPatch.push(0);
 		defBranches.push(0);
 		yields.push(new ArrayList<>());
+		firstCase = true;
 	}
 	
 	public void visit(AstSwitchExpr se) {
@@ -352,20 +382,31 @@ public class CodeGenerator extends VisitorAdaptor {
 	
 	public void visit(AstCaseBegin c) {
 		int temp = lastPatch.pop();
+		int temp2 = 0;
+		Code.putJump(0);
+		if(firstCase) {
+			temp2 = Code.pc-2;
+		}
 		if(temp != 0)
 			Code.fixup(temp);
 		Code.put(Code.dup);
 		Code.loadConst(c.getNumConst());
 		Code.putFalseJump(Code.eq, 0);
 		lastPatch.push(Code.pc-2);
+		if(firstCase) {
+			Code.fixup(temp2);
+		}
+		firstCase = false;
 	}
 
 	public void visit(AstCase c) {
+		Code.putJump(0);
 	}
 	
 	public void visit(AstDefaultBegin db) {
 		defBranches.pop();
 		defBranches.push(Code.pc);
+		firstCase = false;
 	}
 	
 	public void visit(AstDefault d) {
@@ -378,12 +419,11 @@ public class CodeGenerator extends VisitorAdaptor {
 	
 	public void visit(AstYield y) {
 		Code.putJump(0); //switchEndAdr
-		yields.firstElement().add(Code.pc-2);
+		yields.peek().add(Code.pc-2);
 	}
 	
 	
 	public void visit(AstNegExpr ne) {
-		Code.put(Code.neg);
 	}
 	
 	public void visit(AstAddExpr ae) {
