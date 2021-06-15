@@ -41,7 +41,6 @@ int niz[];
 			if(i == 2) ibool = true;
 			i++;
 		}while(i < 5);
-		
 		if(ibool)
 			if(i == 5) print(1); 
 			else print(-1);

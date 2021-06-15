@@ -109,7 +109,8 @@ nonterminal YieldBegin YieldBegin;
 nonterminal TerColon TerColon;
 nonterminal TerQstmk TerQstmk;
 nonterminal IfPart IfPart;
-nonterminal ElsePart ElsePart ;
+nonterminal ElsePart ElsePart;
+nonterminal Minus Minus ;
 
 nonterminal rs.etf.pp1.symboltable.concepts.Obj FuncDesig, Program, ProgName, Designator, MethodDecl, MethodTypeName ; 
 nonterminal rs.etf.pp1.symboltable.concepts.Struct Condition, Type, Term, SumExpr, Expr, Expr1, Factor, VarDeclList ; 
@@ -305,12 +306,14 @@ TerQstmk ::= (AstTerQstmk) QSTMK {: RESULT=new AstTerQstmk(); :} ;
 
 TerColon ::= (AstTerColon) COLON {: RESULT=new AstTerColon(); :} ;
 		
-Expr1 ::= (AstNegExpr) MINUS SumExpr:S1 {: RESULT=new AstNegExpr(S1); RESULT.setLine(S1left); :}
+Expr1 ::= (AstNegExpr) Minus:M1 SumExpr:S2 {: RESULT=new AstNegExpr(M1, S2); RESULT.setLine(M1left); :}
 		|
 		(AstPosExpr) SumExpr:S1 {: RESULT=new AstPosExpr(S1); RESULT.setLine(S1left); :}
 	  	|
 	  	(AstSwitchExpr) SwitchBegin:S1 LBRACE CaseList:C2 RBRACE {: RESULT=new AstSwitchExpr(S1, C2); RESULT.setLine(S1left); :}
 		;
+		
+Minus ::= (AstMinus) MINUS {: RESULT=new AstMinus(); :} ;
 
 SwitchBegin ::= (AstSwitchBegin) SWITCH LPAREN Expr:E1 RPAREN {: RESULT=new AstSwitchBegin(E1); RESULT.setLine(E1left); :} ;
 
@@ -366,6 +369,8 @@ CondTerm ::= (AstCondTermOne) CondFact:C1 {: RESULT=new AstCondTermOne(C1); RESU
 			;
 
 CondFact ::= (AstCondFact) Expr:e1 Relop:R1 Expr:e2 {: RESULT=new AstCondFact(e1, R1, e2); RESULT.setLine(e1left); :}
+			|
+			(AstCondFactExpr) Expr:e {: RESULT=new AstCondFactExpr(e); RESULT.setLine(eleft); :}
 			;
 
 Designator ::= (AstDesig) IDENT:name {: RESULT=new AstDesig(name); RESULT.setLine(nameleft); :} 

@@ -131,6 +131,9 @@ public class CodeGenerator extends VisitorAdaptor {
 			Code.loadConst(5);
 			Code.put(Code.print);
 		}
+		else if(ps.getExpr().struct == MJStatic.boolType) {
+			printBool(1);
+		}
 		else {
 			Code.loadConst(1);
 			Code.put(Code.bprint);
@@ -141,6 +144,9 @@ public class CodeGenerator extends VisitorAdaptor {
 		if(ps.getExpr().struct == Tab.intType) {
 			Code.loadConst(ps.getN2());
 			Code.put(Code.print);
+		}
+		else if(ps.getExpr().struct == MJStatic.boolType) {
+			printBool(ps.getN2());
 		}
 		else {
 			Code.loadConst(ps.getN2());
@@ -320,7 +326,7 @@ public class CodeGenerator extends VisitorAdaptor {
 
 	public void visit(AstCondFactExpr cf) {
 		Code.loadConst(0);
-		Code.putFalseJump(Code.eq, 0);
+		Code.putFalseJump(Code.gt, 0);
 		int tempPC1 = Code.pc-2;
 		Code.loadConst(1);
 		Code.putJump(0);

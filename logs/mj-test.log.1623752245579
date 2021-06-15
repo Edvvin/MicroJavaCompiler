@@ -1,473 +1,469 @@
-INFO  13:27:11,378 - Compiling source file: /home/edvin/Desktop/ppp/MicroJavaCompiler/test/program.mj
-INFO  13:27:11,404 - #2 program
-INFO  13:27:11,404 - #50 test302
-INFO  13:27:11,404 - #10 const
-INFO  13:27:11,405 - #50 int
-INFO  13:27:11,405 - #50 jedan
-INFO  13:27:11,405 - #27 =
-INFO  13:27:11,405 - #49 1
-INFO  13:27:11,406 - #7 ;
-INFO  13:27:11,406 - #50 int
-INFO  13:27:11,406 - #50 i
-INFO  13:27:11,406 - #11 ,
-INFO  13:27:11,406 - #50 j
-INFO  13:27:11,407 - #7 ;
-INFO  13:27:11,407 - #50 bool
-INFO  13:27:11,407 - #50 ibool
-INFO  13:27:11,407 - #7 ;
-INFO  13:27:11,407 - #50 int
-INFO  13:27:11,407 - #50 niz
-INFO  13:27:11,407 - #5 [
-INFO  13:27:11,407 - #6 ]
-INFO  13:27:11,407 - #7 ;
-INFO  13:27:11,408 - #3 {
-INFO  13:27:11,408 - #50 int
-INFO  13:27:11,408 - #50 sum
-INFO  13:27:11,408 - #8 (
-INFO  13:27:11,408 - #50 int
-INFO  13:27:11,408 - #50 z
-INFO  13:27:11,408 - #11 ,
-INFO  13:27:11,409 - #50 int
-INFO  13:27:11,409 - #50 d
-INFO  13:27:11,409 - #9 )
-INFO  13:27:11,409 - #3 {
-INFO  13:27:11,409 - #13 return
-INFO  13:27:11,410 - #50 z
-INFO  13:27:11,410 - #18 +
-INFO  13:27:11,410 - #50 d
-INFO  13:27:11,410 - #7 ;
-INFO  13:27:11,411 - #4 }
-INFO  13:27:11,411 - #50 int
-INFO  13:27:11,411 - #50 inkrement
-INFO  13:27:11,411 - #8 (
-INFO  13:27:11,411 - #50 int
-INFO  13:27:11,411 - #50 a
-INFO  13:27:11,411 - #11 ,
-INFO  13:27:11,411 - #50 int
-INFO  13:27:11,412 - #50 inc
-INFO  13:27:11,412 - #9 )
-INFO  13:27:11,412 - #50 int
-INFO  13:27:11,412 - #50 pom
-INFO  13:27:11,412 - #7 ;
-INFO  13:27:11,412 - #3 {
-INFO  13:27:11,412 - #39 if
-INFO  13:27:11,412 - #8 (
-INFO  13:27:11,412 - #50 inc
-INFO  13:27:11,412 - #32 ==
-INFO  13:27:11,412 - #50 jedan
-INFO  13:27:11,413 - #9 )
-INFO  13:27:11,413 - #50 pom
-INFO  13:27:11,413 - #27 =
-INFO  13:27:11,413 - #49 1
-INFO  13:27:11,413 - #7 ;
-INFO  13:27:11,413 - #40 else
-INFO  13:27:11,414 - #39 if
-INFO  13:27:11,414 - #8 (
-INFO  13:27:11,414 - #50 inc
-INFO  13:27:11,414 - #32 ==
-INFO  13:27:11,414 - #49 2
-INFO  13:27:11,414 - #9 )
-INFO  13:27:11,414 - #50 pom
-INFO  13:27:11,415 - #27 =
-INFO  13:27:11,415 - #50 a
-INFO  13:27:11,415 - #7 ;
-INFO  13:27:11,415 - #13 return
-INFO  13:27:11,415 - #50 sum
-INFO  13:27:11,415 - #8 (
-INFO  13:27:11,415 - #50 a
-INFO  13:27:11,416 - #11 ,
-INFO  13:27:11,416 - #50 pom
-INFO  13:27:11,416 - #9 )
-INFO  13:27:11,416 - #7 ;
-INFO  13:27:11,416 - #4 }
-INFO  13:27:11,417 - #50 bool
-INFO  13:27:11,417 - #50 verify
-INFO  13:27:11,417 - #8 (
-INFO  13:27:11,417 - #9 )
-INFO  13:27:11,417 - #3 {
-INFO  13:27:11,417 - #12 print
-INFO  13:27:11,417 - #8 (
-INFO  13:27:11,417 - #51 v
-INFO  13:27:11,417 - #9 )
-INFO  13:27:11,417 - #7 ;
-INFO  13:27:11,418 - #13 return
-INFO  13:27:11,418 - #52 false
-INFO  13:27:11,418 - #7 ;
-INFO  13:27:11,418 - #4 }
-INFO  13:27:11,418 - #14 void
-INFO  13:27:11,418 - #50 main
-INFO  13:27:11,418 - #8 (
-INFO  13:27:11,418 - #9 )
-INFO  13:27:11,418 - #3 {
-INFO  13:27:11,418 - #39 if
-INFO  13:27:11,418 - #8 (
-INFO  13:27:11,418 - #49 1
-INFO  13:27:11,418 - #33 !=
-INFO  13:27:11,418 - #49 1
-INFO  13:27:11,419 - #9 )
-INFO  13:27:11,419 - #12 print
-INFO  13:27:11,419 - #8 (
-INFO  13:27:11,419 - #19 -
-INFO  13:27:11,419 - #49 6
-INFO  13:27:11,419 - #9 )
-INFO  13:27:11,420 - #7 ;
-INFO  13:27:11,420 - #40 else
-INFO  13:27:11,420 - #12 print
-INFO  13:27:11,420 - #8 (
-INFO  13:27:11,420 - #49 0
-INFO  13:27:11,420 - #9 )
-INFO  13:27:11,420 - #7 ;
-INFO  13:27:11,420 - #50 ibool
-INFO  13:27:11,420 - #27 =
-INFO  13:27:11,420 - #52 false
-INFO  13:27:11,420 - #7 ;
-INFO  13:27:11,420 - #50 i
-INFO  13:27:11,420 - #27 =
-INFO  13:27:11,420 - #49 0
-INFO  13:27:11,420 - #7 ;
-INFO  13:27:11,421 - #36 do
-INFO  13:27:11,421 - #3 {
-INFO  13:27:11,421 - #39 if
-INFO  13:27:11,421 - #8 (
-INFO  13:27:11,421 - #50 i
-INFO  13:27:11,421 - #32 ==
-INFO  13:27:11,421 - #49 2
-INFO  13:27:11,421 - #9 )
-INFO  13:27:11,421 - #50 ibool
-INFO  13:27:11,422 - #27 =
-INFO  13:27:11,422 - #52 true
-INFO  13:27:11,422 - #7 ;
-INFO  13:27:11,422 - #50 i
-INFO  13:27:11,422 - #25 ++
-INFO  13:27:11,422 - #7 ;
-INFO  13:27:11,422 - #4 }
-INFO  13:27:11,422 - #17 while
-INFO  13:27:11,422 - #8 (
-INFO  13:27:11,422 - #50 i
-INFO  13:27:11,422 - #30 <
-INFO  13:27:11,422 - #49 5
-INFO  13:27:11,422 - #9 )
-INFO  13:27:11,423 - #7 ;
-INFO  13:27:11,423 - #39 if
-INFO  13:27:11,423 - #8 (
-INFO  13:27:11,423 - #50 ibool
-INFO  13:27:11,423 - #9 )
-INFO  13:27:11,423 - #39 if
-INFO  13:27:11,423 - #8 (
-INFO  13:27:11,423 - #50 i
-INFO  13:27:11,423 - #32 ==
-INFO  13:27:11,423 - #49 5
-INFO  13:27:11,423 - #9 )
-INFO  13:27:11,423 - #12 print
-INFO  13:27:11,423 - #8 (
-INFO  13:27:11,423 - #49 1
-INFO  13:27:11,423 - #9 )
-INFO  13:27:11,423 - #7 ;
-INFO  13:27:11,423 - #40 else
-INFO  13:27:11,423 - #12 print
-INFO  13:27:11,423 - #8 (
-INFO  13:27:11,423 - #19 -
-INFO  13:27:11,424 - #49 1
-INFO  13:27:11,424 - #9 )
-INFO  13:27:11,424 - #7 ;
-INFO  13:27:11,424 - #50 niz
-INFO  13:27:11,424 - #27 =
-INFO  13:27:11,424 - #15 new
-INFO  13:27:11,424 - #50 int
-INFO  13:27:11,424 - #5 [
-INFO  13:27:11,424 - #49 3
-INFO  13:27:11,424 - #6 ]
-INFO  13:27:11,424 - #7 ;
-INFO  13:27:11,424 - #50 niz
-INFO  13:27:11,424 - #5 [
-INFO  13:27:11,424 - #49 0
-INFO  13:27:11,424 - #6 ]
-INFO  13:27:11,424 - #27 =
-INFO  13:27:11,424 - #49 1
-INFO  13:27:11,424 - #7 ;
-INFO  13:27:11,424 - #50 niz
-INFO  13:27:11,425 - #5 [
-INFO  13:27:11,425 - #49 1
-INFO  13:27:11,425 - #6 ]
-INFO  13:27:11,425 - #27 =
-INFO  13:27:11,425 - #49 2
-INFO  13:27:11,425 - #7 ;
-INFO  13:27:11,425 - #50 niz
-INFO  13:27:11,425 - #5 [
-INFO  13:27:11,425 - #49 2
-INFO  13:27:11,425 - #6 ]
-INFO  13:27:11,425 - #27 =
-INFO  13:27:11,425 - #50 sum
-INFO  13:27:11,425 - #8 (
-INFO  13:27:11,425 - #50 niz
-INFO  13:27:11,425 - #5 [
-INFO  13:27:11,425 - #49 1
-INFO  13:27:11,425 - #6 ]
-INFO  13:27:11,425 - #11 ,
-INFO  13:27:11,425 - #50 niz
-INFO  13:27:11,425 - #5 [
-INFO  13:27:11,425 - #49 0
-INFO  13:27:11,425 - #6 ]
-INFO  13:27:11,425 - #9 )
-INFO  13:27:11,426 - #18 +
-INFO  13:27:11,426 - #49 1
-INFO  13:27:11,426 - #7 ;
-INFO  13:27:11,426 - #39 if
-INFO  13:27:11,426 - #8 (
-INFO  13:27:11,426 - #50 verify
-INFO  13:27:11,426 - #8 (
-INFO  13:27:11,426 - #9 )
-INFO  13:27:11,426 - #24 ||
-INFO  13:27:11,426 - #50 niz
-INFO  13:27:11,426 - #5 [
-INFO  13:27:11,426 - #49 2
-INFO  13:27:11,426 - #6 ]
-INFO  13:27:11,426 - #32 ==
-INFO  13:27:11,426 - #49 4
-INFO  13:27:11,427 - #9 )
-INFO  13:27:11,427 - #12 print
-INFO  13:27:11,427 - #8 (
-INFO  13:27:11,427 - #50 ord
-INFO  13:27:11,427 - #8 (
-INFO  13:27:11,427 - #51 A
-INFO  13:27:11,427 - #9 )
-INFO  13:27:11,427 - #9 )
-INFO  13:27:11,427 - #7 ;
-INFO  13:27:11,427 - #40 else
-INFO  13:27:11,427 - #12 print
-INFO  13:27:11,427 - #8 (
-INFO  13:27:11,427 - #50 ord
-INFO  13:27:11,427 - #8 (
-INFO  13:27:11,427 - #51 a
-INFO  13:27:11,427 - #9 )
-INFO  13:27:11,427 - #9 )
-INFO  13:27:11,427 - #7 ;
-INFO  13:27:11,427 - #12 print
-INFO  13:27:11,427 - #8 (
-INFO  13:27:11,427 - #50 eol
-INFO  13:27:11,427 - #9 )
-INFO  13:27:11,427 - #7 ;
-INFO  13:27:11,427 - #50 i
-INFO  13:27:11,427 - #27 =
-INFO  13:27:11,428 - #49 0
-INFO  13:27:11,428 - #7 ;
-INFO  13:27:11,428 - #36 do
-INFO  13:27:11,428 - #3 {
-INFO  13:27:11,428 - #39 if
-INFO  13:27:11,428 - #8 (
-INFO  13:27:11,428 - #50 i
-INFO  13:27:11,428 - #32 ==
-INFO  13:27:11,430 - #49 3
-INFO  13:27:11,430 - #9 )
-INFO  13:27:11,431 - #3 {
-INFO  13:27:11,431 - #50 i
-INFO  13:27:11,431 - #25 ++
-INFO  13:27:11,431 - #7 ;
-INFO  13:27:11,431 - #16 continue
-INFO  13:27:11,431 - #7 ;
-INFO  13:27:11,431 - #4 }
-INFO  13:27:11,431 - #39 if
-INFO  13:27:11,431 - #8 (
-INFO  13:27:11,431 - #50 i
-INFO  13:27:11,431 - #32 ==
-INFO  13:27:11,431 - #49 4
-INFO  13:27:11,431 - #9 )
-INFO  13:27:11,432 - #35 break
-INFO  13:27:11,432 - #7 ;
-INFO  13:27:11,432 - #50 i
-INFO  13:27:11,432 - #27 =
-INFO  13:27:11,432 - #50 inkrement
-INFO  13:27:11,432 - #8 (
-INFO  13:27:11,432 - #50 i
-INFO  13:27:11,432 - #11 ,
-INFO  13:27:11,433 - #49 1
-INFO  13:27:11,433 - #9 )
-INFO  13:27:11,433 - #7 ;
-INFO  13:27:11,433 - #4 }
-INFO  13:27:11,433 - #17 while
-INFO  13:27:11,433 - #8 (
-INFO  13:27:11,433 - #50 i
-INFO  13:27:11,433 - #30 <
-INFO  13:27:11,433 - #49 10
-INFO  13:27:11,433 - #9 )
-INFO  13:27:11,433 - #7 ;
-INFO  13:27:11,433 - #39 if
-INFO  13:27:11,433 - #8 (
-INFO  13:27:11,433 - #50 i
-INFO  13:27:11,433 - #32 ==
-INFO  13:27:11,433 - #49 3
-INFO  13:27:11,433 - #23 &&
-INFO  13:27:11,433 - #50 verify
-INFO  13:27:11,433 - #8 (
-INFO  13:27:11,433 - #9 )
-INFO  13:27:11,433 - #9 )
-INFO  13:27:11,433 - #12 print
-INFO  13:27:11,433 - #8 (
-INFO  13:27:11,434 - #19 -
-INFO  13:27:11,434 - #49 4
-INFO  13:27:11,434 - #9 )
-INFO  13:27:11,434 - #7 ;
-INFO  13:27:11,434 - #40 else
-INFO  13:27:11,434 - #12 print
-INFO  13:27:11,434 - #8 (
-INFO  13:27:11,434 - #49 4
-INFO  13:27:11,434 - #9 )
-INFO  13:27:11,434 - #7 ;
-INFO  13:27:11,434 - #34 read
-INFO  13:27:11,434 - #8 (
-INFO  13:27:11,434 - #50 niz
-INFO  13:27:11,434 - #5 [
-INFO  13:27:11,434 - #49 0
-INFO  13:27:11,434 - #6 ]
-INFO  13:27:11,434 - #9 )
-INFO  13:27:11,434 - #7 ;
-INFO  13:27:11,434 - #34 read
-INFO  13:27:11,434 - #8 (
-INFO  13:27:11,434 - #50 niz
-INFO  13:27:11,434 - #5 [
-INFO  13:27:11,434 - #49 1
-INFO  13:27:11,434 - #6 ]
-INFO  13:27:11,434 - #9 )
-INFO  13:27:11,434 - #7 ;
-INFO  13:27:11,435 - #34 read
-INFO  13:27:11,435 - #8 (
-INFO  13:27:11,435 - #50 niz
-INFO  13:27:11,435 - #5 [
-INFO  13:27:11,435 - #49 2
-INFO  13:27:11,435 - #6 ]
-INFO  13:27:11,435 - #9 )
-INFO  13:27:11,435 - #7 ;
-INFO  13:27:11,435 - #12 print
-INFO  13:27:11,435 - #8 (
-INFO  13:27:11,435 - #50 eol
-INFO  13:27:11,435 - #9 )
-INFO  13:27:11,435 - #7 ;
-INFO  13:27:11,435 - #12 print
-INFO  13:27:11,435 - #8 (
-INFO  13:27:11,435 - #50 sum
-INFO  13:27:11,435 - #8 (
-INFO  13:27:11,435 - #50 sum
-INFO  13:27:11,435 - #8 (
-INFO  13:27:11,435 - #50 niz
-INFO  13:27:11,435 - #5 [
-INFO  13:27:11,435 - #49 0
-INFO  13:27:11,435 - #6 ]
-INFO  13:27:11,435 - #11 ,
-INFO  13:27:11,435 - #50 niz
-INFO  13:27:11,435 - #5 [
-INFO  13:27:11,435 - #49 1
-INFO  13:27:11,435 - #6 ]
-INFO  13:27:11,435 - #9 )
-INFO  13:27:11,435 - #11 ,
-INFO  13:27:11,435 - #50 niz
-INFO  13:27:11,435 - #5 [
-INFO  13:27:11,435 - #49 2
-INFO  13:27:11,435 - #6 ]
-INFO  13:27:11,436 - #9 )
-INFO  13:27:11,436 - #9 )
-INFO  13:27:11,436 - #7 ;
-INFO  13:27:11,436 - #12 print
-INFO  13:27:11,436 - #8 (
-INFO  13:27:11,436 - #50 eol
-INFO  13:27:11,436 - #9 )
-INFO  13:27:11,436 - #7 ;
-INFO  13:27:11,436 - #12 print
-INFO  13:27:11,436 - #8 (
-INFO  13:27:11,436 - #50 inkrement
-INFO  13:27:11,436 - #8 (
-INFO  13:27:11,436 - #50 niz
-INFO  13:27:11,436 - #5 [
-INFO  13:27:11,436 - #49 2
-INFO  13:27:11,436 - #6 ]
-INFO  13:27:11,436 - #11 ,
-INFO  13:27:11,436 - #49 2
-INFO  13:27:11,436 - #9 )
-INFO  13:27:11,436 - #9 )
-INFO  13:27:11,436 - #7 ;
-INFO  13:27:11,436 - #50 j
-INFO  13:27:11,436 - #27 =
-INFO  13:27:11,436 - #43 switch
-INFO  13:27:11,436 - #8 (
-INFO  13:27:11,436 - #50 i
-INFO  13:27:11,436 - #9 )
-INFO  13:27:11,436 - #3 {
-INFO  13:27:11,437 - #46 case
-INFO  13:27:11,437 - #49 1
-INFO  13:27:11,437 - #38 :
-INFO  13:27:11,437 - #12 print
-INFO  13:27:11,437 - #8 (
-INFO  13:27:11,437 - #49 1
-INFO  13:27:11,437 - #9 )
-INFO  13:27:11,437 - #7 ;
-INFO  13:27:11,437 - #48 yield
-INFO  13:27:11,437 - #49 1
-INFO  13:27:11,437 - #7 ;
-INFO  13:27:11,438 - #46 case
-INFO  13:27:11,438 - #49 3
-INFO  13:27:11,438 - #38 :
-INFO  13:27:11,438 - #12 print
-INFO  13:27:11,438 - #8 (
-INFO  13:27:11,438 - #49 3
-INFO  13:27:11,438 - #9 )
-INFO  13:27:11,438 - #7 ;
-INFO  13:27:11,438 - #46 case
-INFO  13:27:11,438 - #49 2
-INFO  13:27:11,438 - #38 :
-INFO  13:27:11,438 - #12 print
-INFO  13:27:11,438 - #8 (
-INFO  13:27:11,438 - #49 2
-INFO  13:27:11,438 - #9 )
-INFO  13:27:11,438 - #7 ;
-INFO  13:27:11,438 - #48 yield
-INFO  13:27:11,438 - #49 2
-INFO  13:27:11,438 - #7 ;
-INFO  13:27:11,438 - #46 case
-INFO  13:27:11,439 - #49 4
-INFO  13:27:11,439 - #38 :
-INFO  13:27:11,439 - #12 print
-INFO  13:27:11,439 - #8 (
-INFO  13:27:11,439 - #49 5
-INFO  13:27:11,439 - #9 )
-INFO  13:27:11,439 - #7 ;
-INFO  13:27:11,439 - #50 i
-INFO  13:27:11,439 - #27 =
-INFO  13:27:11,439 - #50 i
-INFO  13:27:11,439 - #18 +
-INFO  13:27:11,439 - #49 3
-INFO  13:27:11,439 - #7 ;
-INFO  13:27:11,439 - #48 yield
-INFO  13:27:11,439 - #49 7
-INFO  13:27:11,439 - #7 ;
-INFO  13:27:11,439 - #47 default
-INFO  13:27:11,439 - #38 :
-INFO  13:27:11,440 - #48 yield
-INFO  13:27:11,440 - #49 10
-INFO  13:27:11,440 - #7 ;
-INFO  13:27:11,440 - #4 }
-INFO  13:27:11,440 - #7 ;
-INFO  13:27:11,441 - #12 print
-INFO  13:27:11,441 - #8 (
-INFO  13:27:11,441 - #50 eol
-INFO  13:27:11,441 - #9 )
-INFO  13:27:11,441 - #7 ;
-INFO  13:27:11,441 - #12 print
-INFO  13:27:11,441 - #8 (
-INFO  13:27:11,441 - #50 i
-INFO  13:27:11,441 - #9 )
-INFO  13:27:11,441 - #7 ;
-INFO  13:27:11,441 - #12 print
-INFO  13:27:11,441 - #8 (
-INFO  13:27:11,441 - #50 eol
-INFO  13:27:11,441 - #9 )
-INFO  13:27:11,441 - #7 ;
-INFO  13:27:11,441 - #12 print
-INFO  13:27:11,441 - #8 (
-INFO  13:27:11,441 - #50 j
-INFO  13:27:11,441 - #9 )
-INFO  13:27:11,441 - #7 ;
-INFO  13:27:11,441 - #4 }
-INFO  13:27:11,441 - #4 }
-INFO  13:27:11,446 - AstProgram(
+INFO  12:16:37,013 - Compiling source file: /home/edvin/Desktop/ppp/MicroJavaCompiler/test/program.mj
+INFO  12:16:37,035 - #2 program
+INFO  12:16:37,035 - #50 test302
+INFO  12:16:37,036 - #10 const
+INFO  12:16:37,036 - #50 int
+INFO  12:16:37,036 - #50 jedan
+INFO  12:16:37,036 - #27 =
+INFO  12:16:37,037 - #49 1
+INFO  12:16:37,037 - #7 ;
+INFO  12:16:37,037 - #50 int
+INFO  12:16:37,037 - #50 i
+INFO  12:16:37,037 - #11 ,
+INFO  12:16:37,037 - #50 j
+INFO  12:16:37,037 - #7 ;
+INFO  12:16:37,038 - #50 bool
+INFO  12:16:37,038 - #50 ibool
+INFO  12:16:37,038 - #7 ;
+INFO  12:16:37,038 - #50 int
+INFO  12:16:37,038 - #50 niz
+INFO  12:16:37,039 - #5 [
+INFO  12:16:37,039 - #6 ]
+INFO  12:16:37,039 - #7 ;
+INFO  12:16:37,039 - #3 {
+INFO  12:16:37,039 - #50 int
+INFO  12:16:37,039 - #50 sum
+INFO  12:16:37,039 - #8 (
+INFO  12:16:37,040 - #50 int
+INFO  12:16:37,040 - #50 z
+INFO  12:16:37,040 - #11 ,
+INFO  12:16:37,040 - #50 int
+INFO  12:16:37,040 - #50 d
+INFO  12:16:37,040 - #9 )
+INFO  12:16:37,040 - #3 {
+INFO  12:16:37,040 - #13 return
+INFO  12:16:37,041 - #50 z
+INFO  12:16:37,041 - #18 +
+INFO  12:16:37,041 - #50 d
+INFO  12:16:37,041 - #7 ;
+INFO  12:16:37,042 - #4 }
+INFO  12:16:37,042 - #50 int
+INFO  12:16:37,042 - #50 inkrement
+INFO  12:16:37,042 - #8 (
+INFO  12:16:37,042 - #50 int
+INFO  12:16:37,042 - #50 a
+INFO  12:16:37,042 - #11 ,
+INFO  12:16:37,042 - #50 int
+INFO  12:16:37,042 - #50 inc
+INFO  12:16:37,042 - #9 )
+INFO  12:16:37,042 - #50 int
+INFO  12:16:37,043 - #50 pom
+INFO  12:16:37,043 - #7 ;
+INFO  12:16:37,043 - #3 {
+INFO  12:16:37,043 - #39 if
+INFO  12:16:37,043 - #8 (
+INFO  12:16:37,043 - #50 inc
+INFO  12:16:37,043 - #32 ==
+INFO  12:16:37,043 - #50 jedan
+INFO  12:16:37,043 - #9 )
+INFO  12:16:37,044 - #50 pom
+INFO  12:16:37,044 - #27 =
+INFO  12:16:37,044 - #49 1
+INFO  12:16:37,044 - #7 ;
+INFO  12:16:37,044 - #40 else
+INFO  12:16:37,044 - #39 if
+INFO  12:16:37,045 - #8 (
+INFO  12:16:37,045 - #50 inc
+INFO  12:16:37,045 - #32 ==
+INFO  12:16:37,045 - #49 2
+INFO  12:16:37,045 - #9 )
+INFO  12:16:37,045 - #50 pom
+INFO  12:16:37,045 - #27 =
+INFO  12:16:37,045 - #50 a
+INFO  12:16:37,045 - #7 ;
+INFO  12:16:37,045 - #13 return
+INFO  12:16:37,045 - #50 sum
+INFO  12:16:37,045 - #8 (
+INFO  12:16:37,045 - #50 a
+INFO  12:16:37,046 - #11 ,
+INFO  12:16:37,046 - #50 pom
+INFO  12:16:37,046 - #9 )
+INFO  12:16:37,046 - #7 ;
+INFO  12:16:37,046 - #4 }
+INFO  12:16:37,046 - #50 bool
+INFO  12:16:37,046 - #50 verify
+INFO  12:16:37,046 - #8 (
+INFO  12:16:37,047 - #9 )
+INFO  12:16:37,047 - #3 {
+INFO  12:16:37,047 - #12 print
+INFO  12:16:37,047 - #8 (
+INFO  12:16:37,047 - #51 v
+INFO  12:16:37,047 - #9 )
+INFO  12:16:37,047 - #7 ;
+INFO  12:16:37,047 - #13 return
+INFO  12:16:37,047 - #52 false
+INFO  12:16:37,047 - #7 ;
+INFO  12:16:37,047 - #4 }
+INFO  12:16:37,048 - #14 void
+INFO  12:16:37,048 - #50 main
+INFO  12:16:37,048 - #8 (
+INFO  12:16:37,048 - #9 )
+INFO  12:16:37,048 - #3 {
+INFO  12:16:37,048 - #39 if
+INFO  12:16:37,048 - #8 (
+INFO  12:16:37,048 - #49 1
+INFO  12:16:37,048 - #33 !=
+INFO  12:16:37,048 - #49 1
+INFO  12:16:37,048 - #9 )
+INFO  12:16:37,048 - #12 print
+INFO  12:16:37,048 - #8 (
+INFO  12:16:37,049 - #19 -
+INFO  12:16:37,049 - #49 6
+INFO  12:16:37,049 - #9 )
+INFO  12:16:37,049 - #7 ;
+INFO  12:16:37,049 - #40 else
+INFO  12:16:37,049 - #12 print
+INFO  12:16:37,049 - #8 (
+INFO  12:16:37,049 - #49 0
+INFO  12:16:37,049 - #9 )
+INFO  12:16:37,050 - #7 ;
+INFO  12:16:37,050 - #50 ibool
+INFO  12:16:37,050 - #27 =
+INFO  12:16:37,050 - #52 false
+INFO  12:16:37,050 - #7 ;
+INFO  12:16:37,050 - #50 i
+INFO  12:16:37,050 - #27 =
+INFO  12:16:37,050 - #49 0
+INFO  12:16:37,050 - #7 ;
+INFO  12:16:37,050 - #36 do
+INFO  12:16:37,050 - #3 {
+INFO  12:16:37,051 - #39 if
+INFO  12:16:37,051 - #8 (
+INFO  12:16:37,051 - #50 i
+INFO  12:16:37,051 - #32 ==
+INFO  12:16:37,051 - #49 2
+INFO  12:16:37,051 - #9 )
+INFO  12:16:37,051 - #50 ibool
+INFO  12:16:37,051 - #27 =
+INFO  12:16:37,051 - #52 true
+INFO  12:16:37,051 - #7 ;
+INFO  12:16:37,051 - #50 i
+INFO  12:16:37,051 - #25 ++
+INFO  12:16:37,051 - #7 ;
+INFO  12:16:37,051 - #4 }
+INFO  12:16:37,051 - #17 while
+INFO  12:16:37,052 - #8 (
+INFO  12:16:37,052 - #50 i
+INFO  12:16:37,052 - #30 <
+INFO  12:16:37,052 - #49 5
+INFO  12:16:37,052 - #9 )
+INFO  12:16:37,052 - #7 ;
+INFO  12:16:37,052 - #39 if
+INFO  12:16:37,052 - #8 (
+INFO  12:16:37,052 - #50 i
+INFO  12:16:37,053 - #32 ==
+INFO  12:16:37,053 - #49 5
+INFO  12:16:37,053 - #9 )
+INFO  12:16:37,053 - #12 print
+INFO  12:16:37,053 - #8 (
+INFO  12:16:37,053 - #49 1
+INFO  12:16:37,053 - #9 )
+INFO  12:16:37,053 - #7 ;
+INFO  12:16:37,053 - #40 else
+INFO  12:16:37,053 - #12 print
+INFO  12:16:37,053 - #8 (
+INFO  12:16:37,053 - #19 -
+INFO  12:16:37,053 - #49 1
+INFO  12:16:37,053 - #9 )
+INFO  12:16:37,053 - #7 ;
+INFO  12:16:37,053 - #50 niz
+INFO  12:16:37,054 - #27 =
+INFO  12:16:37,054 - #15 new
+INFO  12:16:37,054 - #50 int
+INFO  12:16:37,054 - #5 [
+INFO  12:16:37,054 - #49 3
+INFO  12:16:37,054 - #6 ]
+INFO  12:16:37,054 - #7 ;
+INFO  12:16:37,054 - #50 niz
+INFO  12:16:37,054 - #5 [
+INFO  12:16:37,054 - #49 0
+INFO  12:16:37,054 - #6 ]
+INFO  12:16:37,054 - #27 =
+INFO  12:16:37,055 - #49 1
+INFO  12:16:37,055 - #7 ;
+INFO  12:16:37,055 - #50 niz
+INFO  12:16:37,055 - #5 [
+INFO  12:16:37,055 - #49 1
+INFO  12:16:37,055 - #6 ]
+INFO  12:16:37,055 - #27 =
+INFO  12:16:37,055 - #49 2
+INFO  12:16:37,055 - #7 ;
+INFO  12:16:37,055 - #50 niz
+INFO  12:16:37,055 - #5 [
+INFO  12:16:37,055 - #49 2
+INFO  12:16:37,056 - #6 ]
+INFO  12:16:37,056 - #27 =
+INFO  12:16:37,056 - #50 sum
+INFO  12:16:37,056 - #8 (
+INFO  12:16:37,056 - #50 niz
+INFO  12:16:37,056 - #5 [
+INFO  12:16:37,056 - #49 1
+INFO  12:16:37,056 - #6 ]
+INFO  12:16:37,056 - #11 ,
+INFO  12:16:37,056 - #50 niz
+INFO  12:16:37,056 - #5 [
+INFO  12:16:37,056 - #49 0
+INFO  12:16:37,056 - #6 ]
+INFO  12:16:37,056 - #9 )
+INFO  12:16:37,056 - #18 +
+INFO  12:16:37,056 - #49 1
+INFO  12:16:37,056 - #7 ;
+INFO  12:16:37,056 - #39 if
+INFO  12:16:37,056 - #8 (
+INFO  12:16:37,056 - #50 verify
+INFO  12:16:37,056 - #8 (
+INFO  12:16:37,056 - #9 )
+INFO  12:16:37,057 - #24 ||
+INFO  12:16:37,057 - #50 niz
+INFO  12:16:37,057 - #5 [
+INFO  12:16:37,057 - #49 2
+INFO  12:16:37,057 - #6 ]
+INFO  12:16:37,057 - #32 ==
+INFO  12:16:37,057 - #49 4
+INFO  12:16:37,057 - #9 )
+INFO  12:16:37,057 - #12 print
+INFO  12:16:37,057 - #8 (
+INFO  12:16:37,057 - #50 ord
+INFO  12:16:37,057 - #8 (
+INFO  12:16:37,058 - #51 A
+INFO  12:16:37,058 - #9 )
+INFO  12:16:37,058 - #9 )
+INFO  12:16:37,058 - #7 ;
+INFO  12:16:37,058 - #40 else
+INFO  12:16:37,058 - #12 print
+INFO  12:16:37,058 - #8 (
+INFO  12:16:37,058 - #50 ord
+INFO  12:16:37,058 - #8 (
+INFO  12:16:37,058 - #51 a
+INFO  12:16:37,058 - #9 )
+INFO  12:16:37,058 - #9 )
+INFO  12:16:37,058 - #7 ;
+INFO  12:16:37,058 - #12 print
+INFO  12:16:37,058 - #8 (
+INFO  12:16:37,058 - #50 eol
+INFO  12:16:37,058 - #9 )
+INFO  12:16:37,058 - #7 ;
+INFO  12:16:37,058 - #50 i
+INFO  12:16:37,058 - #27 =
+INFO  12:16:37,058 - #49 0
+INFO  12:16:37,058 - #7 ;
+INFO  12:16:37,058 - #36 do
+INFO  12:16:37,058 - #3 {
+INFO  12:16:37,058 - #39 if
+INFO  12:16:37,058 - #8 (
+INFO  12:16:37,059 - #50 i
+INFO  12:16:37,059 - #32 ==
+INFO  12:16:37,059 - #49 3
+INFO  12:16:37,059 - #9 )
+INFO  12:16:37,059 - #3 {
+INFO  12:16:37,059 - #50 i
+INFO  12:16:37,061 - #25 ++
+INFO  12:16:37,062 - #7 ;
+INFO  12:16:37,062 - #16 continue
+INFO  12:16:37,062 - #7 ;
+INFO  12:16:37,062 - #4 }
+INFO  12:16:37,062 - #39 if
+INFO  12:16:37,062 - #8 (
+INFO  12:16:37,062 - #50 i
+INFO  12:16:37,062 - #32 ==
+INFO  12:16:37,062 - #49 4
+INFO  12:16:37,062 - #9 )
+INFO  12:16:37,062 - #35 break
+INFO  12:16:37,062 - #7 ;
+INFO  12:16:37,062 - #50 i
+INFO  12:16:37,063 - #27 =
+INFO  12:16:37,063 - #50 inkrement
+INFO  12:16:37,063 - #8 (
+INFO  12:16:37,063 - #50 i
+INFO  12:16:37,063 - #11 ,
+INFO  12:16:37,063 - #49 1
+INFO  12:16:37,063 - #9 )
+INFO  12:16:37,063 - #7 ;
+INFO  12:16:37,063 - #4 }
+INFO  12:16:37,063 - #17 while
+INFO  12:16:37,063 - #8 (
+INFO  12:16:37,063 - #50 i
+INFO  12:16:37,063 - #30 <
+INFO  12:16:37,063 - #49 10
+INFO  12:16:37,064 - #9 )
+INFO  12:16:37,064 - #7 ;
+INFO  12:16:37,064 - #39 if
+INFO  12:16:37,064 - #8 (
+INFO  12:16:37,064 - #50 i
+INFO  12:16:37,064 - #32 ==
+INFO  12:16:37,064 - #49 3
+INFO  12:16:37,064 - #23 &&
+INFO  12:16:37,064 - #50 verify
+INFO  12:16:37,064 - #8 (
+INFO  12:16:37,064 - #9 )
+INFO  12:16:37,064 - #9 )
+INFO  12:16:37,064 - #12 print
+INFO  12:16:37,064 - #8 (
+INFO  12:16:37,064 - #19 -
+INFO  12:16:37,064 - #49 4
+INFO  12:16:37,064 - #9 )
+INFO  12:16:37,064 - #7 ;
+INFO  12:16:37,064 - #40 else
+INFO  12:16:37,064 - #12 print
+INFO  12:16:37,064 - #8 (
+INFO  12:16:37,064 - #49 4
+INFO  12:16:37,064 - #9 )
+INFO  12:16:37,064 - #7 ;
+INFO  12:16:37,064 - #34 read
+INFO  12:16:37,064 - #8 (
+INFO  12:16:37,064 - #50 niz
+INFO  12:16:37,064 - #5 [
+INFO  12:16:37,064 - #49 0
+INFO  12:16:37,065 - #6 ]
+INFO  12:16:37,065 - #9 )
+INFO  12:16:37,065 - #7 ;
+INFO  12:16:37,065 - #34 read
+INFO  12:16:37,065 - #8 (
+INFO  12:16:37,065 - #50 niz
+INFO  12:16:37,065 - #5 [
+INFO  12:16:37,065 - #49 1
+INFO  12:16:37,065 - #6 ]
+INFO  12:16:37,065 - #9 )
+INFO  12:16:37,065 - #7 ;
+INFO  12:16:37,065 - #34 read
+INFO  12:16:37,065 - #8 (
+INFO  12:16:37,065 - #50 niz
+INFO  12:16:37,065 - #5 [
+INFO  12:16:37,065 - #49 2
+INFO  12:16:37,065 - #6 ]
+INFO  12:16:37,065 - #9 )
+INFO  12:16:37,065 - #7 ;
+INFO  12:16:37,066 - #12 print
+INFO  12:16:37,066 - #8 (
+INFO  12:16:37,066 - #50 eol
+INFO  12:16:37,066 - #9 )
+INFO  12:16:37,066 - #7 ;
+INFO  12:16:37,066 - #12 print
+INFO  12:16:37,066 - #8 (
+INFO  12:16:37,066 - #50 sum
+INFO  12:16:37,066 - #8 (
+INFO  12:16:37,066 - #50 sum
+INFO  12:16:37,066 - #8 (
+INFO  12:16:37,066 - #50 niz
+INFO  12:16:37,066 - #5 [
+INFO  12:16:37,066 - #49 0
+INFO  12:16:37,066 - #6 ]
+INFO  12:16:37,066 - #11 ,
+INFO  12:16:37,066 - #50 niz
+INFO  12:16:37,066 - #5 [
+INFO  12:16:37,066 - #49 1
+INFO  12:16:37,066 - #6 ]
+INFO  12:16:37,066 - #9 )
+INFO  12:16:37,066 - #11 ,
+INFO  12:16:37,066 - #50 niz
+INFO  12:16:37,067 - #5 [
+INFO  12:16:37,067 - #49 2
+INFO  12:16:37,067 - #6 ]
+INFO  12:16:37,067 - #9 )
+INFO  12:16:37,067 - #9 )
+INFO  12:16:37,067 - #7 ;
+INFO  12:16:37,067 - #12 print
+INFO  12:16:37,067 - #8 (
+INFO  12:16:37,067 - #50 eol
+INFO  12:16:37,067 - #9 )
+INFO  12:16:37,067 - #7 ;
+INFO  12:16:37,067 - #12 print
+INFO  12:16:37,067 - #8 (
+INFO  12:16:37,067 - #50 inkrement
+INFO  12:16:37,067 - #8 (
+INFO  12:16:37,067 - #50 niz
+INFO  12:16:37,067 - #5 [
+INFO  12:16:37,067 - #49 2
+INFO  12:16:37,067 - #6 ]
+INFO  12:16:37,067 - #11 ,
+INFO  12:16:37,067 - #49 2
+INFO  12:16:37,068 - #9 )
+INFO  12:16:37,068 - #9 )
+INFO  12:16:37,068 - #7 ;
+INFO  12:16:37,068 - #50 j
+INFO  12:16:37,068 - #27 =
+INFO  12:16:37,068 - #43 switch
+INFO  12:16:37,068 - #8 (
+INFO  12:16:37,068 - #50 i
+INFO  12:16:37,068 - #9 )
+INFO  12:16:37,068 - #3 {
+INFO  12:16:37,068 - #46 case
+INFO  12:16:37,068 - #49 1
+INFO  12:16:37,068 - #38 :
+INFO  12:16:37,068 - #12 print
+INFO  12:16:37,068 - #8 (
+INFO  12:16:37,068 - #49 1
+INFO  12:16:37,069 - #9 )
+INFO  12:16:37,069 - #7 ;
+INFO  12:16:37,069 - #48 yield
+INFO  12:16:37,069 - #49 1
+INFO  12:16:37,069 - #7 ;
+INFO  12:16:37,070 - #46 case
+INFO  12:16:37,070 - #49 3
+INFO  12:16:37,070 - #38 :
+INFO  12:16:37,070 - #12 print
+INFO  12:16:37,070 - #8 (
+INFO  12:16:37,070 - #49 3
+INFO  12:16:37,070 - #9 )
+INFO  12:16:37,070 - #7 ;
+INFO  12:16:37,070 - #46 case
+INFO  12:16:37,070 - #49 2
+INFO  12:16:37,070 - #38 :
+INFO  12:16:37,071 - #12 print
+INFO  12:16:37,071 - #8 (
+INFO  12:16:37,071 - #49 2
+INFO  12:16:37,071 - #9 )
+INFO  12:16:37,071 - #7 ;
+INFO  12:16:37,071 - #48 yield
+INFO  12:16:37,071 - #49 2
+INFO  12:16:37,071 - #7 ;
+INFO  12:16:37,071 - #46 case
+INFO  12:16:37,071 - #49 4
+INFO  12:16:37,071 - #38 :
+INFO  12:16:37,071 - #12 print
+INFO  12:16:37,071 - #8 (
+INFO  12:16:37,071 - #49 5
+INFO  12:16:37,071 - #9 )
+INFO  12:16:37,071 - #7 ;
+INFO  12:16:37,071 - #50 i
+INFO  12:16:37,071 - #27 =
+INFO  12:16:37,071 - #50 i
+INFO  12:16:37,071 - #18 +
+INFO  12:16:37,071 - #49 3
+INFO  12:16:37,071 - #7 ;
+INFO  12:16:37,071 - #48 yield
+INFO  12:16:37,071 - #49 7
+INFO  12:16:37,071 - #7 ;
+INFO  12:16:37,071 - #47 default
+INFO  12:16:37,072 - #38 :
+INFO  12:16:37,072 - #48 yield
+INFO  12:16:37,072 - #49 10
+INFO  12:16:37,072 - #7 ;
+INFO  12:16:37,072 - #4 }
+INFO  12:16:37,073 - #7 ;
+INFO  12:16:37,073 - #12 print
+INFO  12:16:37,073 - #8 (
+INFO  12:16:37,073 - #50 eol
+INFO  12:16:37,073 - #9 )
+INFO  12:16:37,073 - #7 ;
+INFO  12:16:37,073 - #12 print
+INFO  12:16:37,073 - #8 (
+INFO  12:16:37,073 - #50 i
+INFO  12:16:37,073 - #9 )
+INFO  12:16:37,073 - #7 ;
+INFO  12:16:37,073 - #12 print
+INFO  12:16:37,073 - #8 (
+INFO  12:16:37,073 - #50 eol
+INFO  12:16:37,073 - #9 )
+INFO  12:16:37,074 - #7 ;
+INFO  12:16:37,074 - #12 print
+INFO  12:16:37,074 - #8 (
+INFO  12:16:37,074 - #50 j
+INFO  12:16:37,074 - #9 )
+INFO  12:16:37,074 - #7 ;
+INFO  12:16:37,074 - #4 }
+INFO  12:16:37,074 - #4 }
+INFO  12:16:37,080 - AstProgram(
   AstProgName(
    test302
   ) [AstProgName]
@@ -1106,95 +1102,72 @@ INFO  13:27:11,446 - AstProgram(
                                                       ) [AstConditionOne]
                                                     ) [AstDoWhile]
                                                   ) [AstStatementL]
-                                                  AstUnmatchedIf(
+                                                  AstMatchedIf(
                                                     AstIfPart(
                                                       AstConditionOne(
                                                         AstCondTermOne(
-                                                          AstCondFactExpr(
+                                                          AstCondFact(
                                                             AstNotTerExpr(
                                                               AstPosExpr(
                                                                 AstTermExpr(
                                                                   AstTermOne(
                                                                     AstDesigFact(
                                                                       AstDesig(
-                                                                       ibool
+                                                                       i
                                                                       ) [AstDesig]
                                                                     ) [AstDesigFact]
                                                                   ) [AstTermOne]
                                                                 ) [AstTermExpr]
                                                               ) [AstPosExpr]
                                                             ) [AstNotTerExpr]
-                                                          ) [AstCondFactExpr]
+                                                            AstEqop(
+                                                            ) [AstEqop]
+                                                            AstNotTerExpr(
+                                                              AstPosExpr(
+                                                                AstTermExpr(
+                                                                  AstTermOne(
+                                                                    AstFactNum(
+                                                                     5
+                                                                    ) [AstFactNum]
+                                                                  ) [AstTermOne]
+                                                                ) [AstTermExpr]
+                                                              ) [AstPosExpr]
+                                                            ) [AstNotTerExpr]
+                                                          ) [AstCondFact]
                                                         ) [AstCondTermOne]
                                                       ) [AstConditionOne]
                                                     ) [AstIfPart]
-                                                    AstMatchedIf(
-                                                      AstIfPart(
-                                                        AstConditionOne(
-                                                          AstCondTermOne(
-                                                            AstCondFact(
-                                                              AstNotTerExpr(
-                                                                AstPosExpr(
-                                                                  AstTermExpr(
-                                                                    AstTermOne(
-                                                                      AstDesigFact(
-                                                                        AstDesig(
-                                                                         i
-                                                                        ) [AstDesig]
-                                                                      ) [AstDesigFact]
-                                                                    ) [AstTermOne]
-                                                                  ) [AstTermExpr]
-                                                                ) [AstPosExpr]
-                                                              ) [AstNotTerExpr]
-                                                              AstEqop(
-                                                              ) [AstEqop]
-                                                              AstNotTerExpr(
-                                                                AstPosExpr(
-                                                                  AstTermExpr(
-                                                                    AstTermOne(
-                                                                      AstFactNum(
-                                                                       5
-                                                                      ) [AstFactNum]
-                                                                    ) [AstTermOne]
-                                                                  ) [AstTermExpr]
-                                                                ) [AstPosExpr]
-                                                              ) [AstNotTerExpr]
-                                                            ) [AstCondFact]
-                                                          ) [AstCondTermOne]
-                                                        ) [AstConditionOne]
-                                                      ) [AstIfPart]
-                                                      AstPrintStmt(
-                                                        AstNotTerExpr(
-                                                          AstPosExpr(
-                                                            AstTermExpr(
-                                                              AstTermOne(
-                                                                AstFactNum(
-                                                                 1
-                                                                ) [AstFactNum]
-                                                              ) [AstTermOne]
-                                                            ) [AstTermExpr]
-                                                          ) [AstPosExpr]
-                                                        ) [AstNotTerExpr]
-                                                      ) [AstPrintStmt]
-                                                      AstElsePart(
-                                                      ) [AstElsePart]
-                                                      AstPrintStmt(
-                                                        AstNotTerExpr(
-                                                          AstNegExpr(
-                                                            AstMinus(
-                                                            ) [AstMinus]
-                                                            AstTermExpr(
-                                                              AstTermOne(
-                                                                AstFactNum(
-                                                                 1
-                                                                ) [AstFactNum]
-                                                              ) [AstTermOne]
-                                                            ) [AstTermExpr]
-                                                          ) [AstNegExpr]
-                                                        ) [AstNotTerExpr]
-                                                      ) [AstPrintStmt]
-                                                    ) [AstMatchedIf]
-                                                  ) [AstUnmatchedIf]
+                                                    AstPrintStmt(
+                                                      AstNotTerExpr(
+                                                        AstPosExpr(
+                                                          AstTermExpr(
+                                                            AstTermOne(
+                                                              AstFactNum(
+                                                               1
+                                                              ) [AstFactNum]
+                                                            ) [AstTermOne]
+                                                          ) [AstTermExpr]
+                                                        ) [AstPosExpr]
+                                                      ) [AstNotTerExpr]
+                                                    ) [AstPrintStmt]
+                                                    AstElsePart(
+                                                    ) [AstElsePart]
+                                                    AstPrintStmt(
+                                                      AstNotTerExpr(
+                                                        AstNegExpr(
+                                                          AstMinus(
+                                                          ) [AstMinus]
+                                                          AstTermExpr(
+                                                            AstTermOne(
+                                                              AstFactNum(
+                                                               1
+                                                              ) [AstFactNum]
+                                                            ) [AstTermOne]
+                                                          ) [AstTermExpr]
+                                                        ) [AstNegExpr]
+                                                      ) [AstNotTerExpr]
+                                                    ) [AstPrintStmt]
+                                                  ) [AstMatchedIf]
                                                 ) [AstStatementL]
                                                 AstDesigStmt(
                                                   AstEqualStmt(
@@ -2457,31 +2430,31 @@ INFO  13:27:11,446 - AstProgram(
     ) [AstMethDecl]
   ) [AstMethDeclL]
 ) [AstProgram]
-INFO  13:27:11,456 - Constant declared jedan on line 5
-INFO  13:27:11,456 - Variable declared i on line 7
-INFO  13:27:11,456 - Variable declared j on line 7
-INFO  13:27:11,456 - Variable declared ibool on line 8
-INFO  13:27:11,456 - Variable Array Declared niz on line 10
-INFO  13:27:11,456 - Function sum is being defined on line 14
-INFO  13:27:11,456 - Variable declared z on line 14
-INFO  13:27:11,456 - Variable declared d on line 14
-INFO  13:27:11,457 - Function inkrement is being defined on line 19
-INFO  13:27:11,457 - Variable declared a on line 19
-INFO  13:27:11,457 - Variable declared inc on line 19
-INFO  13:27:11,457 - Variable declared pom on line 20
-INFO  13:27:11,457 - Function verify is being defined on line 28
-INFO  13:27:11,457 - Function mainis being defined on line 33
-INFO  13:27:11,457 - Accessing element from niz on line 49
-INFO  13:27:11,457 - Accessing element from niz on line 50
-INFO  13:27:11,457 - Accessing element from niz on line 51
-INFO  13:27:11,457 - Accessing element from niz on line 51
-INFO  13:27:11,457 - Accessing element from niz on line 51
-INFO  13:27:11,457 - Accessing element from niz on line 52
-INFO  13:27:11,457 - Accessing element from niz on line 70
-INFO  13:27:11,457 - Accessing element from niz on line 71
-INFO  13:27:11,457 - Accessing element from niz on line 72
-INFO  13:27:11,457 - Accessing element from niz on line 75
-INFO  13:27:11,457 - Accessing element from niz on line 75
-INFO  13:27:11,457 - Accessing element from niz on line 75
-INFO  13:27:11,458 - Accessing element from niz on line 78
-INFO  13:27:11,461 - Compilation successful!
+INFO  12:16:37,090 - Constant declared jedan on line 5
+INFO  12:16:37,090 - Variable declared i on line 7
+INFO  12:16:37,090 - Variable declared j on line 7
+INFO  12:16:37,090 - Variable declared ibool on line 8
+INFO  12:16:37,091 - Variable Array Declared niz on line 10
+INFO  12:16:37,091 - Function sum is being defined on line 14
+INFO  12:16:37,091 - Variable declared z on line 14
+INFO  12:16:37,091 - Variable declared d on line 14
+INFO  12:16:37,091 - Function inkrement is being defined on line 19
+INFO  12:16:37,091 - Variable declared a on line 19
+INFO  12:16:37,091 - Variable declared inc on line 19
+INFO  12:16:37,091 - Variable declared pom on line 20
+INFO  12:16:37,091 - Function verify is being defined on line 28
+INFO  12:16:37,091 - Function mainis being defined on line 33
+INFO  12:16:37,091 - Accessing element from niz on line 49
+INFO  12:16:37,091 - Accessing element from niz on line 50
+INFO  12:16:37,092 - Accessing element from niz on line 51
+INFO  12:16:37,092 - Accessing element from niz on line 51
+INFO  12:16:37,092 - Accessing element from niz on line 51
+INFO  12:16:37,092 - Accessing element from niz on line 52
+INFO  12:16:37,092 - Accessing element from niz on line 70
+INFO  12:16:37,092 - Accessing element from niz on line 71
+INFO  12:16:37,092 - Accessing element from niz on line 72
+INFO  12:16:37,092 - Accessing element from niz on line 75
+INFO  12:16:37,092 - Accessing element from niz on line 75
+INFO  12:16:37,092 - Accessing element from niz on line 75
+INFO  12:16:37,092 - Accessing element from niz on line 78
+INFO  12:16:37,096 - Compilation successful!
