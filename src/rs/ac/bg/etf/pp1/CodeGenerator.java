@@ -377,7 +377,7 @@ public class CodeGenerator extends VisitorAdaptor {
 	
 	public void visit(AstSwitchExpr se) {
 		int temp = lastPatch.pop();
-		if(temp == 0)
+		if(temp != 0)
 			Code.fixup(temp);
 		Code.putJump(defBranches.pop());
 		ArrayList<Integer> yieldFixes = yields.pop();
@@ -389,8 +389,8 @@ public class CodeGenerator extends VisitorAdaptor {
 	public void visit(AstCaseBegin c) {
 		int temp = lastPatch.pop();
 		int temp2 = 0;
-		Code.putJump(0);
-		if(firstCase) {
+		if(!firstCase) {
+			Code.putJump(0);
 			temp2 = Code.pc-2;
 		}
 		if(temp != 0)
@@ -399,14 +399,13 @@ public class CodeGenerator extends VisitorAdaptor {
 		Code.loadConst(c.getNumConst());
 		Code.putFalseJump(Code.eq, 0);
 		lastPatch.push(Code.pc-2);
-		if(firstCase) {
+		if(!firstCase) {
 			Code.fixup(temp2);
 		}
 		firstCase = false;
 	}
 
 	public void visit(AstCase c) {
-		Code.putJump(0);
 	}
 	
 	public void visit(AstDefaultBegin db) {
