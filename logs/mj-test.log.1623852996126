@@ -1,0 +1,141 @@
+INFO  16:16:12,649 - Compiling source file: /home/edvin/Desktop/ppp/MicroJavaCompiler/test/program.mj
+INFO  16:16:12,670 - #2 program
+INFO  16:16:12,670 - #50 SwitchesAndWhiles
+INFO  16:16:12,670 - #10 const
+INFO  16:16:12,671 - #50 int
+INFO  16:16:12,671 - #50 N
+INFO  16:16:12,671 - #27 =
+INFO  16:16:12,671 - #49 10
+INFO  16:16:12,671 - #7 ;
+INFO  16:16:12,671 - #3 {
+INFO  16:16:12,672 - #14 void
+INFO  16:16:12,672 - #50 main
+INFO  16:16:12,672 - #8 (
+INFO  16:16:12,672 - #9 )
+INFO  16:16:12,672 - #50 int
+INFO  16:16:12,672 - #50 i
+INFO  16:16:12,673 - #11 ,
+INFO  16:16:12,673 - #50 j
+INFO  16:16:12,673 - #7 ;
+INFO  16:16:12,673 - #3 {
+INFO  16:16:12,673 - #50 i
+INFO  16:16:12,673 - #27 =
+INFO  16:16:12,673 - #49 0
+INFO  16:16:12,674 - #7 ;
+INFO  16:16:12,674 - #50 j
+INFO  16:16:12,674 - #27 =
+INFO  16:16:12,674 - #49 0
+INFO  16:16:12,674 - #7 ;
+INFO  16:16:12,674 - #36 do
+INFO  16:16:12,674 - #3 {
+INFO  16:16:12,675 - #36 do
+INFO  16:16:12,675 - #3 {
+INFO  16:16:12,675 - #39 if
+INFO  16:16:12,675 - #8 (
+INFO  16:16:12,675 - #50 i
+INFO  16:16:12,675 - #28 >
+INFO  16:16:12,675 - #49 0
+INFO  16:16:12,675 - #9 )
+INFO  16:16:12,676 - #35 break
+INFO  16:16:12,676 - #7 ;
+INFO  16:16:12,676 - #50 j
+INFO  16:16:12,676 - #27 =
+INFO  16:16:12,676 - #43 switch
+INFO  16:16:12,676 - #8 (
+INFO  16:16:12,676 - #50 j
+INFO  16:16:12,676 - #9 )
+INFO  16:16:12,676 - #3 {
+INFO  16:16:12,677 - #46 case
+INFO  16:16:12,677 - #49 0
+INFO  16:16:12,677 - #38 :
+INFO  16:16:12,677 - #12 print
+INFO  16:16:12,677 - #8 (
+INFO  16:16:12,677 - #51 H
+INFO  16:16:12,677 - #9 )
+INFO  16:16:12,677 - #7 ;
+INFO  16:16:12,677 - #48 yield
+INFO  16:16:12,677 - #50 j
+INFO  16:16:12,678 - #18 +
+INFO  16:16:12,678 - #49 1
+INFO  16:16:12,678 - #7 ;
+INFO  16:16:12,678 - #46 case
+INFO  16:16:12,679 - #49 1
+INFO  16:16:12,679 - #38 :
+INFO  16:16:12,679 - #12 print
+INFO  16:16:12,679 - #8 (
+INFO  16:16:12,679 - #51 e
+INFO  16:16:12,679 - #9 )
+INFO  16:16:12,679 - #7 ;
+INFO  16:16:12,679 - #48 yield
+INFO  16:16:12,679 - #50 j
+INFO  16:16:12,679 - #18 +
+INFO  16:16:12,679 - #49 1
+INFO  16:16:12,679 - #7 ;
+INFO  16:16:12,679 - #46 case
+INFO  16:16:12,679 - #49 2
+INFO  16:16:12,679 - #38 :
+INFO  16:16:12,679 - #46 case
+INFO  16:16:12,679 - #49 3
+INFO  16:16:12,679 - #38 :
+INFO  16:16:12,680 - #12 print
+INFO  16:16:12,680 - #8 (
+INFO  16:16:12,680 - #51 l
+INFO  16:16:12,680 - #9 )
+INFO  16:16:12,680 - #7 ;
+INFO  16:16:12,680 - #48 yield
+INFO  16:16:12,680 - #50 j
+INFO  16:16:12,680 - #18 +
+INFO  16:16:12,680 - #49 1
+INFO  16:16:12,680 - #7 ;
+INFO  16:16:12,680 - #47 default
+INFO  16:16:12,680 - #38 :
+INFO  16:16:12,681 - #12 print
+INFO  16:16:12,681 - #8 (
+INFO  16:16:12,681 - #43 switch
+INFO  16:16:12,681 - #8 (
+INFO  16:16:12,681 - #50 i
+INFO  16:16:12,681 - #9 )
+INFO  16:16:12,681 - #3 {
+INFO  16:16:12,681 - #46 case
+INFO  16:16:12,681 - #49 1
+INFO  16:16:12,681 - #38 :
+INFO  16:16:12,681 - #48 yield
+INFO  16:16:12,681 - #51 H
+INFO  16:16:12,681 - #7 ;
+INFO  16:16:12,681 - #47 default
+INFO  16:16:12,681 - #38 :
+INFO  16:16:12,682 - #48 yield
+INFO  16:16:12,682 - #51 o
+INFO  16:16:12,682 - #7 ;
+INFO  16:16:12,682 - #4 }
+INFO  16:16:12,682 - #9 )
+INFO  16:16:12,683 - #7 ;
+INFO  16:16:12,683 - #48 yield
+INFO  16:16:12,683 - #50 j
+INFO  16:16:12,683 - #18 +
+INFO  16:16:12,683 - #49 1
+INFO  16:16:12,683 - #7 ;
+INFO  16:16:12,683 - #4 }
+INFO  16:16:12,683 - #4 }
+ERROR 16:16:12,683 - 
+Sintaksna greska na liniji 28
+INFO  16:16:12,683 - #17 while
+INFO  16:16:12,683 - #8 (
+INFO  16:16:12,683 - #50 j
+INFO  16:16:12,684 - #31 <=
+INFO  16:16:12,684 - #49 4
+INFO  16:16:12,684 - #9 )
+INFO  16:16:12,684 - #7 ;
+INFO  16:16:12,684 - #12 print
+INFO  16:16:12,684 - #8 (
+INFO  16:16:12,684 - #51  
+ERROR 16:16:12,687 - class rs.ac.bg.etf.pp1.ast.AstStatementL cannot be cast to class rs.ac.bg.etf.pp1.ast.Designator (rs.ac.bg.etf.pp1.ast.AstStatementL and rs.ac.bg.etf.pp1.ast.Designator are in unnamed module of loader 'app')
+java.lang.ClassCastException: class rs.ac.bg.etf.pp1.ast.AstStatementL cannot be cast to class rs.ac.bg.etf.pp1.ast.Designator (rs.ac.bg.etf.pp1.ast.AstStatementL and rs.ac.bg.etf.pp1.ast.Designator are in unnamed module of loader 'app')
+	at rs.ac.bg.etf.pp1.CUP$MJParser$actions.CUP$MJParser$do_action(MJParser.java:1416)
+	at rs.ac.bg.etf.pp1.MJParser.do_action(MJParser.java:466)
+	at java_cup.runtime.lr_parser.parse_lookahead(lr_parser.java:1178)
+	at java_cup.runtime.lr_parser.error_recovery(lr_parser.java:887)
+	at java_cup.runtime.lr_parser.parse(lr_parser.java:598)
+	at rs.ac.bg.etf.pp1.MJCompiler.compile(MJCompiler.java:50)
+	at rs.ac.bg.etf.pp1.MicroJava.compile(MicroJava.java:12)
+	at rs.ac.bg.etf.pp1.MicroJava.main(MicroJava.java:53)

@@ -11,7 +11,7 @@ import java.util.*;
 
 parser code {:
 	
-	boolean errorDetected = false;
+	boolean fatalErrorDetected = false;
 	
 	Logger log = Logger.getLogger(getClass());
 	
@@ -21,8 +21,9 @@ parser code {:
     // slede redefinisani metodi za prijavu gresaka radi izmene teksta poruke
      
     public void report_fatal_error(String message, Object info) throws java.lang.Exception {
-      done_parsing();
-      report_error(message, info);
+		done_parsing();
+		fatalErrorDetected = true;
+		report_error(message, info);
     }
   
     public void syntax_error(Symbol cur_token) {
@@ -34,7 +35,6 @@ parser code {:
     }
 
     public void report_error(String message, Object info) {
-    	errorDetected = true;
     	StringBuilder msg = new StringBuilder(message); 
     	if (info instanceof Symbol)
             msg.append (" na liniji ").append(((Symbol)info).left);
@@ -79,6 +79,7 @@ nonterminal VarDecl VarDecl;
 nonterminal FormalParams FormalParams ;
 nonterminal FormalParamList FormalParamList;
 nonterminal FormalParamDecl FormalParamDecl;
+nonterminal FormalParamDeclComma FormalParamDeclComma;
 nonterminal ActualPars ActualPars;
 nonterminal ActualParamList ActualParamList;
 nonterminal OneActualParam OneActualParam ; 
@@ -203,12 +204,7 @@ FormalParams ::= (AstFormalParams) LPAREN FormalParamList:F1 {: RESULT=new AstFo
 					(AstNoFormalParams) LPAREN RPAREN {: RESULT=new AstNoFormalParams(); :}/* epsilon */
 					;
 
-FormalParamList ::= (AstFormalParamL) FormalParamDecl:F1 COMMA FormalParamList:F2 {: RESULT=new AstFormalParamL(F1, F2); RESULT.setLine(F1left); :}
-					|
-					(AstFormalParamListErr) error:e COMMA
-					{: 	parser.report_error("Syntax error in line " + eleft + " formal params bad" + ". recovery up to ','", null); 
-						parser.synErrors.add(new CompilerError(eleft, "Bad formal parameter. Recovery up to ','", CompilerErrorType.SYNTAX_ERROR));
-					:} {: RESULT=new AstFormalParamListErr(); :}
+FormalParamList ::= (AstFormalParamL) FormalParamDeclComma:F1 FormalParamList:F2 {: RESULT=new AstFormalParamL(F1, F2); RESULT.setLine(F1left); :}
 					|
 					(AstFormalParamErr) error:e RPAREN
 					{: 	parser.report_error("Syntax error in line " + eleft + " formal params bad" + ". recovery up to ')'", null); 
@@ -220,8 +216,16 @@ FormalParamList ::= (AstFormalParamL) FormalParamDecl:F1 COMMA FormalParamList:F
 					
 FormalParamDecl ::= (AstFormalParamDecl) Type:T1 IDENT:paramName {: RESULT=new AstFormalParamDecl(T1, paramName); RESULT.setLine(T1left); :}
 					|
-					(AstFormalParamArrDecl) Type:T1 IDENT:paramName LSQR RSQR {: RESULT=new AstFormalParamArrDecl(T1, paramName); RESULT.setLine(T1left); :} 
+					(AstFormalParamArrDecl) Type:T1 IDENT:paramName LSQR RSQR {: RESULT=new AstFormalParamArrDecl(T1, paramName); RESULT.setLine(T1left); :}
 					;
+					
+FormalParamDeclComma ::= (AstFormalParamDeclComma) FormalParamDecl:F1 COMMA {: RESULT=new AstFormalParamDeclComma(F1); RESULT.setLine(F1left); :}
+						|
+						(AstFormalParamListErr) error:e
+						{: 	parser.report_error("Syntax error in line " + eleft + " formal params bad" + ". recovery up to ','", null); 
+							parser.synErrors.add(new CompilerError(eleft, "Bad formal parameter. Recovery up to ','", CompilerErrorType.SYNTAX_ERROR));
+						:} {: RESULT=new AstFormalParamListErr(); :}
+						;
 					
 StatementList ::= (AstStatementL) StatementList:S1 Statement:S2 {: RESULT=new AstStatementL(S1, S2); RESULT.setLine(S1left); :} 
 					|

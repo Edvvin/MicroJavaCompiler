@@ -1,0 +1,32 @@
+program SyntaxTest 
+int bananas char, asdf;
+const char o = 'o', 'o';
+{
+
+	int test1(int a, int b, int c c){
+		return 5;
+	}
+	
+	void test2 (int x, int y y, int z) {
+		if(true[5])
+		{
+
+		}
+		else
+		{
+			print('i');
+			print('t');
+			print(' ');
+			print('w');
+			print(o);
+			print('r');
+			print('k');
+			print('s');
+		}
+	}
+
+	void main(){
+		test2(2,2);
+	}
+	
+}

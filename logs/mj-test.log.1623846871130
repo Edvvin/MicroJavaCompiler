@@ -1,0 +1,120 @@
+INFO  14:34:19,284 - Compiling source file: /home/edvin/Desktop/ppp/MicroJavaCompiler/test/program.mj
+INFO  14:34:19,307 - #2 program
+INFO  14:34:19,307 - #50 SyntaxTest
+INFO  14:34:19,307 - #50 int
+INFO  14:34:19,307 - #50 bananas
+INFO  14:34:19,307 - #50 char
+ERROR 14:34:19,308 - 
+Sintaksna greska na liniji 2
+INFO  14:34:19,308 - #11 ,
+INFO  14:34:19,308 - #50 asdf
+INFO  14:34:19,308 - #7 ;
+INFO  14:34:19,308 - #10 const
+INFO  14:34:19,308 - #50 char
+INFO  14:34:19,308 - #50 o
+ERROR 14:34:19,308 - Syntax error in line 2 global variable error. recovery up to ';'
+INFO  14:34:19,309 - #27 =
+INFO  14:34:19,309 - #51 o
+INFO  14:34:19,309 - #11 ,
+INFO  14:34:19,310 - #51 o
+ERROR 14:34:19,310 - 
+Sintaksna greska na liniji 3
+INFO  14:34:19,310 - #7 ;
+INFO  14:34:19,310 - #3 {
+INFO  14:34:19,310 - #14 void
+INFO  14:34:19,310 - #50 main
+ERROR 14:34:19,310 - Syntax error in line 3 global constant error. recovery up to ';'
+INFO  14:34:19,311 - #8 (
+INFO  14:34:19,311 - #9 )
+INFO  14:34:19,311 - #3 {
+INFO  14:34:19,311 - #4 }
+INFO  14:34:19,312 - #50 int
+INFO  14:34:19,312 - #50 test1
+INFO  14:34:19,312 - #8 (
+INFO  14:34:19,312 - #50 int
+INFO  14:34:19,312 - #50 a
+INFO  14:34:19,312 - #11 ,
+INFO  14:34:19,312 - #50 int
+INFO  14:34:19,312 - #50 b
+INFO  14:34:19,312 - #11 ,
+INFO  14:34:19,312 - #50 int
+INFO  14:34:19,312 - #50 c
+INFO  14:34:19,312 - #50 c
+ERROR 14:34:19,312 - 
+Sintaksna greska na liniji 10
+INFO  14:34:19,313 - #9 )
+INFO  14:34:19,313 - #3 {
+INFO  14:34:19,313 - #13 return
+INFO  14:34:19,313 - #49 5
+ERROR 14:34:19,313 - Syntax error in line 10 formal params bad. recovery up to ')'
+INFO  14:34:19,313 - #7 ;
+INFO  14:34:19,314 - #4 }
+INFO  14:34:19,314 - #14 void
+INFO  14:34:19,314 - #50 test2
+INFO  14:34:19,314 - #8 (
+INFO  14:34:19,315 - #50 int
+INFO  14:34:19,315 - #50 x
+INFO  14:34:19,315 - #11 ,
+INFO  14:34:19,315 - #50 y
+INFO  14:34:19,315 - #11 ,
+ERROR 14:34:19,315 - 
+Sintaksna greska na liniji 14
+INFO  14:34:19,315 - #50 int
+INFO  14:34:19,315 - #50 z
+INFO  14:34:19,315 - #9 )
+ERROR 14:34:19,315 - Syntax error in line 14 formal params bad. recovery up to ','
+ERROR 14:34:19,316 - 
+Sintaksna greska na liniji 14
+INFO  14:34:19,316 - #3 {
+INFO  14:34:19,316 - #39 if
+INFO  14:34:19,316 - #8 (
+INFO  14:34:19,316 - #52 true
+INFO  14:34:19,316 - #5 [
+INFO  14:34:19,316 - #49 5
+INFO  14:34:19,316 - #6 ]
+INFO  14:34:19,316 - #9 )
+INFO  14:34:19,316 - #3 {
+INFO  14:34:19,316 - #12 print
+INFO  14:34:19,316 - #8 (
+INFO  14:34:19,316 - #51 i
+INFO  14:34:19,316 - #9 )
+INFO  14:34:19,316 - #7 ;
+INFO  14:34:19,316 - #12 print
+INFO  14:34:19,316 - #8 (
+INFO  14:34:19,317 - #51 t
+INFO  14:34:19,317 - #9 )
+INFO  14:34:19,317 - #7 ;
+INFO  14:34:19,317 - #12 print
+INFO  14:34:19,317 - #8 (
+INFO  14:34:19,317 - #51 w
+INFO  14:34:19,317 - #9 )
+INFO  14:34:19,317 - #7 ;
+INFO  14:34:19,317 - #12 print
+INFO  14:34:19,317 - #8 (
+INFO  14:34:19,317 - #50 o
+INFO  14:34:19,317 - #9 )
+INFO  14:34:19,317 - #7 ;
+INFO  14:34:19,317 - #12 print
+INFO  14:34:19,317 - #8 (
+INFO  14:34:19,317 - #51 r
+INFO  14:34:19,317 - #9 )
+INFO  14:34:19,317 - #7 ;
+INFO  14:34:19,317 - #12 print
+INFO  14:34:19,317 - #8 (
+INFO  14:34:19,318 - #51 k
+INFO  14:34:19,318 - #9 )
+INFO  14:34:19,318 - #7 ;
+INFO  14:34:19,318 - #12 print
+INFO  14:34:19,318 - #8 (
+INFO  14:34:19,318 - #51 s
+INFO  14:34:19,318 - #9 )
+INFO  14:34:19,318 - #7 ;
+INFO  14:34:19,318 - #4 }
+INFO  14:34:19,318 - #4 }
+INFO  14:34:19,318 - #4 }
+ERROR 14:34:19,318 - Fatalna greska, parsiranje se ne moze nastaviti na liniji 27
+ERROR 14:34:19,319 - class java.lang.String cannot be cast to class rs.ac.bg.etf.pp1.ast.SyntaxNode (java.lang.String is in module java.base of loader 'bootstrap'; rs.ac.bg.etf.pp1.ast.SyntaxNode is in unnamed module of loader 'app')
+java.lang.ClassCastException: class java.lang.String cannot be cast to class rs.ac.bg.etf.pp1.ast.SyntaxNode (java.lang.String is in module java.base of loader 'bootstrap'; rs.ac.bg.etf.pp1.ast.SyntaxNode is in unnamed module of loader 'app')
+	at rs.ac.bg.etf.pp1.MJCompiler.compile(MJCompiler.java:53)
+	at rs.ac.bg.etf.pp1.MicroJava.compile(MicroJava.java:12)
+	at rs.ac.bg.etf.pp1.MicroJava.main(MicroJava.java:53)

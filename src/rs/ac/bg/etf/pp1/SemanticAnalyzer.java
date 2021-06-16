@@ -103,7 +103,7 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 		}
 		else {
 			obj = Tab.insert(Obj.Con, cnstAsgn.getCnstName(), currType);
-			obj.setAdr(Character.getNumericValue(cnstAsgn.getValue().charValue()));
+			obj.setAdr((int)(cnstAsgn.getValue().charValue()));
 			report_info("Constant declared "+ cnstAsgn.getCnstName(), cnstAsgn);
 		}
 	}
@@ -402,7 +402,7 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	public void visit(AstSwitchBegin switchbegin) {
 		defaultFound.push(false);
 		switchLevel++;
-		currentYieldType.push(switchbegin.getExpr().struct);
+		currentYieldType.push(Tab.noType);
 	}
 	
 	public void visit(AstSwitchExpr switchExpr) {
@@ -445,6 +445,10 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 		if(switchLevel == yieldFound.size() && switchLevel > 0) {
 			yieldFound.pop();
 			yieldFound.push(true);
+		}
+		if(currentYieldType.peek() == Tab.noType) {
+			currentYieldType.pop();
+			currentYieldType.push(y.getExpr().struct);
 		}
 		if(!y.getExpr().struct.compatibleWith(currentYieldType.peek())) {
 			report_error("All yield statement types must be compatible", y);
@@ -623,13 +627,12 @@ public class SemanticAnalyzer extends VisitorAdaptor {
 	}
 	
 	public void visit(AstIndexDesig indexDesig) {
-		if(indexDesig.getDesignator().obj == null)
-			return;
+		if(indexDesig.getExpr().struct != Tab.intType) {
+			report_error("Index must be of type integer", indexDesig);
+		}
 		if(indexDesig.getDesignator().obj.getType().getKind() != Struct.Array) {
 			report_error("Designator being indexed must be an array", indexDesig);
-		}
-		else if(indexDesig.getExpr().struct != Tab.intType) {
-			report_error("Index must be of type integer", indexDesig);
+			indexDesig.obj = Tab.noObj;
 		}
 		else {
 			Obj obj = indexDesig.getDesignator().obj;

@@ -1,0 +1,179 @@
+INFO  15:19:49,500 - Compiling source file: /home/edvin/Desktop/ppp/MicroJavaCompiler/test/program.mj
+INFO  15:19:49,527 - #2 program
+INFO  15:19:49,527 - #50 SemTest
+INFO  15:19:49,527 - #50 int
+INFO  15:19:49,528 - #50 a
+INFO  15:19:49,528 - #7 ;
+INFO  15:19:49,528 - #10 const
+INFO  15:19:49,528 - #50 int
+INFO  15:19:49,528 - #50 b
+INFO  15:19:49,528 - #27 =
+INFO  15:19:49,528 - #49 10
+INFO  15:19:49,528 - #7 ;
+INFO  15:19:49,528 - #50 bool
+INFO  15:19:49,529 - #50 c
+INFO  15:19:49,529 - #5 [
+INFO  15:19:49,529 - #6 ]
+INFO  15:19:49,529 - #7 ;
+INFO  15:19:49,529 - #3 {
+INFO  15:19:49,529 - #50 char
+INFO  15:19:49,529 - #50 func
+INFO  15:19:49,529 - #8 (
+INFO  15:19:49,530 - #50 int
+INFO  15:19:49,530 - #50 a
+INFO  15:19:49,530 - #11 ,
+INFO  15:19:49,530 - #50 bool
+INFO  15:19:49,530 - #50 c
+INFO  15:19:49,530 - #5 [
+INFO  15:19:49,530 - #6 ]
+INFO  15:19:49,530 - #9 )
+INFO  15:19:49,530 - #50 int
+INFO  15:19:49,531 - #50 i
+INFO  15:19:49,531 - #7 ;
+INFO  15:19:49,531 - #3 {
+INFO  15:19:49,531 - #50 c
+INFO  15:19:49,531 - #27 =
+INFO  15:19:49,532 - #15 new
+INFO  15:19:49,532 - #50 char
+INFO  15:19:49,532 - #5 [
+INFO  15:19:49,532 - #50 b
+INFO  15:19:49,532 - #6 ]
+INFO  15:19:49,532 - #7 ;
+INFO  15:19:49,533 - #36 do
+INFO  15:19:49,533 - #3 {
+INFO  15:19:49,534 - #50 c
+INFO  15:19:49,534 - #5 [
+INFO  15:19:49,534 - #50 i
+INFO  15:19:49,534 - #6 ]
+INFO  15:19:49,534 - #27 =
+INFO  15:19:49,535 - #49 1
+INFO  15:19:49,535 - #7 ;
+INFO  15:19:49,535 - #50 c
+INFO  15:19:49,535 - #5 [
+INFO  15:19:49,535 - #50 c
+INFO  15:19:49,535 - #5 [
+INFO  15:19:49,535 - #50 i
+INFO  15:19:49,535 - #6 ]
+INFO  15:19:49,535 - #6 ]
+INFO  15:19:49,535 - #27 =
+INFO  15:19:49,536 - #49 2
+INFO  15:19:49,536 - #7 ;
+INFO  15:19:49,536 - #4 }
+INFO  15:19:49,536 - #17 while
+INFO  15:19:49,536 - #8 (
+INFO  15:19:49,536 - #50 i
+INFO  15:19:49,536 - #30 <
+INFO  15:19:49,536 - #51 c
+INFO  15:19:49,537 - #9 )
+INFO  15:19:49,537 - #7 ;
+INFO  15:19:49,537 - #13 return
+INFO  15:19:49,537 - #50 c
+INFO  15:19:49,537 - #5 [
+INFO  15:19:49,537 - #49 9
+INFO  15:19:49,537 - #6 ]
+INFO  15:19:49,538 - #7 ;
+INFO  15:19:49,538 - #4 }
+INFO  15:19:49,538 - #14 void
+INFO  15:19:49,538 - #50 main
+INFO  15:19:49,538 - #8 (
+INFO  15:19:49,538 - #9 )
+INFO  15:19:49,538 - #50 char
+INFO  15:19:49,538 - #50 x
+INFO  15:19:49,539 - #7 ;
+INFO  15:19:49,539 - #3 {
+INFO  15:19:49,539 - #50 x
+INFO  15:19:49,539 - #27 =
+INFO  15:19:49,539 - #43 switch
+INFO  15:19:49,539 - #8 (
+INFO  15:19:49,539 - #50 x
+INFO  15:19:49,539 - #9 )
+INFO  15:19:49,539 - #3 {
+INFO  15:19:49,539 - #46 case
+INFO  15:19:49,539 - #49 4
+INFO  15:19:49,539 - #38 :
+INFO  15:19:49,539 - #46 case
+INFO  15:19:49,539 - #49 2
+INFO  15:19:49,539 - #38 :
+INFO  15:19:49,540 - #12 print
+INFO  15:19:49,540 - #8 (
+INFO  15:19:49,540 - #50 c
+INFO  15:19:49,540 - #5 [
+INFO  15:19:49,540 - #49 2
+INFO  15:19:49,540 - #6 ]
+INFO  15:19:49,540 - #9 )
+INFO  15:19:49,540 - #7 ;
+INFO  15:19:49,540 - #4 }
+INFO  15:19:49,540 - #4 }
+ERROR 15:19:49,540 - 
+Sintaksna greska na liniji 26
+INFO  15:19:49,541 - #4 }
+ERROR 15:19:49,541 - Fatalna greska, parsiranje se ne moze nastaviti na liniji 27
+INFO  15:19:49,541 - AstCaseList(
+  AstCase(
+    AstCaseBegin(
+     4
+    ) [AstCaseBegin]
+    AstNoStmt(
+    ) [AstNoStmt]
+  ) [AstCase]
+  AstCaseList(
+    AstCase(
+      AstCaseBegin(
+       2
+      ) [AstCaseBegin]
+      AstStatementL(
+        AstNoStmt(
+        ) [AstNoStmt]
+        AstPrintStmt(
+          AstNotTerExpr(
+            AstPosExpr(
+              AstTermExpr(
+                AstTermOne(
+                  AstDesigFact(
+                    AstIndexDesig(
+                      AstDesig(
+                       c
+                      ) [AstDesig]
+                      AstNotTerExpr(
+                        AstPosExpr(
+                          AstTermExpr(
+                            AstTermOne(
+                              AstFactNum(
+                               2
+                              ) [AstFactNum]
+                            ) [AstTermOne]
+                          ) [AstTermExpr]
+                        ) [AstPosExpr]
+                      ) [AstNotTerExpr]
+                    ) [AstIndexDesig]
+                  ) [AstDesigFact]
+                ) [AstTermOne]
+              ) [AstTermExpr]
+            ) [AstPosExpr]
+          ) [AstNotTerExpr]
+        ) [AstPrintStmt]
+      ) [AstStatementL]
+    ) [AstCase]
+    AstNoCase(
+    ) [AstNoCase]
+  ) [AstCaseList]
+) [AstCaseList]
+ERROR 15:19:49,546 - Name c not declared on line 24
+ERROR 15:19:49,546 - Designator being indexed must be an array on line 24
+ERROR 15:19:49,547 - Cannot invoke "rs.etf.pp1.symboltable.concepts.Obj.getType()" because "rs.ac.bg.etf.pp1.ast.AstDesigFact.getDesignator().obj" is null
+java.lang.NullPointerException: Cannot invoke "rs.etf.pp1.symboltable.concepts.Obj.getType()" because "rs.ac.bg.etf.pp1.ast.AstDesigFact.getDesignator().obj" is null
+	at rs.ac.bg.etf.pp1.SemanticAnalyzer.visit(SemanticAnalyzer.java:599)
+	at rs.ac.bg.etf.pp1.ast.AstDesigFact.accept(AstDesigFact.java:26)
+	at rs.ac.bg.etf.pp1.ast.AstDesigFact.traverseBottomUp(AstDesigFact.java:40)
+	at rs.ac.bg.etf.pp1.ast.AstTermOne.traverseBottomUp(AstTermOne.java:39)
+	at rs.ac.bg.etf.pp1.ast.AstTermExpr.traverseBottomUp(AstTermExpr.java:39)
+	at rs.ac.bg.etf.pp1.ast.AstPosExpr.traverseBottomUp(AstPosExpr.java:39)
+	at rs.ac.bg.etf.pp1.ast.AstNotTerExpr.traverseBottomUp(AstNotTerExpr.java:39)
+	at rs.ac.bg.etf.pp1.ast.AstPrintStmt.traverseBottomUp(AstPrintStmt.java:39)
+	at rs.ac.bg.etf.pp1.ast.AstStatementL.traverseBottomUp(AstStatementL.java:53)
+	at rs.ac.bg.etf.pp1.ast.AstCase.traverseBottomUp(AstCase.java:53)
+	at rs.ac.bg.etf.pp1.ast.AstCaseList.traverseBottomUp(AstCaseList.java:52)
+	at rs.ac.bg.etf.pp1.ast.AstCaseList.traverseBottomUp(AstCaseList.java:53)
+	at rs.ac.bg.etf.pp1.MJCompiler.compile(MJCompiler.java:59)
+	at rs.ac.bg.etf.pp1.MicroJava.compile(MicroJava.java:12)
+	at rs.ac.bg.etf.pp1.MicroJava.main(MicroJava.java:53)

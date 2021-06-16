@@ -60,7 +60,7 @@ public class MJCompiler implements Compiler {
 	        Tab.dump();
 	        errors.addAll(semPass.getSemErrors());
 	        
-			if(!p.errorDetected && !semPass.errorDetected) {
+			if(!p.fatalErrorDetected && !semPass.errorDetected) {
 				File objFile = new File(outputFilePath);
 				if(objFile.exists())
 					objFile.delete();

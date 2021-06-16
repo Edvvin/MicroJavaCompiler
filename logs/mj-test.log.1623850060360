@@ -1,0 +1,103 @@
+INFO  15:27:23,352 - Compiling source file: /home/edvin/Desktop/ppp/MicroJavaCompiler/test/program.mj
+INFO  15:27:23,378 - #2 program
+INFO  15:27:23,378 - #50 SemTest
+INFO  15:27:23,378 - #50 int
+INFO  15:27:23,378 - #50 a
+INFO  15:27:23,378 - #7 ;
+INFO  15:27:23,378 - #10 const
+INFO  15:27:23,379 - #50 int
+INFO  15:27:23,379 - #50 b
+INFO  15:27:23,379 - #27 =
+INFO  15:27:23,379 - #49 10
+INFO  15:27:23,379 - #7 ;
+INFO  15:27:23,379 - #50 bool
+INFO  15:27:23,379 - #50 c
+INFO  15:27:23,379 - #5 [
+INFO  15:27:23,379 - #6 ]
+INFO  15:27:23,379 - #7 ;
+INFO  15:27:23,380 - #3 {
+INFO  15:27:23,380 - #50 char
+INFO  15:27:23,380 - #50 func
+INFO  15:27:23,380 - #8 (
+INFO  15:27:23,380 - #50 int
+INFO  15:27:23,380 - #50 a
+INFO  15:27:23,380 - #11 ,
+INFO  15:27:23,381 - #50 bool
+INFO  15:27:23,381 - #50 c
+INFO  15:27:23,381 - #5 [
+INFO  15:27:23,381 - #6 ]
+INFO  15:27:23,381 - #9 )
+INFO  15:27:23,381 - #50 int
+INFO  15:27:23,382 - #50 i
+INFO  15:27:23,382 - #7 ;
+INFO  15:27:23,382 - #3 {
+INFO  15:27:23,382 - #50 c
+INFO  15:27:23,383 - #27 =
+INFO  15:27:23,383 - #15 new
+INFO  15:27:23,383 - #50 char
+INFO  15:27:23,384 - #5 [
+INFO  15:27:23,384 - #50 b
+INFO  15:27:23,384 - #6 ]
+INFO  15:27:23,384 - #7 ;
+INFO  15:27:23,384 - #36 do
+INFO  15:27:23,385 - #3 {
+INFO  15:27:23,385 - #50 c
+INFO  15:27:23,386 - #5 [
+INFO  15:27:23,386 - #50 i
+INFO  15:27:23,386 - #6 ]
+INFO  15:27:23,386 - #27 =
+INFO  15:27:23,386 - #49 1
+INFO  15:27:23,386 - #7 ;
+INFO  15:27:23,386 - #50 c
+INFO  15:27:23,386 - #5 [
+INFO  15:27:23,386 - #50 c
+INFO  15:27:23,387 - #5 [
+INFO  15:27:23,387 - #50 i
+INFO  15:27:23,387 - #6 ]
+INFO  15:27:23,387 - #6 ]
+INFO  15:27:23,387 - #27 =
+INFO  15:27:23,387 - #49 2
+INFO  15:27:23,387 - #7 ;
+INFO  15:27:23,387 - #4 }
+INFO  15:27:23,387 - #17 while
+INFO  15:27:23,387 - #8 (
+INFO  15:27:23,387 - #50 i
+INFO  15:27:23,387 - #30 <
+INFO  15:27:23,388 - #51 c
+INFO  15:27:23,388 - #9 )
+INFO  15:27:23,389 - #7 ;
+INFO  15:27:23,389 - #13 return
+INFO  15:27:23,389 - #50 c
+INFO  15:27:23,389 - #5 [
+INFO  15:27:23,389 - #49 9
+INFO  15:27:23,389 - #6 ]
+INFO  15:27:23,389 - #7 ;
+INFO  15:27:23,389 - #4 }
+INFO  15:27:23,389 - #14 void
+INFO  15:27:23,389 - #50 main
+INFO  15:27:23,389 - #8 (
+INFO  15:27:23,390 - #9 )
+INFO  15:27:23,390 - #50 char
+INFO  15:27:23,390 - #50 x
+INFO  15:27:23,390 - #7 ;
+INFO  15:27:23,390 - #3 {
+INFO  15:27:23,390 - #43 switch
+ERROR 15:27:23,390 - 
+Sintaksna greska na liniji 21
+ERROR 15:27:23,390 - Fatalna greska, parsiranje se ne moze nastaviti na liniji 21
+INFO  15:27:23,390 - AstVarDeclL(
+  AstNoVarDecl(
+  ) [AstNoVarDecl]
+  AstVarDecl(
+    AstType(
+     char
+    ) [AstType]
+    AstVarAsgnSemi(
+      AstVarAsgn(
+       x
+      ) [AstVarAsgn]
+    ) [AstVarAsgnSemi]
+  ) [AstVarDecl]
+) [AstVarDeclL]
+INFO  15:27:23,395 - Variable declared x on line 19
+INFO  15:27:23,395 - Compilation failed!

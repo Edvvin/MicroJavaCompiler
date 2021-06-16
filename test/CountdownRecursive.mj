@@ -1,0 +1,17 @@
+program Countdown
+{
+
+	void countDown(int n)
+	{
+		print(n);
+		print(eol);
+		if(n>0){
+			countDown(n-1);
+		}
+	}
+
+	void main()
+	{
+		countDown(30);
+	}
+}

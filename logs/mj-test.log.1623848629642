@@ -1,0 +1,127 @@
+INFO  15:03:05,843 - Compiling source file: /home/edvin/Desktop/ppp/MicroJavaCompiler/test/program.mj
+INFO  15:03:05,865 - #2 program
+INFO  15:03:05,865 - #50 SyntaxTest
+INFO  15:03:05,865 - #50 int
+INFO  15:03:05,866 - #50 bananas
+INFO  15:03:05,866 - #50 char
+ERROR 15:03:05,866 - 
+Sintaksna greska na liniji 2
+INFO  15:03:05,866 - #11 ,
+INFO  15:03:05,866 - #50 asdf
+INFO  15:03:05,866 - #7 ;
+INFO  15:03:05,867 - #10 const
+INFO  15:03:05,867 - #50 char
+INFO  15:03:05,867 - #50 o
+ERROR 15:03:05,867 - Syntax error in line 2 global variable error. recovery up to ';'
+INFO  15:03:05,868 - #27 =
+INFO  15:03:05,868 - #51 o
+INFO  15:03:05,868 - #11 ,
+INFO  15:03:05,869 - #51 o
+ERROR 15:03:05,869 - 
+Sintaksna greska na liniji 3
+INFO  15:03:05,869 - #7 ;
+INFO  15:03:05,869 - #3 {
+INFO  15:03:05,869 - #50 int
+INFO  15:03:05,869 - #50 test1
+ERROR 15:03:05,869 - Syntax error in line 3 global constant error. recovery up to ';'
+INFO  15:03:05,870 - #8 (
+INFO  15:03:05,870 - #50 int
+INFO  15:03:05,870 - #50 a
+INFO  15:03:05,870 - #11 ,
+INFO  15:03:05,870 - #50 int
+INFO  15:03:05,870 - #50 b
+INFO  15:03:05,870 - #11 ,
+INFO  15:03:05,870 - #50 int
+INFO  15:03:05,870 - #50 c
+INFO  15:03:05,870 - #50 c
+ERROR 15:03:05,870 - 
+Sintaksna greska na liniji 6
+INFO  15:03:05,870 - #9 )
+INFO  15:03:05,871 - #3 {
+INFO  15:03:05,871 - #13 return
+INFO  15:03:05,871 - #49 5
+ERROR 15:03:05,871 - Syntax error in line 6 formal params bad. recovery up to ')'
+INFO  15:03:05,871 - #7 ;
+INFO  15:03:05,872 - #4 }
+INFO  15:03:05,872 - #14 void
+INFO  15:03:05,872 - #50 test2
+INFO  15:03:05,872 - #8 (
+INFO  15:03:05,872 - #50 int
+INFO  15:03:05,872 - #50 x
+INFO  15:03:05,872 - #11 ,
+INFO  15:03:05,872 - #50 int
+INFO  15:03:05,873 - #50 y
+INFO  15:03:05,873 - #50 y
+ERROR 15:03:05,873 - 
+Sintaksna greska na liniji 10
+INFO  15:03:05,873 - #11 ,
+INFO  15:03:05,873 - #50 int
+INFO  15:03:05,873 - #50 z
+INFO  15:03:05,873 - #9 )
+INFO  15:03:05,873 - #3 {
+ERROR 15:03:05,873 - Syntax error in line 10 formal params bad. recovery up to ','
+INFO  15:03:05,873 - #39 if
+INFO  15:03:05,873 - #8 (
+INFO  15:03:05,874 - #52 true
+INFO  15:03:05,874 - #5 [
+ERROR 15:03:05,874 - 
+Sintaksna greska na liniji 11
+INFO  15:03:05,874 - #49 5
+INFO  15:03:05,874 - #6 ]
+INFO  15:03:05,874 - #9 )
+INFO  15:03:05,874 - #3 {
+INFO  15:03:05,874 - #4 }
+INFO  15:03:05,874 - #12 print
+ERROR 15:03:05,874 - Syntax error in line 11 condition in if is bad . recovery up to ')'
+INFO  15:03:05,874 - #8 (
+INFO  15:03:05,874 - #51 i
+INFO  15:03:05,874 - #9 )
+INFO  15:03:05,875 - #7 ;
+INFO  15:03:05,875 - #12 print
+INFO  15:03:05,875 - #8 (
+INFO  15:03:05,875 - #51 t
+INFO  15:03:05,875 - #9 )
+INFO  15:03:05,875 - #7 ;
+INFO  15:03:05,875 - #12 print
+INFO  15:03:05,875 - #8 (
+INFO  15:03:05,875 - #51 w
+INFO  15:03:05,875 - #9 )
+INFO  15:03:05,875 - #7 ;
+INFO  15:03:05,875 - #12 print
+INFO  15:03:05,875 - #8 (
+INFO  15:03:05,875 - #50 o
+INFO  15:03:05,875 - #9 )
+INFO  15:03:05,875 - #7 ;
+INFO  15:03:05,875 - #12 print
+INFO  15:03:05,876 - #8 (
+INFO  15:03:05,876 - #51 r
+INFO  15:03:05,876 - #9 )
+INFO  15:03:05,876 - #7 ;
+INFO  15:03:05,876 - #12 print
+INFO  15:03:05,876 - #8 (
+INFO  15:03:05,876 - #51 k
+INFO  15:03:05,876 - #9 )
+INFO  15:03:05,876 - #7 ;
+INFO  15:03:05,876 - #12 print
+INFO  15:03:05,876 - #8 (
+INFO  15:03:05,876 - #51 s
+INFO  15:03:05,876 - #9 )
+INFO  15:03:05,876 - #7 ;
+INFO  15:03:05,876 - #40 else
+ERROR 15:03:05,876 - 
+Sintaksna greska na liniji 21
+ERROR 15:03:05,876 - Fatalna greska, parsiranje se ne moze nastaviti na liniji 21
+INFO  15:03:05,876 - AstPrintStmt(
+  AstNotTerExpr(
+    AstPosExpr(
+      AstTermExpr(
+        AstTermOne(
+          AstFactChar(
+           s
+          ) [AstFactChar]
+        ) [AstTermOne]
+      ) [AstTermExpr]
+    ) [AstPosExpr]
+  ) [AstNotTerExpr]
+) [AstPrintStmt]
+INFO  15:03:05,881 - Compilation failed!

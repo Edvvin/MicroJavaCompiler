@@ -216,6 +216,11 @@ public class CodeGenerator extends VisitorAdaptor {
 		Code.putFalseJump(Code.gt, 0);
 		ifExit.push(Code.pc-2);
 	}
+	
+	public void visit(AstIfPartErr ifpe) {
+		Code.putJump(0);
+		ifExit.push(Code.pc-2);
+	}
 
 	public void visit(AstElsePart ep) {
 		Code.putJump(0);

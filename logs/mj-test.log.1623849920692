@@ -1,0 +1,147 @@
+INFO  15:24:00,905 - Compiling source file: /home/edvin/Desktop/ppp/MicroJavaCompiler/test/program.mj
+INFO  15:24:00,929 - #2 program
+INFO  15:24:00,929 - #50 SemTest
+INFO  15:24:00,929 - #50 int
+INFO  15:24:00,930 - #50 a
+INFO  15:24:00,930 - #7 ;
+INFO  15:24:00,930 - #10 const
+INFO  15:24:00,930 - #50 int
+INFO  15:24:00,930 - #50 b
+INFO  15:24:00,930 - #27 =
+INFO  15:24:00,931 - #49 10
+INFO  15:24:00,931 - #7 ;
+INFO  15:24:00,931 - #50 bool
+INFO  15:24:00,931 - #50 c
+INFO  15:24:00,931 - #5 [
+INFO  15:24:00,931 - #6 ]
+INFO  15:24:00,931 - #7 ;
+INFO  15:24:00,931 - #3 {
+INFO  15:24:00,931 - #50 char
+INFO  15:24:00,932 - #50 func
+INFO  15:24:00,932 - #8 (
+INFO  15:24:00,932 - #50 int
+INFO  15:24:00,932 - #50 a
+INFO  15:24:00,932 - #11 ,
+INFO  15:24:00,932 - #50 bool
+INFO  15:24:00,932 - #50 c
+INFO  15:24:00,932 - #5 [
+INFO  15:24:00,933 - #6 ]
+INFO  15:24:00,933 - #9 )
+INFO  15:24:00,933 - #50 int
+INFO  15:24:00,933 - #50 i
+INFO  15:24:00,933 - #7 ;
+INFO  15:24:00,933 - #3 {
+INFO  15:24:00,934 - #50 c
+INFO  15:24:00,934 - #27 =
+INFO  15:24:00,934 - #15 new
+INFO  15:24:00,934 - #50 char
+INFO  15:24:00,934 - #5 [
+INFO  15:24:00,934 - #50 b
+INFO  15:24:00,934 - #6 ]
+INFO  15:24:00,935 - #7 ;
+INFO  15:24:00,935 - #36 do
+INFO  15:24:00,935 - #3 {
+INFO  15:24:00,936 - #50 c
+INFO  15:24:00,936 - #5 [
+INFO  15:24:00,936 - #50 i
+INFO  15:24:00,936 - #6 ]
+INFO  15:24:00,936 - #27 =
+INFO  15:24:00,936 - #49 1
+INFO  15:24:00,936 - #7 ;
+INFO  15:24:00,937 - #50 c
+INFO  15:24:00,937 - #5 [
+INFO  15:24:00,937 - #50 c
+INFO  15:24:00,937 - #5 [
+INFO  15:24:00,937 - #50 i
+INFO  15:24:00,937 - #6 ]
+INFO  15:24:00,937 - #6 ]
+INFO  15:24:00,937 - #27 =
+INFO  15:24:00,937 - #49 2
+INFO  15:24:00,937 - #7 ;
+INFO  15:24:00,938 - #4 }
+INFO  15:24:00,938 - #17 while
+INFO  15:24:00,938 - #8 (
+INFO  15:24:00,938 - #50 i
+INFO  15:24:00,938 - #30 <
+INFO  15:24:00,938 - #51 c
+INFO  15:24:00,938 - #9 )
+INFO  15:24:00,939 - #7 ;
+INFO  15:24:00,939 - #13 return
+INFO  15:24:00,939 - #50 c
+INFO  15:24:00,939 - #5 [
+INFO  15:24:00,939 - #49 9
+INFO  15:24:00,939 - #6 ]
+INFO  15:24:00,939 - #7 ;
+INFO  15:24:00,939 - #4 }
+INFO  15:24:00,939 - #14 void
+INFO  15:24:00,939 - #50 main
+INFO  15:24:00,939 - #8 (
+INFO  15:24:00,940 - #9 )
+INFO  15:24:00,940 - #50 char
+INFO  15:24:00,940 - #50 x
+INFO  15:24:00,940 - #7 ;
+INFO  15:24:00,940 - #3 {
+INFO  15:24:00,940 - #50 x
+INFO  15:24:00,940 - #27 =
+INFO  15:24:00,940 - #43 switch
+INFO  15:24:00,940 - #8 (
+INFO  15:24:00,940 - #50 x
+INFO  15:24:00,940 - #9 )
+INFO  15:24:00,940 - #3 {
+INFO  15:24:00,941 - #46 case
+INFO  15:24:00,941 - #49 4
+INFO  15:24:00,941 - #38 :
+INFO  15:24:00,941 - #46 case
+INFO  15:24:00,941 - #49 2
+INFO  15:24:00,941 - #38 :
+INFO  15:24:00,941 - #12 print
+INFO  15:24:00,941 - #8 (
+INFO  15:24:00,941 - #50 a
+INFO  15:24:00,941 - #9 )
+INFO  15:24:00,941 - #7 ;
+INFO  15:24:00,941 - #4 }
+INFO  15:24:00,942 - #4 }
+ERROR 15:24:00,942 - 
+Sintaksna greska na liniji 26
+INFO  15:24:00,942 - #4 }
+ERROR 15:24:00,942 - Fatalna greska, parsiranje se ne moze nastaviti na liniji 27
+INFO  15:24:00,943 - AstCaseList(
+  AstCase(
+    AstCaseBegin(
+     4
+    ) [AstCaseBegin]
+    AstNoStmt(
+    ) [AstNoStmt]
+  ) [AstCase]
+  AstCaseList(
+    AstCase(
+      AstCaseBegin(
+       2
+      ) [AstCaseBegin]
+      AstStatementL(
+        AstNoStmt(
+        ) [AstNoStmt]
+        AstPrintStmt(
+          AstNotTerExpr(
+            AstPosExpr(
+              AstTermExpr(
+                AstTermOne(
+                  AstDesigFact(
+                    AstDesig(
+                     a
+                    ) [AstDesig]
+                  ) [AstDesigFact]
+                ) [AstTermOne]
+              ) [AstTermExpr]
+            ) [AstPosExpr]
+          ) [AstNotTerExpr]
+        ) [AstPrintStmt]
+      ) [AstStatementL]
+    ) [AstCase]
+    AstNoCase(
+    ) [AstNoCase]
+  ) [AstCaseList]
+) [AstCaseList]
+ERROR 15:24:00,947 - Name a not declared on line 24
+ERROR 15:24:00,947 - Expression must be either of type int, char of bool on line 24
+INFO  15:24:00,948 - Compilation failed!

@@ -1,0 +1,11 @@
+INFO  11:45:39,166 - Compiling source file: /home/edvin/Desktop/ppp/MicroJavaCompiler/test/program.mj
+INFO  11:45:39,187 - #2 program
+INFO  11:45:39,187 - #50 SyntaxTest
+INFO  11:45:39,187 - #50 int
+INFO  11:45:39,188 - #19 -
+ERROR 11:45:39,188 - 
+Sintaksna greska na liniji 2
+ERROR 11:45:39,188 - Fatalna greska, parsiranje se ne moze nastaviti na liniji 2
+INFO  11:45:39,188 - AstNoGlobDecl(
+) [AstNoGlobDecl]
+INFO  11:45:39,194 - Compilation failed!

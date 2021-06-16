@@ -1,6 +1,6 @@
 // generated with ast extension for cup
 // version 0.8
-// 15/5/2021 0:40:51
+// 16/5/2021 15:11:18
 
 
 package rs.ac.bg.etf.pp1.ast;
@@ -8,6 +8,7 @@ package rs.ac.bg.etf.pp1.ast;
 public abstract class VisitorAdaptor implements Visitor { 
 
     public void visit(TerColon TerColon) { }
+    public void visit(FormalParamDeclComma FormalParamDeclComma) { }
     public void visit(MethodDecl MethodDecl) { }
     public void visit(YieldBegin YieldBegin) { }
     public void visit(Mulop Mulop) { }
@@ -135,11 +136,12 @@ public abstract class VisitorAdaptor implements Visitor {
     public void visit(AstEqualStmt AstEqualStmt) { visit(); }
     public void visit(AstNoStmt AstNoStmt) { visit(); }
     public void visit(AstStatementL AstStatementL) { visit(); }
+    public void visit(AstFormalParamListErr AstFormalParamListErr) { visit(); }
+    public void visit(AstFormalParamDeclComma AstFormalParamDeclComma) { visit(); }
     public void visit(AstFormalParamArrDecl AstFormalParamArrDecl) { visit(); }
     public void visit(AstFormalParamDecl AstFormalParamDecl) { visit(); }
     public void visit(AstFormalParamOne AstFormalParamOne) { visit(); }
     public void visit(AstFormalParamErr AstFormalParamErr) { visit(); }
-    public void visit(AstFormalParamListErr AstFormalParamListErr) { visit(); }
     public void visit(AstFormalParamL AstFormalParamL) { visit(); }
     public void visit(AstNoFormalParams AstNoFormalParams) { visit(); }
     public void visit(AstFormalParams AstFormalParams) { visit(); }

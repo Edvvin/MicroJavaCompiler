@@ -1,0 +1,118 @@
+INFO  12:20:12,985 - Compiling source file: /home/edvin/Desktop/ppp/MicroJavaCompiler/test/program.mj
+INFO  12:20:13,010 - #2 program
+INFO  12:20:13,010 - #50 SyntaxTest
+INFO  12:20:13,011 - #50 int
+INFO  12:20:13,011 - #50 bananas
+INFO  12:20:13,011 - #50 char
+ERROR 12:20:13,011 - 
+Sintaksna greska na liniji 2
+INFO  12:20:13,011 - #11 ,
+INFO  12:20:13,011 - #50 asdf
+INFO  12:20:13,011 - #7 ;
+INFO  12:20:13,012 - #10 const
+INFO  12:20:13,012 - #50 char
+INFO  12:20:13,012 - #50 b
+ERROR 12:20:13,012 - Syntax error in line 2 global variable error. recovery up to ';'
+INFO  12:20:13,013 - #27 =
+INFO  12:20:13,013 - #51 o
+INFO  12:20:13,013 - #11 ,
+INFO  12:20:13,013 - #51 o
+ERROR 12:20:13,013 - 
+Sintaksna greska na liniji 3
+INFO  12:20:13,013 - #7 ;
+INFO  12:20:13,013 - #3 {
+INFO  12:20:13,013 - #14 void
+INFO  12:20:13,013 - #50 main
+ERROR 12:20:13,014 - Syntax error in line 3 global constant error. recovery up to ';'
+INFO  12:20:13,014 - #8 (
+INFO  12:20:13,014 - #9 )
+INFO  12:20:13,014 - #3 {
+INFO  12:20:13,015 - #4 }
+INFO  12:20:13,015 - #50 int
+INFO  12:20:13,015 - #50 test1
+INFO  12:20:13,015 - #8 (
+INFO  12:20:13,015 - #50 int
+INFO  12:20:13,015 - #50 a
+INFO  12:20:13,015 - #11 ,
+INFO  12:20:13,016 - #50 int
+INFO  12:20:13,016 - #20 *
+ERROR 12:20:13,016 - 
+Sintaksna greska na liniji 10
+INFO  12:20:13,016 - #50 b
+INFO  12:20:13,016 - #11 ,
+INFO  12:20:13,016 - #50 int
+INFO  12:20:13,016 - #50 c
+INFO  12:20:13,016 - #9 )
+ERROR 12:20:13,016 - Syntax error in line 10 formal params bad. recovery up to ','
+ERROR 12:20:13,016 - 
+Sintaksna greska na liniji 10
+INFO  12:20:13,016 - #3 {
+INFO  12:20:13,017 - #4 }
+INFO  12:20:13,017 - #14 void
+INFO  12:20:13,017 - #50 test2
+INFO  12:20:13,017 - #8 (
+INFO  12:20:13,017 - #50 int
+INFO  12:20:13,017 - #50 x
+INFO  12:20:13,017 - #11 ,
+INFO  12:20:13,017 - #50 int
+INFO  12:20:13,017 - #50 y
+INFO  12:20:13,017 - #11 ,
+ERROR 12:20:13,017 - Syntax error in line 10 global variable error. recovery up to ','
+INFO  12:20:13,018 - #50 in||t
+INFO  12:20:13,018 - #50 z
+ERROR 12:20:13,018 - 
+Sintaksna greska na liniji 13
+INFO  12:20:13,018 - #9 )
+INFO  12:20:13,018 - #3 {
+INFO  12:20:13,018 - #39 if
+INFO  12:20:13,018 - #8 (
+INFO  12:20:13,018 - #52 true
+INFO  12:20:13,018 - #5 [
+INFO  12:20:13,018 - #49 5
+INFO  12:20:13,018 - #6 ]
+INFO  12:20:13,018 - #9 )
+INFO  12:20:13,018 - #3 {
+INFO  12:20:13,018 - #12 print
+INFO  12:20:13,018 - #8 (
+INFO  12:20:13,018 - #51 i
+INFO  12:20:13,018 - #9 )
+INFO  12:20:13,019 - #7 ;
+INFO  12:20:13,019 - #12 print
+INFO  12:20:13,019 - #8 (
+INFO  12:20:13,019 - #51 t
+INFO  12:20:13,019 - #9 )
+INFO  12:20:13,019 - #7 ;
+INFO  12:20:13,019 - #12 print
+INFO  12:20:13,019 - #8 (
+INFO  12:20:13,019 - #51 w
+INFO  12:20:13,019 - #9 )
+INFO  12:20:13,019 - #7 ;
+INFO  12:20:13,019 - #12 print
+INFO  12:20:13,019 - #8 (
+INFO  12:20:13,019 - #50 b
+INFO  12:20:13,019 - #9 )
+INFO  12:20:13,020 - #7 ;
+INFO  12:20:13,020 - #12 print
+INFO  12:20:13,020 - #8 (
+INFO  12:20:13,020 - #51 r
+INFO  12:20:13,020 - #9 )
+INFO  12:20:13,020 - #7 ;
+INFO  12:20:13,020 - #12 print
+INFO  12:20:13,020 - #8 (
+INFO  12:20:13,020 - #51 k
+INFO  12:20:13,020 - #9 )
+INFO  12:20:13,020 - #7 ;
+INFO  12:20:13,020 - #12 print
+INFO  12:20:13,020 - #8 (
+INFO  12:20:13,020 - #51 s
+INFO  12:20:13,020 - #9 )
+INFO  12:20:13,020 - #7 ;
+INFO  12:20:13,020 - #4 }
+INFO  12:20:13,020 - #4 }
+INFO  12:20:13,021 - #4 }
+ERROR 12:20:13,021 - Fatalna greska, parsiranje se ne moze nastaviti na liniji 26
+INFO  12:20:13,021 - AstVarAsgn(
+ y
+) [AstVarAsgn]
+INFO  12:20:13,026 - Variable declared y on line 13
+INFO  12:20:13,027 - Compilation failed!

@@ -1,0 +1,126 @@
+INFO  16:14:38,883 - Compiling source file: /home/edvin/Desktop/ppp/MicroJavaCompiler/test/program.mj
+INFO  16:14:38,905 - #2 program
+INFO  16:14:38,905 - #50 SwitchesAndWhiles
+INFO  16:14:38,905 - #10 const
+INFO  16:14:38,906 - #50 int
+INFO  16:14:38,906 - #50 N
+INFO  16:14:38,906 - #27 =
+INFO  16:14:38,906 - #49 10
+INFO  16:14:38,906 - #7 ;
+INFO  16:14:38,906 - #3 {
+INFO  16:14:38,906 - #14 void
+INFO  16:14:38,907 - #50 main
+INFO  16:14:38,907 - #8 (
+INFO  16:14:38,907 - #9 )
+INFO  16:14:38,907 - #50 int
+INFO  16:14:38,907 - #50 i
+INFO  16:14:38,908 - #11 ,
+INFO  16:14:38,908 - #50 j
+INFO  16:14:38,908 - #7 ;
+INFO  16:14:38,908 - #3 {
+INFO  16:14:38,908 - #50 i
+INFO  16:14:38,908 - #27 =
+INFO  16:14:38,909 - #49 0
+INFO  16:14:38,909 - #7 ;
+INFO  16:14:38,909 - #50 j
+INFO  16:14:38,909 - #27 =
+INFO  16:14:38,909 - #49 0
+INFO  16:14:38,909 - #7 ;
+INFO  16:14:38,909 - #36 do
+INFO  16:14:38,910 - #3 {
+INFO  16:14:38,910 - #36 do
+INFO  16:14:38,910 - #3 {
+INFO  16:14:38,910 - #39 if
+INFO  16:14:38,910 - #8 (
+INFO  16:14:38,910 - #50 i
+INFO  16:14:38,910 - #28 >
+INFO  16:14:38,910 - #49 0
+INFO  16:14:38,911 - #9 )
+INFO  16:14:38,911 - #35 break
+INFO  16:14:38,911 - #7 ;
+INFO  16:14:38,911 - #50 j
+INFO  16:14:38,912 - #27 =
+INFO  16:14:38,912 - #43 switch
+INFO  16:14:38,912 - #8 (
+INFO  16:14:38,912 - #50 j
+INFO  16:14:38,912 - #9 )
+INFO  16:14:38,912 - #3 {
+INFO  16:14:38,912 - #46 case
+INFO  16:14:38,912 - #49 0
+INFO  16:14:38,912 - #38 :
+INFO  16:14:38,913 - #12 print
+INFO  16:14:38,913 - #8 (
+INFO  16:14:38,913 - #51 H
+INFO  16:14:38,913 - #9 )
+INFO  16:14:38,913 - #7 ;
+INFO  16:14:38,913 - #48 yield
+INFO  16:14:38,913 - #50 j
+INFO  16:14:38,914 - #18 +
+INFO  16:14:38,914 - #49 1
+INFO  16:14:38,914 - #7 ;
+INFO  16:14:38,914 - #46 case
+INFO  16:14:38,914 - #49 1
+INFO  16:14:38,914 - #38 :
+INFO  16:14:38,914 - #12 print
+INFO  16:14:38,915 - #8 (
+INFO  16:14:38,915 - #51 e
+INFO  16:14:38,915 - #9 )
+INFO  16:14:38,915 - #7 ;
+INFO  16:14:38,915 - #48 yield
+INFO  16:14:38,915 - #50 j
+INFO  16:14:38,915 - #18 +
+INFO  16:14:38,915 - #49 1
+INFO  16:14:38,915 - #7 ;
+INFO  16:14:38,915 - #46 case
+INFO  16:14:38,915 - #49 2
+INFO  16:14:38,915 - #38 :
+INFO  16:14:38,915 - #46 case
+INFO  16:14:38,915 - #49 3
+INFO  16:14:38,916 - #38 :
+INFO  16:14:38,916 - #12 print
+INFO  16:14:38,916 - #8 (
+INFO  16:14:38,916 - #51 l
+INFO  16:14:38,916 - #9 )
+INFO  16:14:38,916 - #7 ;
+INFO  16:14:38,916 - #48 yield
+INFO  16:14:38,916 - #50 j
+INFO  16:14:38,916 - #18 +
+INFO  16:14:38,916 - #49 1
+INFO  16:14:38,916 - #7 ;
+INFO  16:14:38,917 - #47 default
+INFO  16:14:38,917 - #38 :
+INFO  16:14:38,917 - #12 print
+INFO  16:14:38,917 - #8 (
+INFO  16:14:38,917 - #43 switch
+INFO  16:14:38,917 - #8 (
+INFO  16:14:38,917 - #50 i
+INFO  16:14:38,918 - #9 )
+INFO  16:14:38,918 - #3 {
+INFO  16:14:38,918 - #46 case
+INFO  16:14:38,918 - #49 1
+INFO  16:14:38,918 - #38 :
+INFO  16:14:38,918 - #48 yield
+INFO  16:14:38,918 - #51 H
+INFO  16:14:38,918 - #7 ;
+INFO  16:14:38,918 - #47 default
+INFO  16:14:38,918 - #38 :
+INFO  16:14:38,918 - #48 yield
+INFO  16:14:38,918 - #51 o
+INFO  16:14:38,918 - #7 ;
+INFO  16:14:38,918 - #9 )
+ERROR 16:14:38,919 - 
+Sintaksna greska na liniji 25
+INFO  16:14:38,919 - #7 ;
+INFO  16:14:38,919 - #48 yield
+INFO  16:14:38,919 - #50 j
+INFO  16:14:38,919 - #18 +
+ERROR 16:14:38,922 - class rs.ac.bg.etf.pp1.ast.AstStatementL cannot be cast to class rs.ac.bg.etf.pp1.ast.Designator (rs.ac.bg.etf.pp1.ast.AstStatementL and rs.ac.bg.etf.pp1.ast.Designator are in unnamed module of loader 'app')
+java.lang.ClassCastException: class rs.ac.bg.etf.pp1.ast.AstStatementL cannot be cast to class rs.ac.bg.etf.pp1.ast.Designator (rs.ac.bg.etf.pp1.ast.AstStatementL and rs.ac.bg.etf.pp1.ast.Designator are in unnamed module of loader 'app')
+	at rs.ac.bg.etf.pp1.CUP$MJParser$actions.CUP$MJParser$do_action(MJParser.java:1416)
+	at rs.ac.bg.etf.pp1.MJParser.do_action(MJParser.java:466)
+	at java_cup.runtime.lr_parser.parse_lookahead(lr_parser.java:1178)
+	at java_cup.runtime.lr_parser.error_recovery(lr_parser.java:887)
+	at java_cup.runtime.lr_parser.parse(lr_parser.java:598)
+	at rs.ac.bg.etf.pp1.MJCompiler.compile(MJCompiler.java:50)
+	at rs.ac.bg.etf.pp1.MicroJava.compile(MicroJava.java:12)
+	at rs.ac.bg.etf.pp1.MicroJava.main(MicroJava.java:53)
